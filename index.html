@@ -61,7 +61,10 @@
       border:1px solid rgba(161,192,248,.35);
       box-shadow: 0 16px 50px rgba(161,192,248,.18);
       flex: 0 0 auto;
+      overflow:hidden;
+      display:flex;align-items:center;justify-content:center;
     }
+    .logo img{width:100%;height:100%;object-fit:cover;display:none}
     .brandText{min-width:0}
     .brandName{font-weight:900;letter-spacing:-.2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
     .brandSub{font-size:12px;color:var(--muted);margin-top:2px}
@@ -86,6 +89,9 @@
       color:#061022;
       font-weight:900;
     }
+    .btn.danger{border-color:rgba(255,90,90,.45);background:rgba(255,90,90,.08)}
+    .btn.danger:hover{background:rgba(255,90,90,.12)}
+    .btn.mini{padding:8px 10px;border-radius:12px;font-size:12px}
 
     section{scroll-margin-top:16px}
     .panel{
@@ -319,6 +325,38 @@
     .fab:hover{background:rgba(161,192,248,.16)}
     .fab svg{width:22px;height:22px}
 
+    /* Admin UI */
+    .tabs{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+    .tab{
+      padding:8px 10px;border-radius:12px;border:1px solid rgba(255,255,255,.16);
+      background:rgba(255,255,255,.04);cursor:pointer;font-weight:800;font-size:12px;color:var(--text);
+    }
+    .tab.active{border-color:rgba(161,192,248,.55);background:rgba(161,192,248,.10)}
+    .aSection{display:none;margin-top:12px}
+    .aSection.active{display:block}
+
+    .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    .cardMini{
+      border:1px solid rgba(255,255,255,.16);
+      background:rgba(255,255,255,.04);
+      border-radius:16px;
+      padding:12px;
+      margin-top:10px;
+    }
+    .twoCol{display:grid;grid-template-columns:repeat(12,1fr);gap:12px}
+    .twoCol .span6{grid-column:span 6}
+    .twoCol .span12{grid-column:1/-1}
+    @media (max-width:860px){ .twoCol .span6{grid-column:1/-1} }
+
+    .hr{height:1px;background:rgba(255,255,255,.14);margin:12px 0}
+
+    .thumbPrev{
+      width:90px;height:90px;border-radius:16px;border:1px solid rgba(255,255,255,.16);
+      overflow:hidden;background:rgba(0,0,0,.12);
+      display:flex;align-items:center;justify-content:center;
+    }
+    .thumbPrev img{width:100%;height:100%;object-fit:cover;display:block}
+
     .toast{
       position:fixed;left:16px;bottom:16px;z-index:70;
       max-width:360px;
@@ -338,10 +376,12 @@
 <header>
   <div class="wrap nav">
     <div class="brand">
-      <div class="logo" aria-hidden="true"></div>
+      <div class="logo" aria-hidden="true" id="logoBox">
+        <img id="logoImg" alt="logo" />
+      </div>
       <div class="brandText">
         <div class="brandName" id="siteName">Jokitoefl.myid</div>
-        <div class="brandSub" id="brandSub">Sertifikat • Bantuan Mahasiswa • Lainnya</div>
+        <div class="brandSub" id="brandSub">Sertifikat TOEFL & Komputer • Bantuan Mahasiswa • Lainnya</div>
       </div>
     </div>
 
@@ -522,15 +562,18 @@
   <div class="modal" role="dialog" aria-modal="true" aria-label="admin panel">
     <div class="modalHead">
       <div>
-        <h3 class="modalTitle">Admin</h3>
-        <div class="small">Login lokal. Password tidak masuk repo. Publish global: Copy JSON → paste ke <b>data.json</b> di GitHub → commit.</div>
+        <h3 class="modalTitle">Admin Panel</h3>
+        <div class="small">
+          Aman: password hanya lokal. Publish global: Edit → Simpan Draft → Copy JSON → paste ke <b>data.json</b> GitHub → commit.
+        </div>
       </div>
       <button class="closeBtn" id="aClose" type="button">✕</button>
     </div>
 
+    <!-- LOGIN -->
     <div id="aLoginBox" class="panel" style="margin-top:12px">
       <h3 style="margin:0 0 8px">Login / Set Admin</h3>
-      <div class="small">Pertama kali: set username & password. Berikutnya: login pakai yang sama.</div>
+      <div class="small">Pertama kali: set username & password. Berikutnya: login pakai yang sama. Password tidak pernah tampil.</div>
 
       <div class="formGrid">
         <div class="col6">
@@ -548,45 +591,183 @@
       </div>
     </div>
 
+    <!-- DASH -->
     <div id="aDash" style="display:none;margin-top:12px">
       <div class="panel">
         <h3 style="margin:0 0 8px">Publish Global</h3>
-        <div class="small">Setelah kamu commit `data.json`, publik akan ikut berubah. Cek dengan Incognito atau Ctrl+Shift+R.</div>
+        <div class="small">
+          Setelah commit `data.json`, publik ikut berubah. Cek di Incognito atau Ctrl+Shift+R.
+        </div>
         <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px">
           <button class="btn primary" id="aCopyBtn" type="button">Copy JSON untuk data.json</button>
+          <button class="btn" id="aSaveDraftBtn" type="button">Simpan Draft</button>
+          <button class="btn danger" id="aClearDraftBtn" type="button">Hapus Draft Lokal</button>
           <a class="btn" id="aOpenGit" target="_blank" rel="noreferrer">Buka GitHub edit data.json</a>
         </div>
       </div>
 
-      <div class="panel" style="margin-top:14px">
-        <h3 style="margin:0 0 8px">Ganti Password Admin</h3>
-        <div class="small">Wajib masukkan password lama dulu.</div>
-        <div class="formGrid">
-          <div class="col6">
-            <label>Password lama</label>
-            <input id="oldPass" type="password" />
-          </div>
-          <div class="col6">
-            <label>Password baru</label>
-            <input id="newPass" type="password" />
-          </div>
-          <div class="col6">
-            <label>Ulangi password baru</label>
-            <input id="newPass2" type="password" />
-          </div>
-          <div class="col12">
-            <button class="btn primary" id="changePassBtn" type="button">Simpan Password Baru</button>
+      <div class="tabs" aria-label="admin tabs">
+        <button class="tab active" data-tab="tab-settings" type="button">Settings + Logo</button>
+        <button class="tab" data-tab="tab-services" type="button">Layanan</button>
+        <button class="tab" data-tab="tab-advantages" type="button">Keunggulan</button>
+        <button class="tab" data-tab="tab-ttext" type="button">Testimoni Teks</button>
+        <button class="tab" data-tab="tab-timg" type="button">Testimoni Gambar</button>
+        <button class="tab" data-tab="tab-form" type="button">Form (Formspree)</button>
+        <button class="tab" data-tab="tab-security" type="button">Password</button>
+      </div>
+
+      <!-- SETTINGS -->
+      <div class="aSection active" id="tab-settings">
+        <div class="cardMini">
+          <div class="twoCol">
+            <div class="span6">
+              <label>Site Name</label>
+              <input id="s_siteName" />
+            </div>
+            <div class="span6">
+              <label>CTA Text</label>
+              <input id="s_ctaText" />
+            </div>
+
+            <div class="span12">
+              <label>Headline (kata “future” otomatis warna biru)</label>
+              <input id="s_headline" />
+            </div>
+
+            <div class="span12">
+              <label>Badge</label>
+              <input id="s_badge" />
+            </div>
+
+            <div class="span12">
+              <label>Subhead</label>
+              <textarea id="s_subhead" rows="2"></textarea>
+            </div>
+
+            <div class="span12">
+              <label>Instagram URL</label>
+              <input id="s_instagram" />
+            </div>
+
+            <div class="span12">
+              <label>About</label>
+              <textarea id="s_about" rows="3"></textarea>
+            </div>
+
+            <div class="span6">
+              <label>Form Title</label>
+              <input id="s_formTitle" />
+            </div>
+            <div class="span6">
+              <label>Form Subtitle</label>
+              <input id="s_formSubtitle" />
+            </div>
+
+            <div class="span12">
+              <div class="hr"></div>
+              <div class="row">
+                <div class="thumbPrev" id="logoPrev"><span class="small">Logo</span></div>
+                <div>
+                  <div class="small">Upload logo (akan di-compress) → ikut masuk ke JSON publish.</div>
+                  <div class="row" style="margin-top:8px">
+                    <input id="logoFile" type="file" accept="image/*" />
+                    <button class="btn mini danger" id="logoRemove" type="button">Hapus Logo</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
 
-      <div class="panel" style="margin-top:14px">
-        <h3 style="margin:0 0 8px">Catatan</h3>
-        <div class="small">
-          Versi ini fokus aman + visual final. Setelah ini, kalau kamu mau admin bisa edit semua konten langsung dari panel,
-          kita tambahkan form editor lengkap (settings, layanan, keunggulan, testimoni teks & gambar) tanpa bocorin data pribadi.
+      <!-- SERVICES -->
+      <div class="aSection" id="tab-services">
+        <div class="small">Edit 4 layanan. Kamu bisa ubah judul, deskripsi, dan detail (section + bullet).</div>
+        <div id="svcEditorList"></div>
+        <div class="cardMini">
+          <div class="small">Tambah layanan baru (kalau butuh)</div>
+          <div class="row" style="margin-top:8px">
+            <button class="btn mini" id="svcAdd" type="button">+ Tambah Layanan</button>
+          </div>
         </div>
       </div>
+
+      <!-- ADVANTAGES -->
+      <div class="aSection" id="tab-advantages">
+        <div class="small">Keunggulan 5 card. Card ke-5 akan otomatis center.</div>
+        <div id="advEditorList"></div>
+        <div class="row" style="margin-top:10px">
+          <button class="btn mini" id="advAdd" type="button">+ Tambah Keunggulan</button>
+        </div>
+      </div>
+
+      <!-- TESTIMONIALS TEXT -->
+      <div class="aSection" id="tab-ttext">
+        <div class="small">Maks 20 testimoni teks. Slider manual, tanpa blur.</div>
+        <div id="tTextEditorList"></div>
+        <div class="row" style="margin-top:10px">
+          <button class="btn mini" id="tTextAdd" type="button">+ Tambah Testimoni Teks</button>
+        </div>
+      </div>
+
+      <!-- TESTIMONIALS IMAGES -->
+      <div class="aSection" id="tab-timg">
+        <div class="small">
+          Upload gambar testimoni (akan di-compress). Maks 20.
+          Caption hanya tampil di popup.
+        </div>
+
+        <div class="cardMini">
+          <div class="row">
+            <input id="tImgFiles" type="file" accept="image/*" multiple />
+            <button class="btn mini" id="tImgAddBtn" type="button">Tambahkan ke List</button>
+          </div>
+          <div class="small" style="margin-top:8px">
+            Tips: kalau banyak screenshot, pilih beberapa dulu, upload bertahap supaya tidak penuh LocalStorage.
+          </div>
+        </div>
+
+        <div id="tImgEditorList"></div>
+      </div>
+
+      <!-- FORM -->
+      <div class="aSection" id="tab-form">
+        <div class="small">Form pakai Formspree. Ini aman karena yang disimpan hanya endpoint URL, bukan email di halaman.</div>
+        <div class="cardMini">
+          <label>Formspree Endpoint (contoh: https://formspree.io/f/xxxxxxx)</label>
+          <input id="f_endpoint" placeholder="Tempel endpoint di sini" />
+          <div class="hr"></div>
+          <label>Success Message</label>
+          <input id="f_success" />
+        </div>
+      </div>
+
+      <!-- SECURITY -->
+      <div class="aSection" id="tab-security">
+        <div class="cardMini">
+          <h3 style="margin:0 0 8px">Ganti Password Admin</h3>
+          <div class="small">Wajib masukkan password lama dulu. Password tetap hanya lokal.</div>
+          <div class="formGrid">
+            <div class="col6">
+              <label>Password lama</label>
+              <input id="oldPass" type="password" />
+            </div>
+            <div class="col6">
+              <label>Password baru</label>
+              <input id="newPass" type="password" />
+            </div>
+            <div class="col6">
+              <label>Ulangi password baru</label>
+              <input id="newPass2" type="password" />
+            </div>
+            <div class="col12">
+              <button class="btn primary" id="changePassBtn" type="button">Simpan Password Baru</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
@@ -594,15 +775,17 @@
 <div class="toast" id="toast"></div>
 
 <script>
-  // Konfigurasi repo (untuk tombol "Buka GitHub edit data.json")
+  // ========= Repo config for "Open GitHub edit data.json" =========
   const GITHUB_USER = "meimeibkn";
   const GITHUB_REPO = "Jokitoefl.myid";
 
+  // ========= Storage keys =========
   const KEY_ADMIN = "JTK_ADMIN_V1";
   const KEY_AUTH  = "JTK_AUTH_V1";
+  const KEY_DRAFT = "JTK_DRAFT_V1";
 
+  // ========= Helpers =========
   const $ = (id) => document.getElementById(id);
-
   function toast(msg){
     const t = $("toast");
     t.textContent = msg;
@@ -610,11 +793,12 @@
     clearTimeout(window.__t);
     window.__t = setTimeout(()=>t.style.display="none", 2600);
   }
-
   function safeText(s){ return String(s ?? ""); }
+  function clone(obj){ return JSON.parse(JSON.stringify(obj)); }
 
-  // --- Load data.json (with cache-buster) ---
-  let DATA = null;
+  // ========= Data =========
+  let REMOTE = null; // from data.json
+  let DRAFT  = null; // local editable
 
   async function fetchRemote(){
     try{
@@ -623,16 +807,70 @@
       const obj = await res.json();
       if(!obj || !obj.settings || !obj.services) return null;
       return obj;
-    }catch(e){ return null; }
+    }catch{ return null; }
   }
 
-  // --- Render ---
+  function loadDraft(){
+    try{
+      const raw = localStorage.getItem(KEY_DRAFT);
+      return raw ? JSON.parse(raw) : null;
+    }catch{ return null; }
+  }
+  function saveDraft(d){
+    localStorage.setItem(KEY_DRAFT, JSON.stringify(d));
+    DRAFT = d;
+  }
+  function clearDraft(){
+    localStorage.removeItem(KEY_DRAFT);
+    DRAFT = null;
+  }
+
+  // public always renders REMOTE (published)
+  // admin editor works on DRAFT; if none, start from REMOTE clone
+  function getEditorData(){
+    if(!DRAFT) DRAFT = clone(REMOTE);
+    // ensure fields exist
+    DRAFT.settings.logoData = DRAFT.settings.logoData || "";
+    DRAFT.form = DRAFT.form || { provider:"formspree", endpoint:"", successMessage:"Terkirim.", antiSpam:{honeypotField:"company"} };
+    DRAFT.form.antiSpam = DRAFT.form.antiSpam || { honeypotField:"company" };
+    DRAFT.testimonialsText = (DRAFT.testimonialsText || []).slice(0, 20);
+    DRAFT.testimonialsImages = (DRAFT.testimonialsImages || []).slice(0, 20);
+    return DRAFT;
+  }
+
+  function sanitizeForPublish(d){
+    // no admin secrets ever
+    return {
+      version: d.version || 1,
+      settings: d.settings,
+      form: d.form,
+      services: d.services,
+      advantages: d.advantages,
+      testimonialsText: d.testimonialsText,
+      testimonialsImages: d.testimonialsImages
+    };
+  }
+
+  // ========= Render public =========
+  function applyLogo(logoData){
+    const img = $("logoImg");
+    const box = $("logoBox");
+    if(logoData && String(logoData).startsWith("data:image")){
+      img.src = logoData;
+      img.style.display = "block";
+      box.style.background = "transparent";
+    }else{
+      img.removeAttribute("src");
+      img.style.display = "none";
+      box.style.background = "linear-gradient(135deg, rgba(161,192,248,.95), rgba(161,192,248,.35))";
+    }
+  }
+
   function renderTop(d){
     $("siteName").textContent = safeText(d.settings.siteName);
     $("footerName").textContent = safeText(d.settings.siteName);
     $("year").textContent = new Date().getFullYear();
 
-    // highlight "future"
     const raw = safeText(d.settings.headline);
     $("headline").innerHTML = raw.replace(/future/gi, "<span class='accent'>future</span>");
 
@@ -649,12 +887,13 @@
     $("formSubtitle").textContent = safeText(d.settings.formSubtitle || "");
 
     $("igBtn").href = safeText(d.settings.instagram || "#");
+
+    applyLogo(d.settings.logoData || "");
   }
 
   function renderServices(d){
     const wrap = $("servicesWrap");
     wrap.innerHTML = "";
-
     (d.services || []).forEach((s)=>{
       const card = document.createElement("article");
       card.className = "svc";
@@ -679,7 +918,6 @@
   function renderAdvantages(d){
     const advWrap = $("advWrap");
     advWrap.innerHTML = "";
-
     const arr = d.advantages || [];
     arr.forEach((a, idx)=>{
       if(idx === 4){
@@ -703,7 +941,7 @@
     });
   }
 
-  // --- Service modal ---
+  // ========= Service modal =========
   let currentServiceTitle = "";
   function openServiceModal(s){
     currentServiceTitle = s.title || "";
@@ -725,7 +963,7 @@
   }
   function closeServiceModal(){ $("svcOverlay").style.display = "none"; }
 
-  // --- Testimonials text slider (manual, no blur) ---
+  // ========= Testimonials text slider =========
   let tIndex = 0;
   let dragging = false;
   let startX = 0;
@@ -743,7 +981,7 @@
     if(arr.length === 0){
       track.innerHTML = `<div class="tCard" style="flex-basis:90%"><p class="tQuote">Belum ada testimoni teks.</p><div class="tWho"><span class="dot"></span><span>Admin</span></div></div>`;
       tIndex = 0;
-      applyTTransform();
+      applyTTransform(d);
       return;
     }
 
@@ -758,13 +996,13 @@
     });
 
     tIndex = 0;
-    applyTTransform();
+    applyTTransform(d);
   }
 
-  function applyTTransform(){
+  function applyTTransform(d){
     const viewport = $("tViewport");
     const track = $("tTrack");
-    const arr = (DATA.testimonialsText || []).slice(0, 20);
+    const arr = (d.testimonialsText || []).slice(0, 20);
     const total = Math.max(arr.length, 1);
 
     const gap = window.matchMedia("(max-width: 860px)").matches ? 12 : 14;
@@ -781,20 +1019,19 @@
     track.style.transform = `translateX(${-tIndex * step}px)`;
   }
 
-  function tNext(){
-    const total = (DATA.testimonialsText || []).slice(0, 20).length;
+  function tNext(d){
+    const total = (d.testimonialsText || []).slice(0, 20).length;
     const cpv = cardsPerView();
     const maxIndex = Math.max(0, total - Math.ceil(cpv));
     tIndex = Math.min(maxIndex, tIndex + 1);
-    applyTTransform();
+    applyTTransform(d);
   }
-
-  function tPrev(){
+  function tPrev(d){
     tIndex = Math.max(0, tIndex - 1);
-    applyTTransform();
+    applyTTransform(d);
   }
 
-  function bindSwipe(){
+  function bindSwipe(getData){
     const viewport = $("tViewport");
     const track = $("tTrack");
 
@@ -826,16 +1063,17 @@
       track.style.transition = "";
       const diff = e.clientX - startX;
       const threshold = 60;
-      if(diff < -threshold) tNext();
-      else if(diff > threshold) tPrev();
-      else applyTTransform();
+      const d = getData();
+      if(diff < -threshold) tNext(d);
+      else if(diff > threshold) tPrev(d);
+      else applyTTransform(d);
     }
 
     viewport.addEventListener("pointerup", end);
     viewport.addEventListener("pointercancel", end);
   }
 
-  // --- Gallery (big + thumbs + popup) ---
+  // ========= Gallery =========
   let gIndex = 0;
 
   function renderGallery(d){
@@ -863,53 +1101,50 @@
       const t = document.createElement("div");
       t.className = "thumb" + (i===gIndex ? " active" : "");
       t.innerHTML = `<img alt="thumb" src="${it.data}">`;
-      t.onclick = ()=>{ gIndex = i; updateGallery(); };
+      t.onclick = ()=>{ gIndex = i; updateGallery(d); };
       thumbRow.appendChild(t);
     });
   }
 
-  function updateGallery(){
-    const imgs = (DATA.testimonialsImages || []).slice(0, 20);
+  function updateGallery(d){
+    const imgs = (d.testimonialsImages || []).slice(0, 20);
     if(imgs.length === 0) return;
-
     $("bigImg").src = imgs[gIndex].data;
     Array.from(document.querySelectorAll(".thumb"))
       .forEach((t,i)=>t.classList.toggle("active", i===gIndex));
   }
 
-  function openGalleryPopup(){
-    const imgs = (DATA.testimonialsImages || []).slice(0, 20);
+  function openGalleryPopup(d){
+    const imgs = (d.testimonialsImages || []).slice(0, 20);
     if(imgs.length === 0) return;
-
     $("gPopupImg").src = imgs[gIndex].data;
     $("gCaption").textContent = safeText(imgs[gIndex].cap || "");
     $("gOverlay").style.display = "flex";
   }
   function closeGalleryPopup(){ $("gOverlay").style.display = "none"; }
-
-  function gNext(){
-    const imgs = (DATA.testimonialsImages || []).slice(0, 20);
+  function gNext(d){
+    const imgs = (d.testimonialsImages || []).slice(0, 20);
     if(imgs.length === 0) return;
     gIndex = (gIndex + 1) % imgs.length;
     $("gPopupImg").src = imgs[gIndex].data;
     $("gCaption").textContent = safeText(imgs[gIndex].cap || "");
-    updateGallery();
+    updateGallery(d);
   }
-  function gPrev(){
-    const imgs = (DATA.testimonialsImages || []).slice(0, 20);
+  function gPrev(d){
+    const imgs = (d.testimonialsImages || []).slice(0, 20);
     if(imgs.length === 0) return;
     gIndex = (gIndex - 1 + imgs.length) % imgs.length;
     $("gPopupImg").src = imgs[gIndex].data;
     $("gCaption").textContent = safeText(imgs[gIndex].cap || "");
-    updateGallery();
+    updateGallery(d);
   }
 
-  // --- Formspree submit ---
-  async function submitForm(e){
+  // ========= Formspree =========
+  async function submitForm(e, d){
     e.preventDefault();
-    const endpoint = DATA?.form?.endpoint || "";
-    if(!endpoint || endpoint.includes("PASTE_FORMSPREE_ENDPOINT_HERE")){
-      toast("Endpoint Formspree belum diisi di data.json.");
+    const endpoint = d?.form?.endpoint || "";
+    if(!endpoint){
+      toast("Endpoint Formspree belum diisi (admin > tab Form).");
       return;
     }
 
@@ -935,7 +1170,7 @@
         body: JSON.stringify(payload)
       });
       if(res.ok){
-        toast(DATA?.form?.successMessage || "Terkirim. Terima kasih!");
+        toast(d?.form?.successMessage || "Terkirim. Terima kasih!");
         $("leadForm").reset();
       }else{
         toast("Gagal kirim. Coba lagi.");
@@ -945,7 +1180,7 @@
     }
   }
 
-  // --- Admin local auth ---
+  // ========= Admin auth (local only) =========
   function getAdmin(){
     try{ return JSON.parse(localStorage.getItem(KEY_ADMIN) || "null"); }
     catch{ return null; }
@@ -957,9 +1192,18 @@
   function openAdmin(){
     $("aOverlay").style.display = "flex";
     $("aOpenGit").href = `https://github.com/${GITHUB_USER}/${GITHUB_REPO}/edit/main/data.json`;
+
     const ok = isAuthed();
     $("aLoginBox").style.display = ok ? "none" : "";
     $("aDash").style.display = ok ? "" : "none";
+
+    if(ok){
+      // fill editor inputs from DRAFT (or REMOTE clone)
+      const ed = getEditorData();
+      fillEditors(ed);
+      refreshEditorLists(ed);
+      refreshLogoPreview(ed.settings.logoData || "");
+    }
   }
   function closeAdmin(){ $("aOverlay").style.display = "none"; }
 
@@ -1010,32 +1254,498 @@
     toast("Password berhasil diganti.");
   }
 
-  // Copy JSON for data.json (public-safe)
-  async function copyPublishJSON(){
-    const pub = {
-      version: DATA.version || 1,
-      settings: DATA.settings,
-      form: DATA.form,
-      services: DATA.services,
-      advantages: DATA.advantages,
-      testimonialsText: DATA.testimonialsText,
-      testimonialsImages: DATA.testimonialsImages
-    };
+  // ========= Admin tabs =========
+  function setTab(id){
+    document.querySelectorAll(".tab").forEach(t=>t.classList.toggle("active", t.dataset.tab === id));
+    document.querySelectorAll(".aSection").forEach(s=>s.classList.toggle("active", s.id === id));
+  }
+
+  // ========= Editor fill/save =========
+  function fillEditors(d){
+    $("s_siteName").value = safeText(d.settings.siteName);
+    $("s_ctaText").value = safeText(d.settings.ctaText || "Konsultasi Gratis");
+    $("s_headline").value = safeText(d.settings.headline);
+    $("s_badge").value = safeText(d.settings.badge);
+    $("s_subhead").value = safeText(d.settings.subhead);
+    $("s_instagram").value = safeText(d.settings.instagram);
+    $("s_about").value = safeText(d.settings.about);
+    $("s_formTitle").value = safeText(d.settings.formTitle || "Form Konsultasi");
+    $("s_formSubtitle").value = safeText(d.settings.formSubtitle || "");
+
+    $("f_endpoint").value = safeText(d.form?.endpoint || "");
+    $("f_success").value = safeText(d.form?.successMessage || "Terima kasih! Form kamu sudah terkirim.");
+  }
+
+  function pullEditorsIntoDraft(d){
+    d.settings.siteName = $("s_siteName").value.trim();
+    d.settings.ctaText  = $("s_ctaText").value.trim();
+    d.settings.headline = $("s_headline").value.trim();
+    d.settings.badge    = $("s_badge").value.trim();
+    d.settings.subhead  = $("s_subhead").value.trim();
+    d.settings.instagram= $("s_instagram").value.trim();
+    d.settings.about    = $("s_about").value.trim();
+    d.settings.formTitle= $("s_formTitle").value.trim();
+    d.settings.formSubtitle = $("s_formSubtitle").value.trim();
+
+    d.form = d.form || { provider:"formspree", endpoint:"", successMessage:"Terkirim.", antiSpam:{honeypotField:"company"} };
+    d.form.provider = "formspree";
+    d.form.endpoint = $("f_endpoint").value.trim();
+    d.form.successMessage = $("f_success").value.trim();
+    d.form.antiSpam = d.form.antiSpam || { honeypotField:"company" };
+    d.form.antiSpam.honeypotField = "company";
+  }
+
+  // ========= Editor lists =========
+  function refreshEditorLists(d){
+    renderServicesEditor(d);
+    renderAdvEditor(d);
+    renderTTextEditor(d);
+    renderTImgEditor(d);
+  }
+
+  function renderServicesEditor(d){
+    const host = $("svcEditorList");
+    host.innerHTML = "";
+
+    d.services = d.services || [];
+    d.services.forEach((s, idx)=>{
+      const box = document.createElement("div");
+      box.className = "cardMini";
+      box.innerHTML = `
+        <div class="row" style="justify-content:space-between">
+          <div><b>Layanan ${idx+1}</b></div>
+          <div class="row">
+            <button class="btn mini" data-act="up">↑</button>
+            <button class="btn mini" data-act="down">↓</button>
+            <button class="btn mini danger" data-act="del">Hapus</button>
+          </div>
+        </div>
+
+        <div class="twoCol" style="margin-top:10px">
+          <div class="span6">
+            <label>Title</label>
+            <input data-k="title" value="${safeText(s.title)}"/>
+          </div>
+          <div class="span6">
+            <label>ID (opsional)</label>
+            <input data-k="id" value="${safeText(s.id || "")}"/>
+          </div>
+          <div class="span12">
+            <label>Desc (ringkas di card)</label>
+            <textarea data-k="desc" rows="2">${safeText(s.desc)}</textarea>
+          </div>
+          <div class="span12">
+            <div class="small">Detail (untuk modal). Format: tiap baris = 1 bullet. Pisahkan section pakai judul section.</div>
+            <div class="hr"></div>
+            <div id="svcSecHost"></div>
+            <button class="btn mini" data-act="addsec" type="button">+ Tambah Section Detail</button>
+          </div>
+        </div>
+      `;
+
+      // section detail editor
+      const secHost = box.querySelector("#svcSecHost");
+      s.details = s.details || [];
+      s.details.forEach((sec, sidx)=>{
+        const secBox = document.createElement("div");
+        secBox.className = "cardMini";
+        secBox.style.marginTop = "10px";
+        secBox.innerHTML = `
+          <div class="row" style="justify-content:space-between">
+            <div><b>Section ${sidx+1}</b></div>
+            <div class="row">
+              <button class="btn mini" data-act="secup">↑</button>
+              <button class="btn mini" data-act="secdown">↓</button>
+              <button class="btn mini danger" data-act="secdel">Hapus</button>
+            </div>
+          </div>
+          <label>Judul section</label>
+          <input data-k="sectitle" value="${safeText(sec.title)}"/>
+          <label style="margin-top:8px">Bullet (1 baris = 1 item)</label>
+          <textarea data-k="secitems" rows="4">${safeText((sec.items||[]).join("\n"))}</textarea>
+        `;
+
+        secBox.querySelector('[data-act="secup"]').onclick = ()=>{
+          if(sidx<=0) return;
+          const tmp = s.details[sidx-1]; s.details[sidx-1]=s.details[sidx]; s.details[sidx]=tmp;
+          refreshEditorLists(d);
+        };
+        secBox.querySelector('[data-act="secdown"]').onclick = ()=>{
+          if(sidx>=s.details.length-1) return;
+          const tmp = s.details[sidx+1]; s.details[sidx+1]=s.details[sidx]; s.details[sidx]=tmp;
+          refreshEditorLists(d);
+        };
+        secBox.querySelector('[data-act="secdel"]').onclick = ()=>{
+          s.details.splice(sidx,1);
+          refreshEditorLists(d);
+        };
+
+        secHost.appendChild(secBox);
+      });
+
+      // buttons service reorder/delete/add section
+      box.querySelector('[data-act="up"]').onclick = ()=>{
+        if(idx<=0) return;
+        const tmp = d.services[idx-1]; d.services[idx-1]=d.services[idx]; d.services[idx]=tmp;
+        refreshEditorLists(d);
+      };
+      box.querySelector('[data-act="down"]').onclick = ()=>{
+        if(idx>=d.services.length-1) return;
+        const tmp = d.services[idx+1]; d.services[idx+1]=d.services[idx]; d.services[idx]=tmp;
+        refreshEditorLists(d);
+      };
+      box.querySelector('[data-act="del"]').onclick = ()=>{
+        d.services.splice(idx,1);
+        refreshEditorLists(d);
+      };
+      box.querySelector('[data-act="addsec"]').onclick = ()=>{
+        s.details.push({ title:"", items:[""] });
+        refreshEditorLists(d);
+      };
+
+      host.appendChild(box);
+    });
+  }
+
+  function renderAdvEditor(d){
+    const host = $("advEditorList");
+    host.innerHTML = "";
+    d.advantages = d.advantages || [];
+    d.advantages.forEach((a, idx)=>{
+      const box = document.createElement("div");
+      box.className = "cardMini";
+      box.innerHTML = `
+        <div class="row" style="justify-content:space-between">
+          <div><b>Keunggulan ${idx+1}</b></div>
+          <div class="row">
+            <button class="btn mini" data-act="up">↑</button>
+            <button class="btn mini" data-act="down">↓</button>
+            <button class="btn mini danger" data-act="del">Hapus</button>
+          </div>
+        </div>
+        <label>Title</label>
+        <input data-k="title" value="${safeText(a.title)}"/>
+        <label style="margin-top:8px">Desc</label>
+        <textarea data-k="desc" rows="2">${safeText(a.desc)}</textarea>
+      `;
+
+      box.querySelector('[data-act="up"]').onclick = ()=>{
+        if(idx<=0) return;
+        const tmp = d.advantages[idx-1]; d.advantages[idx-1]=d.advantages[idx]; d.advantages[idx]=tmp;
+        renderAdvantages(d); // preview in admin
+        renderAdvEditor(d);
+      };
+      box.querySelector('[data-act="down"]').onclick = ()=>{
+        if(idx>=d.advantages.length-1) return;
+        const tmp = d.advantages[idx+1]; d.advantages[idx+1]=d.advantages[idx]; d.advantages[idx]=tmp;
+        renderAdvantages(d);
+        renderAdvEditor(d);
+      };
+      box.querySelector('[data-act="del"]').onclick = ()=>{
+        d.advantages.splice(idx,1);
+        renderAdvantages(d);
+        renderAdvEditor(d);
+      };
+
+      host.appendChild(box);
+    });
+  }
+
+  function renderTTextEditor(d){
+    const host = $("tTextEditorList");
+    host.innerHTML = "";
+    d.testimonialsText = (d.testimonialsText || []).slice(0,20);
+
+    d.testimonialsText.forEach((t, idx)=>{
+      const box = document.createElement("div");
+      box.className = "cardMini";
+      box.innerHTML = `
+        <div class="row" style="justify-content:space-between">
+          <div><b>Testimoni Teks ${idx+1}</b></div>
+          <div class="row">
+            <button class="btn mini" data-act="up">↑</button>
+            <button class="btn mini" data-act="down">↓</button>
+            <button class="btn mini danger" data-act="del">Hapus</button>
+          </div>
+        </div>
+        <div class="twoCol" style="margin-top:10px">
+          <div class="span6">
+            <label>Nama (boleh “Anonim”)</label>
+            <input data-k="name" value="${safeText(t.name || "Anonim")}"/>
+          </div>
+          <div class="span12">
+            <label>Isi testimoni</label>
+            <textarea data-k="text" rows="2">${safeText(t.text || "")}</textarea>
+          </div>
+        </div>
+      `;
+
+      box.querySelector('[data-act="up"]').onclick = ()=>{
+        if(idx<=0) return;
+        const tmp = d.testimonialsText[idx-1]; d.testimonialsText[idx-1]=d.testimonialsText[idx]; d.testimonialsText[idx]=tmp;
+        renderTestText(d); applyTTransform(d);
+        renderTTextEditor(d);
+      };
+      box.querySelector('[data-act="down"]').onclick = ()=>{
+        if(idx>=d.testimonialsText.length-1) return;
+        const tmp = d.testimonialsText[idx+1]; d.testimonialsText[idx+1]=d.testimonialsText[idx]; d.testimonialsText[idx]=tmp;
+        renderTestText(d); applyTTransform(d);
+        renderTTextEditor(d);
+      };
+      box.querySelector('[data-act="del"]').onclick = ()=>{
+        d.testimonialsText.splice(idx,1);
+        renderTestText(d); applyTTransform(d);
+        renderTTextEditor(d);
+      };
+
+      host.appendChild(box);
+    });
+  }
+
+  function renderTImgEditor(d){
+    const host = $("tImgEditorList");
+    host.innerHTML = "";
+    d.testimonialsImages = (d.testimonialsImages || []).slice(0,20);
+
+    d.testimonialsImages.forEach((it, idx)=>{
+      const box = document.createElement("div");
+      box.className = "cardMini";
+      box.innerHTML = `
+        <div class="row" style="justify-content:space-between">
+          <div class="row" style="gap:12px">
+            <div class="thumbPrev"><img src="${it.data}" alt="preview"/></div>
+            <div>
+              <div><b>Gambar ${idx+1}</b></div>
+              <div class="small">Caption hanya muncul di popup.</div>
+            </div>
+          </div>
+          <div class="row">
+            <button class="btn mini" data-act="up">↑</button>
+            <button class="btn mini" data-act="down">↓</button>
+            <button class="btn mini danger" data-act="del">Hapus</button>
+          </div>
+        </div>
+        <label style="margin-top:8px">Caption</label>
+        <textarea data-k="cap" rows="2">${safeText(it.cap || "")}</textarea>
+      `;
+
+      box.querySelector('[data-act="up"]').onclick = ()=>{
+        if(idx<=0) return;
+        const tmp = d.testimonialsImages[idx-1]; d.testimonialsImages[idx-1]=d.testimonialsImages[idx]; d.testimonialsImages[idx]=tmp;
+        renderGallery(d);
+        renderTImgEditor(d);
+      };
+      box.querySelector('[data-act="down"]').onclick = ()=>{
+        if(idx>=d.testimonialsImages.length-1) return;
+        const tmp = d.testimonialsImages[idx+1]; d.testimonialsImages[idx+1]=d.testimonialsImages[idx]; d.testimonialsImages[idx]=tmp;
+        renderGallery(d);
+        renderTImgEditor(d);
+      };
+      box.querySelector('[data-act="del"]').onclick = ()=>{
+        d.testimonialsImages.splice(idx,1);
+        renderGallery(d);
+        renderTImgEditor(d);
+      };
+
+      host.appendChild(box);
+    });
+  }
+
+  // ========= Image compress (for logo & testimonials) =========
+  async function fileToCompressedDataURL(file, maxW=900, quality=0.82){
+    const blobURL = URL.createObjectURL(file);
+    try{
+      const img = new Image();
+      img.decoding = "async";
+      img.src = blobURL;
+      await new Promise((res, rej)=>{
+        img.onload = ()=>res();
+        img.onerror = ()=>rej(new Error("image load failed"));
+      });
+
+      const ratio = img.width / img.height;
+      let w = img.width, h = img.height;
+      if(w > maxW){
+        w = maxW;
+        h = Math.round(w / ratio);
+      }
+
+      const canvas = document.createElement("canvas");
+      canvas.width = w; canvas.height = h;
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(img, 0, 0, w, h);
+
+      // JPEG to reduce size
+      return canvas.toDataURL("image/jpeg", quality);
+    } finally {
+      URL.revokeObjectURL(blobURL);
+    }
+  }
+
+  function refreshLogoPreview(logoData){
+    const prev = $("logoPrev");
+    prev.innerHTML = logoData ? `<img src="${logoData}" alt="logo"/>` : `<span class="small">Logo</span>`;
+  }
+
+  // ========= Save draft from editor inputs =========
+  function applyEditorInputs(d){
+    // settings + form
+    pullEditorsIntoDraft(d);
+
+    // services editor values
+    const svcBoxes = $("svcEditorList").querySelectorAll(".cardMini");
+    svcBoxes.forEach((box, idx)=>{
+      const s = d.services[idx];
+      if(!s) return;
+      s.title = box.querySelector('input[data-k="title"]').value.trim();
+      s.id    = box.querySelector('input[data-k="id"]').value.trim();
+      s.desc  = box.querySelector('textarea[data-k="desc"]').value.trim();
+
+      const secBoxes = box.querySelectorAll("#svcSecHost .cardMini");
+      s.details = s.details || [];
+      secBoxes.forEach((sb, sidx)=>{
+        const sec = s.details[sidx];
+        if(!sec) return;
+        sec.title = sb.querySelector('input[data-k="sectitle"]').value.trim();
+        const lines = sb.querySelector('textarea[data-k="secitems"]').value.split("\n").map(x=>x.trim()).filter(Boolean);
+        sec.items = lines.length ? lines : [""];
+      });
+    });
+
+    // advantages editor values
+    const advBoxes = $("advEditorList").querySelectorAll(".cardMini");
+    advBoxes.forEach((box, idx)=>{
+      const a = d.advantages[idx];
+      if(!a) return;
+      a.title = box.querySelector('input[data-k="title"]').value.trim();
+      a.desc  = box.querySelector('textarea[data-k="desc"]').value.trim();
+    });
+
+    // testimonial text values
+    const ttBoxes = $("tTextEditorList").querySelectorAll(".cardMini");
+    ttBoxes.forEach((box, idx)=>{
+      const t = d.testimonialsText[idx];
+      if(!t) return;
+      t.name = box.querySelector('input[data-k="name"]').value.trim() || "Anonim";
+      t.text = box.querySelector('textarea[data-k="text"]').value.trim();
+    });
+
+    // testimonial images captions
+    const tiBoxes = $("tImgEditorList").querySelectorAll(".cardMini");
+    tiBoxes.forEach((box, idx)=>{
+      const it = d.testimonialsImages[idx];
+      if(!it) return;
+      it.cap = box.querySelector('textarea[data-k="cap"]').value.trim();
+    });
+  }
+
+  async function copyPublish(){
+    const ed = getEditorData();
+    applyEditorInputs(ed);
+
+    const pub = sanitizeForPublish(ed);
     const txt = JSON.stringify(pub, null, 2);
+
     try{
       await navigator.clipboard.writeText(txt);
       toast("JSON tercopy. Paste ke data.json di GitHub lalu commit.");
     }catch{
-      toast("Clipboard diblokir. Copy manual dari source / console.");
+      toast("Clipboard diblokir. Copy manual dari panel (inspect) atau coba browser lain.");
     }
   }
 
-  // --- Init ---
+  function saveDraftAction(){
+    const ed = getEditorData();
+    applyEditorInputs(ed);
+    saveDraft(ed);
+    toast("Draft tersimpan di browser ini.");
+  }
+
+  function clearDraftAction(){
+    if(!confirm("Hapus draft lokal?")) return;
+    clearDraft();
+    toast("Draft dihapus.");
+  }
+
+  // ========= Bind admin actions =========
+  function bindAdmin(){
+    // tabs
+    document.querySelectorAll(".tab").forEach(btn=>{
+      btn.onclick = ()=> setTab(btn.dataset.tab);
+    });
+
+    $("svcAdd").onclick = ()=>{
+      const d = getEditorData();
+      d.services.push({ id:"", title:"", desc:"", details:[] });
+      refreshEditorLists(d);
+    };
+
+    $("advAdd").onclick = ()=>{
+      const d = getEditorData();
+      d.advantages.push({ title:"", desc:"" });
+      refreshEditorLists(d);
+    };
+
+    $("tTextAdd").onclick = ()=>{
+      const d = getEditorData();
+      if((d.testimonialsText||[]).length >= 20){ toast("Maks 20 testimoni teks."); return; }
+      d.testimonialsText.push({ name:"Anonim", text:"" });
+      refreshEditorLists(d);
+    };
+
+    $("tImgAddBtn").onclick = async ()=>{
+      const d = getEditorData();
+      const files = $("tImgFiles").files;
+      if(!files || !files.length){ toast("Pilih file dulu."); return; }
+
+      for(const f of files){
+        if(d.testimonialsImages.length >= 20){
+          toast("Maks 20 testimoni gambar."); break;
+        }
+        const data = await fileToCompressedDataURL(f, 1280, 0.82);
+        d.testimonialsImages.push({ data, cap:"" });
+      }
+
+      $("tImgFiles").value = "";
+      renderGallery(d);
+      renderTImgEditor(d);
+      toast("Gambar ditambahkan (compressed).");
+    };
+
+    // logo upload
+    $("logoFile").addEventListener("change", async ()=>{
+      const d = getEditorData();
+      const f = $("logoFile").files && $("logoFile").files[0];
+      if(!f) return;
+      const data = await fileToCompressedDataURL(f, 256, 0.9);
+      d.settings.logoData = data;
+      refreshLogoPreview(data);
+      toast("Logo diupdate (compressed). Jangan lupa Simpan Draft / Copy JSON.");
+    });
+
+    $("logoRemove").onclick = ()=>{
+      const d = getEditorData();
+      d.settings.logoData = "";
+      refreshLogoPreview("");
+      toast("Logo dihapus.");
+    };
+
+    // publish buttons
+    $("aCopyBtn").onclick = copyPublish;
+    $("aSaveDraftBtn").onclick = saveDraftAction;
+    $("aClearDraftBtn").onclick = clearDraftAction;
+
+    // security
+    $("changePassBtn").onclick = changePassword;
+  }
+
+  // ========= Init =========
   async function init(){
-    DATA = await fetchRemote();
-    if(!DATA){
+    REMOTE = await fetchRemote();
+    if(!REMOTE){
       toast("Gagal load data.json. Cek file di repo.");
-      DATA = {
+      // minimal safe
+      REMOTE = {
         settings:{
           siteName:"Jokitoefl.myid",
           headline:"One stop for your future",
@@ -1045,7 +1755,8 @@
           about:"",
           ctaText:"Konsultasi Gratis",
           formTitle:"Form Konsultasi",
-          formSubtitle:""
+          formSubtitle:"",
+          logoData:""
         },
         form:{ provider:"formspree", endpoint:"", successMessage:"Terkirim.", antiSpam:{honeypotField:"company"} },
         services:[],
@@ -1055,11 +1766,14 @@
       };
     }
 
-    renderTop(DATA);
-    renderServices(DATA);
-    renderAdvantages(DATA);
-    renderTestText(DATA);
-    renderGallery(DATA);
+    DRAFT = loadDraft();
+
+    // Render PUBLIC from REMOTE
+    renderTop(REMOTE);
+    renderServices(REMOTE);
+    renderAdvantages(REMOTE);
+    renderTestText(REMOTE);
+    renderGallery(REMOTE);
 
     // service modal
     $("svcClose").onclick = closeServiceModal;
@@ -1074,35 +1788,39 @@
       if(currentServiceTitle) setTimeout(()=>{ $("fLayanan").value = currentServiceTitle; }, 0);
     };
 
-    // testimonials text
-    $("tPrev").onclick = tPrev;
-    $("tNext").onclick = tNext;
-    bindSwipe();
-    window.addEventListener("resize", applyTTransform);
+    // slider controls
+    $("tPrev").onclick = ()=> tPrev(REMOTE);
+    $("tNext").onclick = ()=> tNext(REMOTE);
+    bindSwipe(()=>REMOTE);
+    window.addEventListener("resize", ()=> applyTTransform(REMOTE));
 
-    // gallery
-    $("bigBox").onclick = openGalleryPopup;
+    // gallery popup
+    $("bigBox").onclick = ()=> openGalleryPopup(REMOTE);
     $("gClose").onclick = closeGalleryPopup;
     $("gOverlay").addEventListener("click",(e)=>{ if(e.target === $("gOverlay")) closeGalleryPopup(); });
-    $("gNext").onclick = gNext;
-    $("gPrev").onclick = gPrev;
+    $("gNext").onclick = ()=> gNext(REMOTE);
+    $("gPrev").onclick = ()=> gPrev(REMOTE);
 
-    // form
-    $("leadForm").addEventListener("submit", submitForm);
+    // form submit uses REMOTE endpoint
+    $("leadForm").addEventListener("submit", (e)=> submitForm(e, REMOTE));
 
-    // admin
+    // admin open/close/login
     $("adminFab").onclick = openAdmin;
     $("aClose").onclick = closeAdmin;
     $("aOverlay").addEventListener("click",(e)=>{ if(e.target === $("aOverlay")) closeAdmin(); });
 
+    $("aOpenGit").href = `https://github.com/${GITHUB_USER}/${GITHUB_REPO}/edit/main/data.json`;
     $("aLoginBtn").onclick = adminLogin;
     $("aResetBtn").onclick = resetLocalLogin;
-    $("changePassBtn").onclick = changePassword;
-    $("aCopyBtn").onclick = copyPublishJSON;
+
+    // bind editor actions
+    bindAdmin();
+
+    // on open dash, lists will be built
+    // buttons below require auth
   }
 
   init();
 </script>
-
 </body>
 </html>
