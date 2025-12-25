@@ -132,12 +132,33 @@
   ],
 
   "testimonialsText": [
-    { "name": "Customer", "text": "Prosesnya jelas, cepat, dan hasil sesuai. Mantap." },
-    { "name": "Customer", "text": "Adminnya responsif. Enak buat konsultasi dulu." }
+    { "name": "Anon", "text": "Kakaaa makasih yaa, kelasnya informatif bgt buat aku yang sibuk mwehehe" },
+    { "name": "Gia", "text": "Aku lolos berkas CPNS ka, thanks ya" },
+    { "name": "hamba tuhan", "text": "Bintang 5. Ramah. Proses cepet" },
+    { "name": "Panaaa", "text": "Ga rugi ikut kelasnya, Tuton dan uasku slamet wkwkw makaci kak" },
+    { "name": "Sabila", "text": "Mantep ca, bisa dipake buat BUMN sama CPNS sertifnya." },
+    { "name": "Anonymm", "text": "Abis ketipu di tele, untungnya ga ketipu dua kali disini. makasih, sertifnya jebol berkas" },
+    { "name": "Agung", "text": "Gue jadi reseller Joki TOEFL disini wkwkw, mayan gue jual ke temen dapet 150 rebu" },
+    { "name": "TYA", "text": "Kknya ramah banget, cocok sm ak jdnya nyambung" },
+    { "name": "gala", "text": "kelasnya asik, banyak dapet pencerahan dari bu dosen wkwkkww" },
+    { "name": "Cust", "text": "min, harganya jangan naik yaa. Cocok buat orang ga sempet belajar kaya gua" },
+    { "name": "fais", "text": "Prosesnya jelas, cepat, dan hasil sesuai. Mantap." },
+    { "name": "AKA 47", "text": "PELAYANAN OKE, KUALITAS OKE, GA PILIH KASIH, OKE" }
   ],
 
-  "testimonialsImages": [
-    { "src": "assets/testimonials/img-01.jpg", "cap": "Screenshot chat" },
-    { "src": "assets/testimonials/img-02.jpg", "cap": "Screenshot sertifikat" }
-  ]
+"testimonialsImages": [
+  { "src": "assets/testimonials/img-01.jpg.jpeg", "cap": "Screenshot chat" },
+  { "src": "assets/testimonials/img-02.jpg.jpeg", "cap": "Screenshot sertifikat" },
+  { "src": "assets/testimonials/img-03.jpg.jpeg", "cap": "" },
+  { "src": "assets/testimonials/img-04.jpg.jpeg", "cap": "" },
+  { "src": "assets/testimonials/img-05.jpg.jpeg", "cap": "" },
+  { "src": "assets/testimonials/img-06.jpg.jpeg", "cap": "" },
+  { "src": "assets/testimonials/img-07.jpg.jpeg", "cap": "" },
+  { "src": "assets/testimonials/img-08.jpg.jpeg", "cap": "" },
+  { "src": "assets/testimonials/img-09.jpg.jpeg", "cap": "" },
+  { "src": "assets/testimonials/img-10.jpg.jpeg", "cap": "" },
+  { "src": "assets/testimonials/img-11.jpg.jpeg", "cap": "" },
+  { "src": "assets/testimonials/img-12.jpg.jpeg", "cap": "" },
+  { "src": "assets/testimonials/img-13.jpg.jpeg", "cap": "" }
+]
 }
