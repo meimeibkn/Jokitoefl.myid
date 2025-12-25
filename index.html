@@ -786,6 +786,9 @@
 
   // ========= Helpers =========
   const $ = (id) => document.getElementById(id);
+  function getImgSrc(it){
+  return it?.src || it?.data || "";
+}
   function toast(msg){
     const t = $("toast");
     t.textContent = msg;
@@ -1103,51 +1106,60 @@ function openServiceModal(s){
   // ========= Gallery =========
   let gIndex = 0;
 
-  function renderGallery(d){
-    const imgs = (d.testimonialsImages || []).slice(0, 20);
-    const bigImg = $("bigImg");
-    const thumbRow = $("thumbRow");
-    const empty = $("galleryEmpty");
-    const wrap = $("galleryWrap");
+function renderGallery(d){
+  const imgs = (d.testimonialsImages || []).slice(0, 20);
+  const bigImg = $("bigImg");
+  const thumbRow = $("thumbRow");
+  const empty = $("galleryEmpty");
+  const wrap = $("galleryWrap");
 
-    thumbRow.innerHTML = "";
+  thumbRow.innerHTML = "";
 
-    if(imgs.length === 0){
-      wrap.style.display = "none";
-      empty.style.display = "block";
-      return;
-    }
-
-    wrap.style.display = "";
-    empty.style.display = "none";
-
-    gIndex = Math.max(0, Math.min(gIndex, imgs.length - 1));
-    bigImg.src = imgs[gIndex].data;
-
-    imgs.forEach((it, i)=>{
-      const t = document.createElement("div");
-      t.className = "thumb" + (i===gIndex ? " active" : "");
-      t.innerHTML = `<img alt="thumb" src="${it.data}">`;
-      t.onclick = ()=>{ gIndex = i; updateGallery(d); };
-      thumbRow.appendChild(t);
-    });
+  if(imgs.length === 0){
+    wrap.style.display = "none";
+    empty.style.display = "block";
+    return;
   }
 
-  function updateGallery(d){
-    const imgs = (d.testimonialsImages || []).slice(0, 20);
-    if(imgs.length === 0) return;
-    $("bigImg").src = imgs[gIndex].data;
-    Array.from(document.querySelectorAll(".thumb"))
-      .forEach((t,i)=>t.classList.toggle("active", i===gIndex));
-  }
+  wrap.style.display = "";
+  empty.style.display = "none";
 
-  function openGalleryPopup(d){
-    const imgs = (d.testimonialsImages || []).slice(0, 20);
-    if(imgs.length === 0) return;
-    $("gPopupImg").src = imgs[gIndex].data;
-    $("gCaption").textContent = safeText(imgs[gIndex].cap || "");
-    $("gOverlay").style.display = "flex";
-  }
+  gIndex = Math.max(0, Math.min(gIndex, imgs.length - 1));
+
+  const bigSrc = getImgSrc(imgs[gIndex]);
+  bigImg.src = bigSrc || "";
+  bigImg.alt = "testimoni";
+
+  imgs.forEach((it, i)=>{
+    const t = document.createElement("div");
+    t.className = "thumb" + (i===gIndex ? " active" : "");
+    const src = getImgSrc(it);
+    t.innerHTML = `<img alt="thumb" src="${src}">`;
+    t.onclick = ()=>{ gIndex = i; updateGallery(d); };
+    thumbRow.appendChild(t);
+  });
+}
+
+function updateGallery(d){
+  const imgs = (d.testimonialsImages || []).slice(0, 20);
+  if(imgs.length === 0) return;
+
+  const src = getImgSrc(imgs[gIndex]);
+  $("bigImg").src = src || "";
+
+  Array.from(document.querySelectorAll(".thumb"))
+    .forEach((t,i)=>t.classList.toggle("active", i===gIndex));
+}
+
+function openGalleryPopup(d){
+  const imgs = (d.testimonialsImages || []).slice(0, 20);
+  if(imgs.length === 0) return;
+
+  const src = getImgSrc(imgs[gIndex]);
+  $("gPopupImg").src = src || "";
+  $("gCaption").textContent = safeText(imgs[gIndex].cap || "");
+  $("gOverlay").style.display = "flex";
+}
   function closeGalleryPopup(){ $("gOverlay").style.display = "none"; }
   function gNext(d){
     const imgs = (d.testimonialsImages || []).slice(0, 20);
@@ -1851,4 +1863,5 @@ function openServiceModal(s){
 </script>
 </body>
 </html>
+
 
