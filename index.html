@@ -7,321 +7,329 @@
 
   <style>
     :root{
-      --sky:#A1C0F8;
       --navy:#002D5F;
+      --sky:#A1C0F8;
       --black:#000000;
       --white:#FFFFFF;
 
-      --bg: #0b0f16;
+      --bg: var(--navy);
+      --bg2: #062a57;
+
       --card: rgba(255,255,255,.06);
-      --line: rgba(255,255,255,.14);
-      --text: rgba(255,255,255,.92);
-      --muted: rgba(255,255,255,.68);
-      --shadow: 0 16px 50px rgba(0,0,0,.35);
+      --card2: rgba(255,255,255,.04);
+      --line: rgba(255,255,255,.16);
+
+      --text: rgba(255,255,255,.94);
+      --muted: rgba(255,255,255,.72);
+
       --r: 18px;
-      --r2: 14px;
+      --shadow: 0 18px 60px rgba(0,0,0,.25);
+
+      --max: 1100px;
+      --pad: 18px;
     }
 
     *{box-sizing:border-box}
-    html,body{height:100%}
+    html{scroll-behavior:smooth}
     body{
       margin:0;
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
       background:
-        radial-gradient(950px 460px at 15% 0%, rgba(161,192,248,.22), transparent 60%),
-        radial-gradient(820px 520px at 90% 12%, rgba(0,45,95,.28), transparent 55%),
-        var(--bg);
+        radial-gradient(950px 520px at 10% 0%, rgba(161,192,248,.22), transparent 60%),
+        radial-gradient(920px 580px at 90% 10%, rgba(255,255,255,.08), transparent 60%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
       color:var(--text);
     }
     a{color:inherit;text-decoration:none}
-    .wrap{max-width:1100px;margin:0 auto;padding:18px}
+
+    .wrap{max-width:var(--max);margin:auto;padding:var(--pad)}
+    @media (max-width:480px){ .wrap{padding:16px} }
+
     header{
-      position:sticky;top:0;z-index:10;
-      backdrop-filter: blur(10px);
-      background: rgba(0,0,0,.42);
       border-bottom:1px solid var(--line);
+      background: rgba(0,45,95,.65);
+      backdrop-filter: blur(8px);
     }
-    .nav{display:flex;align-items:center;justify-content:space-between;gap:14px}
-    .brand{display:flex;align-items:center;gap:12px}
+    .nav{
+      display:flex;align-items:center;justify-content:space-between;gap:14px;
+      flex-wrap:wrap;
+    }
+    .brand{display:flex;align-items:center;gap:12px;min-width:0}
     .logo{
       width:38px;height:38px;border-radius:14px;
-      background: linear-gradient(135deg, var(--sky), rgba(161,192,248,.35));
+      background: linear-gradient(135deg, rgba(161,192,248,.95), rgba(161,192,248,.35));
       border:1px solid rgba(161,192,248,.35);
-      box-shadow: 0 12px 34px rgba(161,192,248,.18);
+      box-shadow: 0 16px 50px rgba(161,192,248,.18);
+      flex: 0 0 auto;
     }
-    .brandTitle{display:flex;flex-direction:column;line-height:1.15}
-    .brandTitle b{font-size:14px;letter-spacing:.2px}
-    .brandTitle span{font-size:12px;color:var(--muted)}
-    .links{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-    .pill{
-      display:inline-flex;gap:8px;align-items:center;
-      padding:6px 10px;border-radius:999px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.05);
-      color:var(--muted);
-      font-size:12px;
+    .brandText{min-width:0}
+    .brandName{font-weight:900;letter-spacing:-.2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .brandSub{font-size:12px;color:var(--muted);margin-top:2px}
+
+    .navLinks{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    .link{
+      padding:10px 12px;border-radius:12px;border:1px solid transparent;
+      color:var(--muted);font-size:14px;
     }
+    .link:hover{border-color:rgba(161,192,248,.22);color:var(--text);background:rgba(255,255,255,.04)}
+
     .btn{
-      display:inline-flex;align-items:center;justify-content:center;
-      padding:10px 14px;border-radius:12px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.06);
-      color:var(--text);
-      cursor:pointer;
-      transition:.15s ease;
-      user-select:none;
-    }
-    .btn:hover{background: rgba(255,255,255,.1)}
-    .btn.primary{
-      border-color:transparent;
-      background: linear-gradient(135deg, var(--sky), rgba(161,192,248,.5));
-      color:#061022;
+      padding:10px 14px;border-radius:12px;border:1px solid var(--line);
+      background:rgba(255,255,255,.06);color:var(--text);cursor:pointer;
+      display:inline-flex;align-items:center;justify-content:center;gap:8px;
       font-weight:800;
     }
-    .btn.ghost{
-      border-color: rgba(161,192,248,.35);
-      background: rgba(161,192,248,.08);
-    }
-    .btn.danger{
-      border-color: rgba(239,68,68,.35);
-      background: rgba(239,68,68,.14);
+    .btn:hover{background:rgba(255,255,255,.10)}
+    .btn.primary{
+      border:none;
+      background: linear-gradient(135deg, rgba(161,192,248,.95), rgba(161,192,248,.55));
+      color:#061022;
+      font-weight:900;
     }
 
-    section{scroll-margin-top:90px}
+    section{scroll-margin-top:16px}
     .panel{
       border:1px solid var(--line);
-      background: rgba(255,255,255,.05);
-      border-radius: var(--r);
+      background: linear-gradient(180deg, var(--card), var(--card2));
+      border-radius:var(--r);
+      box-shadow: var(--shadow);
       padding:18px;
-      box-shadow: var(--shadow);
     }
-    .panel h2{margin:0 0 10px;font-size:20px}
-    .panel p{margin:0;color:var(--muted);line-height:1.65}
+    h1,h2,h3{margin:0 0 10px}
+    p{margin:0}
     .small{font-size:12px;color:var(--muted);line-height:1.6}
+    .muted{color:var(--muted)}
 
-    .hero{
-      padding: 26px 0 10px;
-      display:grid;
-      grid-template-columns: 1.18fr .82fr;
-      gap:14px;
-      align-items:stretch;
-    }
-    .heroCard{
-      border:1px solid var(--line);
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.04));
-      border-radius: var(--r);
-      box-shadow: var(--shadow);
-      padding: 22px;
-      position:relative;
-      overflow:hidden;
-    }
-    .heroCard:before{
-      content:"";
-      position:absolute; inset:-2px;
-      background: radial-gradient(460px 240px at 20% 20%, rgba(161,192,248,.24), transparent 60%);
-      pointer-events:none;
-    }
-    .heroTitle{
-      position:relative;
-      margin:0 0 10px;
-      font-size: 42px;
-      line-height: 1.04;
-      letter-spacing: -.6px;
-    }
+    /* HERO */
+    .hero{padding:18px 0 8px;display:flex}
+    .heroInner{width:100%;max-width:780px}
+    .title{font-size:44px;line-height:1.05;letter-spacing:-.8px;margin:14px 0 0}
     .accent{color:var(--sky)}
-    .heroP{position:relative;margin:0 0 18px;color:var(--muted);max-width:68ch}
-    .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-
-    .miniCard{
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.05);
-      border-radius: var(--r);
-      padding: 18px;
-      box-shadow: var(--shadow);
-      display:flex;flex-direction:column;gap:10px;
-    }
-    .miniCard h3{margin:0;font-size:16px}
-    .miniGrid{display:grid;gap:10px}
-    .stat{
-      border:1px solid rgba(161,192,248,.22);
-      background: rgba(161,192,248,.07);
-      border-radius: 14px;
-      padding: 12px;
-    }
-    .stat b{display:block;font-size:14px;color:var(--sky)}
-    .stat span{font-size:12px;color:var(--muted)}
-
-    .services{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}
-    .svc{
-      grid-column: span 6;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.05);
-      border-radius: var(--r);
-      padding: 16px;
-      box-shadow: var(--shadow);
-    }
-    .svcTop{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
     .badge{
-      font-size:12px;color:#061022;font-weight:900;
-      background: linear-gradient(135deg, var(--sky), rgba(161,192,248,.55));
-      border-radius: 999px;
-      padding:6px 10px;
-      white-space:nowrap;
+      display:inline-flex;align-items:center;gap:8px;
+      padding:7px 12px;border-radius:999px;
+      border:1px solid rgba(161,192,248,.28);
+      background: rgba(161,192,248,.10);
+      color: rgba(255,255,255,.85);
+      font-size:12px;margin:10px 0 0;
     }
-    .svc h3{margin:0;font-size:16px}
-    .svc p{margin:8px 0 0;color:var(--muted);line-height:1.6}
-    .tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
-    .tag{
-      font-size:12px;color:var(--muted);
+    .subhead{margin-top:12px;color:var(--muted);line-height:1.7}
+    .heroActions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+    @media (max-width:720px){ .title{font-size:36px} .heroInner{max-width:100%} }
+
+    /* SERVICES */
+    .grid2{display:grid;grid-template-columns:repeat(12,1fr);gap:14px;margin-top:12px}
+    .svc{
+      grid-column:span 6;
       border:1px solid var(--line);
-      background: rgba(255,255,255,.04);
-      padding:6px 10px;border-radius:999px;
+      background: rgba(255,255,255,.05);
+      border-radius: var(--r);
+      padding:16px;
+      box-shadow: var(--shadow);
+      cursor:pointer;
+      transition: transform .12s ease, background .12s ease;
+    }
+    .svc:hover{transform: translateY(-1px); background: rgba(255,255,255,.07)}
+    .svcTitle{font-weight:900;margin:0 0 6px}
+    .svcDesc{color:var(--muted);line-height:1.6}
+    @media (max-width:860px){ .svc{grid-column:span 12} }
+
+    /* ADVANTAGES */
+    .advGrid{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:14px;margin-top:12px;
+    }
+    .adv{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.05);
+      border-radius: var(--r);
+      padding:16px;
+      box-shadow: var(--shadow);
+    }
+    .adv h3{margin:0 0 8px;font-size:16px}
+    .adv p{color:var(--muted);line-height:1.6}
+    .adv.last{
+      grid-column: 1 / -1;
+      display:flex;justify-content:center;
+    }
+    .adv.last > .advInner{
+      width: 100%;
+      max-width: calc((var(--max) - 2*var(--pad) - 14px) / 2);
+    }
+    @media (max-width:860px){
+      .advGrid{grid-template-columns:1fr}
+      .adv.last > .advInner{max-width:100%}
     }
 
-    .formGrid{display:grid;grid-template-columns:repeat(12,1fr);gap:12px;margin-top:10px}
-    .col6{grid-column: span 6}
-    .col12{grid-column: 1 / -1}
-    label{display:block;margin:0 0 6px;font-size:12px;color:var(--muted)}
-    input, select, textarea{
-      width:100%;
-      padding:11px 12px;
-      border-radius: 12px;
-      border:1px solid var(--line);
-      background: rgba(0,0,0,.25);
-      color:var(--text);
-      outline:none;
-    }
-    input:focus, select:focus, textarea:focus{
-      border-color: rgba(161,192,248,.6);
-      box-shadow: 0 0 0 4px rgba(161,192,248,.12);
-    }
-
-    /* Testimonials */
-    .testiGrid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px;margin-top:10px}
-    .testiTextCard{grid-column: span 12}
-    .slider{
-      position:relative;
+    /* TESTIMONIALS TEXT */
+    .tWrap{margin-top:12px}
+    .tViewport{
+      overflow:hidden;
       border:1px solid var(--line);
       background: rgba(255,255,255,.04);
       border-radius: var(--r);
-      overflow:hidden;
+      box-shadow: var(--shadow);
     }
-    .track{
+    .tTrack{
       display:flex;
-      transition: transform .35s ease;
+      gap:14px;
+      padding:14px;
+      transform: translateX(0);
+      transition: transform .28s ease;
       will-change: transform;
     }
-    .slide{
-      min-width:100%;
-      padding:16px 18px;
+    .tCard{
+      flex: 0 0 calc((100% - 2*14px) / 2.5);
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.10);
+      border-radius: 16px;
+      padding:14px;
+      min-height: 110px;
     }
-    .quote{
-      margin:0;
-      font-size:14px;
-      line-height:1.7;
-      color: var(--text);
+    .tQuote{margin:0;color:var(--text);line-height:1.7;font-size:14px}
+    .tWho{margin-top:10px;color:var(--muted);font-size:12px;display:flex;align-items:center;gap:8px}
+    .dot{width:8px;height:8px;border-radius:999px;background:rgba(161,192,248,.8);border:1px solid rgba(161,192,248,.55)}
+    .tControls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:10px}
+    .iconBtn{
+      width:40px;height:40px;border-radius:14px;border:1px solid var(--line);
+      background:rgba(255,255,255,.06);cursor:pointer;color:var(--text);font-weight:900;
     }
-    .who{
-      margin-top:10px;
-      font-size:12px;
-      color: var(--muted);
-      display:flex;gap:8px;align-items:center;
+    .iconBtn:hover{background:rgba(255,255,255,.10)}
+    @media (max-width:860px){
+      .tCard{flex-basis: 90%;}
+      .tTrack{gap:12px}
     }
-    .dot{
-      width:8px;height:8px;border-radius:99px;
-      background: rgba(161,192,248,.6);
-      border:1px solid rgba(161,192,248,.55);
-    }
-    .controls{
-      display:flex;gap:10px;flex-wrap:wrap;align-items:center;
-      margin-top:10px;
-    }
-    .dots{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-    .dotBtn{
-      width:10px;height:10px;border-radius:99px;
-      border:1px solid rgba(255,255,255,.22);
-      background: rgba(255,255,255,.10);
+
+    /* TESTIMONIALS IMAGES */
+    .gLayout{display:grid;grid-template-columns: 1.2fr .8fr; gap:14px; margin-top:12px}
+    .bigBox{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      border-radius: var(--r);
+      overflow:hidden;
+      box-shadow: var(--shadow);
       cursor:pointer;
     }
-    .dotBtn.active{
-      background: rgba(161,192,248,.65);
-      border-color: rgba(161,192,248,.65);
-    }
-
-    .imgGrid{
-      display:grid;
-      grid-template-columns:repeat(auto-fill, minmax(160px, 1fr));
-      gap:10px;
-      margin-top:10px;
-    }
-    .imgCard{
+    .bigImg{width:100%;height:420px;object-fit:cover;display:block}
+    .thumbCol{
       border:1px solid var(--line);
       background: rgba(255,255,255,.04);
-      border-radius: 14px;
+      border-radius: var(--r);
+      box-shadow: var(--shadow);
+      padding:12px;
       overflow:hidden;
+    }
+    .thumbRow{
+      display:flex;
+      gap:10px;
+      overflow:auto;
+      padding-bottom:6px;
+      scroll-snap-type: x mandatory;
+    }
+    .thumb{
+      flex:0 0 110px;
+      height:110px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.16);
+      overflow:hidden;
+      background: rgba(0,0,0,.12);
+      cursor:pointer;
+      scroll-snap-align:start;
       position:relative;
     }
-    .imgCard img{
+    .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+    .thumb.active{outline:2px solid rgba(161,192,248,.85); outline-offset:2px}
+    @media (max-width:980px){
+      .gLayout{grid-template-columns:1fr}
+      .bigImg{height:360px}
+    }
+
+    /* MODALS */
+    .overlay{
+      position:fixed;inset:0;background:rgba(0,0,0,.45);
+      display:none;align-items:center;justify-content:center;
+      padding:16px;z-index:50;
+    }
+    .modal{
+      width:min(900px, 100%);
+      max-height:85vh;
+      overflow:auto;
+      background: linear-gradient(180deg, rgba(0,45,95,.98), rgba(0,45,95,.92));
+      border:1px solid rgba(255,255,255,.18);
+      border-radius: 18px;
+      box-shadow: 0 28px 90px rgba(0,0,0,.45);
+      padding:16px;
+    }
+    .modalHead{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+    .modalTitle{font-size:18px;font-weight:900;margin:0}
+    .closeBtn{
+      width:40px;height:40px;border-radius:14px;border:1px solid rgba(255,255,255,.16);
+      background:rgba(255,255,255,.06);cursor:pointer;color:var(--text);font-weight:900;
+    }
+    .closeBtn:hover{background:rgba(255,255,255,.10)}
+    .modalSection{margin-top:12px;border-top:1px solid rgba(255,255,255,.14);padding-top:12px}
+    .modalSection h4{margin:0 0 8px;font-size:14px;color:rgba(161,192,248,.95)}
+    ul{margin:0;padding-left:18px;color:var(--muted);line-height:1.7}
+    li{margin:4px 0}
+
+    .gPopupGrid{display:grid;grid-template-columns:1.2fr .8fr;gap:12px;margin-top:12px}
+    .gPopupImg{
+      width:100%;max-height:540px;object-fit:contain;
+      background:rgba(0,0,0,.15);
+      border-radius:14px;border:1px solid rgba(255,255,255,.14)
+    }
+    .gPopupSide{border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:12px;background:rgba(255,255,255,.04)}
+    .gPopupControls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:10px}
+    .capBox{margin-top:10px;color:var(--muted);font-size:13px;line-height:1.6}
+    @media (max-width:980px){ .gPopupGrid{grid-template-columns:1fr} }
+
+    /* FORM */
+    .formGrid{display:grid;grid-template-columns:repeat(12,1fr);gap:12px;margin-top:12px}
+    .col6{grid-column:span 6}
+    .col12{grid-column:1/-1}
+    label{display:block;margin:0 0 6px;font-size:12px;color:var(--muted)}
+    input,select,textarea{
       width:100%;
-      height: 180px;
-      object-fit: cover;
-      display:block;
+      padding:11px 12px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(0,0,0,.10);
+      color: var(--text);
+      outline:none;
     }
-    .imgCard .cap{
-      padding:10px 10px 12px;
-      font-size:12px;
-      color:var(--muted);
+    input:focus,select:focus,textarea:focus{
+      border-color: rgba(161,192,248,.7);
+      box-shadow: 0 0 0 4px rgba(161,192,248,.16);
     }
+    @media (max-width:860px){ .col6{grid-column:1/-1} }
 
-    .footer{
-      margin-top:22px;
-      padding:18px 0 26px;
-      border-top:1px solid var(--line);
-      color:var(--muted);
-      font-size:13px;
+    /* Floating admin */
+    .fab{
+      position:fixed;right:16px;bottom:16px;z-index:60;
+      width:52px;height:52px;border-radius:999px;
+      border:1px solid rgba(161,192,248,.35);
+      background: rgba(161,192,248,.12);
+      color: rgba(255,255,255,.92);
+      display:flex;align-items:center;justify-content:center;
+      cursor:pointer;
+      box-shadow: 0 18px 60px rgba(0,0,0,.25);
+      user-select:none;
     }
+    .fab:hover{background:rgba(161,192,248,.16)}
+    .fab svg{width:22px;height:22px}
 
-    /* Admin */
-    .hide{display:none!important}
-    .adminLayout{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:14px;
-      align-items:start;
-      margin-top:14px;
-    }
-    .tabs{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
-    .tabBtn{padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.06);cursor:pointer;color:var(--text)}
-    .tabBtn.active{background: rgba(161,192,248,.16); border-color: rgba(161,192,248,.35)}
-    .list{display:grid;gap:10px;margin-top:10px}
-    .item{
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.04);
-      border-radius: 14px;
-      padding: 12px;
-    }
-    .itemHead{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
-    .itemHead b{font-size:13px}
-    .miniRow{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:8px}
     .toast{
-      position:fixed; right:16px; bottom:16px; z-index:50;
+      position:fixed;left:16px;bottom:16px;z-index:70;
       max-width:360px;
-      padding:12px 14px;
-      border-radius:14px;
-      border:1px solid var(--line);
-      background: rgba(0,0,0,.55);
+      border:1px solid rgba(255,255,255,.16);
+      background:rgba(0,0,0,.28);
       backdrop-filter: blur(10px);
+      color:var(--text);
+      border-radius:14px;
+      padding:12px 14px;
+      display:none;
       box-shadow: var(--shadow);
-    }
-    .toast.good{border-color: rgba(34,197,94,.35)}
-    .toast.bad{border-color: rgba(239,68,68,.35)}
-
-    @media (max-width: 920px){
-      .hero{grid-template-columns:1fr}
-      .svc{grid-column: span 12}
-      .adminLayout{grid-template-columns:1fr}
-      .heroTitle{font-size:34px}
-      .col6{grid-column: 1 / -1}
     }
   </style>
 </head>
@@ -331,1072 +339,770 @@
   <div class="wrap nav">
     <div class="brand">
       <div class="logo" aria-hidden="true"></div>
-      <div class="brandTitle">
-        <b id="siteName">Jokitoefl.myid</b>
-        <span class="pill" id="modePill">Public</span>
+      <div class="brandText">
+        <div class="brandName" id="siteName">Jokitoefl.myid</div>
+        <div class="brandSub" id="brandSub">Sertifikat • Bantuan Mahasiswa • Lainnya</div>
       </div>
     </div>
 
-    <div class="links" id="publicLinks">
-      <a class="btn" href="#home">Home</a>
-      <a class="btn" href="#about">About</a>
-      <a class="btn" href="#layanan">Layanan</a>
-      <a class="btn" href="#testimoni">Testimoni</a>
-      <a class="btn primary" href="#daftar">Daftar</a>
-      <button class="btn" id="openAdminBtn" type="button">Admin</button>
-    </div>
-
-    <div class="links hide" id="adminLinks">
-      <button class="btn" id="backPublicBtn" type="button">Lihat Public</button>
-      <button class="btn danger" id="logoutBtn" type="button">Logout</button>
-    </div>
+    <nav class="navLinks" aria-label="menu">
+      <a class="link" href="#home">Home</a>
+      <a class="link" href="#about">About</a>
+      <a class="link" href="#layanan">Layanan</a>
+      <a class="link" href="#keunggulan">Keunggulan</a>
+      <a class="link" href="#testimoni">Testimoni</a>
+      <a class="btn primary" href="#daftar" id="ctaTop">Konsultasi Gratis</a>
+    </nav>
   </div>
 </header>
 
 <main class="wrap">
+  <!-- HERO -->
+  <section id="home" class="hero">
+    <div class="heroInner">
+      <h1 class="title" id="headline">One stop for your <span class="accent">future</span></h1>
+      <div class="badge" id="heroBadge">Sertifikat TOEFL & Komputer • Bantuan Mahasiswa • Lainnya</div>
+      <p class="subhead" id="subhead"></p>
 
-  <!-- PUBLIC VIEW -->
-  <section id="publicView">
-
-    <section class="hero" id="home">
-      <div class="heroCard">
-        <div class="pill" style="position:relative;width:max-content">Minimalis • Clean • Lokal</div>
-        <h2 class="heroTitle" id="headline">One stop for your <span class="accent">future</span></h2>
-        <p class="heroP" id="subhead">Konsultasi cepat untuk TOEFL, sertifikat komputer, bantuan mahasiswa, dan rangkuman UAS.</p>
-        <div class="row">
-          <a class="btn primary" href="#daftar" id="ctaPrimary">Tanya & Daftar</a>
-          <a class="btn ghost" href="#layanan">Lihat Layanan</a>
-          <a class="btn" id="igBtnTop" href="#" target="_blank" rel="noreferrer">Instagram</a>
-        </div>
+      <div class="heroActions">
+        <a class="btn primary" href="#daftar" id="ctaHero">Konsultasi Gratis</a>
+        <a class="btn" href="#layanan">Lihat Layanan</a>
+        <a class="btn" id="igBtn" target="_blank" rel="noreferrer">Instagram</a>
       </div>
-
-      <div class="miniCard">
-        <h3 id="whyTitle">Kenapa pilih Jokitoefl.myid?</h3>
-        <p id="whyText" class="small">Proses rapi, komunikasi jelas, dan fokus membantu kebutuhan kamu selesai lebih cepat.</p>
-        <div class="miniGrid" id="highlightsWrap"></div>
-      </div>
-    </section>
-
-    <section class="panel" id="about">
-      <h2>About Us</h2>
-      <p id="aboutText">Kami membantu kebutuhan akademik mahasiswa dengan alur yang simpel dan jelas.</p>
-    </section>
-
-    <section class="panel" id="layanan" style="margin-top:14px">
-      <h2>Layanan</h2>
-      <p class="small">Pilih layanan yang kamu butuhkan. Kamu bisa langsung tanya lewat form di bawah.</p>
-      <div class="services" id="servicesWrap" style="margin-top:12px"></div>
-    </section>
-
-    <section class="panel" id="testimoni" style="margin-top:14px">
-      <h2>Testimoni</h2>
-      <p class="small">Testimoni teks bergulir (auto + manual) dan testimoni gambar (chat/sertifikat).</p>
-
-      <div class="testiGrid">
-        <div class="testiTextCard">
-          <div class="slider" id="textSlider">
-            <div class="track" id="textTrack"></div>
-          </div>
-
-          <div class="controls">
-            <button class="btn" id="prevBtn" type="button">‹</button>
-            <button class="btn" id="nextBtn" type="button">›</button>
-            <div class="dots" id="dotWrap"></div>
-            <span class="small" id="sliderHint"></span>
-          </div>
-        </div>
-      </div>
-
-      <div class="imgGrid" id="imageGrid"></div>
-    </section>
-
-    <section class="panel" id="daftar" style="margin-top:14px">
-      <h2>Form Tanya / Daftar</h2>
-      <p class="small">Isi data singkat. Setelah itu kami hubungi via WhatsApp. Email kamu tidak ditampilkan.</p>
-
-      <form id="leadForm" method="POST">
-        <input type="text" name="_honey" style="display:none">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_subject" value="Lead Baru - Jokitoefl.myid">
-        <input type="hidden" name="_template" value="table">
-
-        <div class="formGrid">
-          <div class="col6">
-            <label>Nama</label>
-            <input name="Nama" id="fNama" placeholder="Nama kamu" required />
-          </div>
-          <div class="col6">
-            <label>No WhatsApp</label>
-            <input name="No_WhatsApp" id="fWa" placeholder="Contoh: 08xxxx / 628xxxx" required />
-          </div>
-          <div class="col12">
-            <label>Layanan yang ingin ditanya</label>
-            <select name="Layanan" id="fLayanan" required></select>
-          </div>
-          <div class="col12">
-            <label>Catatan (opsional)</label>
-            <textarea name="Catatan" id="fCatatan" rows="3" placeholder="Misal: deadline, target skor, jenis sertifikat, dsb."></textarea>
-          </div>
-          <div class="col12" style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:6px">
-            <button class="btn primary" type="submit">Kirim</button>
-            <a class="btn" id="igBtnBottom" href="#" target="_blank" rel="noreferrer">Instagram</a>
-            <span class="small" id="formHint"></span>
-          </div>
-        </div>
-      </form>
-    </section>
-
-    <div class="footer">
-      © <span id="year"></span> <span id="footerName">Jokitoefl.myid</span> • Single-page • LocalStorage + Admin.
     </div>
   </section>
 
-  <!-- ADMIN VIEW -->
-  <section id="adminView" class="hide">
-    <div class="panel">
-      <h2>Admin</h2>
-      <p class="small">Semua konten bisa kamu ubah dari sini. Data tersimpan di browser (LocalStorage). Default login: <b>admin</b> / <b>admin123</b>.</p>
+  <!-- ABOUT -->
+  <section id="about" class="panel" style="margin-top:14px">
+    <h2>About Us</h2>
+    <p id="aboutText" class="muted" style="line-height:1.75"></p>
+  </section>
 
-      <div id="loginBox" class="formGrid" style="margin-top:12px">
+  <!-- SERVICES -->
+  <section id="layanan" class="panel" style="margin-top:14px">
+    <h2>Layanan</h2>
+    <p class="small">Klik card untuk lihat info lengkap. Kamu bisa lanjut konsultasi langsung dari modal.</p>
+    <div class="grid2" id="servicesWrap"></div>
+  </section>
+
+  <!-- ADVANTAGES -->
+  <section id="keunggulan" class="panel" style="margin-top:14px">
+    <h2>Keunggulan</h2>
+    <div class="advGrid" id="advWrap"></div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimoni" class="panel" style="margin-top:14px">
+    <h2>Testimoni</h2>
+
+    <h3 style="margin-top:10px">Teks</h3>
+    <div class="tWrap">
+      <div class="tViewport" id="tViewport">
+        <div class="tTrack" id="tTrack"></div>
+      </div>
+      <div class="tControls">
+        <button class="iconBtn" id="tPrev" type="button" aria-label="prev">‹</button>
+        <button class="iconBtn" id="tNext" type="button" aria-label="next">›</button>
+        <span class="small">Geser atau klik tombol. Manual, tanpa blur.</span>
+      </div>
+    </div>
+
+    <h3 style="margin-top:16px">Gambar</h3>
+    <p class="small">Klik gambar besar untuk lihat detail di popup (caption hanya di popup).</p>
+
+    <div class="gLayout" id="galleryWrap">
+      <div class="bigBox" id="bigBox" role="button" aria-label="open image popup">
+        <img class="bigImg" id="bigImg" alt="testimoni" />
+      </div>
+      <div class="thumbCol">
+        <div class="small">Thumbnails (4–6 terlihat, geser samping untuk sisanya)</div>
+        <div class="thumbRow" id="thumbRow" style="margin-top:10px"></div>
+      </div>
+    </div>
+    <div id="galleryEmpty" class="small" style="margin-top:10px;display:none">Belum ada testimoni gambar.</div>
+  </section>
+
+  <!-- FORM -->
+  <section id="daftar" class="panel" style="margin-top:14px">
+    <h2 id="formTitle">Form Konsultasi</h2>
+    <p class="small" id="formSubtitle"></p>
+
+    <form id="leadForm">
+      <!-- honeypot -->
+      <div style="position:absolute;left:-9999px;top:-9999px;opacity:0">
+        <label>Company</label>
+        <input name="company" autocomplete="off" />
+      </div>
+
+      <div class="formGrid">
+        <div class="col6">
+          <label>Nama</label>
+          <input name="nama" id="fNama" required placeholder="Nama kamu" />
+        </div>
+        <div class="col6">
+          <label>No WhatsApp</label>
+          <input name="wa" id="fWa" required placeholder="08xxxx / 628xxxx" />
+        </div>
+        <div class="col12">
+          <label>Layanan</label>
+          <select name="layanan" id="fLayanan" required></select>
+        </div>
+        <div class="col12">
+          <label>Catatan (opsional)</label>
+          <textarea name="catatan" id="fCatatan" rows="3" placeholder="Contoh: tanya harga, durasi kelas, deadline, dll"></textarea>
+        </div>
+        <div class="col12" style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:4px">
+          <button class="btn primary" type="submit">Kirim</button>
+          <span class="small" id="formHint"></span>
+        </div>
+      </div>
+    </form>
+  </section>
+
+  <div class="small" style="margin:18px 0 28px;color:rgba(255,255,255,.55)">
+    © <span id="year"></span> <span id="footerName">Jokitoefl.myid</span>
+  </div>
+</main>
+
+<!-- Service Modal -->
+<div class="overlay" id="svcOverlay" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-label="service detail">
+    <div class="modalHead">
+      <div>
+        <h3 class="modalTitle" id="svcModalTitle"></h3>
+        <div class="small" id="svcModalDesc"></div>
+      </div>
+      <button class="closeBtn" id="svcClose" type="button">✕</button>
+    </div>
+    <div id="svcModalBody"></div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px">
+      <a class="btn primary" href="#daftar" id="svcCta">Konsultasi Gratis</a>
+      <button class="btn" id="svcScroll" type="button">Isi Form Sekarang</button>
+    </div>
+  </div>
+</div>
+
+<!-- Gallery Popup -->
+<div class="overlay" id="gOverlay" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-label="image popup">
+    <div class="modalHead">
+      <div>
+        <h3 class="modalTitle">Testimoni Gambar</h3>
+        <div class="small">Gunakan tombol prev/next untuk pindah.</div>
+      </div>
+      <button class="closeBtn" id="gClose" type="button">✕</button>
+    </div>
+
+    <div class="gPopupGrid">
+      <div>
+        <img id="gPopupImg" class="gPopupImg" alt="popup testimoni" />
+        <div class="gPopupControls">
+          <button class="btn" id="gPrev" type="button">Prev</button>
+          <button class="btn" id="gNext" type="button">Next</button>
+        </div>
+      </div>
+      <div class="gPopupSide">
+        <div class="small">Caption (hanya di popup)</div>
+        <div class="capBox" id="gCaption"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Admin Floating Button -->
+<button class="fab" id="adminFab" title="Admin" aria-label="admin">
+  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z" stroke="currentColor" stroke-width="2"/>
+    <path d="M19.4 15a7.9 7.9 0 0 0 .1-2l2-1.2-2-3.4-2.3.6a7.6 7.6 0 0 0-1.6-1l-.3-2.4H11l-.3 2.4a7.6 7.6 0 0 0-1.6 1l-2.3-.6-2 3.4 2 1.2a7.9 7.9 0 0 0 .1 2l-2 1.2 2 3.4 2.3-.6a7.6 7.6 0 0 0 1.6 1l.3 2.4h4.2l.3-2.4a7.6 7.6 0 0 0 1.6-1l2.3.6 2-3.4-2-1.2Z" stroke="currentColor" stroke-width="2" opacity=".9"/>
+  </svg>
+</button>
+
+<!-- Admin Panel -->
+<div class="overlay" id="aOverlay" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-label="admin panel">
+    <div class="modalHead">
+      <div>
+        <h3 class="modalTitle">Admin</h3>
+        <div class="small">Login lokal. Password tidak masuk repo. Publish global: Copy JSON → paste ke <b>data.json</b> di GitHub → commit.</div>
+      </div>
+      <button class="closeBtn" id="aClose" type="button">✕</button>
+    </div>
+
+    <div id="aLoginBox" class="panel" style="margin-top:12px">
+      <h3 style="margin:0 0 8px">Login / Set Admin</h3>
+      <div class="small">Pertama kali: set username & password. Berikutnya: login pakai yang sama.</div>
+
+      <div class="formGrid">
         <div class="col6">
           <label>Username</label>
-          <input id="aUser" placeholder="admin" />
+          <input id="aUser" autocomplete="username" />
         </div>
         <div class="col6">
           <label>Password</label>
-          <input id="aPass" type="password" placeholder="admin123" />
+          <input id="aPass" type="password" autocomplete="current-password" />
         </div>
-        <div class="col12">
-          <button class="btn primary" id="loginBtn" type="button">Masuk</button>
-        </div>
-      </div>
-
-      <div id="dashBox" class="hide" style="margin-top:10px">
-        <div class="tabs">
-          <button class="tabBtn active" data-tab="tab-site" type="button">Website</button>
-          <button class="tabBtn" data-tab="tab-high" type="button">Keunggulan</button>
-          <button class="tabBtn" data-tab="tab-services" type="button">Layanan</button>
-          <button class="tabBtn" data-tab="tab-ttext" type="button">Testimoni Teks</button>
-          <button class="tabBtn" data-tab="tab-timg" type="button">Testimoni Gambar</button>
-          <button class="tabBtn" data-tab="tab-backup" type="button">Backup</button>
-        </div>
-
-        <div class="adminLayout">
-          <!-- LEFT -->
-          <div class="panel" id="tab-site">
-            <h2>Website</h2>
-
-            <label>Nama Brand</label>
-            <input id="sSiteName" />
-
-            <label>Headline</label>
-            <input id="sHeadline" />
-
-            <label>Subheadline</label>
-            <textarea id="sSubhead" rows="3"></textarea>
-
-            <label>Judul “Kenapa pilih…”</label>
-            <input id="sWhyTitle" />
-
-            <label>Teks “Kenapa pilih…”</label>
-            <textarea id="sWhyText" rows="3"></textarea>
-
-            <label>About Us</label>
-            <textarea id="sAbout" rows="4"></textarea>
-
-            <label>Instagram URL</label>
-            <input id="sIg" />
-
-            <label>Email penerima form (tidak tampil ke customer)</label>
-            <input id="sLeadEmail" placeholder="contoh: kamu@email.com" />
-
-            <div class="miniRow" style="margin-top:12px">
-              <button class="btn primary" id="saveSiteBtn" type="button">Simpan</button>
-              <button class="btn" id="changePassBtn" type="button">Ganti Password</button>
-            </div>
-
-            <p class="small" style="margin-top:10px">
-              Catatan: website full client-only. Email tidak ditampilkan di UI, tapi tidak bisa 100% disembunyikan dari inspect.
-            </p>
-          </div>
-
-          <div class="panel" id="tab-high" style="display:none">
-            <h2>Keunggulan</h2>
-            <p class="small">Tambah/edit/hapus poin keunggulan (rekomendasi 3–5 poin).</p>
-
-            <div class="formGrid">
-              <div class="col6">
-                <label>Judul</label>
-                <input id="hTitle" placeholder="Contoh: Respon cepat" />
-              </div>
-              <div class="col6">
-                <label>Deskripsi</label>
-                <input id="hDesc" placeholder="Contoh: Lewat WhatsApp setelah form dikirim" />
-              </div>
-              <div class="col12">
-                <button class="btn primary" id="addHighlightBtn" type="button">Tambah Keunggulan</button>
-              </div>
-            </div>
-
-            <div class="list" id="highAdminList"></div>
-          </div>
-
-          <div class="panel" id="tab-services" style="display:none">
-            <h2>Layanan (4)</h2>
-            <p class="small">Edit 4 layanan yang kamu minta. (Jika mau ditambah nanti, bisa juga.)</p>
-            <div id="svcAdminWrap"></div>
-            <div class="miniRow" style="margin-top:10px">
-              <button class="btn primary" id="saveServicesBtn" type="button">Simpan Layanan</button>
-            </div>
-          </div>
-
-          <div class="panel" id="tab-ttext" style="display:none">
-            <h2>Testimoni Teks</h2>
-            <p class="small">Maks 20. Slider akan auto jalan dan bisa digeser manual.</p>
-
-            <div class="formGrid">
-              <div class="col6">
-                <label>Nama (opsional)</label>
-                <input id="ttName" placeholder="Contoh: Anonim / Inisial" />
-              </div>
-              <div class="col6">
-                <label>Isi testimoni</label>
-                <input id="ttText" placeholder="Contoh: Pelayanannya cepat dan jelas." />
-              </div>
-              <div class="col12">
-                <button class="btn primary" id="addTTextBtn" type="button">Tambah Testimoni Teks</button>
-              </div>
-            </div>
-
-            <div class="list" id="tTextList"></div>
-          </div>
-
-          <div class="panel" id="tab-timg" style="display:none">
-            <h2>Testimoni Gambar</h2>
-            <p class="small">
-              Maks 20 gambar. Cocok untuk screenshot chat (portrait) & sertifikat (landscape).
-              Gambar akan dikompres otomatis agar lebih ringan.
-            </p>
-
-            <div class="formGrid">
-              <div class="col6">
-                <label>Caption (opsional)</label>
-                <input id="tiCap" placeholder="Contoh: Sertifikat / Screenshot chat" />
-              </div>
-              <div class="col6">
-                <label>Upload gambar</label>
-                <input id="tiFile" type="file" accept="image/*" />
-              </div>
-              <div class="col12">
-                <button class="btn primary" id="addTImgBtn" type="button">Tambah Gambar</button>
-              </div>
-            </div>
-
-            <div class="list" id="tImgList"></div>
-          </div>
-
-          <div class="panel" id="tab-backup" style="display:none">
-            <h2>Backup</h2>
-            <p class="small">Export/Import data (termasuk gambar). Cocok untuk pindah device.</p>
-            <div class="miniRow">
-              <button class="btn" id="exportBtn" type="button">Export JSON</button>
-              <label class="btn" style="cursor:pointer">
-                Import JSON
-                <input id="importFile" type="file" accept="application/json" class="hide">
-              </label>
-              <button class="btn danger" id="resetBtn" type="button">Reset</button>
-            </div>
-
-            <p class="small" style="margin-top:10px">
-              Kalau setelah import tampilan belum berubah, refresh halaman (F5).
-            </p>
-          </div>
+        <div class="col12" style="display:flex;gap:10px;flex-wrap:wrap">
+          <button class="btn primary" id="aLoginBtn" type="button">Masuk / Set</button>
+          <button class="btn" id="aResetBtn" type="button">Reset Login Lokal</button>
         </div>
       </div>
     </div>
-  </section>
 
-</main>
+    <div id="aDash" style="display:none;margin-top:12px">
+      <div class="panel">
+        <h3 style="margin:0 0 8px">Publish Global</h3>
+        <div class="small">Setelah kamu commit `data.json`, publik akan ikut berubah. Cek dengan Incognito atau Ctrl+Shift+R.</div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px">
+          <button class="btn primary" id="aCopyBtn" type="button">Copy JSON untuk data.json</button>
+          <a class="btn" id="aOpenGit" target="_blank" rel="noreferrer">Buka GitHub edit data.json</a>
+        </div>
+      </div>
 
-<div id="toast" class="toast hide"></div>
+      <div class="panel" style="margin-top:14px">
+        <h3 style="margin:0 0 8px">Ganti Password Admin</h3>
+        <div class="small">Wajib masukkan password lama dulu.</div>
+        <div class="formGrid">
+          <div class="col6">
+            <label>Password lama</label>
+            <input id="oldPass" type="password" />
+          </div>
+          <div class="col6">
+            <label>Password baru</label>
+            <input id="newPass" type="password" />
+          </div>
+          <div class="col6">
+            <label>Ulangi password baru</label>
+            <input id="newPass2" type="password" />
+          </div>
+          <div class="col12">
+            <button class="btn primary" id="changePassBtn" type="button">Simpan Password Baru</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel" style="margin-top:14px">
+        <h3 style="margin:0 0 8px">Catatan</h3>
+        <div class="small">
+          Versi ini fokus aman + visual final. Setelah ini, kalau kamu mau admin bisa edit semua konten langsung dari panel,
+          kita tambahkan form editor lengkap (settings, layanan, keunggulan, testimoni teks & gambar) tanpa bocorin data pribadi.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
 
 <script>
-  // =========================
-  // Storage
-  // =========================
-  const KEY = "JOKITOEFL_SITE_V3";
-  const AUTH = "JOKITOEFL_AUTH_V3";
+  // Konfigurasi repo (untuk tombol "Buka GitHub edit data.json")
+  const GITHUB_USER = "meimeibkn";
+  const GITHUB_REPO = "Jokitoefl.myid";
 
-  const DEFAULT = {
-    settings: {
-      siteName: "Jokitoefl.myid",
-      headline: "One stop for your future",
-      subhead: "Konsultasi cepat untuk TOEFL, sertifikat komputer, bantuan mahasiswa, dan rangkuman UAS.",
-      whyTitle: "Kenapa pilih Jokitoefl.myid?",
-      whyText: "Proses rapi, komunikasi jelas, dan fokus membantu kebutuhan kamu selesai lebih cepat.",
-      about: "Kami membantu kebutuhan akademik mahasiswa dengan alur yang simpel dan jelas.",
-      instagram: "https://www.instagram.com/jokitoefl.myid?igsh=MXh2eHhzcm13bmh0aA%3D%3D&utm_source=qr",
-      leadEmail: "meimeibkn@gmail.com",
-      adminUser: "admin",
-      adminPass: "admin123"
-    },
-    highlights: [
-      { title: "Respon cepat", desc: "Lewat WhatsApp setelah form dikirim" },
-      { title: "Harga & proses jelas", desc: "Tanpa drama, to the point" },
-      { title: "Untuk kebutuhan mahasiswa", desc: "Terutama lokal Indonesia" }
-    ],
-    services: [
-      { title:"Joki TOEFL", badge:"Layanan 1", desc:"Bantu kebutuhan TOEFL kamu dengan arahan yang jelas dan hasil yang terukur.", tags:["Target skor","Cepat","Rapi"] },
-      { title:"Joki Sertifikat Komputer", badge:"Layanan 2", desc:"Bantu kebutuhan sertifikat komputer sesuai kebutuhan kampus atau kerja.", tags:["Sertifikat","Praktis","Support"] },
-      { title:"Kelas Bantuan Mahasiswa", badge:"Layanan 3", desc:"Pendampingan tugas, revisi, dan arahan teknis sesuai kebutuhan kamu.", tags:["Tugas","Revisi","Pendampingan"] },
-      { title:"Rangkuman & Latihan Soal UAS", badge:"Layanan 4", desc:"Rangkuman inti + latihan soal yang membantu kamu siap UAS lebih cepat.", tags:["Ringkas","Latihan","UT-ready"] }
-    ],
-    testimonialsText: [
-      { name:"Anonim", text:"Responnya cepat, penjelasannya jelas." },
-      { name:"Anonim", text:"Bantu banget buat UAS, jadi lebih siap." }
-    ],
-    testimonialsImages: [
-      // { cap:"Screenshot chat", data:"data:image/jpeg;base64,..." }
-    ]
-  };
+  const KEY_ADMIN = "JTK_ADMIN_V1";
+  const KEY_AUTH  = "JTK_AUTH_V1";
 
-  const $ = (id)=>document.getElementById(id);
+  const $ = (id) => document.getElementById(id);
 
-  function loadData(){
-    const raw = localStorage.getItem(KEY);
-    if(!raw){
-      localStorage.setItem(KEY, JSON.stringify(DEFAULT));
-      return structuredClone(DEFAULT);
-    }
-    try { return JSON.parse(raw); }
-    catch {
-      localStorage.setItem(KEY, JSON.stringify(DEFAULT));
-      return structuredClone(DEFAULT);
-    }
-  }
-  function saveData(data){ localStorage.setItem(KEY, JSON.stringify(data)); }
-
-  function isAuthed(){ return localStorage.getItem(AUTH)==="1"; }
-  function setAuthed(v){ localStorage.setItem(AUTH, v ? "1":"0"); }
-
-  function toast(msg, type="good"){
-    const t=$("toast");
-    t.textContent=msg;
-    t.className="toast " + (type==="bad"?"bad":"good");
-    t.classList.remove("hide");
-    clearTimeout(window.__toastTimer);
-    window.__toastTimer=setTimeout(()=>t.classList.add("hide"),2400);
+  function toast(msg){
+    const t = $("toast");
+    t.textContent = msg;
+    t.style.display = "block";
+    clearTimeout(window.__t);
+    window.__t = setTimeout(()=>t.style.display="none", 2600);
   }
 
-  function esc(s){
-    return (s||"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;")
-      .replaceAll('"',"&quot;").replaceAll("'","&#039;");
+  function safeText(s){ return String(s ?? ""); }
+
+  // --- Load data.json (with cache-buster) ---
+  let DATA = null;
+
+  async function fetchRemote(){
+    try{
+      const res = await fetch("./data.json?v=" + Date.now(), { cache:"no-store" });
+      if(!res.ok) return null;
+      const obj = await res.json();
+      if(!obj || !obj.settings || !obj.services) return null;
+      return obj;
+    }catch(e){ return null; }
   }
 
-  // =========================
-  // Email form (client-only)
-  // =========================
-  function setupLeadForm(){
-    const form = $("leadForm");
-    const data = loadData();
-    const e = (data.settings.leadEmail || "").trim();
-    // Build action without showing email in UI
-    // Still discoverable via inspect; but not displayed in customer UI.
-    const parts = e.split("@");
-    const user = parts[0] || "";
-    const domain = parts[1] || "";
-    const action = "https://formsubmit.co/" + user + "@" + domain;
-    form.action = action;
-
-    $("formHint").textContent = "Kami akan hubungi kamu via WhatsApp setelah form masuk.";
-  }
-
-  // =========================
-  // Public render
-  // =========================
-  function renderPublic(){
-    const data = loadData();
-    $("siteName").textContent = data.settings.siteName;
-    $("footerName").textContent = data.settings.siteName;
-
-    const head = esc(data.settings.headline);
-    // keep accent on "future" if present
-    $("headline").innerHTML = head.includes("future")
-      ? head.replace("future", "<span class='accent'>future</span>")
-      : head;
-
-    $("subhead").textContent = data.settings.subhead;
-    $("whyTitle").textContent = data.settings.whyTitle;
-    $("whyText").textContent = data.settings.whyText;
-    $("aboutText").textContent = data.settings.about;
-
-    const ig = data.settings.instagram || "#";
-    $("igBtnTop").href = ig;
-    $("igBtnBottom").href = ig;
-
+  // --- Render ---
+  function renderTop(d){
+    $("siteName").textContent = safeText(d.settings.siteName);
+    $("footerName").textContent = safeText(d.settings.siteName);
     $("year").textContent = new Date().getFullYear();
 
-    // Highlights (stats)
-    const hWrap = $("highlightsWrap");
-    hWrap.innerHTML = "";
-    (data.highlights || []).forEach(h=>{
-      const div = document.createElement("div");
-      div.className = "stat";
-      div.innerHTML = `<b>${esc(h.title)}</b><span>${esc(h.desc)}</span>`;
-      hWrap.appendChild(div);
-    });
+    // highlight "future"
+    const raw = safeText(d.settings.headline);
+    $("headline").innerHTML = raw.replace(/future/gi, "<span class='accent'>future</span>");
 
-    // Services
-    const sWrap = $("servicesWrap");
-    sWrap.innerHTML = "";
-    (data.services || []).forEach(s=>{
-      const el = document.createElement("article");
-      el.className = "svc";
-      el.innerHTML = `
-        <div class="svcTop">
-          <div>
-            <h3>${esc(s.title)}</h3>
-            <p>${esc(s.desc)}</p>
-          </div>
-          <span class="badge">${esc(s.badge || "Layanan")}</span>
-        </div>
-        <div class="tags">
-          ${(s.tags||[]).map(t=>`<span class="tag">${esc(t)}</span>`).join("")}
-        </div>
-        <div class="row" style="margin-top:12px">
-          <button class="btn ghost" type="button" data-ask="${esc(s.title)}">Tanya layanan ini</button>
-        </div>
-      `;
-      sWrap.appendChild(el);
-    });
+    $("heroBadge").textContent = safeText(d.settings.badge);
+    $("brandSub").textContent = safeText(d.settings.badge);
 
-    // Service dropdown
-    const sel = $("fLayanan");
-    sel.innerHTML = `<option value="" disabled selected>Pilih layanan…</option>` +
-      (data.services || []).map(s=>`<option value="${esc(s.title)}">${esc(s.title)}</option>`).join("");
+    $("subhead").textContent = safeText(d.settings.subhead);
+    $("aboutText").textContent = safeText(d.settings.about);
 
-    // click "tanya layanan ini" -> auto select + scroll to form
-    document.querySelectorAll("[data-ask]").forEach(btn=>{
-      btn.addEventListener("click", ()=>{
-        const val = btn.getAttribute("data-ask");
-        $("fLayanan").value = val;
-        location.hash = "#daftar";
-        $("fNama").focus();
-      });
-    });
+    $("ctaTop").textContent  = safeText(d.settings.ctaText || "Konsultasi Gratis");
+    $("ctaHero").textContent = safeText(d.settings.ctaText || "Konsultasi Gratis");
 
-    // Testimonials
-    renderTextTestimonials();
-    renderImageTestimonials();
+    $("formTitle").textContent = safeText(d.settings.formTitle || "Form Konsultasi");
+    $("formSubtitle").textContent = safeText(d.settings.formSubtitle || "");
+
+    $("igBtn").href = safeText(d.settings.instagram || "#");
   }
 
-  // =========================
-  // Text testimonials slider
-  // =========================
-  let slideIdx = 0;
-  let autoTimer = null;
-  let isDragging = false;
-  let dragStartX = 0;
-  let dragDX = 0;
-
-  function renderTextTestimonials(){
-    const data = loadData();
-    const arr = data.testimonialsText || [];
-
-    const track = $("textTrack");
-    const dotWrap = $("dotWrap");
-    const hint = $("sliderHint");
-
-    if(arr.length === 0){
-      track.innerHTML = `<div class="slide"><p class="quote">Belum ada testimoni teks. Tambahkan dari Admin.</p><div class="who"><span class="dot"></span><span>Admin</span></div></div>`;
-      dotWrap.innerHTML = "";
-      hint.textContent = "";
-      slideIdx = 0;
-      stopAuto();
-      applyTrack();
-      return;
-    }
-
-    // clamp max 20
-    const use = arr.slice(0, 20);
-
-    track.innerHTML = use.map(t=>`
-      <div class="slide">
-        <p class="quote">“${esc(t.text)}”</p>
-        <div class="who"><span class="dot"></span><span>${esc(t.name || "Anonim")}</span></div>
-      </div>
-    `).join("");
-
-    dotWrap.innerHTML = use.map((_,i)=>`<button class="dotBtn ${i===slideIdx?"active":""}" data-dot="${i}" type="button" aria-label="slide ${i+1}"></button>`).join("");
-
-    dotWrap.querySelectorAll("[data-dot]").forEach(b=>{
-      b.addEventListener("click", ()=>{
-        slideIdx = Number(b.getAttribute("data-dot"));
-        applyTrack();
-        restartAuto();
-      });
-    });
-
-    hint.textContent = use.length > 1 ? "Geser / klik titik untuk pindah. Auto jalan." : "";
-    slideIdx = Math.min(slideIdx, use.length - 1);
-
-    applyTrack();
-    restartAuto();
-  }
-
-  function applyTrack(){
-    const track = $("textTrack");
-    const dots = $("dotWrap").querySelectorAll(".dotBtn");
-    track.style.transform = `translateX(-${slideIdx * 100}%)`;
-    dots.forEach((d,i)=>d.classList.toggle("active", i===slideIdx));
-  }
-
-  function nextSlide(){
-    const data = loadData();
-    const n = Math.min((data.testimonialsText||[]).length, 20);
-    if(n <= 1) return;
-    slideIdx = (slideIdx + 1) % n;
-    applyTrack();
-  }
-  function prevSlide(){
-    const data = loadData();
-    const n = Math.min((data.testimonialsText||[]).length, 20);
-    if(n <= 1) return;
-    slideIdx = (slideIdx - 1 + n) % n;
-    applyTrack();
-  }
-  function restartAuto(){
-    stopAuto();
-    const data = loadData();
-    const n = Math.min((data.testimonialsText||[]).length, 20);
-    if(n <= 1) return;
-    autoTimer = setInterval(nextSlide, 4500);
-  }
-  function stopAuto(){
-    if(autoTimer) clearInterval(autoTimer);
-    autoTimer = null;
-  }
-
-  function bindSliderGestures(){
-    const slider = $("textSlider");
-
-    // Buttons
-    $("prevBtn").addEventListener("click", ()=>{ prevSlide(); restartAuto(); });
-    $("nextBtn").addEventListener("click", ()=>{ nextSlide(); restartAuto(); });
-
-    // Pointer drag for mouse + touch
-    slider.addEventListener("pointerdown", (e)=>{
-      const data = loadData();
-      const n = Math.min((data.testimonialsText||[]).length, 20);
-      if(n <= 1) return;
-
-      isDragging = true;
-      dragStartX = e.clientX;
-      dragDX = 0;
-      slider.setPointerCapture(e.pointerId);
-      stopAuto();
-    });
-
-    slider.addEventListener("pointermove", (e)=>{
-      if(!isDragging) return;
-      dragDX = e.clientX - dragStartX;
-      const track = $("textTrack");
-      const offset = (-slideIdx * slider.clientWidth) + dragDX;
-      track.style.transition = "none";
-      track.style.transform = `translateX(${offset}px)`;
-    });
-
-    function endDrag(){
-      if(!isDragging) return;
-      isDragging = false;
-      const slider = $("textSlider");
-      const track = $("textTrack");
-      track.style.transition = "";
-
-      const threshold = Math.max(40, slider.clientWidth * 0.18);
-      if(dragDX > threshold) prevSlide();
-      else if(dragDX < -threshold) nextSlide();
-
-      applyTrack();
-      restartAuto();
-    }
-
-    slider.addEventListener("pointerup", endDrag);
-    slider.addEventListener("pointercancel", endDrag);
-    slider.addEventListener("mouseleave", endDrag);
-  }
-
-  // =========================
-  // Image testimonials
-  // =========================
-  function renderImageTestimonials(){
-    const data = loadData();
-    const arr = (data.testimonialsImages || []).slice(0, 20);
-    const grid = $("imageGrid");
-
-    if(arr.length === 0){
-      grid.innerHTML = `<div class="small">Belum ada testimoni gambar. Tambahkan dari Admin.</div>`;
-      return;
-    }
-
-    grid.innerHTML = arr.map((x)=>`
-      <div class="imgCard">
-        <img src="${x.data}" alt="testimoni">
-        <div class="cap">${esc(x.cap || "")}</div>
-      </div>
-    `).join("");
-  }
-
-  // =========================
-  // Admin view toggles
-  // =========================
-  function setView(mode){
-    const pub = $("publicView");
-    const adm = $("adminView");
-    const pill = $("modePill");
-    const pl = $("publicLinks");
-    const al = $("adminLinks");
-
-    if(mode==="admin"){
-      pub.classList.add("hide");
-      adm.classList.remove("hide");
-      pill.textContent="Admin";
-      pl.classList.add("hide");
-      al.classList.remove("hide");
-    } else {
-      adm.classList.add("hide");
-      pub.classList.remove("hide");
-      pill.textContent="Public";
-      al.classList.add("hide");
-      pl.classList.remove("hide");
-    }
-  }
-
-  function showTab(tabId){
-    const tabs = ["tab-site","tab-high","tab-services","tab-ttext","tab-timg","tab-backup"];
-    tabs.forEach(id=>{
-      $(id).style.display = (id===tabId) ? "" : "none";
-    });
-    document.querySelectorAll(".tabBtn").forEach(b=>{
-      b.classList.toggle("active", b.getAttribute("data-tab")===tabId);
-    });
-  }
-
-  // =========================
-  // Admin render
-  // =========================
-  function renderAdmin(){
-    const data = loadData();
-
-    // website tab
-    $("sSiteName").value = data.settings.siteName || "";
-    $("sHeadline").value = data.settings.headline || "";
-    $("sSubhead").value = data.settings.subhead || "";
-    $("sWhyTitle").value = data.settings.whyTitle || "";
-    $("sWhyText").value = data.settings.whyText || "";
-    $("sAbout").value = data.settings.about || "";
-    $("sIg").value = data.settings.instagram || "";
-    $("sLeadEmail").value = data.settings.leadEmail || "";
-
-    // highlights list
-    renderHighlightsAdmin();
-
-    // services editor
-    renderServicesAdmin();
-
-    // testimonials text list
-    renderTTextAdmin();
-
-    // testimonials image list
-    renderTImgAdmin();
-  }
-
-  function renderHighlightsAdmin(){
-    const data = loadData();
-    const list = $("highAdminList");
-    list.innerHTML = (data.highlights||[]).map((h, idx)=>`
-      <div class="item">
-        <div class="itemHead">
-          <div>
-            <b>${esc(h.title)}</b>
-            <div class="small">${esc(h.desc)}</div>
-          </div>
-          <button class="btn danger" type="button" data-del-high="${idx}">Hapus</button>
-        </div>
-      </div>
-    `).join("");
-
-    list.querySelectorAll("[data-del-high]").forEach(btn=>{
-      btn.addEventListener("click", ()=>{
-        const i = Number(btn.getAttribute("data-del-high"));
-        const d = loadData();
-        d.highlights.splice(i,1);
-        saveData(d);
-        renderAdmin();
-        renderPublic();
-        toast("Keunggulan dihapus.", "good");
-      });
-    });
-  }
-
-  function renderServicesAdmin(){
-    const data = loadData();
-    const wrap = $("svcAdminWrap");
+  function renderServices(d){
+    const wrap = $("servicesWrap");
     wrap.innerHTML = "";
 
-    (data.services||[]).forEach((s, idx)=>{
-      const box = document.createElement("div");
-      box.className = "item";
-      box.innerHTML = `
-        <div class="pill" style="width:max-content;margin-bottom:10px">Layanan ${idx+1}</div>
-
-        <label>Judul</label>
-        <input data-svc="title" data-i="${idx}" value="${esc(s.title)}" />
-
-        <label>Badge</label>
-        <input data-svc="badge" data-i="${idx}" value="${esc(s.badge || ("Layanan "+(idx+1)))}" />
-
-        <label>Deskripsi</label>
-        <textarea data-svc="desc" data-i="${idx}" rows="3">${esc(s.desc)}</textarea>
-
-        <label>Tags (pisah koma)</label>
-        <input data-svc="tags" data-i="${idx}" value="${esc((s.tags||[]).join(", "))}" />
+    (d.services || []).forEach((s)=>{
+      const card = document.createElement("article");
+      card.className = "svc";
+      card.innerHTML = `
+        <h3 class="svcTitle">${safeText(s.title)}</h3>
+        <div class="svcDesc">${safeText(s.desc)}</div>
       `;
-      wrap.appendChild(box);
+      card.onclick = ()=> openServiceModal(s);
+      wrap.appendChild(card);
+    });
+
+    const sel = $("fLayanan");
+    sel.innerHTML = `<option value="" disabled selected>Pilih layanan…</option>`;
+    (d.services || []).forEach((s)=>{
+      const opt = document.createElement("option");
+      opt.value = s.title;
+      opt.textContent = s.title;
+      sel.appendChild(opt);
     });
   }
 
-  function renderTTextAdmin(){
-    const d = loadData();
-    const arr = (d.testimonialsText || []).slice(0, 20);
-    const list = $("tTextList");
+  function renderAdvantages(d){
+    const advWrap = $("advWrap");
+    advWrap.innerHTML = "";
 
-    list.innerHTML = arr.map((t, idx)=>`
-      <div class="item">
-        <div class="itemHead">
-          <div>
-            <b>${esc(t.name || "Anonim")}</b>
-            <div class="small">${esc(t.text)}</div>
+    const arr = d.advantages || [];
+    arr.forEach((a, idx)=>{
+      if(idx === 4){
+        const outer = document.createElement("div");
+        outer.className = "adv last";
+        outer.innerHTML = `
+          <div class="advInner">
+            <div class="adv">
+              <h3>${safeText(a.title)}</h3>
+              <p>${safeText(a.desc)}</p>
+            </div>
           </div>
-          <button class="btn danger" type="button" data-del-tt="${idx}">Hapus</button>
-        </div>
-      </div>
-    `).join("");
-
-    list.querySelectorAll("[data-del-tt]").forEach(btn=>{
-      btn.addEventListener("click", ()=>{
-        const i = Number(btn.getAttribute("data-del-tt"));
-        const data = loadData();
-        data.testimonialsText.splice(i,1);
-        saveData(data);
-        renderAdmin();
-        renderPublic();
-        toast("Testimoni teks dihapus.", "good");
-      });
+        `;
+        advWrap.appendChild(outer);
+        return;
+      }
+      const card = document.createElement("div");
+      card.className = "adv";
+      card.innerHTML = `<h3>${safeText(a.title)}</h3><p>${safeText(a.desc)}</p>`;
+      advWrap.appendChild(card);
     });
   }
 
-  function renderTImgAdmin(){
-    const d = loadData();
-    const arr = (d.testimonialsImages || []).slice(0, 20);
-    const list = $("tImgList");
+  // --- Service modal ---
+  let currentServiceTitle = "";
+  function openServiceModal(s){
+    currentServiceTitle = s.title || "";
+    $("svcModalTitle").textContent = safeText(s.title);
+    $("svcModalDesc").textContent  = safeText(s.desc);
 
+    const body = $("svcModalBody");
+    body.innerHTML = "";
+
+    (s.details || []).forEach(section=>{
+      const div = document.createElement("div");
+      div.className = "modalSection";
+      const items = (section.items || []).map(x=>`<li>${safeText(x)}</li>`).join("");
+      div.innerHTML = `<h4>${safeText(section.title)}</h4><ul>${items}</ul>`;
+      body.appendChild(div);
+    });
+
+    $("svcOverlay").style.display = "flex";
+  }
+  function closeServiceModal(){ $("svcOverlay").style.display = "none"; }
+
+  // --- Testimonials text slider (manual, no blur) ---
+  let tIndex = 0;
+  let dragging = false;
+  let startX = 0;
+  let lastX  = 0;
+
+  function cardsPerView(){
+    return window.matchMedia("(max-width: 860px)").matches ? 1 : 2.5;
+  }
+
+  function renderTestText(d){
+    const track = $("tTrack");
+    track.innerHTML = "";
+
+    const arr = (d.testimonialsText || []).slice(0, 20);
     if(arr.length === 0){
-      list.innerHTML = `<div class="small">Belum ada gambar.</div>`;
+      track.innerHTML = `<div class="tCard" style="flex-basis:90%"><p class="tQuote">Belum ada testimoni teks.</p><div class="tWho"><span class="dot"></span><span>Admin</span></div></div>`;
+      tIndex = 0;
+      applyTTransform();
       return;
     }
 
-    list.innerHTML = arr.map((x, idx)=>`
-      <div class="item">
-        <div class="itemHead">
-          <div>
-            <b>${esc(x.cap || "Gambar")}</b>
-            <div class="small">Ukuran tersimpan: ${Math.round((x.data.length || 0)/1024)} KB (perkiraan)</div>
-          </div>
-          <button class="btn danger" type="button" data-del-ti="${idx}">Hapus</button>
-        </div>
-        <div style="margin-top:10px">
-          <img src="${x.data}" alt="preview" style="width:100%;max-height:260px;object-fit:cover;border-radius:12px;border:1px solid var(--line)" />
-        </div>
-      </div>
-    `).join("");
+    arr.forEach(t=>{
+      const card = document.createElement("div");
+      card.className = "tCard";
+      card.innerHTML = `
+        <p class="tQuote">“${safeText(t.text)}”</p>
+        <div class="tWho"><span class="dot"></span><span>${safeText(t.name || "Anonim")}</span></div>
+      `;
+      track.appendChild(card);
+    });
 
-    list.querySelectorAll("[data-del-ti]").forEach(btn=>{
-      btn.addEventListener("click", ()=>{
-        const i = Number(btn.getAttribute("data-del-ti"));
-        const data = loadData();
-        data.testimonialsImages.splice(i,1);
-        saveData(data);
-        renderAdmin();
-        renderPublic();
-        toast("Gambar dihapus.", "good");
-      });
+    tIndex = 0;
+    applyTTransform();
+  }
+
+  function applyTTransform(){
+    const viewport = $("tViewport");
+    const track = $("tTrack");
+    const arr = (DATA.testimonialsText || []).slice(0, 20);
+    const total = Math.max(arr.length, 1);
+
+    const gap = window.matchMedia("(max-width: 860px)").matches ? 12 : 14;
+    const vpW = viewport.clientWidth;
+
+    const cpv = cardsPerView();
+    const cardW = (vpW - gap * (cpv - 1)) / cpv;
+    const step  = cardW + gap;
+
+    const maxIndex = Math.max(0, total - Math.ceil(cpv));
+    if(tIndex > maxIndex) tIndex = maxIndex;
+    if(tIndex < 0) tIndex = 0;
+
+    track.style.transform = `translateX(${-tIndex * step}px)`;
+  }
+
+  function tNext(){
+    const total = (DATA.testimonialsText || []).slice(0, 20).length;
+    const cpv = cardsPerView();
+    const maxIndex = Math.max(0, total - Math.ceil(cpv));
+    tIndex = Math.min(maxIndex, tIndex + 1);
+    applyTTransform();
+  }
+
+  function tPrev(){
+    tIndex = Math.max(0, tIndex - 1);
+    applyTTransform();
+  }
+
+  function bindSwipe(){
+    const viewport = $("tViewport");
+    const track = $("tTrack");
+
+    viewport.addEventListener("pointerdown",(e)=>{
+      dragging = true;
+      startX = e.clientX;
+      lastX = e.clientX;
+      track.style.transition = "none";
+      viewport.setPointerCapture(e.pointerId);
+    });
+
+    viewport.addEventListener("pointermove",(e)=>{
+      if(!dragging) return;
+      const dx = e.clientX - lastX;
+      lastX = e.clientX;
+
+      const m = window.getComputedStyle(track).transform;
+      let tx = 0;
+      if(m && m !== "none"){
+        const vals = m.match(/matrix\((.+)\)/);
+        if(vals && vals[1]) tx = parseFloat(vals[1].split(",")[4]) || 0;
+      }
+      track.style.transform = `translateX(${tx + dx}px)`;
+    });
+
+    function end(e){
+      if(!dragging) return;
+      dragging = false;
+      track.style.transition = "";
+      const diff = e.clientX - startX;
+      const threshold = 60;
+      if(diff < -threshold) tNext();
+      else if(diff > threshold) tPrev();
+      else applyTTransform();
+    }
+
+    viewport.addEventListener("pointerup", end);
+    viewport.addEventListener("pointercancel", end);
+  }
+
+  // --- Gallery (big + thumbs + popup) ---
+  let gIndex = 0;
+
+  function renderGallery(d){
+    const imgs = (d.testimonialsImages || []).slice(0, 20);
+    const bigImg = $("bigImg");
+    const thumbRow = $("thumbRow");
+    const empty = $("galleryEmpty");
+    const wrap = $("galleryWrap");
+
+    thumbRow.innerHTML = "";
+
+    if(imgs.length === 0){
+      wrap.style.display = "none";
+      empty.style.display = "block";
+      return;
+    }
+
+    wrap.style.display = "";
+    empty.style.display = "none";
+
+    gIndex = Math.max(0, Math.min(gIndex, imgs.length - 1));
+    bigImg.src = imgs[gIndex].data;
+
+    imgs.forEach((it, i)=>{
+      const t = document.createElement("div");
+      t.className = "thumb" + (i===gIndex ? " active" : "");
+      t.innerHTML = `<img alt="thumb" src="${it.data}">`;
+      t.onclick = ()=>{ gIndex = i; updateGallery(); };
+      thumbRow.appendChild(t);
     });
   }
 
-  // =========================
-  // Image compress to base64
-  // =========================
-  async function fileToCompressedDataURL(file){
-    const img = new Image();
-    const url = URL.createObjectURL(file);
+  function updateGallery(){
+    const imgs = (DATA.testimonialsImages || []).slice(0, 20);
+    if(imgs.length === 0) return;
 
-    await new Promise((res, rej)=>{
-      img.onload = ()=>res();
-      img.onerror = ()=>rej(new Error("load image failed"));
-      img.src = url;
-    });
-
-    // max width/height to keep screenshots readable but not huge
-    const MAX_W = 1200;
-    const MAX_H = 1200;
-
-    let { width:w, height:h } = img;
-    let scale = Math.min(1, MAX_W / w, MAX_H / h);
-    w = Math.round(w * scale);
-    h = Math.round(h * scale);
-
-    const canvas = document.createElement("canvas");
-    canvas.width = w;
-    canvas.height = h;
-    const ctx = canvas.getContext("2d");
-
-    // white background (good for screenshots)
-    ctx.fillStyle = "#ffffff";
-    ctx.fillRect(0,0,w,h);
-    ctx.drawImage(img, 0, 0, w, h);
-
-    URL.revokeObjectURL(url);
-
-    // jpeg compress
-    const quality = 0.82;
-    return canvas.toDataURL("image/jpeg", quality);
+    $("bigImg").src = imgs[gIndex].data;
+    Array.from(document.querySelectorAll(".thumb"))
+      .forEach((t,i)=>t.classList.toggle("active", i===gIndex));
   }
 
-  // =========================
-  // Events
-  // =========================
-  function bindEvents(){
-    $("openAdminBtn").addEventListener("click", ()=>{
-      setView("admin");
-      const authed = isAuthed();
-      $("loginBox").classList.toggle("hide", authed);
-      $("dashBox").classList.toggle("hide", !authed);
-      if(authed){
-        renderAdmin();
-      }
-      showTab("tab-site");
-    });
+  function openGalleryPopup(){
+    const imgs = (DATA.testimonialsImages || []).slice(0, 20);
+    if(imgs.length === 0) return;
 
-    $("backPublicBtn").addEventListener("click", ()=>{
-      setView("public");
-      renderPublic();
-      setupLeadForm();
-    });
+    $("gPopupImg").src = imgs[gIndex].data;
+    $("gCaption").textContent = safeText(imgs[gIndex].cap || "");
+    $("gOverlay").style.display = "flex";
+  }
+  function closeGalleryPopup(){ $("gOverlay").style.display = "none"; }
 
-    $("logoutBtn").addEventListener("click", ()=>{
-      setAuthed(false);
-      $("dashBox").classList.add("hide");
-      $("loginBox").classList.remove("hide");
-      toast("Logout berhasil.", "good");
-    });
-
-    $("loginBtn").addEventListener("click", ()=>{
-      const data = loadData();
-      const u = $("aUser").value.trim();
-      const p = $("aPass").value;
-
-      if(u === data.settings.adminUser && p === data.settings.adminPass){
-        setAuthed(true);
-        $("loginBox").classList.add("hide");
-        $("dashBox").classList.remove("hide");
-        renderAdmin();
-        showTab("tab-site");
-        toast("Login sukses.", "good");
-      } else {
-        toast("Username/password salah.", "bad");
-      }
-    });
-
-    document.querySelectorAll(".tabBtn").forEach(btn=>{
-      btn.addEventListener("click", ()=>{
-        showTab(btn.getAttribute("data-tab"));
-      });
-    });
-
-    $("saveSiteBtn").addEventListener("click", ()=>{
-      const d = loadData();
-      d.settings.siteName = $("sSiteName").value.trim() || "Jokitoefl.myid";
-      d.settings.headline = $("sHeadline").value.trim() || "One stop for your future";
-      d.settings.subhead = $("sSubhead").value.trim() || "";
-      d.settings.whyTitle = $("sWhyTitle").value.trim() || "Kenapa pilih Jokitoefl.myid?";
-      d.settings.whyText = $("sWhyText").value.trim() || "";
-      d.settings.about = $("sAbout").value.trim() || "";
-      d.settings.instagram = $("sIg").value.trim() || "";
-      d.settings.leadEmail = $("sLeadEmail").value.trim() || d.settings.leadEmail;
-
-      saveData(d);
-      renderPublic();
-      setupLeadForm();
-      toast("Website tersimpan.", "good");
-    });
-
-    $("changePassBtn").addEventListener("click", ()=>{
-      const d = loadData();
-      const np = prompt("Password baru (min 6 karakter):");
-      if(!np) return;
-      if(np.length < 6) return toast("Minimal 6 karakter.", "bad");
-      d.settings.adminPass = np;
-      saveData(d);
-      toast("Password admin diganti.", "good");
-    });
-
-    $("addHighlightBtn").addEventListener("click", ()=>{
-      const title = $("hTitle").value.trim();
-      const desc = $("hDesc").value.trim();
-      if(!title || !desc) return toast("Isi judul & deskripsi dulu.", "bad");
-
-      const d = loadData();
-      d.highlights = d.highlights || [];
-      d.highlights.push({ title, desc });
-      saveData(d);
-
-      $("hTitle").value = "";
-      $("hDesc").value = "";
-
-      renderAdmin();
-      renderPublic();
-      toast("Keunggulan ditambah.", "good");
-    });
-
-    $("saveServicesBtn").addEventListener("click", ()=>{
-      const d = loadData();
-      const updated = (d.services || []).map(s=>({...s}));
-
-      document.querySelectorAll("[data-svc][data-i]").forEach(el=>{
-        const i = Number(el.getAttribute("data-i"));
-        const k = el.getAttribute("data-svc");
-        if(Number.isNaN(i) || !updated[i]) return;
-
-        if(k==="title") updated[i].title = el.value.trim();
-        if(k==="badge") updated[i].badge = el.value.trim();
-        if(k==="desc") updated[i].desc = el.value.trim();
-        if(k==="tags") updated[i].tags = el.value.split(",").map(x=>x.trim()).filter(Boolean);
-      });
-
-      d.services = updated;
-      saveData(d);
-      renderPublic();
-      toast("Layanan tersimpan.", "good");
-    });
-
-    $("addTTextBtn").addEventListener("click", ()=>{
-      const name = $("ttName").value.trim();
-      const text = $("ttText").value.trim();
-      if(!text) return toast("Isi testimoni dulu.", "bad");
-
-      const d = loadData();
-      d.testimonialsText = d.testimonialsText || [];
-      if(d.testimonialsText.length >= 20) return toast("Maks 20 testimoni teks.", "bad");
-
-      d.testimonialsText.push({ name: name || "Anonim", text });
-      saveData(d);
-      $("ttName").value = "";
-      $("ttText").value = "";
-
-      slideIdx = 0;
-      renderAdmin();
-      renderPublic();
-      toast("Testimoni teks ditambah.", "good");
-    });
-
-    $("addTImgBtn").addEventListener("click", async ()=>{
-      const cap = $("tiCap").value.trim();
-      const file = $("tiFile").files?.[0];
-      if(!file) return toast("Pilih file gambar dulu.", "bad");
-
-      const d = loadData();
-      d.testimonialsImages = d.testimonialsImages || [];
-      if(d.testimonialsImages.length >= 20) return toast("Maks 20 gambar.", "bad");
-
-      try{
-        const dataUrl = await fileToCompressedDataURL(file);
-        d.testimonialsImages.push({ cap, data: dataUrl });
-        saveData(d);
-
-        $("tiCap").value = "";
-        $("tiFile").value = "";
-
-        renderAdmin();
-        renderPublic();
-        toast("Gambar ditambah.", "good");
-      } catch {
-        toast("Gagal memproses gambar.", "bad");
-      }
-    });
-
-    $("exportBtn").addEventListener("click", ()=>{
-      const d = loadData();
-      const blob = new Blob([JSON.stringify(d, null, 2)], {type:"application/json"});
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "jokitoefl-backup.json";
-      a.click();
-      URL.revokeObjectURL(url);
-      toast("Backup JSON terunduh.", "good");
-    });
-
-    $("importFile").addEventListener("change", async (e)=>{
-      const f = e.target.files?.[0];
-      if(!f) return;
-      const txt = await f.text();
-
-      try{
-        const obj = JSON.parse(txt);
-        if(!obj.settings || !obj.services) throw new Error("format");
-        localStorage.setItem(KEY, JSON.stringify(obj));
-        slideIdx = 0;
-        renderPublic();
-        setupLeadForm();
-        renderAdmin();
-        toast("Import sukses.", "good");
-      } catch {
-        toast("File JSON tidak valid.", "bad");
-      } finally {
-        e.target.value = "";
-      }
-    });
-
-    $("resetBtn").addEventListener("click", ()=>{
-      if(!confirm("Reset semua data?")) return;
-      localStorage.setItem(KEY, JSON.stringify(DEFAULT));
-      setAuthed(false);
-      slideIdx = 0;
-      renderPublic();
-      setupLeadForm();
-      toast("Reset selesai.", "good");
-      $("dashBox").classList.add("hide");
-      $("loginBox").classList.remove("hide");
-      showTab("tab-site");
-    });
-
-    // Form submit message
-    $("leadForm").addEventListener("submit", ()=>{
-      toast("Form terkirim. Cek email kamu untuk lead baru.", "good");
-    });
+  function gNext(){
+    const imgs = (DATA.testimonialsImages || []).slice(0, 20);
+    if(imgs.length === 0) return;
+    gIndex = (gIndex + 1) % imgs.length;
+    $("gPopupImg").src = imgs[gIndex].data;
+    $("gCaption").textContent = safeText(imgs[gIndex].cap || "");
+    updateGallery();
+  }
+  function gPrev(){
+    const imgs = (DATA.testimonialsImages || []).slice(0, 20);
+    if(imgs.length === 0) return;
+    gIndex = (gIndex - 1 + imgs.length) % imgs.length;
+    $("gPopupImg").src = imgs[gIndex].data;
+    $("gCaption").textContent = safeText(imgs[gIndex].cap || "");
+    updateGallery();
   }
 
-  // =========================
-  // Init
-  // =========================
-  (function init(){
-    setView("public");
-    bindEvents();
-    bindSliderGestures();
-    renderPublic();
-    setupLeadForm();
-  })();
+  // --- Formspree submit ---
+  async function submitForm(e){
+    e.preventDefault();
+    const endpoint = DATA?.form?.endpoint || "";
+    if(!endpoint || endpoint.includes("PASTE_FORMSPREE_ENDPOINT_HERE")){
+      toast("Endpoint Formspree belum diisi di data.json.");
+      return;
+    }
+
+    const honeypot = document.querySelector('input[name="company"]');
+    if(honeypot && honeypot.value.trim()){
+      toast("Terlihat seperti spam. Coba lagi.");
+      return;
+    }
+
+    const payload = {
+      nama: $("fNama").value.trim(),
+      wa: $("fWa").value.trim(),
+      layanan: $("fLayanan").value,
+      catatan: $("fCatatan").value.trim(),
+      _subject: "Konsultasi Jokitoefl.myid",
+      source: location.href
+    };
+
+    try{
+      const res = await fetch(endpoint, {
+        method:"POST",
+        headers: { "Content-Type":"application/json", "Accept":"application/json" },
+        body: JSON.stringify(payload)
+      });
+      if(res.ok){
+        toast(DATA?.form?.successMessage || "Terkirim. Terima kasih!");
+        $("leadForm").reset();
+      }else{
+        toast("Gagal kirim. Coba lagi.");
+      }
+    }catch{
+      toast("Gagal kirim. Cek koneksi.");
+    }
+  }
+
+  // --- Admin local auth ---
+  function getAdmin(){
+    try{ return JSON.parse(localStorage.getItem(KEY_ADMIN) || "null"); }
+    catch{ return null; }
+  }
+  function setAdmin(u,p){ localStorage.setItem(KEY_ADMIN, JSON.stringify({u,p})); }
+  function isAuthed(){ return localStorage.getItem(KEY_AUTH) === "1"; }
+  function setAuthed(v){ localStorage.setItem(KEY_AUTH, v ? "1" : "0"); }
+
+  function openAdmin(){
+    $("aOverlay").style.display = "flex";
+    $("aOpenGit").href = `https://github.com/${GITHUB_USER}/${GITHUB_REPO}/edit/main/data.json`;
+    const ok = isAuthed();
+    $("aLoginBox").style.display = ok ? "none" : "";
+    $("aDash").style.display = ok ? "" : "none";
+  }
+  function closeAdmin(){ $("aOverlay").style.display = "none"; }
+
+  function adminLogin(){
+    const u = $("aUser").value.trim();
+    const p = $("aPass").value;
+    if(!u || !p){ toast("Isi username & password."); return; }
+
+    const saved = getAdmin();
+    if(!saved){
+      setAdmin(u,p);
+      setAuthed(true);
+      toast("Admin diset & login berhasil.");
+      openAdmin();
+      return;
+    }
+    if(u === saved.u && p === saved.p){
+      setAuthed(true);
+      toast("Login sukses.");
+      openAdmin();
+      return;
+    }
+    toast("Username/password salah.");
+  }
+
+  function resetLocalLogin(){
+    if(!confirm("Reset login lokal? (Hanya di perangkat ini)")) return;
+    localStorage.removeItem(KEY_ADMIN);
+    localStorage.removeItem(KEY_AUTH);
+    toast("Login lokal direset.");
+  }
+
+  function changePassword(){
+    const saved = getAdmin();
+    if(!saved){ toast("Admin belum diset."); return; }
+
+    const oldP = $("oldPass").value;
+    const newP = $("newPass").value;
+    const newP2 = $("newPass2").value;
+
+    if(!oldP || !newP || !newP2){ toast("Lengkapi semua field."); return; }
+    if(oldP !== saved.p){ toast("Password lama salah."); return; }
+    if(newP !== newP2){ toast("Konfirmasi password baru tidak sama."); return; }
+    if(newP.length < 8){ toast("Password baru minimal 8 karakter."); return; }
+
+    setAdmin(saved.u, newP);
+    $("oldPass").value = ""; $("newPass").value = ""; $("newPass2").value = "";
+    toast("Password berhasil diganti.");
+  }
+
+  // Copy JSON for data.json (public-safe)
+  async function copyPublishJSON(){
+    const pub = {
+      version: DATA.version || 1,
+      settings: DATA.settings,
+      form: DATA.form,
+      services: DATA.services,
+      advantages: DATA.advantages,
+      testimonialsText: DATA.testimonialsText,
+      testimonialsImages: DATA.testimonialsImages
+    };
+    const txt = JSON.stringify(pub, null, 2);
+    try{
+      await navigator.clipboard.writeText(txt);
+      toast("JSON tercopy. Paste ke data.json di GitHub lalu commit.");
+    }catch{
+      toast("Clipboard diblokir. Copy manual dari source / console.");
+    }
+  }
+
+  // --- Init ---
+  async function init(){
+    DATA = await fetchRemote();
+    if(!DATA){
+      toast("Gagal load data.json. Cek file di repo.");
+      DATA = {
+        settings:{
+          siteName:"Jokitoefl.myid",
+          headline:"One stop for your future",
+          badge:"Sertifikat TOEFL & Komputer • Bantuan Mahasiswa • Lainnya",
+          subhead:"",
+          instagram:"#",
+          about:"",
+          ctaText:"Konsultasi Gratis",
+          formTitle:"Form Konsultasi",
+          formSubtitle:""
+        },
+        form:{ provider:"formspree", endpoint:"", successMessage:"Terkirim.", antiSpam:{honeypotField:"company"} },
+        services:[],
+        advantages:[],
+        testimonialsText:[],
+        testimonialsImages:[]
+      };
+    }
+
+    renderTop(DATA);
+    renderServices(DATA);
+    renderAdvantages(DATA);
+    renderTestText(DATA);
+    renderGallery(DATA);
+
+    // service modal
+    $("svcClose").onclick = closeServiceModal;
+    $("svcOverlay").addEventListener("click",(e)=>{ if(e.target === $("svcOverlay")) closeServiceModal(); });
+    $("svcScroll").onclick = ()=>{
+      closeServiceModal();
+      location.hash = "#daftar";
+      if(currentServiceTitle) $("fLayanan").value = currentServiceTitle;
+      $("fNama").focus();
+    };
+    $("svcCta").onclick = ()=>{
+      if(currentServiceTitle) setTimeout(()=>{ $("fLayanan").value = currentServiceTitle; }, 0);
+    };
+
+    // testimonials text
+    $("tPrev").onclick = tPrev;
+    $("tNext").onclick = tNext;
+    bindSwipe();
+    window.addEventListener("resize", applyTTransform);
+
+    // gallery
+    $("bigBox").onclick = openGalleryPopup;
+    $("gClose").onclick = closeGalleryPopup;
+    $("gOverlay").addEventListener("click",(e)=>{ if(e.target === $("gOverlay")) closeGalleryPopup(); });
+    $("gNext").onclick = gNext;
+    $("gPrev").onclick = gPrev;
+
+    // form
+    $("leadForm").addEventListener("submit", submitForm);
+
+    // admin
+    $("adminFab").onclick = openAdmin;
+    $("aClose").onclick = closeAdmin;
+    $("aOverlay").addEventListener("click",(e)=>{ if(e.target === $("aOverlay")) closeAdmin(); });
+
+    $("aLoginBtn").onclick = adminLogin;
+    $("aResetBtn").onclick = resetLocalLogin;
+    $("changePassBtn").onclick = changePassword;
+    $("aCopyBtn").onclick = copyPublishJSON;
+  }
+
+  init();
 </script>
+
 </body>
 </html>
