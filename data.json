@@ -1,4 +1,137 @@
-{
+{{
+  "version": 1,
+  "settings": {
+    "siteName": "Jokitoefl.myid",
+    "headline": "One stop for your future",
+    "badge": "Sertifikat TOEFL & Komputer • Bantuan Mahasiswa • Lainnya",
+    "subhead": "Konsultasi santai tapi tetap profesional. Pilih layanan, jelaskan kebutuhan, dan kami bantu susun solusi yang jelas.",
+    "instagram": "https://www.instagram.com/jokitoefl.myid?igsh=MXh2eHhzcm13bmh0aA%3D%3D&utm_source=qr",
+    "about": "Jokitoefl.myid membantu kebutuhan sertifikat dan akademik mahasiswa dengan proses yang transparan, komunikasi cepat, dan hasil yang rapi.",
+    "ctaText": "Konsultasi Gratis",
+    "formTitle": "Form Konsultasi",
+    "formSubtitle": "Isi data singkat. Kami akan balas via WhatsApp. (Email kamu tidak ditampilkan di halaman.)"
+  },
+  "form": {
+    "provider": "formspree",
+    "endpoint": "PASTE_FORMSPREE_ENDPOINT_HERE",
+    "successMessage": "Terima kasih! Form kamu sudah terkirim. Kami akan respon secepatnya via WhatsApp.",
+    "antiSpam": {
+      "honeypotField": "company"
+    }
+  },
+  "services": [
+    {
+      "id": "toefl",
+      "title": "Sertifikat TOEFL",
+      "desc": "Bantu Joki sertifikat TOEFL kamu, Garansi 100%. Solusi paling murah, resmi, dan transparan.",
+      "details": [
+        {
+          "title": "Keperluan: BUMN/CPNS/KAI/OJK/instansi nasional",
+          "items": [
+            "Solusi: Sertifikat non-ETS Resmi (terima jadi Soft File)",
+            "Harga: Biaya Test 150k + Biaya Joki 180k = 330k",
+            "Durasi: Normal 1–2 jam (maks 1×24 jam)"
+          ]
+        },
+        {
+          "title": "Keperluan: LPDP/TBI/S2/Internasional",
+          "items": [
+            "Solusi: Sertifikat ETS Resmi",
+            "Harga: Biaya Joki 500k",
+            "Durasi: Tergantung jadwal dan ketersediaan"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "komputer",
+      "title": "Sertifikat Komputer",
+      "desc": "Bantu buat Sertifikat Microsoft kamu sesuai untuk daftar kerja. Solusi paling murah, resmi, dan transparan.",
+      "details": [
+        {
+          "title": "Keperluan: BUMN/CPNS/KAI/OJK/instansi nasional",
+          "items": [
+            "Solusi: Sertifikat Resmi (terima jadi Soft File)",
+            "Harga: Biaya Test 150k + Biaya Joki 180k = 330k",
+            "Durasi: Normal 2–4 jam (maks 1×24 jam)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ut",
+      "title": "Bantuan Akademik UT",
+      "desc": "Pendampingan TUTON, TUWEB, revisi, dan arahan teknis sesuai kebutuhan kamu. Gratis rangkuman + latihan soal 100% dari BMP dan TUTON.",
+      "details": [
+        {
+          "title": "Fasilitas",
+          "items": [
+            "Pendampingan TUTON dan TUWEB",
+            "Pendampingan agar mengerti sistem pembelajaran jarak jauh UT",
+            "Prompt AI untuk Diskusi, Makalah, dan Tugas",
+            "PDF BMP untuk digunakan di AI",
+            "Rangkuman BMP (cocok untuk yang sibuk bekerja)",
+            "Latihan soal 100% dari BMP dan TUTON untuk bantu siap UAS",
+            "Bantu susun strategi lulus tepat waktu",
+            "Admin bantuan dan info UT 24/7",
+            "Bantuan perubahan berkas"
+          ]
+        },
+        {
+          "title": "Info",
+          "items": [
+            "Cocok untuk: Mahasiswa UT dan Calon Mahasiswa UT",
+            "Harga: 350k / semester",
+            "Durasi: 1 semester"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lainnya",
+      "title": "Lainnya",
+      "desc": "Jasa Translate, Joki Tugas, Joki TUTON, Joki THE, dll.",
+      "details": [
+        {
+          "title": "Info",
+          "items": [
+            "Harga: start from 5k (sesuai deadline dan jurusan)",
+            "Fasilitas: Gratis revisi 3×",
+            "Garansi: 100% uang kembali jika lewat deadline"
+          ]
+        }
+      ]
+    }
+  ],
+  "advantages": [
+    {
+      "title": "Garansi 100%",
+      "desc": "Jika skor TOEFL dan Sertifikat Komputer tidak sesuai, akan kami kerjakan test ulang tanpa biaya tambahan."
+    },
+    {
+      "title": "Garansi 100% Uang Kembali",
+      "desc": "Jika kelas Bimbingan UT tidak sesuai dengan deskripsi fasilitas yang kami berikan."
+    },
+    {
+      "title": "Harga Terjangkau",
+      "desc": "One stop service termurah yang bantu dari kuliah UT sampai daftar kerja."
+    },
+    {
+      "title": "Sertifikat Resmi",
+      "desc": "Dikerjakan manual, bukan edit foto. Keaslian bisa dicek via barcode, jaminan lolos berkas nasional."
+    },
+    {
+      "title": "Konsultasi Gratis",
+      "desc": "Konsultasi santai namun profesional, biar kamu paham pilihan yang paling pas."
+    }
+  ],
+  "testimonialsText": [
+    { "name": "Anonim", "text": "Respon cepat, prosesnya jelas, dan rapi." },
+    { "name": "Anonim", "text": "Bantu banget untuk kebutuhan UT, jadi lebih paham alurnya." }
+  ],
+  "testimonialsImages": []
+}
+
   "version": 1,
   "settings": {
     "siteName": "Jokitoefl.myid",
