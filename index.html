@@ -797,6 +797,31 @@
     window.__t = setTimeout(()=>t.style.display="none", 2600);
   }
   function safeText(s){ return String(s ?? ""); }
+  function normalizeAdvantages(d){
+  // format baru: d.advantages = [{title, text}]
+  if(Array.isArray(d.advantages) && d.advantages.length){
+    return d.advantages.map(x=>({
+      title: x.title ?? "",
+      text: x.text ?? x.desc ?? ""
+    }));
+  }
+
+  // format lama: d.highlights = [{title, text/desc}]
+  if(Array.isArray(d.highlights) && d.highlights.length){
+    return d.highlights.map(x=>({
+      title: x.title ?? "",
+      text: x.text ?? x.desc ?? ""
+    }));
+  }
+
+  // format lama lain (kalau ada): settings.whyText berupa string panjang
+  const wt = d?.settings?.whyText || "";
+  if(wt && typeof wt === "string"){
+    return [{ title: d?.settings?.whyTitle || "Keunggulan", text: wt }];
+  }
+
+  return [];
+}
   function clone(obj){ return JSON.parse(JSON.stringify(obj)); }
 
   // ========= Data =========
@@ -929,31 +954,30 @@ function applyLogo(d){
     });
   }
 
-  function renderAdvantages(d){
-    const advWrap = $("advWrap");
-    advWrap.innerHTML = "";
-    const arr = d.advantages || [];
-    arr.forEach((a, idx)=>{
-      if(idx === 4){
-        const outer = document.createElement("div");
-        outer.className = "adv last";
-        outer.innerHTML = `
-          <div class="advInner">
-            <div class="adv">
-              <h3>${safeText(a.title)}</h3>
-              <p>${safeText(a.desc)}</p>
-            </div>
-          </div>
-        `;
-        advWrap.appendChild(outer);
-        return;
-      }
-      const card = document.createElement("div");
-      card.className = "adv";
-      card.innerHTML = `<h3>${safeText(a.title)}</h3><p>${safeText(a.desc)}</p>`;
-      advWrap.appendChild(card);
-    });
+function renderAdvantages(d){
+  const list = Array.isArray(d.advantages) ? d.advantages : [];
+  const wrap = document.getElementById("advantagesGrid");
+
+  if(!wrap) return;
+  wrap.innerHTML = "";
+
+  if(list.length === 0){
+    wrap.innerHTML = `<div class="small">Belum ada data keunggulan.</div>`;
+    return;
   }
+
+  list.forEach(item=>{
+    const card = document.createElement("div");
+    card.className = "card advantage";
+
+    card.innerHTML = `
+      <div class="cardTitle">${safeText(item.title || "")}</div>
+      <div class="cardText">${safeText(item.text || "")}</div>
+    `;
+
+    wrap.appendChild(card);
+  });
+}
 
   // ========= Service modal =========
   let currentServiceTitle = "";
@@ -1874,6 +1898,7 @@ function openGalleryPopup(d){
 </script>
 </body>
 </html>
+
 
 
 
