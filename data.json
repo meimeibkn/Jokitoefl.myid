@@ -4,7 +4,7 @@
     "siteName": "Jokitoefl.myid",
     "headline": "One stop for your future",
     "highlightWord": "future",
-    "subhead": "",
+    "subhead": "Konsultasi cepat untuk kebutuhan TOEFL, sertifikat komputer, bantuan mahasiswa, dan rangkuman UAS. Tinggal isi form, kami hubungi via WhatsApp.",
     "heroBadge": "Sertifikat TOEFL & Komputer • Bantuan Mahasiswa • Lainnya",
     "ctaText": "Konsultasi Gratis",
     "instagram": "https://www.instagram.com/jokitoefl.myid?igsh=MXh2eHhzcm13bmh0aA%3D%3D&utm_source=qr",
@@ -46,7 +46,7 @@
 
   "about": {
     "title": "Tentang Kami",
-    "text": "Kami bantu kebutuhan sertifikat, bimbingan akademik UT, dan layanan lainnya dengan proses jelas, transparan, dan fokus hasil."
+    "text": "Jokitoefl.myid membantu kebutuhan belajar dan dokumen pendukung akademik dengan alur yang simpel dan terpercaya sejak 2023: sampaikan kebutuhan, deal harga, kami bantu eksekusi."
   },
 
   "services": [
@@ -80,7 +80,7 @@
     {
       "id": "ut",
       "title": "Bantuan Akademik UT",
-      "desc": "Pendampingan TUTON, TUWEB, revisi, dan arahan teknis. Gratis rangkuman + latihan soal untuk siap UAS (100% BMP & TUTON).",
+      "desc": "Pendampingan TUTON, TUWEB, revisi, dan arahan teknis sesuai kebutuhan kamu. Rangkuman inti + latihan soal yang membantu kamu siap UO dan UTM. Sumber 100% dari BMP dan TUTON",
       "details": [
         "Fasilitas:",
         "a. Pendampingan TUTON dan TUWEB",
@@ -109,6 +109,10 @@
   ],
 
   "advantages": [
+    {
+      "title": "Privasi Aman",
+      "text": "Data pribadi kamu 100% aman. Semua testimoni tidak akan berisi data pribadi kamu."
+    },
     {
       "title": "Garansi 100%",
       "text": "Jika skor TOEFL dan Sertifikat Komputer tidak sesuai keinginan, akan kami kerjakan test ulang tanpa biaya tambahan."
