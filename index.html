@@ -1,0 +1,1402 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Jokitoefl.myid</title>
+
+  <style>
+    :root{
+      --sky:#A1C0F8;
+      --navy:#002D5F;
+      --black:#000000;
+      --white:#FFFFFF;
+
+      --bg: #0b0f16;
+      --card: rgba(255,255,255,.06);
+      --line: rgba(255,255,255,.14);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.68);
+      --shadow: 0 16px 50px rgba(0,0,0,.35);
+      --r: 18px;
+      --r2: 14px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif;
+      background:
+        radial-gradient(950px 460px at 15% 0%, rgba(161,192,248,.22), transparent 60%),
+        radial-gradient(820px 520px at 90% 12%, rgba(0,45,95,.28), transparent 55%),
+        var(--bg);
+      color:var(--text);
+    }
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:1100px;margin:0 auto;padding:18px}
+    header{
+      position:sticky;top:0;z-index:10;
+      backdrop-filter: blur(10px);
+      background: rgba(0,0,0,.42);
+      border-bottom:1px solid var(--line);
+    }
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:14px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{
+      width:38px;height:38px;border-radius:14px;
+      background: linear-gradient(135deg, var(--sky), rgba(161,192,248,.35));
+      border:1px solid rgba(161,192,248,.35);
+      box-shadow: 0 12px 34px rgba(161,192,248,.18);
+    }
+    .brandTitle{display:flex;flex-direction:column;line-height:1.15}
+    .brandTitle b{font-size:14px;letter-spacing:.2px}
+    .brandTitle span{font-size:12px;color:var(--muted)}
+    .links{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    .pill{
+      display:inline-flex;gap:8px;align-items:center;
+      padding:6px 10px;border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.05);
+      color:var(--muted);
+      font-size:12px;
+    }
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:10px 14px;border-radius:12px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      color:var(--text);
+      cursor:pointer;
+      transition:.15s ease;
+      user-select:none;
+    }
+    .btn:hover{background: rgba(255,255,255,.1)}
+    .btn.primary{
+      border-color:transparent;
+      background: linear-gradient(135deg, var(--sky), rgba(161,192,248,.5));
+      color:#061022;
+      font-weight:800;
+    }
+    .btn.ghost{
+      border-color: rgba(161,192,248,.35);
+      background: rgba(161,192,248,.08);
+    }
+    .btn.danger{
+      border-color: rgba(239,68,68,.35);
+      background: rgba(239,68,68,.14);
+    }
+
+    section{scroll-margin-top:90px}
+    .panel{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.05);
+      border-radius: var(--r);
+      padding:18px;
+      box-shadow: var(--shadow);
+    }
+    .panel h2{margin:0 0 10px;font-size:20px}
+    .panel p{margin:0;color:var(--muted);line-height:1.65}
+    .small{font-size:12px;color:var(--muted);line-height:1.6}
+
+    .hero{
+      padding: 26px 0 10px;
+      display:grid;
+      grid-template-columns: 1.18fr .82fr;
+      gap:14px;
+      align-items:stretch;
+    }
+    .heroCard{
+      border:1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.04));
+      border-radius: var(--r);
+      box-shadow: var(--shadow);
+      padding: 22px;
+      position:relative;
+      overflow:hidden;
+    }
+    .heroCard:before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(460px 240px at 20% 20%, rgba(161,192,248,.24), transparent 60%);
+      pointer-events:none;
+    }
+    .heroTitle{
+      position:relative;
+      margin:0 0 10px;
+      font-size: 42px;
+      line-height: 1.04;
+      letter-spacing: -.6px;
+    }
+    .accent{color:var(--sky)}
+    .heroP{position:relative;margin:0 0 18px;color:var(--muted);max-width:68ch}
+    .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+    .miniCard{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.05);
+      border-radius: var(--r);
+      padding: 18px;
+      box-shadow: var(--shadow);
+      display:flex;flex-direction:column;gap:10px;
+    }
+    .miniCard h3{margin:0;font-size:16px}
+    .miniGrid{display:grid;gap:10px}
+    .stat{
+      border:1px solid rgba(161,192,248,.22);
+      background: rgba(161,192,248,.07);
+      border-radius: 14px;
+      padding: 12px;
+    }
+    .stat b{display:block;font-size:14px;color:var(--sky)}
+    .stat span{font-size:12px;color:var(--muted)}
+
+    .services{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}
+    .svc{
+      grid-column: span 6;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.05);
+      border-radius: var(--r);
+      padding: 16px;
+      box-shadow: var(--shadow);
+    }
+    .svcTop{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+    .badge{
+      font-size:12px;color:#061022;font-weight:900;
+      background: linear-gradient(135deg, var(--sky), rgba(161,192,248,.55));
+      border-radius: 999px;
+      padding:6px 10px;
+      white-space:nowrap;
+    }
+    .svc h3{margin:0;font-size:16px}
+    .svc p{margin:8px 0 0;color:var(--muted);line-height:1.6}
+    .tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+    .tag{
+      font-size:12px;color:var(--muted);
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      padding:6px 10px;border-radius:999px;
+    }
+
+    .formGrid{display:grid;grid-template-columns:repeat(12,1fr);gap:12px;margin-top:10px}
+    .col6{grid-column: span 6}
+    .col12{grid-column: 1 / -1}
+    label{display:block;margin:0 0 6px;font-size:12px;color:var(--muted)}
+    input, select, textarea{
+      width:100%;
+      padding:11px 12px;
+      border-radius: 12px;
+      border:1px solid var(--line);
+      background: rgba(0,0,0,.25);
+      color:var(--text);
+      outline:none;
+    }
+    input:focus, select:focus, textarea:focus{
+      border-color: rgba(161,192,248,.6);
+      box-shadow: 0 0 0 4px rgba(161,192,248,.12);
+    }
+
+    /* Testimonials */
+    .testiGrid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px;margin-top:10px}
+    .testiTextCard{grid-column: span 12}
+    .slider{
+      position:relative;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      border-radius: var(--r);
+      overflow:hidden;
+    }
+    .track{
+      display:flex;
+      transition: transform .35s ease;
+      will-change: transform;
+    }
+    .slide{
+      min-width:100%;
+      padding:16px 18px;
+    }
+    .quote{
+      margin:0;
+      font-size:14px;
+      line-height:1.7;
+      color: var(--text);
+    }
+    .who{
+      margin-top:10px;
+      font-size:12px;
+      color: var(--muted);
+      display:flex;gap:8px;align-items:center;
+    }
+    .dot{
+      width:8px;height:8px;border-radius:99px;
+      background: rgba(161,192,248,.6);
+      border:1px solid rgba(161,192,248,.55);
+    }
+    .controls{
+      display:flex;gap:10px;flex-wrap:wrap;align-items:center;
+      margin-top:10px;
+    }
+    .dots{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+    .dotBtn{
+      width:10px;height:10px;border-radius:99px;
+      border:1px solid rgba(255,255,255,.22);
+      background: rgba(255,255,255,.10);
+      cursor:pointer;
+    }
+    .dotBtn.active{
+      background: rgba(161,192,248,.65);
+      border-color: rgba(161,192,248,.65);
+    }
+
+    .imgGrid{
+      display:grid;
+      grid-template-columns:repeat(auto-fill, minmax(160px, 1fr));
+      gap:10px;
+      margin-top:10px;
+    }
+    .imgCard{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      border-radius: 14px;
+      overflow:hidden;
+      position:relative;
+    }
+    .imgCard img{
+      width:100%;
+      height: 180px;
+      object-fit: cover;
+      display:block;
+    }
+    .imgCard .cap{
+      padding:10px 10px 12px;
+      font-size:12px;
+      color:var(--muted);
+    }
+
+    .footer{
+      margin-top:22px;
+      padding:18px 0 26px;
+      border-top:1px solid var(--line);
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    /* Admin */
+    .hide{display:none!important}
+    .adminLayout{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+      align-items:start;
+      margin-top:14px;
+    }
+    .tabs{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+    .tabBtn{padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.06);cursor:pointer;color:var(--text)}
+    .tabBtn.active{background: rgba(161,192,248,.16); border-color: rgba(161,192,248,.35)}
+    .list{display:grid;gap:10px;margin-top:10px}
+    .item{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      border-radius: 14px;
+      padding: 12px;
+    }
+    .itemHead{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+    .itemHead b{font-size:13px}
+    .miniRow{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:8px}
+    .toast{
+      position:fixed; right:16px; bottom:16px; z-index:50;
+      max-width:360px;
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background: rgba(0,0,0,.55);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+    }
+    .toast.good{border-color: rgba(34,197,94,.35)}
+    .toast.bad{border-color: rgba(239,68,68,.35)}
+
+    @media (max-width: 920px){
+      .hero{grid-template-columns:1fr}
+      .svc{grid-column: span 12}
+      .adminLayout{grid-template-columns:1fr}
+      .heroTitle{font-size:34px}
+      .col6{grid-column: 1 / -1}
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="wrap nav">
+    <div class="brand">
+      <div class="logo" aria-hidden="true"></div>
+      <div class="brandTitle">
+        <b id="siteName">Jokitoefl.myid</b>
+        <span class="pill" id="modePill">Public</span>
+      </div>
+    </div>
+
+    <div class="links" id="publicLinks">
+      <a class="btn" href="#home">Home</a>
+      <a class="btn" href="#about">About</a>
+      <a class="btn" href="#layanan">Layanan</a>
+      <a class="btn" href="#testimoni">Testimoni</a>
+      <a class="btn primary" href="#daftar">Daftar</a>
+      <button class="btn" id="openAdminBtn" type="button">Admin</button>
+    </div>
+
+    <div class="links hide" id="adminLinks">
+      <button class="btn" id="backPublicBtn" type="button">Lihat Public</button>
+      <button class="btn danger" id="logoutBtn" type="button">Logout</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- PUBLIC VIEW -->
+  <section id="publicView">
+
+    <section class="hero" id="home">
+      <div class="heroCard">
+        <div class="pill" style="position:relative;width:max-content">Minimalis • Clean • Lokal</div>
+        <h2 class="heroTitle" id="headline">One stop for your <span class="accent">future</span></h2>
+        <p class="heroP" id="subhead">Konsultasi cepat untuk TOEFL, sertifikat komputer, bantuan mahasiswa, dan rangkuman UAS.</p>
+        <div class="row">
+          <a class="btn primary" href="#daftar" id="ctaPrimary">Tanya & Daftar</a>
+          <a class="btn ghost" href="#layanan">Lihat Layanan</a>
+          <a class="btn" id="igBtnTop" href="#" target="_blank" rel="noreferrer">Instagram</a>
+        </div>
+      </div>
+
+      <div class="miniCard">
+        <h3 id="whyTitle">Kenapa pilih Jokitoefl.myid?</h3>
+        <p id="whyText" class="small">Proses rapi, komunikasi jelas, dan fokus membantu kebutuhan kamu selesai lebih cepat.</p>
+        <div class="miniGrid" id="highlightsWrap"></div>
+      </div>
+    </section>
+
+    <section class="panel" id="about">
+      <h2>About Us</h2>
+      <p id="aboutText">Kami membantu kebutuhan akademik mahasiswa dengan alur yang simpel dan jelas.</p>
+    </section>
+
+    <section class="panel" id="layanan" style="margin-top:14px">
+      <h2>Layanan</h2>
+      <p class="small">Pilih layanan yang kamu butuhkan. Kamu bisa langsung tanya lewat form di bawah.</p>
+      <div class="services" id="servicesWrap" style="margin-top:12px"></div>
+    </section>
+
+    <section class="panel" id="testimoni" style="margin-top:14px">
+      <h2>Testimoni</h2>
+      <p class="small">Testimoni teks bergulir (auto + manual) dan testimoni gambar (chat/sertifikat).</p>
+
+      <div class="testiGrid">
+        <div class="testiTextCard">
+          <div class="slider" id="textSlider">
+            <div class="track" id="textTrack"></div>
+          </div>
+
+          <div class="controls">
+            <button class="btn" id="prevBtn" type="button">‹</button>
+            <button class="btn" id="nextBtn" type="button">›</button>
+            <div class="dots" id="dotWrap"></div>
+            <span class="small" id="sliderHint"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="imgGrid" id="imageGrid"></div>
+    </section>
+
+    <section class="panel" id="daftar" style="margin-top:14px">
+      <h2>Form Tanya / Daftar</h2>
+      <p class="small">Isi data singkat. Setelah itu kami hubungi via WhatsApp. Email kamu tidak ditampilkan.</p>
+
+      <form id="leadForm" method="POST">
+        <input type="text" name="_honey" style="display:none">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_subject" value="Lead Baru - Jokitoefl.myid">
+        <input type="hidden" name="_template" value="table">
+
+        <div class="formGrid">
+          <div class="col6">
+            <label>Nama</label>
+            <input name="Nama" id="fNama" placeholder="Nama kamu" required />
+          </div>
+          <div class="col6">
+            <label>No WhatsApp</label>
+            <input name="No_WhatsApp" id="fWa" placeholder="Contoh: 08xxxx / 628xxxx" required />
+          </div>
+          <div class="col12">
+            <label>Layanan yang ingin ditanya</label>
+            <select name="Layanan" id="fLayanan" required></select>
+          </div>
+          <div class="col12">
+            <label>Catatan (opsional)</label>
+            <textarea name="Catatan" id="fCatatan" rows="3" placeholder="Misal: deadline, target skor, jenis sertifikat, dsb."></textarea>
+          </div>
+          <div class="col12" style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:6px">
+            <button class="btn primary" type="submit">Kirim</button>
+            <a class="btn" id="igBtnBottom" href="#" target="_blank" rel="noreferrer">Instagram</a>
+            <span class="small" id="formHint"></span>
+          </div>
+        </div>
+      </form>
+    </section>
+
+    <div class="footer">
+      © <span id="year"></span> <span id="footerName">Jokitoefl.myid</span> • Single-page • LocalStorage + Admin.
+    </div>
+  </section>
+
+  <!-- ADMIN VIEW -->
+  <section id="adminView" class="hide">
+    <div class="panel">
+      <h2>Admin</h2>
+      <p class="small">Semua konten bisa kamu ubah dari sini. Data tersimpan di browser (LocalStorage). Default login: <b>admin</b> / <b>admin123</b>.</p>
+
+      <div id="loginBox" class="formGrid" style="margin-top:12px">
+        <div class="col6">
+          <label>Username</label>
+          <input id="aUser" placeholder="admin" />
+        </div>
+        <div class="col6">
+          <label>Password</label>
+          <input id="aPass" type="password" placeholder="admin123" />
+        </div>
+        <div class="col12">
+          <button class="btn primary" id="loginBtn" type="button">Masuk</button>
+        </div>
+      </div>
+
+      <div id="dashBox" class="hide" style="margin-top:10px">
+        <div class="tabs">
+          <button class="tabBtn active" data-tab="tab-site" type="button">Website</button>
+          <button class="tabBtn" data-tab="tab-high" type="button">Keunggulan</button>
+          <button class="tabBtn" data-tab="tab-services" type="button">Layanan</button>
+          <button class="tabBtn" data-tab="tab-ttext" type="button">Testimoni Teks</button>
+          <button class="tabBtn" data-tab="tab-timg" type="button">Testimoni Gambar</button>
+          <button class="tabBtn" data-tab="tab-backup" type="button">Backup</button>
+        </div>
+
+        <div class="adminLayout">
+          <!-- LEFT -->
+          <div class="panel" id="tab-site">
+            <h2>Website</h2>
+
+            <label>Nama Brand</label>
+            <input id="sSiteName" />
+
+            <label>Headline</label>
+            <input id="sHeadline" />
+
+            <label>Subheadline</label>
+            <textarea id="sSubhead" rows="3"></textarea>
+
+            <label>Judul “Kenapa pilih…”</label>
+            <input id="sWhyTitle" />
+
+            <label>Teks “Kenapa pilih…”</label>
+            <textarea id="sWhyText" rows="3"></textarea>
+
+            <label>About Us</label>
+            <textarea id="sAbout" rows="4"></textarea>
+
+            <label>Instagram URL</label>
+            <input id="sIg" />
+
+            <label>Email penerima form (tidak tampil ke customer)</label>
+            <input id="sLeadEmail" placeholder="contoh: kamu@email.com" />
+
+            <div class="miniRow" style="margin-top:12px">
+              <button class="btn primary" id="saveSiteBtn" type="button">Simpan</button>
+              <button class="btn" id="changePassBtn" type="button">Ganti Password</button>
+            </div>
+
+            <p class="small" style="margin-top:10px">
+              Catatan: website full client-only. Email tidak ditampilkan di UI, tapi tidak bisa 100% disembunyikan dari inspect.
+            </p>
+          </div>
+
+          <div class="panel" id="tab-high" style="display:none">
+            <h2>Keunggulan</h2>
+            <p class="small">Tambah/edit/hapus poin keunggulan (rekomendasi 3–5 poin).</p>
+
+            <div class="formGrid">
+              <div class="col6">
+                <label>Judul</label>
+                <input id="hTitle" placeholder="Contoh: Respon cepat" />
+              </div>
+              <div class="col6">
+                <label>Deskripsi</label>
+                <input id="hDesc" placeholder="Contoh: Lewat WhatsApp setelah form dikirim" />
+              </div>
+              <div class="col12">
+                <button class="btn primary" id="addHighlightBtn" type="button">Tambah Keunggulan</button>
+              </div>
+            </div>
+
+            <div class="list" id="highAdminList"></div>
+          </div>
+
+          <div class="panel" id="tab-services" style="display:none">
+            <h2>Layanan (4)</h2>
+            <p class="small">Edit 4 layanan yang kamu minta. (Jika mau ditambah nanti, bisa juga.)</p>
+            <div id="svcAdminWrap"></div>
+            <div class="miniRow" style="margin-top:10px">
+              <button class="btn primary" id="saveServicesBtn" type="button">Simpan Layanan</button>
+            </div>
+          </div>
+
+          <div class="panel" id="tab-ttext" style="display:none">
+            <h2>Testimoni Teks</h2>
+            <p class="small">Maks 20. Slider akan auto jalan dan bisa digeser manual.</p>
+
+            <div class="formGrid">
+              <div class="col6">
+                <label>Nama (opsional)</label>
+                <input id="ttName" placeholder="Contoh: Anonim / Inisial" />
+              </div>
+              <div class="col6">
+                <label>Isi testimoni</label>
+                <input id="ttText" placeholder="Contoh: Pelayanannya cepat dan jelas." />
+              </div>
+              <div class="col12">
+                <button class="btn primary" id="addTTextBtn" type="button">Tambah Testimoni Teks</button>
+              </div>
+            </div>
+
+            <div class="list" id="tTextList"></div>
+          </div>
+
+          <div class="panel" id="tab-timg" style="display:none">
+            <h2>Testimoni Gambar</h2>
+            <p class="small">
+              Maks 20 gambar. Cocok untuk screenshot chat (portrait) & sertifikat (landscape).
+              Gambar akan dikompres otomatis agar lebih ringan.
+            </p>
+
+            <div class="formGrid">
+              <div class="col6">
+                <label>Caption (opsional)</label>
+                <input id="tiCap" placeholder="Contoh: Sertifikat / Screenshot chat" />
+              </div>
+              <div class="col6">
+                <label>Upload gambar</label>
+                <input id="tiFile" type="file" accept="image/*" />
+              </div>
+              <div class="col12">
+                <button class="btn primary" id="addTImgBtn" type="button">Tambah Gambar</button>
+              </div>
+            </div>
+
+            <div class="list" id="tImgList"></div>
+          </div>
+
+          <div class="panel" id="tab-backup" style="display:none">
+            <h2>Backup</h2>
+            <p class="small">Export/Import data (termasuk gambar). Cocok untuk pindah device.</p>
+            <div class="miniRow">
+              <button class="btn" id="exportBtn" type="button">Export JSON</button>
+              <label class="btn" style="cursor:pointer">
+                Import JSON
+                <input id="importFile" type="file" accept="application/json" class="hide">
+              </label>
+              <button class="btn danger" id="resetBtn" type="button">Reset</button>
+            </div>
+
+            <p class="small" style="margin-top:10px">
+              Kalau setelah import tampilan belum berubah, refresh halaman (F5).
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div id="toast" class="toast hide"></div>
+
+<script>
+  // =========================
+  // Storage
+  // =========================
+  const KEY = "JOKITOEFL_SITE_V3";
+  const AUTH = "JOKITOEFL_AUTH_V3";
+
+  const DEFAULT = {
+    settings: {
+      siteName: "Jokitoefl.myid",
+      headline: "One stop for your future",
+      subhead: "Konsultasi cepat untuk TOEFL, sertifikat komputer, bantuan mahasiswa, dan rangkuman UAS.",
+      whyTitle: "Kenapa pilih Jokitoefl.myid?",
+      whyText: "Proses rapi, komunikasi jelas, dan fokus membantu kebutuhan kamu selesai lebih cepat.",
+      about: "Kami membantu kebutuhan akademik mahasiswa dengan alur yang simpel dan jelas.",
+      instagram: "https://www.instagram.com/jokitoefl.myid?igsh=MXh2eHhzcm13bmh0aA%3D%3D&utm_source=qr",
+      leadEmail: "meimeibkn@gmail.com",
+      adminUser: "admin",
+      adminPass: "admin123"
+    },
+    highlights: [
+      { title: "Respon cepat", desc: "Lewat WhatsApp setelah form dikirim" },
+      { title: "Harga & proses jelas", desc: "Tanpa drama, to the point" },
+      { title: "Untuk kebutuhan mahasiswa", desc: "Terutama lokal Indonesia" }
+    ],
+    services: [
+      { title:"Joki TOEFL", badge:"Layanan 1", desc:"Bantu kebutuhan TOEFL kamu dengan arahan yang jelas dan hasil yang terukur.", tags:["Target skor","Cepat","Rapi"] },
+      { title:"Joki Sertifikat Komputer", badge:"Layanan 2", desc:"Bantu kebutuhan sertifikat komputer sesuai kebutuhan kampus atau kerja.", tags:["Sertifikat","Praktis","Support"] },
+      { title:"Kelas Bantuan Mahasiswa", badge:"Layanan 3", desc:"Pendampingan tugas, revisi, dan arahan teknis sesuai kebutuhan kamu.", tags:["Tugas","Revisi","Pendampingan"] },
+      { title:"Rangkuman & Latihan Soal UAS", badge:"Layanan 4", desc:"Rangkuman inti + latihan soal yang membantu kamu siap UAS lebih cepat.", tags:["Ringkas","Latihan","UT-ready"] }
+    ],
+    testimonialsText: [
+      { name:"Anonim", text:"Responnya cepat, penjelasannya jelas." },
+      { name:"Anonim", text:"Bantu banget buat UAS, jadi lebih siap." }
+    ],
+    testimonialsImages: [
+      // { cap:"Screenshot chat", data:"data:image/jpeg;base64,..." }
+    ]
+  };
+
+  const $ = (id)=>document.getElementById(id);
+
+  function loadData(){
+    const raw = localStorage.getItem(KEY);
+    if(!raw){
+      localStorage.setItem(KEY, JSON.stringify(DEFAULT));
+      return structuredClone(DEFAULT);
+    }
+    try { return JSON.parse(raw); }
+    catch {
+      localStorage.setItem(KEY, JSON.stringify(DEFAULT));
+      return structuredClone(DEFAULT);
+    }
+  }
+  function saveData(data){ localStorage.setItem(KEY, JSON.stringify(data)); }
+
+  function isAuthed(){ return localStorage.getItem(AUTH)==="1"; }
+  function setAuthed(v){ localStorage.setItem(AUTH, v ? "1":"0"); }
+
+  function toast(msg, type="good"){
+    const t=$("toast");
+    t.textContent=msg;
+    t.className="toast " + (type==="bad"?"bad":"good");
+    t.classList.remove("hide");
+    clearTimeout(window.__toastTimer);
+    window.__toastTimer=setTimeout(()=>t.classList.add("hide"),2400);
+  }
+
+  function esc(s){
+    return (s||"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;")
+      .replaceAll('"',"&quot;").replaceAll("'","&#039;");
+  }
+
+  // =========================
+  // Email form (client-only)
+  // =========================
+  function setupLeadForm(){
+    const form = $("leadForm");
+    const data = loadData();
+    const e = (data.settings.leadEmail || "").trim();
+    // Build action without showing email in UI
+    // Still discoverable via inspect; but not displayed in customer UI.
+    const parts = e.split("@");
+    const user = parts[0] || "";
+    const domain = parts[1] || "";
+    const action = "https://formsubmit.co/" + user + "@" + domain;
+    form.action = action;
+
+    $("formHint").textContent = "Kami akan hubungi kamu via WhatsApp setelah form masuk.";
+  }
+
+  // =========================
+  // Public render
+  // =========================
+  function renderPublic(){
+    const data = loadData();
+    $("siteName").textContent = data.settings.siteName;
+    $("footerName").textContent = data.settings.siteName;
+
+    const head = esc(data.settings.headline);
+    // keep accent on "future" if present
+    $("headline").innerHTML = head.includes("future")
+      ? head.replace("future", "<span class='accent'>future</span>")
+      : head;
+
+    $("subhead").textContent = data.settings.subhead;
+    $("whyTitle").textContent = data.settings.whyTitle;
+    $("whyText").textContent = data.settings.whyText;
+    $("aboutText").textContent = data.settings.about;
+
+    const ig = data.settings.instagram || "#";
+    $("igBtnTop").href = ig;
+    $("igBtnBottom").href = ig;
+
+    $("year").textContent = new Date().getFullYear();
+
+    // Highlights (stats)
+    const hWrap = $("highlightsWrap");
+    hWrap.innerHTML = "";
+    (data.highlights || []).forEach(h=>{
+      const div = document.createElement("div");
+      div.className = "stat";
+      div.innerHTML = `<b>${esc(h.title)}</b><span>${esc(h.desc)}</span>`;
+      hWrap.appendChild(div);
+    });
+
+    // Services
+    const sWrap = $("servicesWrap");
+    sWrap.innerHTML = "";
+    (data.services || []).forEach(s=>{
+      const el = document.createElement("article");
+      el.className = "svc";
+      el.innerHTML = `
+        <div class="svcTop">
+          <div>
+            <h3>${esc(s.title)}</h3>
+            <p>${esc(s.desc)}</p>
+          </div>
+          <span class="badge">${esc(s.badge || "Layanan")}</span>
+        </div>
+        <div class="tags">
+          ${(s.tags||[]).map(t=>`<span class="tag">${esc(t)}</span>`).join("")}
+        </div>
+        <div class="row" style="margin-top:12px">
+          <button class="btn ghost" type="button" data-ask="${esc(s.title)}">Tanya layanan ini</button>
+        </div>
+      `;
+      sWrap.appendChild(el);
+    });
+
+    // Service dropdown
+    const sel = $("fLayanan");
+    sel.innerHTML = `<option value="" disabled selected>Pilih layanan…</option>` +
+      (data.services || []).map(s=>`<option value="${esc(s.title)}">${esc(s.title)}</option>`).join("");
+
+    // click "tanya layanan ini" -> auto select + scroll to form
+    document.querySelectorAll("[data-ask]").forEach(btn=>{
+      btn.addEventListener("click", ()=>{
+        const val = btn.getAttribute("data-ask");
+        $("fLayanan").value = val;
+        location.hash = "#daftar";
+        $("fNama").focus();
+      });
+    });
+
+    // Testimonials
+    renderTextTestimonials();
+    renderImageTestimonials();
+  }
+
+  // =========================
+  // Text testimonials slider
+  // =========================
+  let slideIdx = 0;
+  let autoTimer = null;
+  let isDragging = false;
+  let dragStartX = 0;
+  let dragDX = 0;
+
+  function renderTextTestimonials(){
+    const data = loadData();
+    const arr = data.testimonialsText || [];
+
+    const track = $("textTrack");
+    const dotWrap = $("dotWrap");
+    const hint = $("sliderHint");
+
+    if(arr.length === 0){
+      track.innerHTML = `<div class="slide"><p class="quote">Belum ada testimoni teks. Tambahkan dari Admin.</p><div class="who"><span class="dot"></span><span>Admin</span></div></div>`;
+      dotWrap.innerHTML = "";
+      hint.textContent = "";
+      slideIdx = 0;
+      stopAuto();
+      applyTrack();
+      return;
+    }
+
+    // clamp max 20
+    const use = arr.slice(0, 20);
+
+    track.innerHTML = use.map(t=>`
+      <div class="slide">
+        <p class="quote">“${esc(t.text)}”</p>
+        <div class="who"><span class="dot"></span><span>${esc(t.name || "Anonim")}</span></div>
+      </div>
+    `).join("");
+
+    dotWrap.innerHTML = use.map((_,i)=>`<button class="dotBtn ${i===slideIdx?"active":""}" data-dot="${i}" type="button" aria-label="slide ${i+1}"></button>`).join("");
+
+    dotWrap.querySelectorAll("[data-dot]").forEach(b=>{
+      b.addEventListener("click", ()=>{
+        slideIdx = Number(b.getAttribute("data-dot"));
+        applyTrack();
+        restartAuto();
+      });
+    });
+
+    hint.textContent = use.length > 1 ? "Geser / klik titik untuk pindah. Auto jalan." : "";
+    slideIdx = Math.min(slideIdx, use.length - 1);
+
+    applyTrack();
+    restartAuto();
+  }
+
+  function applyTrack(){
+    const track = $("textTrack");
+    const dots = $("dotWrap").querySelectorAll(".dotBtn");
+    track.style.transform = `translateX(-${slideIdx * 100}%)`;
+    dots.forEach((d,i)=>d.classList.toggle("active", i===slideIdx));
+  }
+
+  function nextSlide(){
+    const data = loadData();
+    const n = Math.min((data.testimonialsText||[]).length, 20);
+    if(n <= 1) return;
+    slideIdx = (slideIdx + 1) % n;
+    applyTrack();
+  }
+  function prevSlide(){
+    const data = loadData();
+    const n = Math.min((data.testimonialsText||[]).length, 20);
+    if(n <= 1) return;
+    slideIdx = (slideIdx - 1 + n) % n;
+    applyTrack();
+  }
+  function restartAuto(){
+    stopAuto();
+    const data = loadData();
+    const n = Math.min((data.testimonialsText||[]).length, 20);
+    if(n <= 1) return;
+    autoTimer = setInterval(nextSlide, 4500);
+  }
+  function stopAuto(){
+    if(autoTimer) clearInterval(autoTimer);
+    autoTimer = null;
+  }
+
+  function bindSliderGestures(){
+    const slider = $("textSlider");
+
+    // Buttons
+    $("prevBtn").addEventListener("click", ()=>{ prevSlide(); restartAuto(); });
+    $("nextBtn").addEventListener("click", ()=>{ nextSlide(); restartAuto(); });
+
+    // Pointer drag for mouse + touch
+    slider.addEventListener("pointerdown", (e)=>{
+      const data = loadData();
+      const n = Math.min((data.testimonialsText||[]).length, 20);
+      if(n <= 1) return;
+
+      isDragging = true;
+      dragStartX = e.clientX;
+      dragDX = 0;
+      slider.setPointerCapture(e.pointerId);
+      stopAuto();
+    });
+
+    slider.addEventListener("pointermove", (e)=>{
+      if(!isDragging) return;
+      dragDX = e.clientX - dragStartX;
+      const track = $("textTrack");
+      const offset = (-slideIdx * slider.clientWidth) + dragDX;
+      track.style.transition = "none";
+      track.style.transform = `translateX(${offset}px)`;
+    });
+
+    function endDrag(){
+      if(!isDragging) return;
+      isDragging = false;
+      const slider = $("textSlider");
+      const track = $("textTrack");
+      track.style.transition = "";
+
+      const threshold = Math.max(40, slider.clientWidth * 0.18);
+      if(dragDX > threshold) prevSlide();
+      else if(dragDX < -threshold) nextSlide();
+
+      applyTrack();
+      restartAuto();
+    }
+
+    slider.addEventListener("pointerup", endDrag);
+    slider.addEventListener("pointercancel", endDrag);
+    slider.addEventListener("mouseleave", endDrag);
+  }
+
+  // =========================
+  // Image testimonials
+  // =========================
+  function renderImageTestimonials(){
+    const data = loadData();
+    const arr = (data.testimonialsImages || []).slice(0, 20);
+    const grid = $("imageGrid");
+
+    if(arr.length === 0){
+      grid.innerHTML = `<div class="small">Belum ada testimoni gambar. Tambahkan dari Admin.</div>`;
+      return;
+    }
+
+    grid.innerHTML = arr.map((x)=>`
+      <div class="imgCard">
+        <img src="${x.data}" alt="testimoni">
+        <div class="cap">${esc(x.cap || "")}</div>
+      </div>
+    `).join("");
+  }
+
+  // =========================
+  // Admin view toggles
+  // =========================
+  function setView(mode){
+    const pub = $("publicView");
+    const adm = $("adminView");
+    const pill = $("modePill");
+    const pl = $("publicLinks");
+    const al = $("adminLinks");
+
+    if(mode==="admin"){
+      pub.classList.add("hide");
+      adm.classList.remove("hide");
+      pill.textContent="Admin";
+      pl.classList.add("hide");
+      al.classList.remove("hide");
+    } else {
+      adm.classList.add("hide");
+      pub.classList.remove("hide");
+      pill.textContent="Public";
+      al.classList.add("hide");
+      pl.classList.remove("hide");
+    }
+  }
+
+  function showTab(tabId){
+    const tabs = ["tab-site","tab-high","tab-services","tab-ttext","tab-timg","tab-backup"];
+    tabs.forEach(id=>{
+      $(id).style.display = (id===tabId) ? "" : "none";
+    });
+    document.querySelectorAll(".tabBtn").forEach(b=>{
+      b.classList.toggle("active", b.getAttribute("data-tab")===tabId);
+    });
+  }
+
+  // =========================
+  // Admin render
+  // =========================
+  function renderAdmin(){
+    const data = loadData();
+
+    // website tab
+    $("sSiteName").value = data.settings.siteName || "";
+    $("sHeadline").value = data.settings.headline || "";
+    $("sSubhead").value = data.settings.subhead || "";
+    $("sWhyTitle").value = data.settings.whyTitle || "";
+    $("sWhyText").value = data.settings.whyText || "";
+    $("sAbout").value = data.settings.about || "";
+    $("sIg").value = data.settings.instagram || "";
+    $("sLeadEmail").value = data.settings.leadEmail || "";
+
+    // highlights list
+    renderHighlightsAdmin();
+
+    // services editor
+    renderServicesAdmin();
+
+    // testimonials text list
+    renderTTextAdmin();
+
+    // testimonials image list
+    renderTImgAdmin();
+  }
+
+  function renderHighlightsAdmin(){
+    const data = loadData();
+    const list = $("highAdminList");
+    list.innerHTML = (data.highlights||[]).map((h, idx)=>`
+      <div class="item">
+        <div class="itemHead">
+          <div>
+            <b>${esc(h.title)}</b>
+            <div class="small">${esc(h.desc)}</div>
+          </div>
+          <button class="btn danger" type="button" data-del-high="${idx}">Hapus</button>
+        </div>
+      </div>
+    `).join("");
+
+    list.querySelectorAll("[data-del-high]").forEach(btn=>{
+      btn.addEventListener("click", ()=>{
+        const i = Number(btn.getAttribute("data-del-high"));
+        const d = loadData();
+        d.highlights.splice(i,1);
+        saveData(d);
+        renderAdmin();
+        renderPublic();
+        toast("Keunggulan dihapus.", "good");
+      });
+    });
+  }
+
+  function renderServicesAdmin(){
+    const data = loadData();
+    const wrap = $("svcAdminWrap");
+    wrap.innerHTML = "";
+
+    (data.services||[]).forEach((s, idx)=>{
+      const box = document.createElement("div");
+      box.className = "item";
+      box.innerHTML = `
+        <div class="pill" style="width:max-content;margin-bottom:10px">Layanan ${idx+1}</div>
+
+        <label>Judul</label>
+        <input data-svc="title" data-i="${idx}" value="${esc(s.title)}" />
+
+        <label>Badge</label>
+        <input data-svc="badge" data-i="${idx}" value="${esc(s.badge || ("Layanan "+(idx+1)))}" />
+
+        <label>Deskripsi</label>
+        <textarea data-svc="desc" data-i="${idx}" rows="3">${esc(s.desc)}</textarea>
+
+        <label>Tags (pisah koma)</label>
+        <input data-svc="tags" data-i="${idx}" value="${esc((s.tags||[]).join(", "))}" />
+      `;
+      wrap.appendChild(box);
+    });
+  }
+
+  function renderTTextAdmin(){
+    const d = loadData();
+    const arr = (d.testimonialsText || []).slice(0, 20);
+    const list = $("tTextList");
+
+    list.innerHTML = arr.map((t, idx)=>`
+      <div class="item">
+        <div class="itemHead">
+          <div>
+            <b>${esc(t.name || "Anonim")}</b>
+            <div class="small">${esc(t.text)}</div>
+          </div>
+          <button class="btn danger" type="button" data-del-tt="${idx}">Hapus</button>
+        </div>
+      </div>
+    `).join("");
+
+    list.querySelectorAll("[data-del-tt]").forEach(btn=>{
+      btn.addEventListener("click", ()=>{
+        const i = Number(btn.getAttribute("data-del-tt"));
+        const data = loadData();
+        data.testimonialsText.splice(i,1);
+        saveData(data);
+        renderAdmin();
+        renderPublic();
+        toast("Testimoni teks dihapus.", "good");
+      });
+    });
+  }
+
+  function renderTImgAdmin(){
+    const d = loadData();
+    const arr = (d.testimonialsImages || []).slice(0, 20);
+    const list = $("tImgList");
+
+    if(arr.length === 0){
+      list.innerHTML = `<div class="small">Belum ada gambar.</div>`;
+      return;
+    }
+
+    list.innerHTML = arr.map((x, idx)=>`
+      <div class="item">
+        <div class="itemHead">
+          <div>
+            <b>${esc(x.cap || "Gambar")}</b>
+            <div class="small">Ukuran tersimpan: ${Math.round((x.data.length || 0)/1024)} KB (perkiraan)</div>
+          </div>
+          <button class="btn danger" type="button" data-del-ti="${idx}">Hapus</button>
+        </div>
+        <div style="margin-top:10px">
+          <img src="${x.data}" alt="preview" style="width:100%;max-height:260px;object-fit:cover;border-radius:12px;border:1px solid var(--line)" />
+        </div>
+      </div>
+    `).join("");
+
+    list.querySelectorAll("[data-del-ti]").forEach(btn=>{
+      btn.addEventListener("click", ()=>{
+        const i = Number(btn.getAttribute("data-del-ti"));
+        const data = loadData();
+        data.testimonialsImages.splice(i,1);
+        saveData(data);
+        renderAdmin();
+        renderPublic();
+        toast("Gambar dihapus.", "good");
+      });
+    });
+  }
+
+  // =========================
+  // Image compress to base64
+  // =========================
+  async function fileToCompressedDataURL(file){
+    const img = new Image();
+    const url = URL.createObjectURL(file);
+
+    await new Promise((res, rej)=>{
+      img.onload = ()=>res();
+      img.onerror = ()=>rej(new Error("load image failed"));
+      img.src = url;
+    });
+
+    // max width/height to keep screenshots readable but not huge
+    const MAX_W = 1200;
+    const MAX_H = 1200;
+
+    let { width:w, height:h } = img;
+    let scale = Math.min(1, MAX_W / w, MAX_H / h);
+    w = Math.round(w * scale);
+    h = Math.round(h * scale);
+
+    const canvas = document.createElement("canvas");
+    canvas.width = w;
+    canvas.height = h;
+    const ctx = canvas.getContext("2d");
+
+    // white background (good for screenshots)
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0,0,w,h);
+    ctx.drawImage(img, 0, 0, w, h);
+
+    URL.revokeObjectURL(url);
+
+    // jpeg compress
+    const quality = 0.82;
+    return canvas.toDataURL("image/jpeg", quality);
+  }
+
+  // =========================
+  // Events
+  // =========================
+  function bindEvents(){
+    $("openAdminBtn").addEventListener("click", ()=>{
+      setView("admin");
+      const authed = isAuthed();
+      $("loginBox").classList.toggle("hide", authed);
+      $("dashBox").classList.toggle("hide", !authed);
+      if(authed){
+        renderAdmin();
+      }
+      showTab("tab-site");
+    });
+
+    $("backPublicBtn").addEventListener("click", ()=>{
+      setView("public");
+      renderPublic();
+      setupLeadForm();
+    });
+
+    $("logoutBtn").addEventListener("click", ()=>{
+      setAuthed(false);
+      $("dashBox").classList.add("hide");
+      $("loginBox").classList.remove("hide");
+      toast("Logout berhasil.", "good");
+    });
+
+    $("loginBtn").addEventListener("click", ()=>{
+      const data = loadData();
+      const u = $("aUser").value.trim();
+      const p = $("aPass").value;
+
+      if(u === data.settings.adminUser && p === data.settings.adminPass){
+        setAuthed(true);
+        $("loginBox").classList.add("hide");
+        $("dashBox").classList.remove("hide");
+        renderAdmin();
+        showTab("tab-site");
+        toast("Login sukses.", "good");
+      } else {
+        toast("Username/password salah.", "bad");
+      }
+    });
+
+    document.querySelectorAll(".tabBtn").forEach(btn=>{
+      btn.addEventListener("click", ()=>{
+        showTab(btn.getAttribute("data-tab"));
+      });
+    });
+
+    $("saveSiteBtn").addEventListener("click", ()=>{
+      const d = loadData();
+      d.settings.siteName = $("sSiteName").value.trim() || "Jokitoefl.myid";
+      d.settings.headline = $("sHeadline").value.trim() || "One stop for your future";
+      d.settings.subhead = $("sSubhead").value.trim() || "";
+      d.settings.whyTitle = $("sWhyTitle").value.trim() || "Kenapa pilih Jokitoefl.myid?";
+      d.settings.whyText = $("sWhyText").value.trim() || "";
+      d.settings.about = $("sAbout").value.trim() || "";
+      d.settings.instagram = $("sIg").value.trim() || "";
+      d.settings.leadEmail = $("sLeadEmail").value.trim() || d.settings.leadEmail;
+
+      saveData(d);
+      renderPublic();
+      setupLeadForm();
+      toast("Website tersimpan.", "good");
+    });
+
+    $("changePassBtn").addEventListener("click", ()=>{
+      const d = loadData();
+      const np = prompt("Password baru (min 6 karakter):");
+      if(!np) return;
+      if(np.length < 6) return toast("Minimal 6 karakter.", "bad");
+      d.settings.adminPass = np;
+      saveData(d);
+      toast("Password admin diganti.", "good");
+    });
+
+    $("addHighlightBtn").addEventListener("click", ()=>{
+      const title = $("hTitle").value.trim();
+      const desc = $("hDesc").value.trim();
+      if(!title || !desc) return toast("Isi judul & deskripsi dulu.", "bad");
+
+      const d = loadData();
+      d.highlights = d.highlights || [];
+      d.highlights.push({ title, desc });
+      saveData(d);
+
+      $("hTitle").value = "";
+      $("hDesc").value = "";
+
+      renderAdmin();
+      renderPublic();
+      toast("Keunggulan ditambah.", "good");
+    });
+
+    $("saveServicesBtn").addEventListener("click", ()=>{
+      const d = loadData();
+      const updated = (d.services || []).map(s=>({...s}));
+
+      document.querySelectorAll("[data-svc][data-i]").forEach(el=>{
+        const i = Number(el.getAttribute("data-i"));
+        const k = el.getAttribute("data-svc");
+        if(Number.isNaN(i) || !updated[i]) return;
+
+        if(k==="title") updated[i].title = el.value.trim();
+        if(k==="badge") updated[i].badge = el.value.trim();
+        if(k==="desc") updated[i].desc = el.value.trim();
+        if(k==="tags") updated[i].tags = el.value.split(",").map(x=>x.trim()).filter(Boolean);
+      });
+
+      d.services = updated;
+      saveData(d);
+      renderPublic();
+      toast("Layanan tersimpan.", "good");
+    });
+
+    $("addTTextBtn").addEventListener("click", ()=>{
+      const name = $("ttName").value.trim();
+      const text = $("ttText").value.trim();
+      if(!text) return toast("Isi testimoni dulu.", "bad");
+
+      const d = loadData();
+      d.testimonialsText = d.testimonialsText || [];
+      if(d.testimonialsText.length >= 20) return toast("Maks 20 testimoni teks.", "bad");
+
+      d.testimonialsText.push({ name: name || "Anonim", text });
+      saveData(d);
+      $("ttName").value = "";
+      $("ttText").value = "";
+
+      slideIdx = 0;
+      renderAdmin();
+      renderPublic();
+      toast("Testimoni teks ditambah.", "good");
+    });
+
+    $("addTImgBtn").addEventListener("click", async ()=>{
+      const cap = $("tiCap").value.trim();
+      const file = $("tiFile").files?.[0];
+      if(!file) return toast("Pilih file gambar dulu.", "bad");
+
+      const d = loadData();
+      d.testimonialsImages = d.testimonialsImages || [];
+      if(d.testimonialsImages.length >= 20) return toast("Maks 20 gambar.", "bad");
+
+      try{
+        const dataUrl = await fileToCompressedDataURL(file);
+        d.testimonialsImages.push({ cap, data: dataUrl });
+        saveData(d);
+
+        $("tiCap").value = "";
+        $("tiFile").value = "";
+
+        renderAdmin();
+        renderPublic();
+        toast("Gambar ditambah.", "good");
+      } catch {
+        toast("Gagal memproses gambar.", "bad");
+      }
+    });
+
+    $("exportBtn").addEventListener("click", ()=>{
+      const d = loadData();
+      const blob = new Blob([JSON.stringify(d, null, 2)], {type:"application/json"});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "jokitoefl-backup.json";
+      a.click();
+      URL.revokeObjectURL(url);
+      toast("Backup JSON terunduh.", "good");
+    });
+
+    $("importFile").addEventListener("change", async (e)=>{
+      const f = e.target.files?.[0];
+      if(!f) return;
+      const txt = await f.text();
+
+      try{
+        const obj = JSON.parse(txt);
+        if(!obj.settings || !obj.services) throw new Error("format");
+        localStorage.setItem(KEY, JSON.stringify(obj));
+        slideIdx = 0;
+        renderPublic();
+        setupLeadForm();
+        renderAdmin();
+        toast("Import sukses.", "good");
+      } catch {
+        toast("File JSON tidak valid.", "bad");
+      } finally {
+        e.target.value = "";
+      }
+    });
+
+    $("resetBtn").addEventListener("click", ()=>{
+      if(!confirm("Reset semua data?")) return;
+      localStorage.setItem(KEY, JSON.stringify(DEFAULT));
+      setAuthed(false);
+      slideIdx = 0;
+      renderPublic();
+      setupLeadForm();
+      toast("Reset selesai.", "good");
+      $("dashBox").classList.add("hide");
+      $("loginBox").classList.remove("hide");
+      showTab("tab-site");
+    });
+
+    // Form submit message
+    $("leadForm").addEventListener("submit", ()=>{
+      toast("Form terkirim. Cek email kamu untuk lead baru.", "good");
+    });
+  }
+
+  // =========================
+  // Init
+  // =========================
+  (function init(){
+    setView("public");
+    bindEvents();
+    bindSliderGestures();
+    renderPublic();
+    setupLeadForm();
+  })();
+</script>
+</body>
+</html>
