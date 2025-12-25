@@ -126,8 +126,14 @@
     }
   ],
   "testimonialsText": [
-    { "name": "Anonim", "text": "Respon cepat, prosesnya jelas, dan rapi." },
-    { "name": "Anonim", "text": "Bantu banget untuk kebutuhan UT, jadi lebih paham alurnya." }
+    {
+      "name": "Anonim",
+      "text": "Respon cepat, prosesnya jelas, dan rapi."
+    },
+    {
+      "name": "Anonim",
+      "text": "Bantu banget untuk kebutuhan UT, jadi lebih paham alurnya."
+    }
   ],
   "testimonialsImages": []
 }
