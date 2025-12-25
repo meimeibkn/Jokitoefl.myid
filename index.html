@@ -855,19 +855,30 @@
   }
 
   // ========= Render public =========
-  function applyLogo(logoData){
-    const img = $("logoImg");
-    const box = $("logoBox");
-    if(logoData && String(logoData).startsWith("data:image")){
-      img.src = logoData;
-      img.style.display = "block";
-      box.style.background = "transparent";
-    }else{
-      img.removeAttribute("src");
-      img.style.display = "none";
-      box.style.background = "linear-gradient(135deg, rgba(161,192,248,.95), rgba(161,192,248,.35))";
-    }
+function applyLogo(d){
+  const img = $("logoImg");
+  const box = $("logoBox");
+
+  // Support 2 format:
+  // 1) base64: d.settings.logoData
+  // 2) file path: d.settings.logo.src  (atau d.settings.logoSrc)
+  const logoData = d?.settings?.logoData || "";
+  const logoSrc  = d?.settings?.logo?.src || d?.settings?.logoSrc || "";
+
+  const finalSrc = (logoData && String(logoData).startsWith("data:image"))
+    ? logoData
+    : logoSrc;
+
+  if(finalSrc){
+    img.src = finalSrc;
+    img.style.display = "block";
+    box.style.background = "transparent";
+  }else{
+    img.removeAttribute("src");
+    img.style.display = "none";
+    box.style.background = "linear-gradient(135deg, rgba(161,192,248,.95), rgba(161,192,248,.35))";
   }
+}
 
   function renderTop(d){
     $("siteName").textContent = safeText(d.settings.siteName);
@@ -1863,5 +1874,6 @@ function openGalleryPopup(d){
 </script>
 </body>
 </html>
+
 
 
