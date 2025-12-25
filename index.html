@@ -943,24 +943,51 @@
 
   // ========= Service modal =========
   let currentServiceTitle = "";
-  function openServiceModal(s){
-    currentServiceTitle = s.title || "";
-    $("svcModalTitle").textContent = safeText(s.title);
-    $("svcModalDesc").textContent  = safeText(s.desc);
+function openServiceModal(s){
+  currentServiceTitle = s.title || "";
+  $("svcModalTitle").textContent = safeText(s.title);
+  $("svcModalDesc").textContent  = safeText(s.desc);
 
-    const body = $("svcModalBody");
-    body.innerHTML = "";
+  const body = $("svcModalBody");
+  body.innerHTML = "";
 
-    (s.details || []).forEach(section=>{
+  const details = s.details || [];
+
+  // CASE A: details = array of strings (punyamu)
+  if (details.length && typeof details[0] === "string") {
+    const items = details
+      .map(x => safeText(x).trim())
+      .filter(x => x.length > 0); // buang baris kosong "" biar tidak jadi garis
+
+    const div = document.createElement("div");
+    div.className = "modalSection";
+    div.innerHTML = `<h4>Detail</h4><ul>${items.map(x => `<li>${x}</li>`).join("")}</ul>`;
+    body.appendChild(div);
+  }
+
+  // CASE B: details = array of section objects (format lama)
+  else if (details.length && typeof details[0] === "object") {
+    details.forEach(section=>{
       const div = document.createElement("div");
       div.className = "modalSection";
-      const items = (section.items || []).map(x=>`<li>${safeText(x)}</li>`).join("");
+      const items = (section.items || [])
+        .map(x=>`<li>${safeText(x)}</li>`)
+        .join("");
       div.innerHTML = `<h4>${safeText(section.title)}</h4><ul>${items}</ul>`;
       body.appendChild(div);
     });
-
-    $("svcOverlay").style.display = "flex";
   }
+
+  // CASE C: kosong
+  else {
+    const div = document.createElement("div");
+    div.className = "modalSection";
+    div.innerHTML = `<div class="small">Belum ada detail untuk layanan ini.</div>`;
+    body.appendChild(div);
+  }
+
+  $("svcOverlay").style.display = "flex";
+}
   function closeServiceModal(){ $("svcOverlay").style.display = "none"; }
 
   // ========= Testimonials text slider =========
@@ -1824,3 +1851,4 @@
 </script>
 </body>
 </html>
+
