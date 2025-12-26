@@ -55,6 +55,21 @@
       flex-wrap:wrap;
     }
     .brand{display:flex;align-items:center;gap:12px;min-width:0}
+    .modalBadge{
+  display:inline-flex;
+  align-items:center;
+  padding:6px 10px;
+  border-radius:999px;
+  margin:6px 0 10px;
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.3px;
+  text-transform:uppercase;
+
+  border:1px solid rgba(161,192,248,.28);
+  background: rgba(161,192,248,.10);
+  color: rgba(255,255,255,.9);
+}
     .logo{
       width:38px;height:38px;border-radius:14px;
       background: linear-gradient(135deg, rgba(161,192,248,.95), rgba(161,192,248,.35));
@@ -1016,17 +1031,43 @@ function openServiceModal(s){
 
   const details = s.details || [];
 
-  // CASE A: details = array of strings (punyamu)
-  if (details.length && typeof details[0] === "string") {
-    const items = details
-      .map(x => safeText(x).trim())
-      .filter(x => x.length > 0); // buang baris kosong "" biar tidak jadi garis
+// CASE A: details = array of strings
+if (details.length && typeof details[0] === "string") {
+  const lines = details.map(x => (x ?? "").toString().trim()).filter(Boolean);
 
+  // Build sections from "SECTION: ..."
+  const sections = [];
+  let current = { title: "", items: [] };
+
+  lines.forEach(line => {
+    if (line.toUpperCase().startsWith("SECTION:")) {
+      // push previous section if has content
+      if (current.title || current.items.length) sections.push(current);
+      current = { title: line.replace(/^SECTION:\s*/i, "").trim(), items: [] };
+    } else {
+      current.items.push(line);
+    }
+  });
+
+  if (current.title || current.items.length) sections.push(current);
+
+  // Render sections
+  sections.forEach(sec => {
     const div = document.createElement("div");
     div.className = "modalSection";
-    div.innerHTML = `<h4>Detail</h4><ul>${items.map(x => `<li>${x}</li>`).join("")}</ul>`;
+
+    const badge = sec.title
+      ? `<div class="modalBadge">${safeText(sec.title)}</div>`
+      : "";
+
+    div.innerHTML = `
+      ${badge}
+      <ul>${sec.items.map(x => `<li>${safeText(x)}</li>`).join("")}</ul>
+    `;
     body.appendChild(div);
-  }
+  });
+}
+
 
   // CASE B: details = array of section objects (format lama)
   else if (details.length && typeof details[0] === "object") {
@@ -1923,6 +1964,7 @@ function openGalleryPopup(d){
 </script>
 </body>
 </html>
+
 
 
 
