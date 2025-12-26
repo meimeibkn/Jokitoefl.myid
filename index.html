@@ -55,7 +55,7 @@
       flex-wrap:wrap;
     }
     .brand{display:flex;align-items:center;gap:12px;min-width:0}
-    .modalBadge{
+.modalBadge{
   display:inline-flex;
   align-items:center;
   padding:6px 10px;
@@ -65,7 +65,6 @@
   font-weight:800;
   letter-spacing:.3px;
   text-transform:uppercase;
-
   border:1px solid rgba(161,192,248,.28);
   background: rgba(161,192,248,.10);
   color: rgba(255,255,255,.9);
@@ -494,7 +493,7 @@
       </div>
     </div>
 
-    <h3 style="margin-top:16px">Gambar</h3>
+    <h3 style="margin-top:16px">Hasil dan Testimoni</h3>
     <p class="small">Klik gambar untuk lihat detail.</p>
 
     <div class="gLayout" id="galleryWrap">
@@ -1030,56 +1029,94 @@ function openServiceModal(s){
   body.innerHTML = "";
 
   const details = s.details || [];
-  
-// CASE A: details = array of strings
-if (details.length && typeof details[0] === "string") {
-  const lines = details.map(x => (x ?? "").toString().trim()).filter(Boolean);
 
-  // Build sections from "SECTION: ..."
-  const sections = [];
-  let current = { title: "", items: [] };
+  // DETAILS RENDER (robust)
+// - supports: ["SECTION: ...", "..."]   OR ["...","..."] OR [{title,items}]
+{
+  const isObjSection = (v) =>
+    v && typeof v === "object" && !Array.isArray(v) && ("title" in v || "items" in v);
 
-  lines.forEach(line => {
-    if (line.toUpperCase().startsWith("SECTION:")) {
-      // push previous section if has content
-      if (current.title || current.items.length) sections.push(current);
-      current = { title: line.replace(/^SECTION:\s*/i, "").trim(), items: [] };
-    } else {
-      current.items.push(line);
-    }
-  });
-
-  if (current.title || current.items.length) sections.push(current);
-
-  // Render sections
-  sections.forEach(sec => {
+  const renderSection = (title, items) => {
     const div = document.createElement("div");
     div.className = "modalSection";
 
-    const badge = sec.title
-      ? `<div class="modalBadge">${safeText(sec.title)}</div>`
+    const safeTitle = (title ?? "").toString().trim();
+    const li = (items || [])
+      .map(x => (x ?? "").toString().trim())
+      .filter(Boolean)
+      .map(x => `<li>${safeText(x)}</li>`)
+      .join("");
+
+    const badge = safeTitle
+      ? `<div class="modalBadge">${safeText(safeTitle)}</div>`
       : "";
 
     div.innerHTML = `
       ${badge}
-      <ul>${sec.items.map(x => `<li>${safeText(x)}</li>`).join("")}</ul>
+      <ul>${li || `<li class="muted">Detail belum ditambahkan.</li>`}</ul>
     `;
     body.appendChild(div);
-  });
-}
-  // CASE B: details = array of section objects (format lama)
-  else if (details.length && typeof details[0] === "object") {
-    details.forEach(section=>{
-      const div = document.createElement("div");
-      div.className = "modalSection";
-      const items = (section.items || [])
-        .map(x=>`<li>${safeText(x)}</li>`)
-        .join("");
-      div.innerHTML = `<h4>${safeText(section.title)}</h4><ul>${items}</ul>`;
-      body.appendChild(div);
+  };
+
+  // Normalize
+  const det = Array.isArray(details) ? details : [];
+
+  // CASE B: array of objects (section format)
+  if (det.length && isObjSection(det[0])) {
+    det.forEach(sec => {
+      renderSection(sec.title || "", Array.isArray(sec.items) ? sec.items : []);
     });
   }
+  // CASE A: array of strings (plain or SECTION:)
+  else if (det.length && typeof det[0] === "string") {
+    const lines = det
+      .map(x => (x ?? "").toString().trim())
+      .filter(Boolean);
 
+    // If any "SECTION:" exists -> split into sections
+    const hasSection = lines.some(l => /^SECTION:\s*/i.test(l));
+
+    if (hasSection) {
+      const sections = [];
+      let currentTitle = "";
+      let currentItems = [];
+
+      const pushCurrent = () => {
+        if (currentTitle || currentItems.length) {
+          sections.push({ title: currentTitle, items: currentItems });
+        }
+        currentTitle = "";
+        currentItems = [];
+      };
+
+      lines.forEach(line => {
+        const m = line.match(/^SECTION:\s*(.+)$/i);
+        if (m) {
+          pushCurrent();
+          currentTitle = (m[1] || "").trim();
+        } else {
+          currentItems.push(line);
+        }
+      });
+      pushCurrent();
+
+      if (sections.length === 0) {
+        // fallback: render as single list
+        renderSection("Detail", lines);
+      } else {
+        sections.forEach(s => renderSection(s.title, s.items));
+      }
+    } else {
+      // plain list, no section markers
+      renderSection("Detail", lines);
+    }
+  }
+  // CASE: no valid details
+  else {
+    renderSection("Detail", []);
+  }
+}
+  
   // CASE C: kosong
   else {
     const div = document.createElement("div");
@@ -1962,6 +1999,7 @@ function openGalleryPopup(d){
 </script>
 </body>
 </html>
+
 
 
 
