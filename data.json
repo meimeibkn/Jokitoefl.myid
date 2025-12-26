@@ -49,34 +49,25 @@
     "text": "Jokitoefl.myid membantu kebutuhan belajar dan dokumen pendukung akademik dengan alur yang simpel dan terpercaya sejak 2023: sampaikan kebutuhan, deal harga, kami bantu eksekusi."
   },
 
-  "services": [
-    {
-      "id": "toefl",
-      "title": "Sertifikat TOEFL",
-      "desc": "Bantu Joki sertifikat TOEFL kamu, Garansi 100%. Solusi paling murah, resmi, dan transparan.",
-      "details": [
-        "SERTIFIKAT INTERNASIONAL",
-        "Keperluan: BUMN, CPNS, KAI, OJK, dan instansi nasional lainnya",
-        "Solusi: Sertifikat non-ETS Resmi (terima jadi Soft File)",
-        "Harga: Biaya Test 150k + Biaya Joki 180k = 330k",
-        "Durasi Pengerjaan: Normal, 1–2 jam (Maks. 1x24 jam)",
-        "SERTIFIKAT INTERNASIONAL",
-        "Keperluan: Beasiswa LPDP, TBI, S2, dan keperluan Internasional lainnya",
-        "Solusi: Sertifikat ETS Resmi",
-        "Harga: Biaya Joki 500k",
-        "Durasi Pengerjaan: Tergantung jadwal dan ketersediaan."
-      ]
+
     },
     {
       "id": "komputer",
       "title": "Sertifikat Komputer",
       "desc": "Bantu buat Sertifikat Microsoft kamu sesuai untuk daftar kerja. Solusi paling murah, resmi, dan transparan.",
-      "details": [
-        "Keperluan: BUMN, CPNS, KAI, OJK, dan instansi nasional lainnya",
-        "Solusi: Sertifikat Resmi (terima jadi Soft File)",
-        "Harga: Biaya Test 150k + Biaya Joki 180k = 330k",
-        "Durasi Pengerjaan: Normal, 2–4 jam (Maks. 1x24 jam)"
-      ]
+  "details": [
+  "SECTION: SERTIFIKAT NASIONAL",
+  "Keperluan: BUMN, CPNS, KAI, OJK, dan instansi nasional lainnya",
+  "Solusi: Sertifikat non-ETS Resmi (terima jadi Soft File)",
+  "Harga: Biaya Test 150k + Biaya Joki 180k = 330k",
+  "Durasi Pengerjaan: Normal, 1–2 jam (Maks. 1x24 jam)",
+
+  "SECTION: SERTIFIKAT INTERNASIONAL",
+  "Keperluan: Beasiswa LPDP, TBI, S2, dan keperluan Internasional lainnya",
+  "Solusi: Sertifikat ETS Resmi",
+  "Harga: Biaya Joki 500k",
+  "Durasi Pengerjaan: Tergantung jadwal dan ketersediaan"
+]
     },
     {
       "id": "ut",
