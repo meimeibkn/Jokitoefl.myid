@@ -955,10 +955,15 @@ function applyLogo(d){
   }
 
 function renderAdvantages(d){
-  const list = Array.isArray(d.advantages) ? d.advantages : [];
-  const wrap = document.getElementById("advantagesGrid");
+  // ambil data dari format BARU atau LAMA
+  const list =
+    Array.isArray(d.advantages) ? d.advantages :
+    Array.isArray(d.highlights) ? d.highlights :
+    [];
 
+  const wrap = document.getElementById("advantagesGrid");
   if(!wrap) return;
+
   wrap.innerHTML = "";
 
   if(list.length === 0){
@@ -972,12 +977,13 @@ function renderAdvantages(d){
 
     card.innerHTML = `
       <div class="cardTitle">${safeText(item.title || "")}</div>
-      <div class="cardText">${safeText(item.text || "")}</div>
+      <div class="cardText">${safeText(item.text || item.desc || "")}</div>
     `;
 
     wrap.appendChild(card);
   });
 }
+
 
   // ========= Service modal =========
   let currentServiceTitle = "";
@@ -1898,6 +1904,7 @@ function openGalleryPopup(d){
 </script>
 </body>
 </html>
+
 
 
 
