@@ -435,7 +435,7 @@
   <section id="testimoni" class="panel" style="margin-top:14px">
     <h2>Testimoni</h2>
 
-    <h3 style="margin-top:10px">Teks</h3>
+    <h3 style="margin-top:10px">Dari Customer</h3>
     <div class="tWrap">
       <div class="tViewport" id="tViewport">
         <div class="tTrack" id="tTrack"></div>
@@ -443,12 +443,12 @@
       <div class="tControls">
         <button class="iconBtn" id="tPrev" type="button" aria-label="prev">‹</button>
         <button class="iconBtn" id="tNext" type="button" aria-label="next">›</button>
-        <span class="small">Geser atau klik tombol. Manual, tanpa blur.</span>
+        <span class="small">Geser atau klik tombol.</span>
       </div>
     </div>
 
     <h3 style="margin-top:16px">Gambar</h3>
-    <p class="small">Klik gambar besar untuk lihat detail di popup (caption hanya di popup).</p>
+    <p class="small">Klik gambar untuk lihat detail.</p>
 
     <div class="gLayout" id="galleryWrap">
       <div class="bigBox" id="bigBox" role="button" aria-label="open image popup">
@@ -955,34 +955,32 @@ function applyLogo(d){
   }
 
 function renderAdvantages(d){
-  // ambil data dari format BARU atau LAMA
-  const list =
-    Array.isArray(d.advantages) ? d.advantages :
-    Array.isArray(d.highlights) ? d.highlights :
-    [];
-
-  const wrap = document.getElementById("advantagesGrid");
-  if(!wrap) return;
-
-  wrap.innerHTML = "";
-
-  if(list.length === 0){
-    wrap.innerHTML = `<div class="small">Belum ada data keunggulan.</div>`;
+  if(!d || !Array.isArray(d.advantages)) {
+    console.warn("advantages kosong atau d tidak valid", d);
     return;
   }
 
-  list.forEach(item=>{
+  const wrap = document.getElementById("advantagesGrid");
+  if(!wrap){
+    console.warn("advantagesGrid tidak ditemukan");
+    return;
+  }
+
+  wrap.innerHTML = "";
+
+  d.advantages.forEach(item=>{
     const card = document.createElement("div");
     card.className = "card advantage";
 
     card.innerHTML = `
-      <div class="cardTitle">${safeText(item.title || "")}</div>
-      <div class="cardText">${safeText(item.text || item.desc || "")}</div>
+      <div class="cardTitle">${safeText(item.title)}</div>
+      <div class="cardText">${safeText(item.text)}</div>
     `;
 
     wrap.appendChild(card);
   });
 }
+
 
 
   // ========= Service modal =========
@@ -1904,6 +1902,7 @@ function openGalleryPopup(d){
 </script>
 </body>
 </html>
+
 
 
 
