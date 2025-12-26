@@ -1030,7 +1030,7 @@ function openServiceModal(s){
   body.innerHTML = "";
 
   const details = s.details || [];
-
+  
 // CASE A: details = array of strings
 if (details.length && typeof details[0] === "string") {
   const lines = details.map(x => (x ?? "").toString().trim()).filter(Boolean);
@@ -1067,8 +1067,6 @@ if (details.length && typeof details[0] === "string") {
     body.appendChild(div);
   });
 }
-
-
   // CASE B: details = array of section objects (format lama)
   else if (details.length && typeof details[0] === "object") {
     details.forEach(section=>{
@@ -1964,6 +1962,7 @@ function openGalleryPopup(d){
 </script>
 </body>
 </html>
+
 
 
 
