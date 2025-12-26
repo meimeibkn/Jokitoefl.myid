@@ -105,6 +105,39 @@
     p{margin:0}
     .small{font-size:12px;color:var(--muted);line-height:1.6}
     .muted{color:var(--muted)}
+    
+/* Keunggulan: grid cards (mirip englishvit) */
+.advGrid{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+@media (max-width: 820px){
+  .advGrid{ grid-template-columns: 1fr; }
+}
+
+.advCard{
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(161,192,248,0.14);
+  border-radius: 16px;
+  padding: 16px 16px 14px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+}
+
+.advTitle{
+  margin: 0 0 8px;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: .2px;
+}
+
+.advText{
+  margin: 0;
+  color: rgba(255,255,255,0.84);
+  line-height: 1.6;
+  font-size: 14px;
+}
 
     /* HERO */
     .hero{padding:18px 0 8px;display:flex}
@@ -953,34 +986,23 @@ function applyLogo(d){
       sel.appendChild(opt);
     });
   }
-
 function renderAdvantages(d){
-  if(!d || !Array.isArray(d.advantages)) {
-    console.warn("advantages kosong atau d tidak valid", d);
-    return;
-  }
-
   const wrap = document.getElementById("advWrap");
-  if(!wrap){
-    console.warn("advantagesGrid tidak ditemukan");
-    return;
-  }
+  if(!wrap) return;
 
+  const list = Array.isArray(d.advantages) ? d.advantages : [];
   wrap.innerHTML = "";
 
-  d.advantages.forEach(item=>{
+  list.forEach(item=>{
     const card = document.createElement("div");
-    card.className = "card advantage";
-
+    card.className = "advCard"; // class khusus keunggulan
     card.innerHTML = `
-      <div class="cardTitle">${safeText(item.title)}</div>
-      <div class="cardText">${safeText(item.text)}</div>
+      <h3 class="advTitle">${safeText(item.title || "")}</h3>
+      <p class="advText">${safeText(item.text || "")}</p>
     `;
-
     wrap.appendChild(card);
   });
 }
-
 
 
   // ========= Service modal =========
@@ -1902,6 +1924,7 @@ function openGalleryPopup(d){
 </script>
 </body>
 </html>
+
 
 
 
