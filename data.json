@@ -1,5 +1,6 @@
 {
   "version": 1,
+
   "settings": {
     "siteName": "Jokitoefl.myid",
     "headline": "One stop for your future",
@@ -7,7 +8,7 @@
     "subhead": "Konsultasi cepat untuk kebutuhan TOEFL, sertifikat komputer, bantuan mahasiswa, dan rangkuman UAS. Tinggal isi form, kami hubungi via WhatsApp.",
     "heroBadge": "Sertifikat TOEFL & Komputer • Bantuan Mahasiswa • Lainnya",
     "ctaText": "Konsultasi Gratis",
-    "instagram": "https://www.instagram.com/jokitoefl.myid?igsh=MXh2eHhzcm13bmh0aA%3D%3D&utm_source=qr",
+    "instagram": "https://www.instagram.com/jokitoefl.myid",
 
     "maxWidth": 1100,
     "theme": {
@@ -18,20 +19,12 @@
     },
 
     "logo": {
-      "type": "image",
-      "src": "assets/logo.png",
-      "alt": "Jokitoefl.myid logo"
+      "src": "assets/logo.png"
     },
 
     "form": {
       "provider": "formspree",
       "formspreeEndpoint": "",
-      "fields": {
-        "name": true,
-        "whatsapp": true,
-        "service": true,
-        "note": true
-      },
       "notePlaceholder": "Catatan (opsional): Harga, durasi kelas, deadline, dll"
     }
   },
@@ -49,53 +42,50 @@
     "text": "Jokitoefl.myid membantu kebutuhan belajar dan dokumen pendukung akademik dengan alur yang simpel dan terpercaya sejak 2023: sampaikan kebutuhan, deal harga, kami bantu eksekusi."
   },
 
-
-    },
+  "services": [
     {
       "id": "komputer",
       "title": "Sertifikat Komputer",
       "desc": "Bantu buat Sertifikat Microsoft kamu sesuai untuk daftar kerja. Solusi paling murah, resmi, dan transparan.",
-  "details": [
-  "SECTION: SERTIFIKAT NASIONAL",
-  "Keperluan: BUMN, CPNS, KAI, OJK, dan instansi nasional lainnya",
-  "Solusi: Sertifikat non-ETS Resmi (terima jadi Soft File)",
-  "Harga: Biaya Test 150k + Biaya Joki 180k = 330k",
-  "Durasi Pengerjaan: Normal, 1–2 jam (Maks. 1x24 jam)",
+      "details": [
+        "SECTION: SERTIFIKAT NASIONAL",
+        "Keperluan: BUMN, CPNS, KAI, OJK, dan instansi nasional lainnya",
+        "Solusi: Sertifikat non-ETS Resmi (Soft File)",
+        "Harga: 150k (Test) + 180k (Joki) = 330k",
+        "Durasi: 1–2 jam (maks 1x24 jam)",
 
-  "SECTION: SERTIFIKAT INTERNASIONAL",
-  "Keperluan: Beasiswa LPDP, TBI, S2, dan keperluan Internasional lainnya",
-  "Solusi: Sertifikat ETS Resmi",
-  "Harga: Biaya Joki 500k",
-  "Durasi Pengerjaan: Tergantung jadwal dan ketersediaan"
-]
+        "SECTION: SERTIFIKAT INTERNASIONAL",
+        "Keperluan: LPDP, TBI, S2, dll",
+        "Solusi: Sertifikat ETS Resmi",
+        "Harga: Joki 500k",
+        "Durasi: Tergantung jadwal ETS"
+      ]
     },
+
     {
       "id": "ut",
       "title": "Bantuan Akademik UT",
-      "desc": "Pendampingan TUTON, TUWEB, revisi, dan arahan teknis sesuai kebutuhan kamu. Rangkuman inti + latihan soal yang membantu kamu siap UO dan UTM. Sumber 100% dari BMP dan TUTON",
+      "desc": "Pendampingan TUTON, TUWEB, rangkuman, dan latihan soal berbasis BMP & TUTON.",
       "details": [
-        "Fasilitas:",
-          "a. Pendampingan TUTON dan TUWEB",
-          "b. Pendampingan agar mengerti sistem pembelajaran jarak jauh UT",
-          "c. Prompt AI untuk Diskusi, Makalah dan Tugas",
-          "d. PDF BMP untuk digunakan di AI",
-          "e. Rangkuman BMP (cocok untuk yang sibuk bekerja)",
-          "f. Latihan soal 100% dari BMP dan TUTON untuk bantu kamu siap UAS",
-          "g. Bantu susun strategi lulus tepat waktu",
-          "h. Admin bantuan dan info UT 24/7",
-          "i. Bantuan perubahan berkas",
-        "Cocok untuk: Mahasiswa UT dan Calon Mahasiswa UT",
-        "Harga: 350k/Semester",
-        "Durasi Kelas: 1 Semester"
+        "Pendampingan TUTON & TUWEB",
+        "Prompt AI untuk Diskusi & Makalah",
+        "PDF BMP untuk digunakan di AI",
+        "Rangkuman BMP",
+        "Latihan soal UAS dari BMP & TUTON",
+        "Admin bantuan UT 24/7",
+        "Harga: 350k / semester",
+        "Durasi: 1 semester"
       ]
     },
+
     {
       "id": "lainnya",
-      "title": "Lainnya",
-      "desc": "Jasa Translate, Joki Tugas, Joki TUTON, Joki THE, dll",
+      "title": "Layanan Lainnya",
+      "desc": "Translate, Joki Tugas, Joki TUTON, dll",
       "details": [
-        "Harga: Start from 5k. Sesuai deadline dan jurusan.",
-        "Fasilitas: Gratis revisi 3x dan Garansi 100% uang kembali jika lewat deadline."
+        "Harga mulai 5k",
+        "Gratis revisi 3x",
+        "Garansi 100% uang kembali jika lewat deadline"
       ]
     }
   ],
@@ -103,55 +93,34 @@
   "advantages": [
     {
       "title": "Privasi Aman",
-      "text": "Data pribadi kamu 100% aman. Semua testimoni tidak akan berisi data pribadi kamu."
+      "text": "Semua testimoni dan data klien dijaga, tidak ada data pribadi ditampilkan."
     },
     {
-      "title": "Garansi 100% Uang Kembali",
-      "text": "Jika kelas Bimbingan UT tidak sesuai dengan deskripsi fasilitas yang kami berikan. Jika skor TOEFL dan Sertifikat Komputer tidak sesuai keinginan, akan kami kerjakan test ulang tanpa biaya tambahan."
+      "title": "Garansi Uang Kembali",
+      "text": "Jika layanan tidak sesuai deskripsi, kami bertanggung jawab penuh."
     },
     {
       "title": "Harga Terjangkau",
-      "text": "One stop service termurah yang bisa bantu kamu dari saat kuliah di UT sampai daftar kerja. Harga disesuaikan kebutuhan dengan jaminan lolos berkas."
+      "text": "One stop service paling hemat dari kuliah sampai kerja."
     },
     {
       "title": "Sertifikat Resmi",
-      "text": "Dikerjakan manual, bukan edit foto. Keaslian bisa dicek via barcode, jaminan lolos berkas nasional."
+      "text": "Dikerjakan manual, bisa dicek keaslian."
     },
     {
       "title": "Konsultasi Gratis",
-      "text": "Konsultasi santai tapi profesional, enak untuk tanya-tanya sebelum ambil layanan."
+      "text": "Tanya dulu sebelum ambil layanan, santai & transparan."
     }
   ],
 
   "testimonialsText": [
-    { "name": "Anon", "text": "Kakaaa makasih yaa, kelasnya informatif bgt buat aku yang sibuk mwehehe" },
-    { "name": "Gia", "text": "Aku lolos berkas CPNS ka, thanks ya" },
-    { "name": "hamba tuhan", "text": "Bintang 5. Ramah. Proses cepet" },
-    { "name": "Panaaa", "text": "Ga rugi ikut kelasnya, Tuton dan uasku slamet wkwkw makaci kak" },
-    { "name": "Sabila", "text": "Mantep ca, bisa dipake buat BUMN sama CPNS sertifnya." },
-    { "name": "Anonymm", "text": "Abis ketipu di tele, untungnya ga ketipu dua kali disini. makasih, sertifnya jebol berkas" },
-    { "name": "Agung", "text": "Gue jadi reseller Joki TOEFL disini wkwkw, mayan gue jual ke temen dapet 150 rebu" },
-    { "name": "TYA", "text": "Kknya ramah banget, cocok sm ak jdnya nyambung" },
-    { "name": "gala", "text": "kelasnya asik, banyak dapet pencerahan dari bu dosen wkwkkww" },
-    { "name": "Cust", "text": "min, harganya jangan naik yaa. Cocok buat orang ga sempet belajar kaya gua" },
-    { "name": "fais", "text": "Prosesnya jelas, cepat, dan hasil sesuai. Mantap." },
-    { "name": "AKA 47", "text": "PELAYANAN OKE, KUALITAS OKE, GA PILIH KASIH, OKE" }
+    { "name": "Anon", "text": "Kelasnya ngebantu banget buat yang sibuk." },
+    { "name": "Gia", "text": "Lolos berkas CPNS, makasih banyak." },
+    { "name": "Agung", "text": "Proses cepat, hasil sesuai." }
   ],
 
-"testimonialsImages": [
-  { "src": "assets/testimonials/img-01.jpg.jpeg", "cap": "Testimoni" },
-  { "src": "assets/testimonials/img-02.jpg.jpeg", "cap": "Testimoni" },
-  { "src": "assets/testimonials/img-03.jpg.jpeg", "cap": "Testimoni" },
-  { "src": "assets/testimonials/img-04.jpg.jpeg", "cap": "Testimoni" },
-  { "src": "assets/testimonials/img-05.jpg.jpeg", "cap": "Testimoni" },
-  { "src": "assets/testimonials/img-06.jpg.jpeg", "cap": "Testimoni" },
-  { "src": "assets/testimonials/img-07.jpg.jpeg", "cap": "Testimoni" },
-  { "src": "assets/testimonials/img-08.jpg.jpeg", "cap": "Testimoni" },
-  { "src": "assets/testimonials/img-09.jpg.jpeg", "cap": "Testimoni" },
-  { "src": "assets/testimonials/img-10.jpg.jpeg", "cap": "Testimoni" },
-  { "src": "assets/testimonials/img-11.jpg.jpeg", "cap": "Testimoni" },
-  { "src": "assets/testimonials/img-12.jpg.jpeg", "cap": "Testimoni" },
-  { "src": "assets/testimonials/img-13.jpg.jpeg", "cap": "Testimoni" }
-]
-  
+  "testimonialsImages": [
+    { "src": "assets/testimonials/img-01.jpg.jpeg", "cap": "Testimoni" },
+    { "src": "assets/testimonials/img-02.jpg.jpeg", "cap": "Testimoni" }
+  ]
 }
