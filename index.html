@@ -585,31 +585,50 @@
     return item.src || item.data || item.url || "";
   }
 
-  function renderTop(d){
-    $("siteName").textContent = safeText(d.settings.brand || "Jokitoefl.myid");
-    $("brandSub").textContent = safeText(d.settings.badge);
-    $("headline").innerHTML = safeText(d.settings.headline || "One stop for your <span class='accent'>future</span>");
-    $("subhead").textContent = safeText(d.settings.subhead);
-    $("heroBadge").textContent = safeText(d.settings.badge);
-    $("aboutText").textContent = safeText(d.settings.about);
+function renderTop(d){
+  // Header / brand
+  $("siteName").textContent = safeText(d.settings.siteName || "Jokitoefl.myid");
+  $("brandSub").textContent = safeText(d.settings.heroBadge || "");
 
-    $("ctaTop").textContent = safeText(d.settings.ctaTop || "Konsultasi Gratis");
-    $("ctaHero").textContent = safeText(d.settings.ctaHero || "Konsultasi Gratis");
-    $("igBtn").href = safeText(d.settings.instagram || "#");
+  // Headline + highlight word
+  const headline = safeText(d.settings.headline || "One stop for your future");
+  const hw = safeText(d.settings.highlightWord || "");
+  $("headline").innerHTML = hw
+    ? headline.replace(hw, `<span class="accent">${hw}</span>`)
+    : headline;
 
-    applyLogo(d.settings.logo);
+  $("subhead").textContent = safeText(d.settings.subhead || "");
+  $("heroBadge").textContent = safeText(d.settings.heroBadge || "");
 
-    $("year").textContent = new Date().getFullYear();
-    $("footBrand").textContent = safeText(d.settings.brand || "Jokitoefl.myid");
-    $("footNote").textContent = safeText(d.settings.footnote || "");
-    $("testiSub").textContent = safeText(d.settings.testiSub || "");
-    $("formTitle").textContent = safeText(d.settings.formTitle || "Daftar & Konsultasi");
-    $("formSubtitle").textContent = safeText(d.settings.formSubtitle || "");
-    $("formHint").textContent = safeText(d.settings.formHint || "");
+  // CTA + Instagram
+  const cta = safeText(d.settings.ctaText || "Konsultasi Gratis");
+  $("ctaTop").textContent = cta;
+  $("ctaHero").textContent = cta;
+  $("igBtn").href = safeText(d.settings.instagram || "#");
 
-    $("floatWA").onclick = () => openWA(null);
-    $("floatTop").onclick = () => window.scrollTo({top:0, behavior:"smooth"});
+  // Logo (JSON kamu: d.logo.src)
+  if (d.logo && d.logo.src) {
+    applyLogo(d.logo.src);
   }
+
+  // Footer basic
+  $("year").textContent = new Date().getFullYear();
+  $("footBrand").textContent = safeText(d.settings.siteName || "Jokitoefl.myid");
+
+  // Bagian ini di HTML kamu ada, tapi field-nya mungkin belum ada di JSON kamu.
+  // Jadi kita amanin dengan default kosong.
+  if ($("aboutText")) $("aboutText").textContent = safeText(d.about?.text || "");
+  if ($("footNote")) $("footNote").textContent = safeText(d.footer?.note || "");
+  if ($("testiSub")) $("testiSub").textContent = safeText(d.testimonials?.subtitle || "");
+  if ($("formTitle")) $("formTitle").textContent = safeText(d.form?.title || "Daftar & Konsultasi");
+  if ($("formSubtitle")) $("formSubtitle").textContent = safeText(d.form?.subtitle || "");
+  if ($("formHint")) $("formHint").textContent = safeText(d.form?.hint || "");
+
+  // Floating buttons
+  $("floatWA").onclick = () => openWA(null);
+  $("floatTop").onclick = () => window.scrollTo({top:0, behavior:"smooth"});
+}
+
 
   function renderServices(d){
     const grid = $("servicesGrid");
@@ -851,4 +870,5 @@ function renderSection(title, items){
 </script>
 </body>
 </html>
+
 
