@@ -9,1926 +9,1251 @@
     :root{
       --navy:#002D5F;
       --sky:#A1C0F8;
-      --black:#000000;
-      --white:#FFFFFF;
+      --black:#000;
+      --white:#fff;
 
-      --bg: var(--navy);
-      --bg2: #062a57;
-
-      --card: rgba(255,255,255,.06);
-      --card2: rgba(255,255,255,.04);
-      --line: rgba(255,255,255,.16);
-
-      --text: rgba(255,255,255,.94);
-      --muted: rgba(255,255,255,.72);
-
-      --r: 18px;
-      --shadow: 0 18px 60px rgba(0,0,0,.25);
-
-      --max: 1100px;
-      --pad: 18px;
+      --bg: radial-gradient(1200px 600px at 20% -10%, rgba(161,192,248,.18), transparent 60%),
+            radial-gradient(900px 500px at 90% 10%, rgba(161,192,248,.10), transparent 55%),
+            linear-gradient(180deg, #061a33, #020a14 75%);
+      --card: rgba(255,255,255,.04);
+      --stroke: rgba(161,192,248,.16);
+      --muted: rgba(255,255,255,.75);
+      --muted2: rgba(255,255,255,.62);
+      --shadow: 0 16px 40px rgba(0,0,0,.30);
+      --radius: 18px;
+      --maxw: 1100px;
     }
 
     *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
+    html,body{margin:0;padding:0}
     body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
-      background:
-        radial-gradient(950px 520px at 10% 0%, rgba(161,192,248,.22), transparent 60%),
-        radial-gradient(920px 580px at 90% 10%, rgba(255,255,255,.08), transparent 60%),
-        linear-gradient(180deg, var(--bg), var(--bg2));
-      color:var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
+      background: var(--bg);
+      color: var(--white);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
     }
     a{color:inherit;text-decoration:none}
+    .wrap{max-width:var(--maxw); margin:0 auto; padding:0 18px}
+    @media (max-width:520px){ .wrap{padding:0 16px} }
 
-    .wrap{max-width:var(--max);margin:auto;padding:var(--pad)}
-    @media (max-width:480px){ .wrap{padding:16px} }
-
-    header{
-      border-bottom:1px solid var(--line);
-      background: rgba(0,45,95,.65);
-      backdrop-filter: blur(8px);
-    }
+    /* NAV */
     .nav{
-      display:flex;align-items:center;justify-content:space-between;gap:14px;
-      flex-wrap:wrap;
+      position:sticky; top:0; z-index:20;
+      backdrop-filter: blur(10px);
+      background: rgba(2,10,20,.55);
+      border-bottom: 1px solid rgba(161,192,248,.10);
     }
-    .brand{display:flex;align-items:center;gap:12px;min-width:0}
-    .logo{
-      width:38px;height:38px;border-radius:14px;
-      background: linear-gradient(135deg, rgba(161,192,248,.95), rgba(161,192,248,.35));
-      border:1px solid rgba(161,192,248,.35);
-      box-shadow: 0 16px 50px rgba(161,192,248,.18);
-      flex: 0 0 auto;
+    .navRow{display:flex; align-items:center; justify-content:space-between; padding:12px 0}
+    .brand{display:flex; align-items:center; gap:10px}
+    .logoBox{
+      width:36px; height:36px; border-radius:12px;
+      background: linear-gradient(135deg, rgba(161,192,248,.90), rgba(161,192,248,.25));
+      border:1px solid rgba(161,192,248,.20);
+      display:grid; place-items:center;
       overflow:hidden;
-      display:flex;align-items:center;justify-content:center;
     }
-    .logo img{width:100%;height:100%;object-fit:cover;display:none}
-    .brandText{min-width:0}
-    .brandName{font-weight:900;letter-spacing:-.2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-    .brandSub{font-size:12px;color:var(--muted);margin-top:2px}
-
-    .navLinks{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-    .link{
-      padding:10px 12px;border-radius:12px;border:1px solid transparent;
-      color:var(--muted);font-size:14px;
+    #logoImg{width:100%; height:100%; object-fit:cover; display:none}
+    .brandTxt{display:flex; flex-direction:column; line-height:1.1}
+    .brandTxt strong{font-size:14px; letter-spacing:.2px}
+    .brandTxt span{font-size:12px; color: rgba(255,255,255,.68)}
+    .navLinks{display:flex; gap:14px; flex-wrap:wrap; justify-content:flex-end}
+    .navLinks a{
+      font-size:13px; color: rgba(255,255,255,.78);
+      padding:8px 10px; border-radius:999px;
+      border: 1px solid transparent;
     }
-    .link:hover{border-color:rgba(161,192,248,.22);color:var(--text);background:rgba(255,255,255,.04)}
-
-    .btn{
-      padding:10px 14px;border-radius:12px;border:1px solid var(--line);
-      background:rgba(255,255,255,.06);color:var(--text);cursor:pointer;
-      display:inline-flex;align-items:center;justify-content:center;gap:8px;
-      font-weight:800;
-    }
-    .btn:hover{background:rgba(255,255,255,.10)}
-    .btn.primary{
-      border:none;
-      background: linear-gradient(135deg, rgba(161,192,248,.95), rgba(161,192,248,.55));
-      color:#061022;
-      font-weight:900;
-    }
-    .btn.danger{border-color:rgba(255,90,90,.45);background:rgba(255,90,90,.08)}
-    .btn.danger:hover{background:rgba(255,90,90,.12)}
-    .btn.mini{padding:8px 10px;border-radius:12px;font-size:12px}
-
-    section{scroll-margin-top:16px}
-    .panel{
-      border:1px solid var(--line);
-      background: linear-gradient(180deg, var(--card), var(--card2));
-      border-radius:var(--r);
-      box-shadow: var(--shadow);
-      padding:18px;
-    }
-    h1,h2,h3{margin:0 0 10px}
-    p{margin:0}
-    .small{font-size:12px;color:var(--muted);line-height:1.6}
-    .muted{color:var(--muted)}
-    
-/* Keunggulan: grid cards (mirip englishvit) */
-.advGrid{
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
-}
-
-@media (max-width: 820px){
-  .advGrid{ grid-template-columns: 1fr; }
-}
-
-.advCard{
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(161,192,248,0.14);
-  border-radius: 16px;
-  padding: 16px 16px 14px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.18);
-}
-
-.advTitle{
-  margin: 0 0 8px;
-  font-size: 16px;
-  font-weight: 800;
-  letter-spacing: .2px;
-}
-
-.advText{
-  margin: 0;
-  color: rgba(255,255,255,0.84);
-  line-height: 1.6;
-  font-size: 14px;
-}
+    .navLinks a:hover{border-color: rgba(161,192,248,.22); background: rgba(161,192,248,.06)}
+    @media (max-width:760px){ .brandTxt span{display:none} }
 
     /* HERO */
-    .hero{padding:18px 0 8px;display:flex}
-    .heroInner{width:100%;max-width:780px}
-    .title{font-size:44px;line-height:1.05;letter-spacing:-.8px;margin:14px 0 0}
+    .hero{padding:18px 0 8px; display:flex}
+    .heroInner{width:100%; max-width:780px}
+    .title{font-size:44px; line-height:1.05; letter-spacing:-.8px; margin:14px 0 0}
     .accent{color:var(--sky)}
     .badge{
-      display:inline-flex;align-items:center;gap:8px;
-      padding:7px 12px;border-radius:999px;
-      border:1px solid rgba(161,192,248,.28);
-      background: rgba(161,192,248,.10);
-      color: rgba(255,255,255,.85);
-      font-size:12px;margin:10px 0 0;
+      display:inline-flex; align-items:center; gap:8px;
+      padding:7px 12px; border-radius:999px;
+      border:1px solid rgba(161,192,248,.22);
+      background: rgba(161,192,248,.07);
+      color: rgba(255,255,255,.78);
+      font-size:11px;
+      margin:18px 0 0;
     }
-    .subhead{margin-top:12px;color:var(--muted);line-height:1.7}
-    .heroActions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+    .subhead{margin-top:12px; color: var(--muted); line-height:1.7}
+    .heroActions{display:flex; gap:10px; flex-wrap:wrap; margin-top:16px}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:11px 14px; border-radius:999px;
+      background: rgba(255,255,255,.05);
+      border:1px solid rgba(161,192,248,.16);
+      color: rgba(255,255,255,.88);
+      font-weight:700; font-size:13px;
+      box-shadow: 0 10px 26px rgba(0,0,0,.18);
+    }
+    .btn:hover{border-color: rgba(161,192,248,.28); background: rgba(161,192,248,.06)}
+    .btn.primary{
+      background: rgba(161,192,248,.18);
+      border-color: rgba(161,192,248,.34);
+      color:#fff;
+    }
     @media (max-width:720px){ .title{font-size:36px} .heroInner{max-width:100%} }
 
-    /* SERVICES */
-    .grid2{display:grid;grid-template-columns:repeat(12,1fr);gap:14px;margin-top:12px}
-    .svc{
-      grid-column:span 6;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.05);
-      border-radius: var(--r);
+    /* SECTION */
+    section{padding:28px 0}
+    .secHead{display:flex; align-items:flex-end; justify-content:space-between; gap:16px; margin-bottom:14px}
+    h2{margin:0; font-size:22px; letter-spacing:-.2px}
+    .small{font-size:13px; color: rgba(255,255,255,.70); line-height:1.6}
+
+    /* ABOUT */
+    .aboutCard{
+      background: var(--card);
+      border:1px solid var(--stroke);
+      border-radius: var(--radius);
       padding:16px;
       box-shadow: var(--shadow);
-      cursor:pointer;
-      transition: transform .12s ease, background .12s ease;
     }
-    .svc:hover{transform: translateY(-1px); background: rgba(255,255,255,.07)}
-    .svcTitle{font-weight:900;margin:0 0 6px}
-    .svcDesc{color:var(--muted);line-height:1.6}
-    @media (max-width:860px){ .svc{grid-column:span 12} }
+
+    /* SERVICES */
+    .svcGrid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap:16px;
+    }
+    @media (max-width:860px){ .svcGrid{grid-template-columns:1fr} }
+    .card{
+      background: var(--card);
+      border:1px solid var(--stroke);
+      border-radius: var(--radius);
+      padding:16px;
+      box-shadow: var(--shadow);
+    }
+    .svcCard{cursor:pointer; transition: transform .08s ease}
+    .svcCard:hover{transform: translateY(-1px)}
+    .cardTitle{font-weight:900; letter-spacing:.2px; margin:0 0 8px}
+    .cardText{color: rgba(255,255,255,.78); line-height:1.65; margin:0}
 
     /* ADVANTAGES */
     .advGrid{
       display:grid;
-      grid-template-columns:repeat(2, minmax(0,1fr));
-      gap:14px;margin-top:12px;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap:18px;
     }
-    .adv{
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.05);
-      border-radius: var(--r);
-      padding:16px;
-      box-shadow: var(--shadow);
-    }
-    .adv h3{margin:0 0 8px;font-size:16px}
-    .adv p{color:var(--muted);line-height:1.6}
-    .adv.last{
-      grid-column: 1 / -1;
-      display:flex;justify-content:center;
-    }
-    .adv.last > .advInner{
-      width: 100%;
-      max-width: calc((var(--max) - 2*var(--pad) - 14px) / 2);
-    }
-    @media (max-width:860px){
-      .advGrid{grid-template-columns:1fr}
-      .adv.last > .advInner{max-width:100%}
-    }
-
-    /* TESTIMONIALS TEXT */
-    .tWrap{margin-top:12px}
-    .tViewport{
-      overflow:hidden;
-      border:1px solid var(--line);
+    @media (max-width:820px){ .advGrid{grid-template-columns:1fr} }
+    .advCard{
       background: rgba(255,255,255,.04);
-      border-radius: var(--r);
-      box-shadow: var(--shadow);
+      border: 1px solid rgba(161,192,248,.16);
+      border-radius: 16px;
+      padding: 16px 16px 14px;
+      box-shadow: 0 12px 30px rgba(0,0,0,.18);
     }
-    .tTrack{
-      display:flex;
-      gap:14px;
-      padding:14px;
-      transform: translateX(0);
-      transition: transform .28s ease;
-      will-change: transform;
-    }
+    .advTitle{margin:0 0 8px; font-size:16px; font-weight:900}
+    .advText{margin:0; color: rgba(255,255,255,.82); line-height:1.65; font-size:14px}
+
+    /* TESTIMONIALS TEXT slider */
+    .tWrap{position:relative; overflow:hidden}
+    .tTrack{display:flex; gap:14px; transition: transform .25s ease; will-change: transform}
     .tCard{
-      flex: 0 0 calc((100% - 2*14px) / 2.5);
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(0,0,0,.10);
+      min-width: 420px;
+      max-width: 420px;
+      background: rgba(255,255,255,.04);
+      border:1px solid rgba(161,192,248,.14);
       border-radius: 16px;
       padding:14px;
-      min-height: 110px;
+      box-shadow: 0 10px 26px rgba(0,0,0,.16);
     }
-    .tQuote{margin:0;color:var(--text);line-height:1.7;font-size:14px}
-    .tWho{margin-top:10px;color:var(--muted);font-size:12px;display:flex;align-items:center;gap:8px}
-    .dot{width:8px;height:8px;border-radius:999px;background:rgba(161,192,248,.8);border:1px solid rgba(161,192,248,.55)}
-    .tControls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:10px}
+    .tName{font-weight:900; margin:0 0 6px}
+    .tText{margin:0; color: rgba(255,255,255,.82); line-height:1.6}
+    @media (max-width:920px){
+      .tCard{min-width: 78vw; max-width: 78vw}
+    }
+    .tCtrls{display:flex; gap:10px; margin-top:12px}
     .iconBtn{
-      width:40px;height:40px;border-radius:14px;border:1px solid var(--line);
-      background:rgba(255,255,255,.06);cursor:pointer;color:var(--text);font-weight:900;
+      width:40px; height:40px; border-radius:999px;
+      display:grid; place-items:center;
+      background: rgba(255,255,255,.05);
+      border:1px solid rgba(161,192,248,.16);
+      cursor:pointer;
     }
-    .iconBtn:hover{background:rgba(255,255,255,.10)}
-    @media (max-width:860px){
-      .tCard{flex-basis: 90%;}
-      .tTrack{gap:12px}
-    }
+    .iconBtn:hover{background: rgba(161,192,248,.06); border-color: rgba(161,192,248,.26)}
 
-    /* TESTIMONIALS IMAGES */
-    .gLayout{display:grid;grid-template-columns: 1.2fr .8fr; gap:14px; margin-top:12px}
-    .bigBox{
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.04);
-      border-radius: var(--r);
+    /* TESTIMONIALS IMAGES gallery */
+    .gallery{
+      display:grid;
+      grid-template-columns: 1.4fr .6fr;
+      gap:14px;
+      align-items:start;
+    }
+    @media (max-width:900px){ .gallery{grid-template-columns:1fr} }
+    .bigFrame{
+      border-radius: 18px;
       overflow:hidden;
+      border:1px solid rgba(161,192,248,.16);
+      background: rgba(255,255,255,.03);
       box-shadow: var(--shadow);
       cursor:pointer;
     }
-    .bigImg{width:100%;height:420px;object-fit:cover;display:block}
-    .thumbCol{
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.04);
-      border-radius: var(--r);
-      box-shadow: var(--shadow);
-      padding:12px;
-      overflow:hidden;
-    }
-    .thumbRow{
-      display:flex;
+    .bigFrame img{width:100%; height:440px; object-fit:contain; background: rgba(0,0,0,.25)}
+    @media (max-width:900px){ .bigFrame img{height:360px} }
+    .thumbs{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
       gap:10px;
-      overflow:auto;
-      padding-bottom:6px;
-      scroll-snap-type: x mandatory;
     }
     .thumb{
-      flex:0 0 110px;
-      height:110px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.16);
+      border-radius: 14px;
       overflow:hidden;
-      background: rgba(0,0,0,.12);
+      border:1px solid rgba(161,192,248,.12);
+      background: rgba(255,255,255,.03);
       cursor:pointer;
-      scroll-snap-align:start;
-      position:relative;
+      box-shadow: 0 10px 24px rgba(0,0,0,.14);
     }
-    .thumb img{width:100%;height:100%;object-fit:cover;display:block}
-    .thumb.active{outline:2px solid rgba(161,192,248,.85); outline-offset:2px}
-    @media (max-width:980px){
-      .gLayout{grid-template-columns:1fr}
-      .bigImg{height:360px}
-    }
+    .thumb.active{border-color: rgba(161,192,248,.36)}
+    .thumb img{width:100%; height:120px; object-fit:cover; display:block}
+    .cap{margin-top:10px; color: rgba(255,255,255,.70); font-size:13px}
 
-    /* MODALS */
+    /* CONTACT FORM */
+    .formCard{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+    .formCard .full{grid-column:1/-1}
+    @media (max-width:820px){ .formCard{grid-template-columns:1fr} }
+    label{display:block; font-size:12px; color: rgba(255,255,255,.72); margin:0 0 6px}
+    input, select, textarea{
+      width:100%;
+      background: rgba(255,255,255,.05);
+      border:1px solid rgba(161,192,248,.16);
+      border-radius: 14px;
+      padding:12px 12px;
+      color: #fff;
+      outline:none;
+      font-size:14px;
+    }
+    textarea{min-height:110px; resize:vertical}
+    input:focus, select:focus, textarea:focus{border-color: rgba(161,192,248,.36); background: rgba(161,192,248,.06)}
+    .hint{margin-top:10px; font-size:13px; color: rgba(255,255,255,.70); line-height:1.6}
+
+    /* MODAL */
     .overlay{
-      position:fixed;inset:0;background:rgba(0,0,0,.45);
-      display:none;align-items:center;justify-content:center;
-      padding:16px;z-index:50;
+      position:fixed; inset:0; display:none; z-index:50;
+      background: rgba(0,0,0,.55);
+      padding:18px;
+      align-items:center; justify-content:center;
     }
     .modal{
-      width:min(900px, 100%);
-      max-height:85vh;
+      width:min(900px, 96vw);
+      max-height: 86vh;
       overflow:auto;
-      background: linear-gradient(180deg, rgba(0,45,95,.98), rgba(0,45,95,.92));
-      border:1px solid rgba(255,255,255,.18);
+      background: rgba(7,20,38,.96);
+      border:1px solid rgba(161,192,248,.20);
       border-radius: 18px;
-      box-shadow: 0 28px 90px rgba(0,0,0,.45);
+      box-shadow: 0 30px 80px rgba(0,0,0,.55);
       padding:16px;
     }
-    .modalHead{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
-    .modalTitle{font-size:18px;font-weight:900;margin:0}
-    .closeBtn{
-      width:40px;height:40px;border-radius:14px;border:1px solid rgba(255,255,255,.16);
-      background:rgba(255,255,255,.06);cursor:pointer;color:var(--text);font-weight:900;
-    }
-    .closeBtn:hover{background:rgba(255,255,255,.10)}
-    .modalSection{margin-top:12px;border-top:1px solid rgba(255,255,255,.14);padding-top:12px}
-    .modalSection h4{margin:0 0 8px;font-size:14px;color:rgba(161,192,248,.95)}
-    ul{margin:0;padding-left:18px;color:var(--muted);line-height:1.7}
-    li{margin:4px 0}
-
-    .gPopupGrid{display:grid;grid-template-columns:1.2fr .8fr;gap:12px;margin-top:12px}
-    .gPopupImg{
-      width:100%;max-height:540px;object-fit:contain;
-      background:rgba(0,0,0,.15);
-      border-radius:14px;border:1px solid rgba(255,255,255,.14)
-    }
-    .gPopupSide{border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:12px;background:rgba(255,255,255,.04)}
-    .gPopupControls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:10px}
-    .capBox{margin-top:10px;color:var(--muted);font-size:13px;line-height:1.6}
-    @media (max-width:980px){ .gPopupGrid{grid-template-columns:1fr} }
-
-    /* FORM */
-    .formGrid{display:grid;grid-template-columns:repeat(12,1fr);gap:12px;margin-top:12px}
-    .col6{grid-column:span 6}
-    .col12{grid-column:1/-1}
-    label{display:block;margin:0 0 6px;font-size:12px;color:var(--muted)}
-    input,select,textarea{
-      width:100%;
-      padding:11px 12px;
-      border-radius:12px;
-      border:1px solid rgba(255,255,255,.18);
-      background: rgba(0,0,0,.10);
-      color: var(--text);
-      outline:none;
-    }
-    input:focus,select:focus,textarea:focus{
-      border-color: rgba(161,192,248,.7);
-      box-shadow: 0 0 0 4px rgba(161,192,248,.16);
-    }
-    @media (max-width:860px){ .col6{grid-column:1/-1} }
-
-    /* Floating admin */
-    .fab{
-      position:fixed;right:16px;bottom:16px;z-index:60;
-      width:52px;height:52px;border-radius:999px;
-      border:1px solid rgba(161,192,248,.35);
-      background: rgba(161,192,248,.12);
+    .modalTop{display:flex; align-items:flex-start; justify-content:space-between; gap:10px}
+    .modalTop h3{margin:0; font-size:18px}
+    .closeX{cursor:pointer; padding:8px 10px; border-radius:999px; border:1px solid rgba(161,192,248,.16); background: rgba(255,255,255,.05)}
+    .closeX:hover{border-color: rgba(161,192,248,.28); background: rgba(161,192,248,.06)}
+    .modalSection{margin-top:14px}
+    .modalSection ul{margin:10px 0 0; padding-left:18px}
+    .modalSection li{margin:8px 0; color: rgba(255,255,255,.82); line-height:1.6}
+    .modalBadge{
+      display:inline-flex;
+      align-items:center;
+      padding:6px 10px;
+      border-radius:999px;
+      margin:6px 0 10px;
+      font-size:12px;
+      font-weight:900;
+      letter-spacing:.3px;
+      text-transform:uppercase;
+      border:1px solid rgba(161,192,248,.26);
+      background: rgba(161,192,248,.10);
       color: rgba(255,255,255,.92);
-      display:flex;align-items:center;justify-content:center;
+    }
+    .muted{color: rgba(255,255,255,.62)}
+    .modalP{margin:10px 0 0; color: rgba(255,255,255,.75); line-height:1.65}
+
+    /* GALLERY POPUP */
+    .gImg{width:100%; height:60vh; object-fit:contain; background: rgba(0,0,0,.35); border-radius: 14px; border:1px solid rgba(161,192,248,.14)}
+    .gActions{display:flex; gap:10px; margin-top:12px; justify-content:flex-end}
+    .gActions .btn{padding:10px 12px}
+
+    /* ADMIN floating button */
+    .adminFab{
+      position:fixed; right:14px; bottom:14px; z-index:60;
+      width:44px; height:44px; border-radius:999px;
+      display:grid; place-items:center;
+      background: rgba(161,192,248,.18);
+      border:1px solid rgba(161,192,248,.30);
+      box-shadow: 0 18px 44px rgba(0,0,0,.35);
       cursor:pointer;
-      box-shadow: 0 18px 60px rgba(0,0,0,.25);
-      user-select:none;
     }
-    .fab:hover{background:rgba(161,192,248,.16)}
-    .fab svg{width:22px;height:22px}
+    .adminFab:hover{background: rgba(161,192,248,.22)}
+    .adminFab span{font-weight:900}
 
-    /* Admin UI */
-    .tabs{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-    .tab{
-      padding:8px 10px;border-radius:12px;border:1px solid rgba(255,255,255,.16);
-      background:rgba(255,255,255,.04);cursor:pointer;font-weight:800;font-size:12px;color:var(--text);
+    /* ADMIN PANEL */
+    .adminPanel{
+      width:min(980px, 96vw);
+      background: rgba(7,20,38,.96);
+      border:1px solid rgba(161,192,248,.20);
+      border-radius: 18px;
+      box-shadow: 0 30px 80px rgba(0,0,0,.55);
+      padding:16px;
     }
-    .tab.active{border-color:rgba(161,192,248,.55);background:rgba(161,192,248,.10)}
-    .aSection{display:none;margin-top:12px}
-    .aSection.active{display:block}
+    .adminGrid{display:grid; grid-template-columns: 1fr 1fr; gap:12px}
+    .adminGrid .full{grid-column:1/-1}
+    @media (max-width:860px){ .adminGrid{grid-template-columns:1fr} }
 
-    .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-    .cardMini{
-      border:1px solid rgba(255,255,255,.16);
-      background:rgba(255,255,255,.04);
-      border-radius:16px;
-      padding:12px;
-      margin-top:10px;
+    .kRow{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
+    .chip{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 10px; border-radius:999px;
+      background: rgba(255,255,255,.05);
+      border:1px solid rgba(161,192,248,.14);
+      font-size:12px; color: rgba(255,255,255,.78);
     }
-    .twoCol{display:grid;grid-template-columns:repeat(12,1fr);gap:12px}
-    .twoCol .span6{grid-column:span 6}
-    .twoCol .span12{grid-column:1/-1}
-    @media (max-width:860px){ .twoCol .span6{grid-column:1/-1} }
-
-    .hr{height:1px;background:rgba(255,255,255,.14);margin:12px 0}
-
-    .thumbPrev{
-      width:90px;height:90px;border-radius:16px;border:1px solid rgba(255,255,255,.16);
-      overflow:hidden;background:rgba(0,0,0,.12);
-      display:flex;align-items:center;justify-content:center;
-    }
-    .thumbPrev img{width:100%;height:100%;object-fit:cover;display:block}
-
+    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace}
     .toast{
-      position:fixed;left:16px;bottom:16px;z-index:70;
-      max-width:360px;
-      border:1px solid rgba(255,255,255,.16);
-      background:rgba(0,0,0,.28);
-      backdrop-filter: blur(10px);
-      color:var(--text);
-      border-radius:14px;
-      padding:12px 14px;
+      position:fixed; left:50%; transform:translateX(-50%);
+      bottom:70px; z-index:80;
+      background: rgba(7,20,38,.96);
+      border:1px solid rgba(161,192,248,.22);
+      padding:10px 12px;
+      border-radius: 14px;
+      color: rgba(255,255,255,.90);
       display:none;
-      box-shadow: var(--shadow);
+      box-shadow: 0 18px 44px rgba(0,0,0,.35);
+      max-width:min(760px, 92vw);
+      font-size:13px;
     }
   </style>
 </head>
 
 <body>
-<header>
-  <div class="wrap nav">
-    <div class="brand">
-      <div class="logo" aria-hidden="true" id="logoBox">
-        <img id="logoImg" alt="logo" />
-      </div>
-      <div class="brandText">
-        <div class="brandName" id="siteName">Jokitoefl.myid</div>
-        <div class="brandSub" id="brandSub">Sertifikat TOEFL & Komputer • Bantuan Mahasiswa • Lainnya</div>
+  <!-- NAV -->
+  <div class="nav">
+    <div class="wrap">
+      <div class="navRow">
+        <div class="brand">
+          <div class="logoBox" id="logoBox"><img id="logoImg" alt="" /></div>
+          <div class="brandTxt">
+            <strong id="siteName">Jokitoefl.myid</strong>
+            <span id="tagline">One stop for your future</span>
+          </div>
+        </div>
+        <div class="navLinks" id="navLinks"></div>
       </div>
     </div>
-
-    <nav class="navLinks" aria-label="menu">
-      <a class="link" href="#home">Home</a>
-      <a class="link" href="#about">About</a>
-      <a class="link" href="#layanan">Layanan</a>
-      <a class="link" href="#keunggulan">Keunggulan</a>
-      <a class="link" href="#testimoni">Testimoni</a>
-      <a class="btn primary" href="#daftar" id="ctaTop">Konsultasi Gratis</a>
-    </nav>
   </div>
-</header>
 
-<main class="wrap">
-  <!-- HERO -->
-  <section id="home" class="hero">
-    <div class="heroInner">
-      <h1 class="title" id="headline">One stop for your <span class="accent">future</span></h1>
-      <div class="badge" id="heroBadge">Sertifikat TOEFL & Komputer • Bantuan Mahasiswa • Lainnya</div>
-      <p class="subhead" id="subhead"></p>
+  <main class="wrap">
+    <!-- HERO -->
+    <section id="home" class="hero">
+      <div class="heroInner">
+        <h1 class="title" id="headline">One stop for your <span class="accent">future</span></h1>
+        <div class="badge" id="heroBadge">Sertifikat TOEFL & Komputer • Bantuan Mahasiswa • Lainnya</div>
+        <p class="subhead" id="subhead"></p>
 
-      <div class="heroActions">
-        <a class="btn primary" href="#daftar" id="ctaHero">Konsultasi Gratis</a>
-        <a class="btn" href="#layanan">Lihat Layanan</a>
-        <a class="btn" id="igBtn" target="_blank" rel="noreferrer">Instagram</a>
+        <div class="heroActions">
+          <a class="btn primary" href="#daftar" id="ctaHero">Konsultasi Gratis</a>
+          <a class="btn" href="#layanan">Lihat Layanan</a>
+          <a class="btn" id="igBtn" target="_blank" rel="noreferrer">Instagram</a>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ABOUT -->
-  <section id="about" class="panel" style="margin-top:14px">
-    <h2>About Us</h2>
-    <p id="aboutText" class="muted" style="line-height:1.75"></p>
-  </section>
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="secHead">
+        <h2 id="aboutTitle">Tentang Kami</h2>
+      </div>
+      <div class="aboutCard">
+        <p class="cardText" id="aboutText"></p>
+      </div>
+    </section>
 
-  <!-- SERVICES -->
-  <section id="layanan" class="panel" style="margin-top:14px">
-    <h2>Layanan</h2>
-    <p class="small">Klik card untuk lihat info lengkap. Kamu bisa lanjut konsultasi langsung dari modal.</p>
-    <div class="grid2" id="servicesWrap"></div>
-  </section>
+    <!-- SERVICES -->
+    <section id="layanan">
+      <div class="secHead">
+        <h2>Layanan</h2>
+        <div class="small">Klik card untuk lihat detail.</div>
+      </div>
+      <div class="svcGrid" id="svcGrid"></div>
+    </section>
 
-  <!-- ADVANTAGES -->
-  <section id="keunggulan" class="panel" style="margin-top:14px">
-    <h2>Keunggulan</h2>
-    <div class="advGrid" id="advWrap"></div>
-  </section>
+    <!-- ADVANTAGES -->
+    <section id="keunggulan">
+      <div class="secHead">
+        <h2>Keunggulan</h2>
+        <div class="small">Kenapa banyak yang cocok di sini.</div>
+      </div>
+      <div class="advGrid" id="advWrap"></div>
+    </section>
 
-  <!-- TESTIMONIALS -->
-  <section id="testimoni" class="panel" style="margin-top:14px">
-    <h2>Testimoni</h2>
+    <!-- TESTIMONIALS -->
+    <section id="testimoni">
+      <div class="secHead">
+        <h2>Testimoni</h2>
+        <div class="small">Teks dan screenshot (tanpa blur).</div>
+      </div>
 
-    <h3 style="margin-top:10px">Dari Customer</h3>
-    <div class="tWrap">
-      <div class="tViewport" id="tViewport">
+      <div class="tWrap">
         <div class="tTrack" id="tTrack"></div>
       </div>
-      <div class="tControls">
-        <button class="iconBtn" id="tPrev" type="button" aria-label="prev">‹</button>
-        <button class="iconBtn" id="tNext" type="button" aria-label="next">›</button>
-        <span class="small">Geser atau klik tombol.</span>
-      </div>
-    </div>
-
-    <h3 style="margin-top:16px">Gambar</h3>
-    <p class="small">Klik gambar untuk lihat detail.</p>
-
-    <div class="gLayout" id="galleryWrap">
-      <div class="bigBox" id="bigBox" role="button" aria-label="open image popup">
-        <img class="bigImg" id="bigImg" alt="testimoni" />
-      </div>
-      <div class="thumbCol">
-        <div class="small">Thumbnails (4–6 terlihat, geser samping untuk sisanya)</div>
-        <div class="thumbRow" id="thumbRow" style="margin-top:10px"></div>
-      </div>
-    </div>
-    <div id="galleryEmpty" class="small" style="margin-top:10px;display:none">Belum ada testimoni gambar.</div>
-  </section>
-
-  <!-- FORM -->
-  <section id="daftar" class="panel" style="margin-top:14px">
-    <h2 id="formTitle">Form Konsultasi</h2>
-    <p class="small" id="formSubtitle"></p>
-
-    <form id="leadForm">
-      <!-- honeypot -->
-      <div style="position:absolute;left:-9999px;top:-9999px;opacity:0">
-        <label>Company</label>
-        <input name="company" autocomplete="off" />
+      <div class="tCtrls">
+        <div class="iconBtn" id="tPrev" title="Prev">‹</div>
+        <div class="iconBtn" id="tNext" title="Next">›</div>
       </div>
 
-      <div class="formGrid">
-        <div class="col6">
-          <label>Nama</label>
-          <input name="nama" id="fNama" required placeholder="Nama kamu" />
-        </div>
-        <div class="col6">
-          <label>No WhatsApp</label>
-          <input name="wa" id="fWa" required placeholder="08xxxx / 628xxxx" />
-        </div>
-        <div class="col12">
-          <label>Layanan</label>
-          <select name="layanan" id="fLayanan" required></select>
-        </div>
-        <div class="col12">
-          <label>Catatan (opsional)</label>
-          <textarea name="catatan" id="fCatatan" rows="3" placeholder="Contoh: tanya harga, durasi kelas, deadline, dll"></textarea>
-        </div>
-        <div class="col12" style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:4px">
-          <button class="btn primary" type="submit">Kirim</button>
-          <span class="small" id="formHint"></span>
+      <div style="height:18px"></div>
+
+      <div id="galleryEmpty" class="small" style="display:none">Belum ada testimoni gambar.</div>
+      <div id="galleryWrap">
+        <div class="gallery">
+          <div>
+            <div class="bigFrame" id="bigFrame" title="Klik untuk popup">
+              <img id="bigImg" alt="testimoni" />
+            </div>
+            <div class="cap" id="bigCap"></div>
+          </div>
+          <div class="thumbs" id="thumbRow"></div>
         </div>
       </div>
-    </form>
-  </section>
+    </section>
 
-  <div class="small" style="margin:18px 0 28px;color:rgba(255,255,255,.55)">
-    © <span id="year"></span> <span id="footerName">Jokitoefl.myid</span>
-  </div>
-</main>
-
-<!-- Service Modal -->
-<div class="overlay" id="svcOverlay" aria-hidden="true">
-  <div class="modal" role="dialog" aria-modal="true" aria-label="service detail">
-    <div class="modalHead">
-      <div>
-        <h3 class="modalTitle" id="svcModalTitle"></h3>
-        <div class="small" id="svcModalDesc"></div>
+    <!-- CONTACT -->
+    <section id="kontak">
+      <div class="secHead">
+        <h2>Kontak</h2>
+        <div class="small">Isi form, nanti kami hubungi via WhatsApp.</div>
       </div>
-      <button class="closeBtn" id="svcClose" type="button">✕</button>
-    </div>
-    <div id="svcModalBody"></div>
-    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px">
-      <a class="btn primary" href="#daftar" id="svcCta">Konsultasi Gratis</a>
-      <button class="btn" id="svcScroll" type="button">Isi Form Sekarang</button>
+      <div class="card">
+        <form id="leadForm" class="formCard">
+          <div>
+            <label>Nama</label>
+            <input id="fName" name="name" placeholder="Nama kamu" required />
+          </div>
+          <div>
+            <label>No WhatsApp</label>
+            <input id="fWA" name="whatsapp" placeholder="08xxxxxxxxxx" required />
+          </div>
+          <div class="full">
+            <label>Layanan</label>
+            <select id="fService" name="service" required></select>
+          </div>
+          <div class="full">
+            <label>Catatan (opsional)</label>
+            <textarea id="fNote" name="note" placeholder=""></textarea>
+          </div>
+          <div class="full">
+            <button class="btn primary" type="submit" id="btnSubmit">Kirim</button>
+          </div>
+        </form>
+        <div class="hint" id="formHint"></div>
+      </div>
+    </section>
+
+    <!-- DAFTAR anchor -->
+    <section id="daftar" style="padding-top:0"></section>
+  </main>
+
+  <!-- Service Modal -->
+  <div class="overlay" id="svcOverlay">
+    <div class="modal">
+      <div class="modalTop">
+        <div>
+          <h3 id="svcModalTitle"></h3>
+          <p class="modalP" id="svcModalDesc"></p>
+        </div>
+        <div class="closeX" id="svcClose">Tutup</div>
+      </div>
+      <div id="svcModalBody"></div>
     </div>
   </div>
-</div>
 
-<!-- Gallery Popup -->
-<div class="overlay" id="gOverlay" aria-hidden="true">
-  <div class="modal" role="dialog" aria-modal="true" aria-label="image popup">
-    <div class="modalHead">
-      <div>
-        <h3 class="modalTitle">Testimoni Gambar</h3>
-        <div class="small">Gunakan tombol prev/next untuk pindah.</div>
-      </div>
-      <button class="closeBtn" id="gClose" type="button">✕</button>
-    </div>
-
-    <div class="gPopupGrid">
-      <div>
-        <img id="gPopupImg" class="gPopupImg" alt="popup testimoni" />
-        <div class="gPopupControls">
-          <button class="btn" id="gPrev" type="button">Prev</button>
-          <button class="btn" id="gNext" type="button">Next</button>
+  <!-- Gallery Popup -->
+  <div class="overlay" id="gOverlay">
+    <div class="modal">
+      <div class="modalTop">
+        <div>
+          <h3>Testimoni</h3>
+          <p class="modalP" id="gCaption"></p>
         </div>
+        <div class="closeX" id="gClose">Tutup</div>
       </div>
-      <div class="gPopupSide">
-        <div class="small">Caption (hanya di popup)</div>
-        <div class="capBox" id="gCaption"></div>
+      <img class="gImg" id="gPopupImg" alt="popup" />
+      <div class="gActions">
+        <button class="btn" id="gPrev">Prev</button>
+        <button class="btn" id="gNext">Next</button>
       </div>
     </div>
   </div>
-</div>
 
-<!-- Admin Floating Button -->
-<button class="fab" id="adminFab" title="Admin" aria-label="admin">
-  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-    <path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z" stroke="currentColor" stroke-width="2"/>
-    <path d="M19.4 15a7.9 7.9 0 0 0 .1-2l2-1.2-2-3.4-2.3.6a7.6 7.6 0 0 0-1.6-1l-.3-2.4H11l-.3 2.4a7.6 7.6 0 0 0-1.6 1l-2.3-.6-2 3.4 2 1.2a7.9 7.9 0 0 0 .1 2l-2 1.2 2 3.4 2.3-.6a7.6 7.6 0 0 0 1.6 1l.3 2.4h4.2l.3-2.4a7.6 7.6 0 0 0 1.6-1l2.3.6 2-3.4-2-1.2Z" stroke="currentColor" stroke-width="2" opacity=".9"/>
-  </svg>
-</button>
+  <!-- Admin FAB -->
+  <div class="adminFab" id="adminFab" title="Admin"><span>A</span></div>
 
-<!-- Admin Panel -->
-<div class="overlay" id="aOverlay" aria-hidden="true">
-  <div class="modal" role="dialog" aria-modal="true" aria-label="admin panel">
-    <div class="modalHead">
-      <div>
-        <h3 class="modalTitle">Admin Panel</h3>
-        <div class="small">
-          Aman: password hanya lokal. Publish global: Edit → Simpan Draft → Copy JSON → paste ke <b>data.json</b> GitHub → commit.
+  <!-- Admin Overlay -->
+  <div class="overlay" id="adminOverlay">
+    <div class="adminPanel">
+      <div class="modalTop">
+        <div>
+          <h3>Admin Panel (Local Draft)</h3>
+          <p class="modalP">Edit di sini → <b>Copy JSON</b> → paste ke <span class="mono">data.json</span> di GitHub → commit.</p>
         </div>
+        <div class="closeX" id="adminClose">Tutup</div>
       </div>
-      <button class="closeBtn" id="aClose" type="button">✕</button>
-    </div>
 
-    <!-- LOGIN -->
-    <div id="aLoginBox" class="panel" style="margin-top:12px">
-      <h3 style="margin:0 0 8px">Login / Set Admin</h3>
-      <div class="small">Pertama kali: set username & password. Berikutnya: login pakai yang sama. Password tidak pernah tampil.</div>
-
-      <div class="formGrid">
-        <div class="col6">
-          <label>Username</label>
-          <input id="aUser" autocomplete="username" />
-        </div>
-        <div class="col6">
-          <label>Password</label>
-          <input id="aPass" type="password" autocomplete="current-password" />
-        </div>
-        <div class="col12" style="display:flex;gap:10px;flex-wrap:wrap">
-          <button class="btn primary" id="aLoginBtn" type="button">Masuk / Set</button>
-          <button class="btn" id="aResetBtn" type="button">Reset Login Lokal</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- DASH -->
-    <div id="aDash" style="display:none;margin-top:12px">
-      <div class="panel">
-        <h3 style="margin:0 0 8px">Publish Global</h3>
-        <div class="small">
-          Setelah commit `data.json`, publik ikut berubah. Cek di Incognito atau Ctrl+Shift+R.
-        </div>
-        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px">
-          <button class="btn primary" id="aCopyBtn" type="button">Copy JSON untuk data.json</button>
-          <button class="btn" id="aSaveDraftBtn" type="button">Simpan Draft</button>
-          <button class="btn danger" id="aClearDraftBtn" type="button">Hapus Draft Lokal</button>
-          <a class="btn" id="aOpenGit" target="_blank" rel="noreferrer">Buka GitHub edit data.json</a>
+      <!-- Login -->
+      <div id="adminLogin">
+        <div class="adminGrid">
+          <div class="full">
+            <div class="chip">Keamanan: password admin tersimpan di perangkat kamu (LocalStorage). Tidak ikut ke repo.</div>
+          </div>
+          <div class="full">
+            <label>Password Admin</label>
+            <input id="adminPass" type="password" placeholder="Masukkan password" />
+          </div>
+          <div class="full kRow">
+            <button class="btn primary" id="adminLoginBtn" type="button">Masuk</button>
+            <span class="small" id="adminLoginMsg"></span>
+          </div>
         </div>
       </div>
 
-      <div class="tabs" aria-label="admin tabs">
-        <button class="tab active" data-tab="tab-settings" type="button">Settings + Logo</button>
-        <button class="tab" data-tab="tab-services" type="button">Layanan</button>
-        <button class="tab" data-tab="tab-advantages" type="button">Keunggulan</button>
-        <button class="tab" data-tab="tab-ttext" type="button">Testimoni Teks</button>
-        <button class="tab" data-tab="tab-timg" type="button">Testimoni Gambar</button>
-        <button class="tab" data-tab="tab-form" type="button">Form (Formspree)</button>
-        <button class="tab" data-tab="tab-security" type="button">Password</button>
-      </div>
+      <!-- Editor -->
+      <div id="adminEditor" style="display:none">
+        <div class="adminGrid">
+          <div class="full kRow">
+            <span class="chip">Draft tersimpan otomatis di browser kamu</span>
+            <button class="btn" id="adminResetDraft" type="button">Reset Draft</button>
+            <button class="btn primary" id="adminCopyJson" type="button">Copy JSON</button>
+          </div>
 
-      <!-- SETTINGS -->
-      <div class="aSection active" id="tab-settings">
-        <div class="cardMini">
-          <div class="twoCol">
-            <div class="span6">
-              <label>Site Name</label>
-              <input id="s_siteName" />
-            </div>
-            <div class="span6">
-              <label>CTA Text</label>
-              <input id="s_ctaText" />
-            </div>
+          <div class="full">
+            <label>Logo Path (contoh: assets/logo.png)</label>
+            <input id="eLogoSrc" placeholder="assets/logo.png" />
+          </div>
 
-            <div class="span12">
-              <label>Headline (kata “future” otomatis warna biru)</label>
-              <input id="s_headline" />
-            </div>
+          <div>
+            <label>Site Name</label>
+            <input id="eSiteName" />
+          </div>
+          <div>
+            <label>CTA Text</label>
+            <input id="eCtaText" />
+          </div>
 
-            <div class="span12">
-              <label>Badge</label>
-              <input id="s_badge" />
-            </div>
+          <div class="full">
+            <label>Headline</label>
+            <input id="eHeadline" />
+          </div>
+          <div class="full">
+            <label>Subhead</label>
+            <textarea id="eSubhead"></textarea>
+          </div>
 
-            <div class="span12">
-              <label>Subhead</label>
-              <textarea id="s_subhead" rows="2"></textarea>
-            </div>
+          <div class="full">
+            <label>Hero Badge (boleh kosong kalau mau clean)</label>
+            <input id="eHeroBadge" />
+          </div>
 
-            <div class="span12">
-              <label>Instagram URL</label>
-              <input id="s_instagram" />
-            </div>
+          <div class="full">
+            <label>Instagram URL</label>
+            <input id="eInstagram" />
+          </div>
 
-            <div class="span12">
-              <label>About</label>
-              <textarea id="s_about" rows="3"></textarea>
-            </div>
+          <div class="full">
+            <label>About Title</label>
+            <input id="eAboutTitle" />
+          </div>
+          <div class="full">
+            <label>About Text</label>
+            <textarea id="eAboutText"></textarea>
+          </div>
 
-            <div class="span6">
-              <label>Form Title</label>
-              <input id="s_formTitle" />
-            </div>
-            <div class="span6">
-              <label>Form Subtitle</label>
-              <input id="s_formSubtitle" />
-            </div>
+          <div class="full">
+            <label>Services (JSON)</label>
+            <textarea id="eServices" class="mono" placeholder='[{"id":"toefl","title":"...","desc":"...","details":["SECTION: ...","..."]}]'></textarea>
+            <div class="small">Tip: Untuk badge nasional/internasional, pakai item: <span class="mono">SECTION: SERTIFIKAT NASIONAL</span></div>
+          </div>
 
-            <div class="span12">
-              <div class="hr"></div>
-              <div class="row">
-                <div class="thumbPrev" id="logoPrev"><span class="small">Logo</span></div>
-                <div>
-                  <div class="small">Upload logo (akan di-compress) → ikut masuk ke JSON publish.</div>
-                  <div class="row" style="margin-top:8px">
-                    <input id="logoFile" type="file" accept="image/*" />
-                    <button class="btn mini danger" id="logoRemove" type="button">Hapus Logo</button>
-                  </div>
-                </div>
+          <div class="full">
+            <label>Advantages (JSON)</label>
+            <textarea id="eAdvantages" class="mono" placeholder='[{"title":"...","text":"..."}]'></textarea>
+          </div>
+
+          <div class="full">
+            <label>Testimonials Text (JSON)</label>
+            <textarea id="eTText" class="mono" placeholder='[{"name":"Anon","text":"..."}]'></textarea>
+          </div>
+
+          <div class="full">
+            <label>Testimonials Images (JSON)</label>
+            <textarea id="eTImg" class="mono" placeholder='[{"src":"assets/testimonials/img-01.jpg.jpeg","cap":"..."}]'></textarea>
+          </div>
+
+          <div class="full">
+            <label>Ganti Password Admin</label>
+            <div class="adminGrid">
+              <div>
+                <label>Password lama</label>
+                <input id="oldPass" type="password" />
+              </div>
+              <div>
+                <label>Password baru</label>
+                <input id="newPass" type="password" />
+              </div>
+              <div class="full kRow">
+                <button class="btn" id="btnChangePass" type="button">Ubah Password</button>
+                <span class="small" id="passMsg"></span>
               </div>
             </div>
+          </div>
 
+          <div class="full">
+            <div class="chip">Email tujuan tidak ditampilkan di website. Form pakai Formspree endpoint di data.json.</div>
           </div>
         </div>
       </div>
-
-      <!-- SERVICES -->
-      <div class="aSection" id="tab-services">
-        <div class="small">Edit 4 layanan. Kamu bisa ubah judul, deskripsi, dan detail (section + bullet).</div>
-        <div id="svcEditorList"></div>
-        <div class="cardMini">
-          <div class="small">Tambah layanan baru (kalau butuh)</div>
-          <div class="row" style="margin-top:8px">
-            <button class="btn mini" id="svcAdd" type="button">+ Tambah Layanan</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- ADVANTAGES -->
-      <div class="aSection" id="tab-advantages">
-        <div class="small">Keunggulan 5 card. Card ke-5 akan otomatis center.</div>
-        <div id="advEditorList"></div>
-        <div class="row" style="margin-top:10px">
-          <button class="btn mini" id="advAdd" type="button">+ Tambah Keunggulan</button>
-        </div>
-      </div>
-
-      <!-- TESTIMONIALS TEXT -->
-      <div class="aSection" id="tab-ttext">
-        <div class="small">Maks 20 testimoni teks. Slider manual, tanpa blur.</div>
-        <div id="tTextEditorList"></div>
-        <div class="row" style="margin-top:10px">
-          <button class="btn mini" id="tTextAdd" type="button">+ Tambah Testimoni Teks</button>
-        </div>
-      </div>
-
-      <!-- TESTIMONIALS IMAGES -->
-      <div class="aSection" id="tab-timg">
-        <div class="small">
-          Upload gambar testimoni (akan di-compress). Maks 20.
-          Caption hanya tampil di popup.
-        </div>
-
-        <div class="cardMini">
-          <div class="row">
-            <input id="tImgFiles" type="file" accept="image/*" multiple />
-            <button class="btn mini" id="tImgAddBtn" type="button">Tambahkan ke List</button>
-          </div>
-          <div class="small" style="margin-top:8px">
-            Tips: kalau banyak screenshot, pilih beberapa dulu, upload bertahap supaya tidak penuh LocalStorage.
-          </div>
-        </div>
-
-        <div id="tImgEditorList"></div>
-      </div>
-
-      <!-- FORM -->
-      <div class="aSection" id="tab-form">
-        <div class="small">Form pakai Formspree. Ini aman karena yang disimpan hanya endpoint URL, bukan email di halaman.</div>
-        <div class="cardMini">
-          <label>Formspree Endpoint (contoh: https://formspree.io/f/xxxxxxx)</label>
-          <input id="f_endpoint" placeholder="Tempel endpoint di sini" />
-          <div class="hr"></div>
-          <label>Success Message</label>
-          <input id="f_success" />
-        </div>
-      </div>
-
-      <!-- SECURITY -->
-      <div class="aSection" id="tab-security">
-        <div class="cardMini">
-          <h3 style="margin:0 0 8px">Ganti Password Admin</h3>
-          <div class="small">Wajib masukkan password lama dulu. Password tetap hanya lokal.</div>
-          <div class="formGrid">
-            <div class="col6">
-              <label>Password lama</label>
-              <input id="oldPass" type="password" />
-            </div>
-            <div class="col6">
-              <label>Password baru</label>
-              <input id="newPass" type="password" />
-            </div>
-            <div class="col6">
-              <label>Ulangi password baru</label>
-              <input id="newPass2" type="password" />
-            </div>
-            <div class="col12">
-              <button class="btn primary" id="changePassBtn" type="button">Simpan Password Baru</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
     </div>
   </div>
-</div>
 
-<div class="toast" id="toast"></div>
+  <div class="toast" id="toast"></div>
 
-<script>
-  // ========= Repo config for "Open GitHub edit data.json" =========
-  const GITHUB_USER = "meimeibkn";
-  const GITHUB_REPO = "Jokitoefl.myid";
+  <script>
+    // ===== Helpers
+    const $ = (id)=>document.getElementById(id);
 
-  // ========= Storage keys =========
-  const KEY_ADMIN = "JTK_ADMIN_V1";
-  const KEY_AUTH  = "JTK_AUTH_V1";
-  const KEY_DRAFT = "JTK_DRAFT_V1";
-
-  // ========= Helpers =========
-  const $ = (id) => document.getElementById(id);
-  function getImgSrc(it){
-  return it?.src || it?.data || "";
-}
-  function toast(msg){
-    const t = $("toast");
-    t.textContent = msg;
-    t.style.display = "block";
-    clearTimeout(window.__t);
-    window.__t = setTimeout(()=>t.style.display="none", 2600);
-  }
-  function safeText(s){ return String(s ?? ""); }
-  function normalizeAdvantages(d){
-  // format baru: d.advantages = [{title, text}]
-  if(Array.isArray(d.advantages) && d.advantages.length){
-    return d.advantages.map(x=>({
-      title: x.title ?? "",
-      text: x.text ?? x.desc ?? ""
-    }));
-  }
-
-  // format lama: d.highlights = [{title, text/desc}]
-  if(Array.isArray(d.highlights) && d.highlights.length){
-    return d.highlights.map(x=>({
-      title: x.title ?? "",
-      text: x.text ?? x.desc ?? ""
-    }));
-  }
-
-  // format lama lain (kalau ada): settings.whyText berupa string panjang
-  const wt = d?.settings?.whyText || "";
-  if(wt && typeof wt === "string"){
-    return [{ title: d?.settings?.whyTitle || "Keunggulan", text: wt }];
-  }
-
-  return [];
-}
-  function clone(obj){ return JSON.parse(JSON.stringify(obj)); }
-
-  // ========= Data =========
-  let REMOTE = null; // from data.json
-  let DRAFT  = null; // local editable
-
-  async function fetchRemote(){
-    try{
-      const res = await fetch("./data.json?v=" + Date.now(), { cache:"no-store" });
-      if(!res.ok) return null;
-      const obj = await res.json();
-      if(!obj || !obj.settings || !obj.services) return null;
-      return obj;
-    }catch{ return null; }
-  }
-
-  function loadDraft(){
-    try{
-      const raw = localStorage.getItem(KEY_DRAFT);
-      return raw ? JSON.parse(raw) : null;
-    }catch{ return null; }
-  }
-  function saveDraft(d){
-    localStorage.setItem(KEY_DRAFT, JSON.stringify(d));
-    DRAFT = d;
-  }
-  function clearDraft(){
-    localStorage.removeItem(KEY_DRAFT);
-    DRAFT = null;
-  }
-
-  // public always renders REMOTE (published)
-  // admin editor works on DRAFT; if none, start from REMOTE clone
-  function getEditorData(){
-    if(!DRAFT) DRAFT = clone(REMOTE);
-    // ensure fields exist
-    DRAFT.settings.logoData = DRAFT.settings.logoData || "";
-    DRAFT.form = DRAFT.form || { provider:"formspree", endpoint:"", successMessage:"Terkirim.", antiSpam:{honeypotField:"company"} };
-    DRAFT.form.antiSpam = DRAFT.form.antiSpam || { honeypotField:"company" };
-    DRAFT.testimonialsText = (DRAFT.testimonialsText || []).slice(0, 20);
-    DRAFT.testimonialsImages = (DRAFT.testimonialsImages || []).slice(0, 20);
-    return DRAFT;
-  }
-
-  function sanitizeForPublish(d){
-    // no admin secrets ever
-    return {
-      version: d.version || 1,
-      settings: d.settings,
-      form: d.form,
-      services: d.services,
-      advantages: d.advantages,
-      testimonialsText: d.testimonialsText,
-      testimonialsImages: d.testimonialsImages
-    };
-  }
-
-  // ========= Render public =========
-function applyLogo(d){
-  const img = $("logoImg");
-  const box = $("logoBox");
-
-  // Support 2 format:
-  // 1) base64: d.settings.logoData
-  // 2) file path: d.settings.logo.src  (atau d.settings.logoSrc)
-  const logoData = d?.settings?.logoData || "";
-  const logoSrc  = d?.settings?.logo?.src || d?.settings?.logoSrc || "";
-
-  const finalSrc = (logoData && String(logoData).startsWith("data:image"))
-    ? logoData
-    : logoSrc;
-
-  if(finalSrc){
-    img.src = finalSrc;
-    img.style.display = "block";
-    box.style.background = "transparent";
-  }else{
-    img.removeAttribute("src");
-    img.style.display = "none";
-    box.style.background = "linear-gradient(135deg, rgba(161,192,248,.95), rgba(161,192,248,.35))";
-  }
-}
-
-  function renderTop(d){
-    $("siteName").textContent = safeText(d.settings.siteName);
-    $("footerName").textContent = safeText(d.settings.siteName);
-    $("year").textContent = new Date().getFullYear();
-
-    const raw = safeText(d.settings.headline);
-    $("headline").innerHTML = raw.replace(/future/gi, "<span class='accent'>future</span>");
-
-    $("heroBadge").textContent = safeText(d.settings.badge);
-    $("brandSub").textContent = safeText(d.settings.badge);
-
-    $("subhead").textContent = safeText(d.settings.subhead);
-    $("aboutText").textContent = safeText(d.settings.about);
-
-    $("ctaTop").textContent  = safeText(d.settings.ctaText || "Konsultasi Gratis");
-    $("ctaHero").textContent = safeText(d.settings.ctaText || "Konsultasi Gratis");
-
-    $("formTitle").textContent = safeText(d.settings.formTitle || "Form Konsultasi");
-    $("formSubtitle").textContent = safeText(d.settings.formSubtitle || "");
-
-    $("igBtn").href = safeText(d.settings.instagram || "#");
-
-    applyLogo(d);
-  }
-
-  function renderServices(d){
-    const wrap = $("servicesWrap");
-    wrap.innerHTML = "";
-    (d.services || []).forEach((s)=>{
-      const card = document.createElement("article");
-      card.className = "svc";
-      card.innerHTML = `
-        <h3 class="svcTitle">${safeText(s.title)}</h3>
-        <div class="svcDesc">${safeText(s.desc)}</div>
-      `;
-      card.onclick = ()=> openServiceModal(s);
-      wrap.appendChild(card);
-    });
-
-    const sel = $("fLayanan");
-    sel.innerHTML = `<option value="" disabled selected>Pilih layanan…</option>`;
-    (d.services || []).forEach((s)=>{
-      const opt = document.createElement("option");
-      opt.value = s.title;
-      opt.textContent = s.title;
-      sel.appendChild(opt);
-    });
-  }
-function renderAdvantages(d){
-  const wrap = document.getElementById("advWrap");
-  if(!wrap) return;
-
-  const list = Array.isArray(d.advantages) ? d.advantages : [];
-  wrap.innerHTML = "";
-
-  list.forEach(item=>{
-    const card = document.createElement("div");
-    card.className = "advCard"; // class khusus keunggulan
-    card.innerHTML = `
-      <h3 class="advTitle">${safeText(item.title || "")}</h3>
-      <p class="advText">${safeText(item.text || "")}</p>
-    `;
-    wrap.appendChild(card);
-  });
-}
-
-
-  // ========= Service modal =========
-  let currentServiceTitle = "";
-function openServiceModal(s){
-  currentServiceTitle = s.title || "";
-  $("svcModalTitle").textContent = safeText(s.title);
-  $("svcModalDesc").textContent  = safeText(s.desc);
-
-  const body = $("svcModalBody");
-  body.innerHTML = "";
-
-  const details = s.details || [];
-
-  // CASE A: details = array of strings (punyamu)
-  if (details.length && typeof details[0] === "string") {
-    const items = details
-      .map(x => safeText(x).trim())
-      .filter(x => x.length > 0); // buang baris kosong "" biar tidak jadi garis
-
-    const div = document.createElement("div");
-    div.className = "modalSection";
-    div.innerHTML = `<h4>Detail</h4><ul>${items.map(x => `<li>${x}</li>`).join("")}</ul>`;
-    body.appendChild(div);
-  }
-
-  // CASE B: details = array of section objects (format lama)
-  else if (details.length && typeof details[0] === "object") {
-    details.forEach(section=>{
-      const div = document.createElement("div");
-      div.className = "modalSection";
-      const items = (section.items || [])
-        .map(x=>`<li>${safeText(x)}</li>`)
-        .join("");
-      div.innerHTML = `<h4>${safeText(section.title)}</h4><ul>${items}</ul>`;
-      body.appendChild(div);
-    });
-  }
-
-  // CASE C: kosong
-  else {
-    const div = document.createElement("div");
-    div.className = "modalSection";
-    div.innerHTML = `<div class="small">Belum ada detail untuk layanan ini.</div>`;
-    body.appendChild(div);
-  }
-
-  $("svcOverlay").style.display = "flex";
-}
-  function closeServiceModal(){ $("svcOverlay").style.display = "none"; }
-
-  // ========= Testimonials text slider =========
-  let tIndex = 0;
-  let dragging = false;
-  let startX = 0;
-  let lastX  = 0;
-
-  function cardsPerView(){
-    return window.matchMedia("(max-width: 860px)").matches ? 1 : 2.5;
-  }
-
-  function renderTestText(d){
-    const track = $("tTrack");
-    track.innerHTML = "";
-
-    const arr = (d.testimonialsText || []).slice(0, 20);
-    if(arr.length === 0){
-      track.innerHTML = `<div class="tCard" style="flex-basis:90%"><p class="tQuote">Belum ada testimoni teks.</p><div class="tWho"><span class="dot"></span><span>Admin</span></div></div>`;
-      tIndex = 0;
-      applyTTransform(d);
-      return;
+    function safeText(s){
+      return (s ?? "").toString()
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
     }
 
-    arr.forEach(t=>{
-      const card = document.createElement("div");
-      card.className = "tCard";
-      card.innerHTML = `
-        <p class="tQuote">“${safeText(t.text)}”</p>
-        <div class="tWho"><span class="dot"></span><span>${safeText(t.name || "Anonim")}</span></div>
-      `;
-      track.appendChild(card);
-    });
+    function toast(msg){
+      const t = $("toast");
+      t.textContent = msg;
+      t.style.display = "block";
+      clearTimeout(toast._t);
+      toast._t = setTimeout(()=>t.style.display="none", 2200);
+    }
 
-    tIndex = 0;
-    applyTTransform(d);
-  }
+    function getImgSrc(it){ return it?.src || it?.data || ""; }
 
-  function applyTTransform(d){
-    const viewport = $("tViewport");
-    const track = $("tTrack");
-    const arr = (d.testimonialsText || []).slice(0, 20);
-    const total = Math.max(arr.length, 1);
+    // ===== Data State
+    const LS_DRAFT = "jokitoefl_draft_v1";
+    const LS_ADMIN_PASS = "jokitoefl_admin_pass_v1";
+    let REMOTE = null;
+    let STATE = null;
 
-    const gap = window.matchMedia("(max-width: 860px)").matches ? 12 : 14;
-    const vpW = viewport.clientWidth;
-
-    const cpv = cardsPerView();
-    const cardW = (vpW - gap * (cpv - 1)) / cpv;
-    const step  = cardW + gap;
-
-    const maxIndex = Math.max(0, total - Math.ceil(cpv));
-    if(tIndex > maxIndex) tIndex = maxIndex;
-    if(tIndex < 0) tIndex = 0;
-
-    track.style.transform = `translateX(${-tIndex * step}px)`;
-  }
-
-  function tNext(d){
-    const total = (d.testimonialsText || []).slice(0, 20).length;
-    const cpv = cardsPerView();
-    const maxIndex = Math.max(0, total - Math.ceil(cpv));
-    tIndex = Math.min(maxIndex, tIndex + 1);
-    applyTTransform(d);
-  }
-  function tPrev(d){
-    tIndex = Math.max(0, tIndex - 1);
-    applyTTransform(d);
-  }
-
-  function bindSwipe(getData){
-    const viewport = $("tViewport");
-    const track = $("tTrack");
-
-    viewport.addEventListener("pointerdown",(e)=>{
-      dragging = true;
-      startX = e.clientX;
-      lastX = e.clientX;
-      track.style.transition = "none";
-      viewport.setPointerCapture(e.pointerId);
-    });
-
-    viewport.addEventListener("pointermove",(e)=>{
-      if(!dragging) return;
-      const dx = e.clientX - lastX;
-      lastX = e.clientX;
-
-      const m = window.getComputedStyle(track).transform;
-      let tx = 0;
-      if(m && m !== "none"){
-        const vals = m.match(/matrix\((.+)\)/);
-        if(vals && vals[1]) tx = parseFloat(vals[1].split(",")[4]) || 0;
+    // ===== Load data.json
+    async function fetchRemote(){
+      try{
+        const res = await fetch("data.json?ts=" + Date.now(), { cache:"no-store" });
+        if(!res.ok) return null;
+        return await res.json();
+      }catch(e){
+        console.error(e);
+        return null;
       }
-      track.style.transform = `translateX(${tx + dx}px)`;
-    });
-
-    function end(e){
-      if(!dragging) return;
-      dragging = false;
-      track.style.transition = "";
-      const diff = e.clientX - startX;
-      const threshold = 60;
-      const d = getData();
-      if(diff < -threshold) tNext(d);
-      else if(diff > threshold) tPrev(d);
-      else applyTTransform(d);
     }
 
-    viewport.addEventListener("pointerup", end);
-    viewport.addEventListener("pointercancel", end);
-  }
-
-  // ========= Gallery =========
-  let gIndex = 0;
-
-function renderGallery(d){
-  const imgs = (d.testimonialsImages || []).slice(0, 20);
-  const bigImg = $("bigImg");
-  const thumbRow = $("thumbRow");
-  const empty = $("galleryEmpty");
-  const wrap = $("galleryWrap");
-
-  thumbRow.innerHTML = "";
-
-  if(imgs.length === 0){
-    wrap.style.display = "none";
-    empty.style.display = "block";
-    return;
-  }
-
-  wrap.style.display = "";
-  empty.style.display = "none";
-
-  gIndex = Math.max(0, Math.min(gIndex, imgs.length - 1));
-
-  const bigSrc = getImgSrc(imgs[gIndex]);
-  bigImg.src = bigSrc || "";
-  bigImg.alt = "testimoni";
-
-  imgs.forEach((it, i)=>{
-    const t = document.createElement("div");
-    t.className = "thumb" + (i===gIndex ? " active" : "");
-    const src = getImgSrc(it);
-    t.innerHTML = `<img alt="thumb" src="${src}">`;
-    t.onclick = ()=>{ gIndex = i; updateGallery(d); };
-    thumbRow.appendChild(t);
-  });
-}
-
-function updateGallery(d){
-  const imgs = (d.testimonialsImages || []).slice(0, 20);
-  if(imgs.length === 0) return;
-
-  const src = getImgSrc(imgs[gIndex]);
-  $("bigImg").src = src || "";
-
-  Array.from(document.querySelectorAll(".thumb"))
-    .forEach((t,i)=>t.classList.toggle("active", i===gIndex));
-}
-
-function openGalleryPopup(d){
-  const imgs = (d.testimonialsImages || []).slice(0, 20);
-  if(imgs.length === 0) return;
-
-  const src = getImgSrc(imgs[gIndex]);
-  $("gPopupImg").src = src || "";
-  $("gCaption").textContent = safeText(imgs[gIndex].cap || "");
-  $("gOverlay").style.display = "flex";
-}
-  function closeGalleryPopup(){ $("gOverlay").style.display = "none"; }
-  function gNext(d){
-    const imgs = (d.testimonialsImages || []).slice(0, 20);
-    if(imgs.length === 0) return;
-    gIndex = (gIndex + 1) % imgs.length;
-    $("gPopupImg").src = imgs[gIndex].data;
-    $("gCaption").textContent = safeText(imgs[gIndex].cap || "");
-    updateGallery(d);
-  }
-  function gPrev(d){
-    const imgs = (d.testimonialsImages || []).slice(0, 20);
-    if(imgs.length === 0) return;
-    gIndex = (gIndex - 1 + imgs.length) % imgs.length;
-    $("gPopupImg").src = imgs[gIndex].data;
-    $("gCaption").textContent = safeText(imgs[gIndex].cap || "");
-    updateGallery(d);
-  }
-
-  // ========= Formspree =========
-  async function submitForm(e, d){
-    e.preventDefault();
-    const endpoint = d?.form?.endpoint || "";
-    if(!endpoint){
-      toast("Endpoint Formspree belum diisi (admin > tab Form).");
-      return;
+    function loadDraft(){
+      try{
+        const raw = localStorage.getItem(LS_DRAFT);
+        if(!raw) return null;
+        return JSON.parse(raw);
+      }catch(e){ return null; }
     }
 
-    const honeypot = document.querySelector('input[name="company"]');
-    if(honeypot && honeypot.value.trim()){
-      toast("Terlihat seperti spam. Coba lagi.");
-      return;
+    function saveDraft(d){
+      localStorage.setItem(LS_DRAFT, JSON.stringify(d));
     }
 
-    const payload = {
-      nama: $("fNama").value.trim(),
-      wa: $("fWa").value.trim(),
-      layanan: $("fLayanan").value,
-      catatan: $("fCatatan").value.trim(),
-      _subject: "Konsultasi Jokitoefl.myid",
-      source: location.href
-    };
+    // ===== Apply Theme
+    function applyTheme(d){
+      const th = d?.settings?.theme || {};
+      if(th.navy) document.documentElement.style.setProperty("--navy", th.navy);
+      if(th.accent) document.documentElement.style.setProperty("--sky", th.accent);
+      if(th.black) document.documentElement.style.setProperty("--black", th.black);
+      if(th.white) document.documentElement.style.setProperty("--white", th.white);
+      if(d?.settings?.maxWidth) document.documentElement.style.setProperty("--maxw", String(d.settings.maxWidth) + "px");
+    }
 
-    try{
-      const res = await fetch(endpoint, {
-        method:"POST",
-        headers: { "Content-Type":"application/json", "Accept":"application/json" },
-        body: JSON.stringify(payload)
-      });
-      if(res.ok){
-        toast(d?.form?.successMessage || "Terkirim. Terima kasih!");
-        $("leadForm").reset();
+    // ===== Logo
+    function applyLogo(d){
+      const img = $("logoImg");
+      const box = $("logoBox");
+      const logoData = d?.settings?.logoData || "";
+      const logoSrc  = d?.settings?.logo?.src || d?.settings?.logoSrc || "";
+      const finalSrc = (logoData && String(logoData).startsWith("data:image")) ? logoData : logoSrc;
+
+      if(finalSrc){
+        img.src = finalSrc;
+        img.style.display = "block";
+        box.style.background = "transparent";
       }else{
-        toast("Gagal kirim. Coba lagi.");
+        img.removeAttribute("src");
+        img.style.display = "none";
+        box.style.background = "linear-gradient(135deg, rgba(161,192,248,.90), rgba(161,192,248,.25))";
       }
-    }catch{
-      toast("Gagal kirim. Cek koneksi.");
     }
-  }
 
-  // ========= Admin auth (local only) =========
-  function getAdmin(){
-    try{ return JSON.parse(localStorage.getItem(KEY_ADMIN) || "null"); }
-    catch{ return null; }
-  }
-  function setAdmin(u,p){ localStorage.setItem(KEY_ADMIN, JSON.stringify({u,p})); }
-  function isAuthed(){ return localStorage.getItem(KEY_AUTH) === "1"; }
-  function setAuthed(v){ localStorage.setItem(KEY_AUTH, v ? "1" : "0"); }
-
-  function openAdmin(){
-    $("aOverlay").style.display = "flex";
-    $("aOpenGit").href = `https://github.com/${GITHUB_USER}/${GITHUB_REPO}/edit/main/data.json`;
-
-    const ok = isAuthed();
-    $("aLoginBox").style.display = ok ? "none" : "";
-    $("aDash").style.display = ok ? "" : "none";
-
-    if(ok){
-      // fill editor inputs from DRAFT (or REMOTE clone)
-      const ed = getEditorData();
-      fillEditors(ed);
-      refreshEditorLists(ed);
-      refreshLogoPreview(ed.settings.logoData || "");
+    // ===== Nav
+    function renderNav(d){
+      const nav = Array.isArray(d.nav) ? d.nav : [];
+      const links = $("navLinks");
+      links.innerHTML = nav.map(n=>`<a href="#${safeText(n.id)}">${safeText(n.label)}</a>`).join("");
     }
-  }
-  function closeAdmin(){ $("aOverlay").style.display = "none"; }
 
-  function adminLogin(){
-    const u = $("aUser").value.trim();
-    const p = $("aPass").value;
-    if(!u || !p){ toast("Isi username & password."); return; }
+    // ===== Hero/About
+    function renderHero(d){
+      $("siteName").textContent = d?.settings?.siteName || "Jokitoefl.myid";
+      $("tagline").textContent = d?.settings?.headline || "";
+      // headline with highlightWord
+      const headline = d?.settings?.headline || "";
+      const hw = (d?.settings?.highlightWord || "").trim();
+      if(hw && headline.toLowerCase().includes(hw.toLowerCase())){
+        const idx = headline.toLowerCase().indexOf(hw.toLowerCase());
+        const a = headline.slice(0, idx);
+        const b = headline.slice(idx, idx+hw.length);
+        const c = headline.slice(idx+hw.length);
+        $("headline").innerHTML = `${safeText(a)}<span class="accent">${safeText(b)}</span>${safeText(c)}`;
+      }else{
+        $("headline").textContent = headline || "One stop for your future";
+      }
 
-    const saved = getAdmin();
-    if(!saved){
-      setAdmin(u,p);
-      setAuthed(true);
-      toast("Admin diset & login berhasil.");
-      openAdmin();
-      return;
+      const hb = (d?.settings?.heroBadge ?? "").toString().trim();
+      if(hb){
+        $("heroBadge").style.display = "inline-flex";
+        $("heroBadge").textContent = hb;
+      }else{
+        $("heroBadge").style.display = "none";
+      }
+
+      $("subhead").textContent = d?.settings?.subhead || "";
+      $("ctaHero").textContent = d?.settings?.ctaText || "Konsultasi Gratis";
+      $("igBtn").href = d?.settings?.instagram || "#";
     }
-    if(u === saved.u && p === saved.p){
-      setAuthed(true);
-      toast("Login sukses.");
-      openAdmin();
-      return;
+
+    function renderAbout(d){
+      $("aboutTitle").textContent = d?.about?.title || "Tentang Kami";
+      $("aboutText").textContent = d?.about?.text || "";
     }
-    toast("Username/password salah.");
-  }
 
-  function resetLocalLogin(){
-    if(!confirm("Reset login lokal? (Hanya di perangkat ini)")) return;
-    localStorage.removeItem(KEY_ADMIN);
-    localStorage.removeItem(KEY_AUTH);
-    toast("Login lokal direset.");
-  }
+    // ===== Services + Modal
+    let currentServices = [];
+    let currentServiceTitle = "";
 
-  function changePassword(){
-    const saved = getAdmin();
-    if(!saved){ toast("Admin belum diset."); return; }
+    function renderServices(d){
+      const services = Array.isArray(d.services) ? d.services : [];
+      currentServices = services;
 
-    const oldP = $("oldPass").value;
-    const newP = $("newPass").value;
-    const newP2 = $("newPass2").value;
+      const grid = $("svcGrid");
+      grid.innerHTML = "";
 
-    if(!oldP || !newP || !newP2){ toast("Lengkapi semua field."); return; }
-    if(oldP !== saved.p){ toast("Password lama salah."); return; }
-    if(newP !== newP2){ toast("Konfirmasi password baru tidak sama."); return; }
-    if(newP.length < 8){ toast("Password baru minimal 8 karakter."); return; }
+      if(!services.length){
+        grid.innerHTML = `<div class="small">Belum ada layanan.</div>`;
+        return;
+      }
 
-    setAdmin(saved.u, newP);
-    $("oldPass").value = ""; $("newPass").value = ""; $("newPass2").value = "";
-    toast("Password berhasil diganti.");
-  }
-
-  // ========= Admin tabs =========
-  function setTab(id){
-    document.querySelectorAll(".tab").forEach(t=>t.classList.toggle("active", t.dataset.tab === id));
-    document.querySelectorAll(".aSection").forEach(s=>s.classList.toggle("active", s.id === id));
-  }
-
-  // ========= Editor fill/save =========
-  function fillEditors(d){
-    $("s_siteName").value = safeText(d.settings.siteName);
-    $("s_ctaText").value = safeText(d.settings.ctaText || "Konsultasi Gratis");
-    $("s_headline").value = safeText(d.settings.headline);
-    $("s_badge").value = safeText(d.settings.badge);
-    $("s_subhead").value = safeText(d.settings.subhead);
-    $("s_instagram").value = safeText(d.settings.instagram);
-    $("s_about").value = safeText(d.settings.about);
-    $("s_formTitle").value = safeText(d.settings.formTitle || "Form Konsultasi");
-    $("s_formSubtitle").value = safeText(d.settings.formSubtitle || "");
-
-    $("f_endpoint").value = safeText(d.form?.endpoint || "");
-    $("f_success").value = safeText(d.form?.successMessage || "Terima kasih! Form kamu sudah terkirim.");
-  }
-
-  function pullEditorsIntoDraft(d){
-    d.settings.siteName = $("s_siteName").value.trim();
-    d.settings.ctaText  = $("s_ctaText").value.trim();
-    d.settings.headline = $("s_headline").value.trim();
-    d.settings.badge    = $("s_badge").value.trim();
-    d.settings.subhead  = $("s_subhead").value.trim();
-    d.settings.instagram= $("s_instagram").value.trim();
-    d.settings.about    = $("s_about").value.trim();
-    d.settings.formTitle= $("s_formTitle").value.trim();
-    d.settings.formSubtitle = $("s_formSubtitle").value.trim();
-
-    d.form = d.form || { provider:"formspree", endpoint:"", successMessage:"Terkirim.", antiSpam:{honeypotField:"company"} };
-    d.form.provider = "formspree";
-    d.form.endpoint = $("f_endpoint").value.trim();
-    d.form.successMessage = $("f_success").value.trim();
-    d.form.antiSpam = d.form.antiSpam || { honeypotField:"company" };
-    d.form.antiSpam.honeypotField = "company";
-  }
-
-  // ========= Editor lists =========
-  function refreshEditorLists(d){
-    renderServicesEditor(d);
-    renderAdvEditor(d);
-    renderTTextEditor(d);
-    renderTImgEditor(d);
-  }
-
-  function renderServicesEditor(d){
-    const host = $("svcEditorList");
-    host.innerHTML = "";
-
-    d.services = d.services || [];
-    d.services.forEach((s, idx)=>{
-      const box = document.createElement("div");
-      box.className = "cardMini";
-      box.innerHTML = `
-        <div class="row" style="justify-content:space-between">
-          <div><b>Layanan ${idx+1}</b></div>
-          <div class="row">
-            <button class="btn mini" data-act="up">↑</button>
-            <button class="btn mini" data-act="down">↓</button>
-            <button class="btn mini danger" data-act="del">Hapus</button>
-          </div>
-        </div>
-
-        <div class="twoCol" style="margin-top:10px">
-          <div class="span6">
-            <label>Title</label>
-            <input data-k="title" value="${safeText(s.title)}"/>
-          </div>
-          <div class="span6">
-            <label>ID (opsional)</label>
-            <input data-k="id" value="${safeText(s.id || "")}"/>
-          </div>
-          <div class="span12">
-            <label>Desc (ringkas di card)</label>
-            <textarea data-k="desc" rows="2">${safeText(s.desc)}</textarea>
-          </div>
-          <div class="span12">
-            <div class="small">Detail (untuk modal). Format: tiap baris = 1 bullet. Pisahkan section pakai judul section.</div>
-            <div class="hr"></div>
-            <div id="svcSecHost"></div>
-            <button class="btn mini" data-act="addsec" type="button">+ Tambah Section Detail</button>
-          </div>
-        </div>
-      `;
-
-      // section detail editor
-      const secHost = box.querySelector("#svcSecHost");
-      s.details = s.details || [];
-      s.details.forEach((sec, sidx)=>{
-        const secBox = document.createElement("div");
-        secBox.className = "cardMini";
-        secBox.style.marginTop = "10px";
-        secBox.innerHTML = `
-          <div class="row" style="justify-content:space-between">
-            <div><b>Section ${sidx+1}</b></div>
-            <div class="row">
-              <button class="btn mini" data-act="secup">↑</button>
-              <button class="btn mini" data-act="secdown">↓</button>
-              <button class="btn mini danger" data-act="secdel">Hapus</button>
-            </div>
-          </div>
-          <label>Judul section</label>
-          <input data-k="sectitle" value="${safeText(sec.title)}"/>
-          <label style="margin-top:8px">Bullet (1 baris = 1 item)</label>
-          <textarea data-k="secitems" rows="4">${safeText((sec.items||[]).join("\n"))}</textarea>
+      services.forEach(s=>{
+        const card = document.createElement("div");
+        card.className = "card svcCard";
+        card.innerHTML = `
+          <div class="cardTitle">${safeText(s.title || "")}</div>
+          <p class="cardText">${safeText(s.desc || "")}</p>
         `;
-
-        secBox.querySelector('[data-act="secup"]').onclick = ()=>{
-          if(sidx<=0) return;
-          const tmp = s.details[sidx-1]; s.details[sidx-1]=s.details[sidx]; s.details[sidx]=tmp;
-          refreshEditorLists(d);
-        };
-        secBox.querySelector('[data-act="secdown"]').onclick = ()=>{
-          if(sidx>=s.details.length-1) return;
-          const tmp = s.details[sidx+1]; s.details[sidx+1]=s.details[sidx]; s.details[sidx]=tmp;
-          refreshEditorLists(d);
-        };
-        secBox.querySelector('[data-act="secdel"]').onclick = ()=>{
-          s.details.splice(sidx,1);
-          refreshEditorLists(d);
-        };
-
-        secHost.appendChild(secBox);
+        card.onclick = ()=>openServiceModal(s);
+        grid.appendChild(card);
       });
 
-      // buttons service reorder/delete/add section
-      box.querySelector('[data-act="up"]').onclick = ()=>{
-        if(idx<=0) return;
-        const tmp = d.services[idx-1]; d.services[idx-1]=d.services[idx]; d.services[idx]=tmp;
-        refreshEditorLists(d);
-      };
-      box.querySelector('[data-act="down"]').onclick = ()=>{
-        if(idx>=d.services.length-1) return;
-        const tmp = d.services[idx+1]; d.services[idx+1]=d.services[idx]; d.services[idx]=tmp;
-        refreshEditorLists(d);
-      };
-      box.querySelector('[data-act="del"]').onclick = ()=>{
-        d.services.splice(idx,1);
-        refreshEditorLists(d);
-      };
-      box.querySelector('[data-act="addsec"]').onclick = ()=>{
-        s.details.push({ title:"", items:[""] });
-        refreshEditorLists(d);
-      };
-
-      host.appendChild(box);
-    });
-  }
-
-  function renderAdvEditor(d){
-    const host = $("advEditorList");
-    host.innerHTML = "";
-    d.advantages = d.advantages || [];
-    d.advantages.forEach((a, idx)=>{
-      const box = document.createElement("div");
-      box.className = "cardMini";
-      box.innerHTML = `
-        <div class="row" style="justify-content:space-between">
-          <div><b>Keunggulan ${idx+1}</b></div>
-          <div class="row">
-            <button class="btn mini" data-act="up">↑</button>
-            <button class="btn mini" data-act="down">↓</button>
-            <button class="btn mini danger" data-act="del">Hapus</button>
-          </div>
-        </div>
-        <label>Title</label>
-        <input data-k="title" value="${safeText(a.title)}"/>
-        <label style="margin-top:8px">Desc</label>
-        <textarea data-k="desc" rows="2">${safeText(a.desc)}</textarea>
-      `;
-
-      box.querySelector('[data-act="up"]').onclick = ()=>{
-        if(idx<=0) return;
-        const tmp = d.advantages[idx-1]; d.advantages[idx-1]=d.advantages[idx]; d.advantages[idx]=tmp;
-        renderAdvantages(d); // preview in admin
-        renderAdvEditor(d);
-      };
-      box.querySelector('[data-act="down"]').onclick = ()=>{
-        if(idx>=d.advantages.length-1) return;
-        const tmp = d.advantages[idx+1]; d.advantages[idx+1]=d.advantages[idx]; d.advantages[idx]=tmp;
-        renderAdvantages(d);
-        renderAdvEditor(d);
-      };
-      box.querySelector('[data-act="del"]').onclick = ()=>{
-        d.advantages.splice(idx,1);
-        renderAdvantages(d);
-        renderAdvEditor(d);
-      };
-
-      host.appendChild(box);
-    });
-  }
-
-  function renderTTextEditor(d){
-    const host = $("tTextEditorList");
-    host.innerHTML = "";
-    d.testimonialsText = (d.testimonialsText || []).slice(0,20);
-
-    d.testimonialsText.forEach((t, idx)=>{
-      const box = document.createElement("div");
-      box.className = "cardMini";
-      box.innerHTML = `
-        <div class="row" style="justify-content:space-between">
-          <div><b>Testimoni Teks ${idx+1}</b></div>
-          <div class="row">
-            <button class="btn mini" data-act="up">↑</button>
-            <button class="btn mini" data-act="down">↓</button>
-            <button class="btn mini danger" data-act="del">Hapus</button>
-          </div>
-        </div>
-        <div class="twoCol" style="margin-top:10px">
-          <div class="span6">
-            <label>Nama (boleh “Anonim”)</label>
-            <input data-k="name" value="${safeText(t.name || "Anonim")}"/>
-          </div>
-          <div class="span12">
-            <label>Isi testimoni</label>
-            <textarea data-k="text" rows="2">${safeText(t.text || "")}</textarea>
-          </div>
-        </div>
-      `;
-
-      box.querySelector('[data-act="up"]').onclick = ()=>{
-        if(idx<=0) return;
-        const tmp = d.testimonialsText[idx-1]; d.testimonialsText[idx-1]=d.testimonialsText[idx]; d.testimonialsText[idx]=tmp;
-        renderTestText(d); applyTTransform(d);
-        renderTTextEditor(d);
-      };
-      box.querySelector('[data-act="down"]').onclick = ()=>{
-        if(idx>=d.testimonialsText.length-1) return;
-        const tmp = d.testimonialsText[idx+1]; d.testimonialsText[idx+1]=d.testimonialsText[idx]; d.testimonialsText[idx]=tmp;
-        renderTestText(d); applyTTransform(d);
-        renderTTextEditor(d);
-      };
-      box.querySelector('[data-act="del"]').onclick = ()=>{
-        d.testimonialsText.splice(idx,1);
-        renderTestText(d); applyTTransform(d);
-        renderTTextEditor(d);
-      };
-
-      host.appendChild(box);
-    });
-  }
-
-  function renderTImgEditor(d){
-    const host = $("tImgEditorList");
-    host.innerHTML = "";
-    d.testimonialsImages = (d.testimonialsImages || []).slice(0,20);
-
-    d.testimonialsImages.forEach((it, idx)=>{
-      const box = document.createElement("div");
-      box.className = "cardMini";
-      box.innerHTML = `
-        <div class="row" style="justify-content:space-between">
-          <div class="row" style="gap:12px">
-            <div class="thumbPrev"><img src="${it.data}" alt="preview"/></div>
-            <div>
-              <div><b>Gambar ${idx+1}</b></div>
-              <div class="small">Caption hanya muncul di popup.</div>
-            </div>
-          </div>
-          <div class="row">
-            <button class="btn mini" data-act="up">↑</button>
-            <button class="btn mini" data-act="down">↓</button>
-            <button class="btn mini danger" data-act="del">Hapus</button>
-          </div>
-        </div>
-        <label style="margin-top:8px">Caption</label>
-        <textarea data-k="cap" rows="2">${safeText(it.cap || "")}</textarea>
-      `;
-
-      box.querySelector('[data-act="up"]').onclick = ()=>{
-        if(idx<=0) return;
-        const tmp = d.testimonialsImages[idx-1]; d.testimonialsImages[idx-1]=d.testimonialsImages[idx]; d.testimonialsImages[idx]=tmp;
-        renderGallery(d);
-        renderTImgEditor(d);
-      };
-      box.querySelector('[data-act="down"]').onclick = ()=>{
-        if(idx>=d.testimonialsImages.length-1) return;
-        const tmp = d.testimonialsImages[idx+1]; d.testimonialsImages[idx+1]=d.testimonialsImages[idx]; d.testimonialsImages[idx]=tmp;
-        renderGallery(d);
-        renderTImgEditor(d);
-      };
-      box.querySelector('[data-act="del"]').onclick = ()=>{
-        d.testimonialsImages.splice(idx,1);
-        renderGallery(d);
-        renderTImgEditor(d);
-      };
-
-      host.appendChild(box);
-    });
-  }
-
-  // ========= Image compress (for logo & testimonials) =========
-  async function fileToCompressedDataURL(file, maxW=900, quality=0.82){
-    const blobURL = URL.createObjectURL(file);
-    try{
-      const img = new Image();
-      img.decoding = "async";
-      img.src = blobURL;
-      await new Promise((res, rej)=>{
-        img.onload = ()=>res();
-        img.onerror = ()=>rej(new Error("image load failed"));
-      });
-
-      const ratio = img.width / img.height;
-      let w = img.width, h = img.height;
-      if(w > maxW){
-        w = maxW;
-        h = Math.round(w / ratio);
-      }
-
-      const canvas = document.createElement("canvas");
-      canvas.width = w; canvas.height = h;
-      const ctx = canvas.getContext("2d");
-      ctx.drawImage(img, 0, 0, w, h);
-
-      // JPEG to reduce size
-      return canvas.toDataURL("image/jpeg", quality);
-    } finally {
-      URL.revokeObjectURL(blobURL);
+      // form service options
+      const sel = $("fService");
+      sel.innerHTML = services.map(s=>`<option value="${safeText(s.title||"")}">${safeText(s.title||"")}</option>`).join("");
     }
-  }
 
-  function refreshLogoPreview(logoData){
-    const prev = $("logoPrev");
-    prev.innerHTML = logoData ? `<img src="${logoData}" alt="logo"/>` : `<span class="small">Logo</span>`;
-  }
+    function openServiceModal(s){
+      $("svcModalTitle").textContent = s?.title || "";
+      $("svcModalDesc").textContent  = s?.desc || "";
+      const body = $("svcModalBody");
+      body.innerHTML = "";
 
-  // ========= Save draft from editor inputs =========
-  function applyEditorInputs(d){
-    // settings + form
-    pullEditorsIntoDraft(d);
+      const details = s?.details;
+      const det = Array.isArray(details) ? details : [];
 
-    // services editor values
-    const svcBoxes = $("svcEditorList").querySelectorAll(".cardMini");
-    svcBoxes.forEach((box, idx)=>{
-      const s = d.services[idx];
-      if(!s) return;
-      s.title = box.querySelector('input[data-k="title"]').value.trim();
-      s.id    = box.querySelector('input[data-k="id"]').value.trim();
-      s.desc  = box.querySelector('textarea[data-k="desc"]').value.trim();
+      const isObjSection = (v) =>
+        v && typeof v === "object" && !Array.isArray(v) && ("title" in v || "items" in v);
 
-      const secBoxes = box.querySelectorAll("#svcSecHost .cardMini");
-      s.details = s.details || [];
-      secBoxes.forEach((sb, sidx)=>{
-        const sec = s.details[sidx];
-        if(!sec) return;
-        sec.title = sb.querySelector('input[data-k="sectitle"]').value.trim();
-        const lines = sb.querySelector('textarea[data-k="secitems"]').value.split("\n").map(x=>x.trim()).filter(Boolean);
-        sec.items = lines.length ? lines : [""];
-      });
-    });
+      const renderSection = (title, items) => {
+        const div = document.createElement("div");
+        div.className = "modalSection";
 
-    // advantages editor values
-    const advBoxes = $("advEditorList").querySelectorAll(".cardMini");
-    advBoxes.forEach((box, idx)=>{
-      const a = d.advantages[idx];
-      if(!a) return;
-      a.title = box.querySelector('input[data-k="title"]').value.trim();
-      a.desc  = box.querySelector('textarea[data-k="desc"]').value.trim();
-    });
+        const safeTitle = (title ?? "").toString().trim();
+        const li = (items || [])
+          .map(x => (x ?? "").toString().trim())
+          .filter(Boolean)
+          .map(x => `<li>${safeText(x)}</li>`)
+          .join("");
 
-    // testimonial text values
-    const ttBoxes = $("tTextEditorList").querySelectorAll(".cardMini");
-    ttBoxes.forEach((box, idx)=>{
-      const t = d.testimonialsText[idx];
-      if(!t) return;
-      t.name = box.querySelector('input[data-k="name"]').value.trim() || "Anonim";
-      t.text = box.querySelector('textarea[data-k="text"]').value.trim();
-    });
+        const badge = safeTitle ? `<div class="modalBadge">${safeText(safeTitle)}</div>` : "";
+        div.innerHTML = `${badge}<ul>${li || `<li class="muted">Detail belum ditambahkan.</li>`}</ul>`;
+        body.appendChild(div);
+      };
 
-    // testimonial images captions
-    const tiBoxes = $("tImgEditorList").querySelectorAll(".cardMini");
-    tiBoxes.forEach((box, idx)=>{
-      const it = d.testimonialsImages[idx];
-      if(!it) return;
-      it.cap = box.querySelector('textarea[data-k="cap"]').value.trim();
-    });
-  }
-
-  async function copyPublish(){
-    const ed = getEditorData();
-    applyEditorInputs(ed);
-
-    const pub = sanitizeForPublish(ed);
-    const txt = JSON.stringify(pub, null, 2);
-
-    try{
-      await navigator.clipboard.writeText(txt);
-      toast("JSON tercopy. Paste ke data.json di GitHub lalu commit.");
-    }catch{
-      toast("Clipboard diblokir. Copy manual dari panel (inspect) atau coba browser lain.");
-    }
-  }
-
-  function saveDraftAction(){
-    const ed = getEditorData();
-    applyEditorInputs(ed);
-    saveDraft(ed);
-    toast("Draft tersimpan di browser ini.");
-  }
-
-  function clearDraftAction(){
-    if(!confirm("Hapus draft lokal?")) return;
-    clearDraft();
-    toast("Draft dihapus.");
-  }
-
-  // ========= Bind admin actions =========
-  function bindAdmin(){
-    // tabs
-    document.querySelectorAll(".tab").forEach(btn=>{
-      btn.onclick = ()=> setTab(btn.dataset.tab);
-    });
-
-    $("svcAdd").onclick = ()=>{
-      const d = getEditorData();
-      d.services.push({ id:"", title:"", desc:"", details:[] });
-      refreshEditorLists(d);
-    };
-
-    $("advAdd").onclick = ()=>{
-      const d = getEditorData();
-      d.advantages.push({ title:"", desc:"" });
-      refreshEditorLists(d);
-    };
-
-    $("tTextAdd").onclick = ()=>{
-      const d = getEditorData();
-      if((d.testimonialsText||[]).length >= 20){ toast("Maks 20 testimoni teks."); return; }
-      d.testimonialsText.push({ name:"Anonim", text:"" });
-      refreshEditorLists(d);
-    };
-
-    $("tImgAddBtn").onclick = async ()=>{
-      const d = getEditorData();
-      const files = $("tImgFiles").files;
-      if(!files || !files.length){ toast("Pilih file dulu."); return; }
-
-      for(const f of files){
-        if(d.testimonialsImages.length >= 20){
-          toast("Maks 20 testimoni gambar."); break;
+      if(det.length && isObjSection(det[0])){
+        det.forEach(sec => renderSection(sec.title || "", Array.isArray(sec.items) ? sec.items : []));
+      }else if(det.length && typeof det[0] === "string"){
+        const lines = det.map(x => (x ?? "").toString().trim()).filter(Boolean);
+        const hasSection = lines.some(l => /^SECTION:\s*/i.test(l));
+        if(hasSection){
+          const sections = [];
+          let currentTitle = "";
+          let currentItems = [];
+          const push = ()=>{
+            if(currentTitle || currentItems.length) sections.push({title:currentTitle, items:currentItems});
+            currentTitle = ""; currentItems = [];
+          };
+          lines.forEach(line=>{
+            const m = line.match(/^SECTION:\s*(.+)$/i);
+            if(m){ push(); currentTitle = (m[1]||"").trim(); }
+            else{ currentItems.push(line); }
+          });
+          push();
+          if(sections.length) sections.forEach(sec=>renderSection(sec.title, sec.items));
+          else renderSection("Detail", lines);
+        }else{
+          renderSection("Detail", lines);
         }
-        const data = await fileToCompressedDataURL(f, 1280, 0.82);
-        d.testimonialsImages.push({ data, cap:"" });
+      }else{
+        renderSection("Detail", []);
       }
 
-      $("tImgFiles").value = "";
-      renderGallery(d);
-      renderTImgEditor(d);
-      toast("Gambar ditambahkan (compressed).");
+      $("svcOverlay").style.display = "flex";
+    }
+
+    $("svcClose").onclick = ()=> $("svcOverlay").style.display = "none";
+    $("svcOverlay").addEventListener("click", (e)=>{ if(e.target.id==="svcOverlay") $("svcOverlay").style.display="none"; });
+
+    // ===== Advantages
+    function renderAdvantages(d){
+      const wrap = $("advWrap");
+      if(!wrap) return;
+      const list = Array.isArray(d.advantages) ? d.advantages : [];
+      wrap.innerHTML = "";
+
+      if(!list.length){
+        wrap.innerHTML = `<div class="small">Belum ada data keunggulan.</div>`;
+        return;
+      }
+
+      list.forEach(item=>{
+        const card = document.createElement("div");
+        card.className = "advCard";
+        card.innerHTML = `
+          <h3 class="advTitle">${safeText(item.title || "")}</h3>
+          <p class="advText">${safeText(item.text || "")}</p>
+        `;
+        wrap.appendChild(card);
+      });
+    }
+
+    // ===== Testimonials Text Slider (manual + swipe)
+    let tIndex = 0;
+    function renderTestimonialsText(d){
+      const arr = Array.isArray(d.testimonialsText) ? d.testimonialsText : [];
+      const track = $("tTrack");
+      track.innerHTML = "";
+
+      if(!arr.length){
+        track.innerHTML = `<div class="small">Belum ada testimoni teks.</div>`;
+        return;
+      }
+
+      arr.forEach(x=>{
+        const el = document.createElement("div");
+        el.className = "tCard";
+        el.innerHTML = `<div class="tName">${safeText(x.name || "Anon")}</div><p class="tText">${safeText(x.text || "")}</p>`;
+        track.appendChild(el);
+      });
+
+      tIndex = 0;
+      updateT();
+    }
+
+    function updateT(){
+      const track = $("tTrack");
+      const cards = track.children;
+      if(!cards.length) return;
+
+      const card = cards[0];
+      const w = card.getBoundingClientRect().width + 14; // gap
+      // show 2.5 on desktop: we just shift by 1 card each click
+      const x = Math.max(0, tIndex) * w;
+      track.style.transform = `translateX(${-x}px)`;
+    }
+
+    $("tPrev").onclick = ()=>{
+      tIndex = Math.max(0, tIndex - 1);
+      updateT();
+    };
+    $("tNext").onclick = ()=>{
+      const track = $("tTrack");
+      const count = track.children.length || 0;
+      tIndex = Math.min(Math.max(0, count - 1), tIndex + 1);
+      updateT();
     };
 
-    // logo upload
-    $("logoFile").addEventListener("change", async ()=>{
-      const d = getEditorData();
-      const f = $("logoFile").files && $("logoFile").files[0];
-      if(!f) return;
-      const data = await fileToCompressedDataURL(f, 256, 0.9);
-      d.settings.logoData = data;
-      refreshLogoPreview(data);
-      toast("Logo diupdate (compressed). Jangan lupa Simpan Draft / Copy JSON.");
-    });
+    // swipe
+    (function bindSwipe(){
+      const area = $("tTrack");
+      let startX = 0, dx = 0, down = false;
 
-    $("logoRemove").onclick = ()=>{
-      const d = getEditorData();
-      d.settings.logoData = "";
-      refreshLogoPreview("");
-      toast("Logo dihapus.");
+      area.addEventListener("touchstart", (e)=>{
+        down = true;
+        startX = e.touches[0].clientX;
+      }, {passive:true});
+
+      area.addEventListener("touchmove", (e)=>{
+        if(!down) return;
+        dx = e.touches[0].clientX - startX;
+      }, {passive:true});
+
+      area.addEventListener("touchend", ()=>{
+        if(!down) return;
+        down = false;
+        if(dx < -35) $("tNext").click();
+        if(dx > 35) $("tPrev").click();
+        dx = 0;
+      });
+    })();
+
+    // ===== Testimonials Images Gallery (big + thumbs + popup)
+    let gIndex = 0;
+    function renderGallery(d){
+      const imgs = (Array.isArray(d.testimonialsImages) ? d.testimonialsImages : []).slice(0, 20);
+      const bigImg = $("bigImg");
+      const thumbRow = $("thumbRow");
+      const empty = $("galleryEmpty");
+      const wrap = $("galleryWrap");
+
+      thumbRow.innerHTML = "";
+
+      if(imgs.length === 0){
+        wrap.style.display = "none";
+        empty.style.display = "block";
+        return;
+      }
+      wrap.style.display = "";
+      empty.style.display = "none";
+
+      gIndex = Math.max(0, Math.min(gIndex, imgs.length - 1));
+
+      const bigSrc = getImgSrc(imgs[gIndex]);
+      bigImg.src = bigSrc || "";
+      $("bigCap").textContent = (imgs[gIndex].cap || "").toString();
+
+      imgs.forEach((it, i)=>{
+        const t = document.createElement("div");
+        t.className = "thumb" + (i===gIndex ? " active" : "");
+        const src = getImgSrc(it);
+        t.innerHTML = `<img alt="thumb" src="${safeText(src)}">`;
+        t.onclick = ()=>{ gIndex = i; updateGallery(d); };
+        thumbRow.appendChild(t);
+      });
+    }
+
+    function updateGallery(d){
+      const imgs = (Array.isArray(d.testimonialsImages) ? d.testimonialsImages : []).slice(0, 20);
+      if(imgs.length === 0) return;
+
+      $("bigImg").src = getImgSrc(imgs[gIndex]) || "";
+      $("bigCap").textContent = (imgs[gIndex].cap || "").toString();
+
+      Array.from(document.querySelectorAll(".thumb"))
+        .forEach((t,i)=>t.classList.toggle("active", i===gIndex));
+    }
+
+    function openGalleryPopup(d){
+      const imgs = (Array.isArray(d.testimonialsImages) ? d.testimonialsImages : []).slice(0, 20);
+      if(imgs.length === 0) return;
+
+      $("gPopupImg").src = getImgSrc(imgs[gIndex]) || "";
+      $("gCaption").textContent = (imgs[gIndex].cap || "").toString();
+      $("gOverlay").style.display = "flex";
+    }
+
+    $("bigFrame").onclick = ()=> openGalleryPopup(STATE);
+    $("gClose").onclick = ()=> $("gOverlay").style.display = "none";
+    $("gOverlay").addEventListener("click", (e)=>{ if(e.target.id==="gOverlay") $("gOverlay").style.display="none"; });
+
+    $("gPrev").onclick = ()=>{
+      const imgs = (Array.isArray(STATE?.testimonialsImages) ? STATE.testimonialsImages : []).slice(0,20);
+      if(!imgs.length) return;
+      gIndex = (gIndex - 1 + imgs.length) % imgs.length;
+      updateGallery(STATE);
+      $("gPopupImg").src = getImgSrc(imgs[gIndex]) || "";
+      $("gCaption").textContent = (imgs[gIndex].cap || "").toString();
+    };
+    $("gNext").onclick = ()=>{
+      const imgs = (Array.isArray(STATE?.testimonialsImages) ? STATE.testimonialsImages : []).slice(0,20);
+      if(!imgs.length) return;
+      gIndex = (gIndex + 1) % imgs.length;
+      updateGallery(STATE);
+      $("gPopupImg").src = getImgSrc(imgs[gIndex]) || "";
+      $("gCaption").textContent = (imgs[gIndex].cap || "").toString();
     };
 
-    // publish buttons
-    $("aCopyBtn").onclick = copyPublish;
-    $("aSaveDraftBtn").onclick = saveDraftAction;
-    $("aClearDraftBtn").onclick = clearDraftAction;
+    // ===== Form submit (Formspree)
+    function applyForm(d){
+      const hint = $("formHint");
+      const ep = (d?.settings?.form?.formspreeEndpoint || "").toString().trim();
+      const notePH = (d?.settings?.form?.notePlaceholder || "").toString();
+      $("fNote").placeholder = notePH;
 
-    // security
-    $("changePassBtn").onclick = changePassword;
-  }
+      if(!ep){
+        hint.innerHTML = `Form belum aktif (endpoint kosong). Isi <span class="mono">settings.form.formspreeEndpoint</span> di data.json.`;
+      }else{
+        hint.textContent = "Setelah kamu kirim, kami akan hubungi lewat WhatsApp.";
+      }
 
-  // ========= Init =========
-  async function init(){
-    REMOTE = await fetchRemote();
-    if(!REMOTE){
-      toast("Gagal load data.json. Cek file di repo.");
-      // minimal safe
-      REMOTE = {
-        settings:{
-          siteName:"Jokitoefl.myid",
-          headline:"One stop for your future",
-          badge:"Sertifikat TOEFL & Komputer • Bantuan Mahasiswa • Lainnya",
-          subhead:"",
-          instagram:"#",
-          about:"",
-          ctaText:"Konsultasi Gratis",
-          formTitle:"Form Konsultasi",
-          formSubtitle:"",
-          logoData:""
-        },
-        form:{ provider:"formspree", endpoint:"", successMessage:"Terkirim.", antiSpam:{honeypotField:"company"} },
-        services:[],
-        advantages:[],
-        testimonialsText:[],
-        testimonialsImages:[]
+      $("leadForm").onsubmit = async (e)=>{
+        e.preventDefault();
+        const name = $("fName").value.trim();
+        const whatsapp = $("fWA").value.trim();
+        const service = $("fService").value.trim();
+        const note = $("fNote").value.trim();
+
+        if(!name || !whatsapp || !service){
+          toast("Lengkapi form dulu ya.");
+          return;
+        }
+
+        if(!ep){
+          toast("Form belum aktif. Endpoint Formspree masih kosong.");
+          return;
+        }
+
+        try{
+          const res = await fetch(ep, {
+            method:"POST",
+            headers:{ "Content-Type":"application/json", "Accept":"application/json" },
+            body: JSON.stringify({ name, whatsapp, service, note })
+          });
+          if(res.ok){
+            toast("Terkirim. Kami akan hubungi via WhatsApp.");
+            $("leadForm").reset();
+          }else{
+            toast("Gagal kirim. Coba lagi ya.");
+          }
+        }catch(err){
+          console.error(err);
+          toast("Gagal kirim. Cek koneksi.");
+        }
       };
     }
 
-    DRAFT = loadDraft();
+    // ===== Admin (local only)
+    function getAdminPass(){
+      let p = localStorage.getItem(LS_ADMIN_PASS);
+      // If never set, force user to create on first login attempt:
+      return p || "";
+    }
+    function setAdminPass(p){
+      localStorage.setItem(LS_ADMIN_PASS, p);
+    }
 
-    // Render PUBLIC from REMOTE
-    renderTop(REMOTE);
-    renderServices(REMOTE);
-    renderAdvantages(REMOTE);
-    renderTestText(REMOTE);
-    renderGallery(REMOTE);
+    function openAdmin(){
+      $("adminOverlay").style.display = "flex";
+      $("adminLoginMsg").textContent = "";
+      $("adminPass").value = "";
+      $("passMsg").textContent = "";
+      // show login by default
+      $("adminLogin").style.display = "";
+      $("adminEditor").style.display = "none";
+    }
+    function closeAdmin(){ $("adminOverlay").style.display = "none"; }
 
-    // service modal
-    $("svcClose").onclick = closeServiceModal;
-    $("svcOverlay").addEventListener("click",(e)=>{ if(e.target === $("svcOverlay")) closeServiceModal(); });
-    $("svcScroll").onclick = ()=>{
-      closeServiceModal();
-      location.hash = "#daftar";
-      if(currentServiceTitle) $("fLayanan").value = currentServiceTitle;
-      $("fNama").focus();
-    };
-    $("svcCta").onclick = ()=>{
-      if(currentServiceTitle) setTimeout(()=>{ $("fLayanan").value = currentServiceTitle; }, 0);
-    };
-
-    // slider controls
-    $("tPrev").onclick = ()=> tPrev(REMOTE);
-    $("tNext").onclick = ()=> tNext(REMOTE);
-    bindSwipe(()=>REMOTE);
-    window.addEventListener("resize", ()=> applyTTransform(REMOTE));
-
-    // gallery popup
-    $("bigBox").onclick = ()=> openGalleryPopup(REMOTE);
-    $("gClose").onclick = closeGalleryPopup;
-    $("gOverlay").addEventListener("click",(e)=>{ if(e.target === $("gOverlay")) closeGalleryPopup(); });
-    $("gNext").onclick = ()=> gNext(REMOTE);
-    $("gPrev").onclick = ()=> gPrev(REMOTE);
-
-    // form submit uses REMOTE endpoint
-    $("leadForm").addEventListener("submit", (e)=> submitForm(e, REMOTE));
-
-    // admin open/close/login
     $("adminFab").onclick = openAdmin;
-    $("aClose").onclick = closeAdmin;
-    $("aOverlay").addEventListener("click",(e)=>{ if(e.target === $("aOverlay")) closeAdmin(); });
+    $("adminClose").onclick = closeAdmin;
+    $("adminOverlay").addEventListener("click", (e)=>{ if(e.target.id==="adminOverlay") closeAdmin(); });
 
-    $("aOpenGit").href = `https://github.com/${GITHUB_USER}/${GITHUB_REPO}/edit/main/data.json`;
-    $("aLoginBtn").onclick = adminLogin;
-    $("aResetBtn").onclick = resetLocalLogin;
+    function fillAdminEditor(d){
+      $("eLogoSrc").value = d?.settings?.logo?.src || "";
+      $("eSiteName").value = d?.settings?.siteName || "";
+      $("eCtaText").value = d?.settings?.ctaText || "";
+      $("eHeadline").value = d?.settings?.headline || "";
+      $("eSubhead").value = d?.settings?.subhead || "";
+      $("eHeroBadge").value = d?.settings?.heroBadge || "";
+      $("eInstagram").value = d?.settings?.instagram || "";
 
-    // bind editor actions
-    bindAdmin();
+      $("eAboutTitle").value = d?.about?.title || "";
+      $("eAboutText").value  = d?.about?.text || "";
 
-    // on open dash, lists will be built
-    // buttons below require auth
-  }
+      $("eServices").value = JSON.stringify(Array.isArray(d.services)?d.services:[], null, 2);
+      $("eAdvantages").value = JSON.stringify(Array.isArray(d.advantages)?d.advantages:[], null, 2);
+      $("eTText").value = JSON.stringify(Array.isArray(d.testimonialsText)?d.testimonialsText:[], null, 2);
+      $("eTImg").value  = JSON.stringify(Array.isArray(d.testimonialsImages)?d.testimonialsImages:[], null, 2);
+    }
 
-  init();
-</script>
+    function readAdminEditor(){
+      const out = structuredClone(STATE || {});
+      out.settings = out.settings || {};
+      out.settings.logo = out.settings.logo || {};
+
+      out.settings.logo.src = $("eLogoSrc").value.trim();
+      out.settings.siteName = $("eSiteName").value.trim();
+      out.settings.ctaText  = $("eCtaText").value.trim();
+      out.settings.headline = $("eHeadline").value.trim();
+      out.settings.subhead  = $("eSubhead").value.trim();
+      out.settings.heroBadge = $("eHeroBadge").value.trim();
+      out.settings.instagram = $("eInstagram").value.trim();
+
+      out.about = out.about || {};
+      out.about.title = $("eAboutTitle").value.trim();
+      out.about.text  = $("eAboutText").value.trim();
+
+      // JSON fields
+      const parseJson = (elId, fallback)=>{
+        try{
+          const v = $(elId).value.trim();
+          if(!v) return fallback;
+          return JSON.parse(v);
+        }catch(e){
+          toast("JSON error di " + elId);
+          throw e;
+        }
+      };
+
+      out.services = parseJson("eServices", []);
+      out.advantages = parseJson("eAdvantages", []);
+      out.testimonialsText = parseJson("eTText", []);
+      out.testimonialsImages = parseJson("eTImg", []);
+
+      return out;
+    }
+
+    function bindAdminAutosave(){
+      const ids = ["eLogoSrc","eSiteName","eCtaText","eHeadline","eSubhead","eHeroBadge","eInstagram","eAboutTitle","eAboutText","eServices","eAdvantages","eTText","eTImg"];
+      ids.forEach(id=>{
+        $(id).addEventListener("input", ()=>{
+          try{
+            const d = readAdminEditor();
+            saveDraft(d);
+            toast("Draft tersimpan (local).");
+          }catch(e){
+            // keep editor as-is
+          }
+        });
+      });
+    }
+
+    $("adminLoginBtn").onclick = ()=>{
+      const input = $("adminPass").value;
+      const saved = getAdminPass();
+
+      // If never set, first login sets the password
+      if(!saved){
+        if(!input || input.length < 6){
+          $("adminLoginMsg").textContent = "Buat password minimal 6 karakter.";
+          return;
+        }
+        setAdminPass(input);
+        $("adminLoginMsg").textContent = "Password dibuat. Masuk...";
+      }else{
+        if(input !== saved){
+          $("adminLoginMsg").textContent = "Password salah.";
+          return;
+        }
+      }
+
+      $("adminLogin").style.display = "none";
+      $("adminEditor").style.display = "";
+      fillAdminEditor(STATE);
+      bindAdminAutosave();
+      toast("Admin aktif (draft lokal).");
+    };
+
+    $("btnChangePass").onclick = ()=>{
+      const oldP = $("oldPass").value;
+      const newP = $("newPass").value;
+      const saved = getAdminPass();
+
+      if(!saved){
+        $("passMsg").textContent = "Belum ada password. Login dulu untuk membuat.";
+        return;
+      }
+      if(oldP !== saved){
+        $("passMsg").textContent = "Password lama salah.";
+        return;
+      }
+      if(!newP || newP.length < 6){
+        $("passMsg").textContent = "Password baru minimal 6 karakter.";
+        return;
+      }
+      setAdminPass(newP);
+      $("oldPass").value = "";
+      $("newPass").value = "";
+      $("passMsg").textContent = "Password berhasil diubah.";
+      toast("Password admin diubah.");
+    };
+
+    $("adminCopyJson").onclick = async ()=>{
+      try{
+        const d = readAdminEditor();
+        const text = JSON.stringify(d, null, 2);
+        await navigator.clipboard.writeText(text);
+        toast("JSON tersalin. Paste ke data.json di GitHub lalu commit.");
+      }catch(e){
+        console.error(e);
+        toast("Gagal copy. Cek JSON editor.");
+      }
+    };
+
+    $("adminResetDraft").onclick = ()=>{
+      localStorage.removeItem(LS_DRAFT);
+      toast("Draft dihapus. Reload untuk kembali ke data.json publik.");
+    };
+
+    // ===== Render all
+    function applyAll(d){
+      applyTheme(d);
+      applyLogo(d);
+      renderNav(d);
+      renderHero(d);
+      renderAbout(d);
+      renderServices(d);
+      renderAdvantages(d);
+      renderTestimonialsText(d);
+      renderGallery(d);
+      applyForm(d);
+    }
+
+    // ===== Boot
+    (async function(){
+      REMOTE = await fetchRemote();
+      if(!REMOTE){
+        // minimal fallback: still shows page structure
+        REMOTE = {
+          version: 1,
+          settings: { siteName:"Jokitoefl.myid", headline:"One stop for your future", highlightWord:"future", subhead:"", heroBadge:"", ctaText:"Konsultasi Gratis", instagram:"#", maxWidth:1100, theme:{} , logo:{src:""} , form:{provider:"formspree", formspreeEndpoint:"", notePlaceholder:""} },
+          nav: [{id:"home",label:"Home"},{id:"about",label:"About"},{id:"layanan",label:"Layanan"},{id:"testimoni",label:"Testimoni"},{id:"kontak",label:"Kontak"}],
+          about: {title:"Tentang Kami", text:""},
+          services: [],
+          advantages: [],
+          testimonialsText: [],
+          testimonialsImages: []
+        };
+        toast("Gagal load data.json. Cek file di repo.");
+      }
+
+      const draft = loadDraft();
+      STATE = draft || REMOTE;
+      applyAll(STATE);
+    })();
+  </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
