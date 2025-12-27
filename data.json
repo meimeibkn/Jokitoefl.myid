@@ -43,23 +43,67 @@
   },
 
   "services": [
-    {
-      "id": "komputer",
-      "title": "Sertifikat Komputer",
-      "desc": "Bantu buat Sertifikat Microsoft kamu sesuai untuk daftar kerja. Solusi paling murah, resmi, dan transparan.",
-      "details": [
-        "SECTION: SERTIFIKAT NASIONAL",
-        "Keperluan: BUMN, CPNS, KAI, OJK, dan instansi nasional lainnya",
-        "Solusi: Sertifikat non-ETS Resmi (Soft File)",
-        "Harga: 150k (Test) + 180k (Joki) = 330k",
-        "Durasi: 1–2 jam (maks 1x24 jam)",
+  {
+    "id": "toefl",
+    "title": "Sertifikat TOEFL",
+    "desc": "Bantu Joki sertifikat TOEFL kamu, Garansi 100%. Solusi paling murah, resmi, dan transparan.",
+    "details": [
+      "SECTION: SERTIFIKAT NASIONAL",
+      "Keperluan: BUMN, CPNS, KAI, OJK, dan instansi nasional lainnya",
+      "Solusi: Sertifikat non-ETS Resmi (Soft File)",
+      "Harga: 150k (Test) + 180k (Joki) = 330k",
+      "Durasi: 1–2 jam (maks 1x24 jam)",
 
-        "SECTION: SERTIFIKAT INTERNASIONAL",
-        "Keperluan: LPDP, TBI, S2, dll",
-        "Solusi: Sertifikat ETS Resmi",
-        "Harga: Joki 500k",
-        "Durasi: Tergantung jadwal ETS"
-      ]
+      "SECTION: SERTIFIKAT INTERNASIONAL",
+      "Keperluan: Beasiswa LPDP, TBI, S2, dan keperluan Internasional lainnya",
+      "Solusi: Sertifikat ETS Resmi",
+      "Harga: Joki 500k",
+      "Durasi: Tergantung jadwal dan ketersediaan"
+    ]
+  },
+  {
+    "id": "komputer",
+    "title": "Sertifikat Komputer",
+    "desc": "Bantu buat Sertifikat Microsoft kamu sesuai untuk daftar kerja. Solusi paling murah, resmi, dan transparan.",
+    "details": [
+      "Keperluan: BUMN, CPNS, KAI, OJK, dan instansi nasional lainnya",
+      "Solusi: Sertifikat Resmi (Soft File)",
+      "Harga: 150k (Test) + 180k (Joki) = 330k",
+      "Durasi: 2–4 jam (maks 1x24 jam)"
+    ]
+  },
+  {
+    "id": "ut",
+    "title": "Bantuan Akademik UT",
+    "desc": "Pendampingan TUTON, TUWEB, revisi, dan arahan teknis sesuai kebutuhan kamu. Gratis rangkuman + latihan soal (100% BMP & TUTON).",
+    "details": [
+      "Fasilitas:",
+      "a. Pendampingan TUTON dan TUWEB",
+      "b. Pendampingan agar mengerti sistem pembelajaran jarak jauh UT",
+      "c. Prompt AI untuk Diskusi, Makalah dan Tugas",
+      "d. PDF BMP untuk digunakan di AI",
+      "e. Rangkuman BMP (cocok untuk yang sibuk bekerja)",
+      "f. Latihan soal 100% dari BMP dan TUTON untuk bantu kamu siap UAS",
+      "g. Bantu susun strategi lulus tepat waktu",
+      "h. Admin bantuan dan info UT 24/7",
+      "i. Bantuan perubahan berkas",
+      "Cocok untuk: Mahasiswa UT dan Calon Mahasiswa UT",
+      "Harga: 350k / semester",
+      "Durasi: 1 semester"
+    ]
+  },
+  {
+    "id": "lainnya",
+    "title": "Lainnya",
+    "desc": "Jasa Translate, Joki Tugas, Joki TUTON, Joki THE, dll",
+    "details": [
+      "Harga: start from 5k (sesuai deadline dan jurusan)",
+      "Fasilitas: Gratis revisi 3x",
+      "Garansi: 100% uang kembali jika lewat deadline"
+    ]
+  }
+]
+
     },
 
     {
