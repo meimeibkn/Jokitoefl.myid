@@ -119,22 +119,23 @@
     { "name": "Agung", "text": "Proses cepat, hasil sesuai." }
   ],
 
-  "testimonialsImages": [
-    { "src": "assets/testimonials/img-01.jpg.jpeg", "cap": "Testimoni" },
-    { "src": "assets/testimonials/img-02.jpg.jpeg", "cap": "Testimoni" },
-    { "src": "assets/testimonials/img-03.jpg.jpeg", "cap": "Testimoni" },
-    { "src": "assets/testimonials/img-04.jpg.jpeg", "cap": "Testimoni" },
-    { "src": "assets/testimonials/img-05.jpg.jpeg", "cap": "Testimoni" },
-    { "src": "assets/testimonials/img-06.jpg.jpeg", "cap": "Testimoni" },
-    { "src": "assets/testimonials/img-07.jpg.jpeg", "cap": "Testimoni" },
-    { "src": "assets/testimonials/img-08.jpg.jpeg", "cap": "Testimoni" },
-    { "src": "assets/testimonials/img-09.jpg.jpeg", "cap": "Testimoni" },
-    { "src": "assets/testimonials/img-10.jpg.jpeg", "cap": "Testimoni" },
-    { "src": "assets/testimonials/img-11.jpg.jpeg", "cap": "Testimoni" },
-    { "src": "assets/testimonials/img-12.jpg.jpeg", "cap": "Testimoni" },
-    { "src": "assets/testimonials/img-13.jpg.jpeg", "cap": "Testimoni" },
-    { "src": "assets/testimonials/img-14.jpg.jpeg", "cap": "Testimoni" },
-    { "src": "assets/testimonials/img-15.jpg.jpeg", "cap": "Testimoni" },
-    { "src": "assets/testimonials/img-16.jpg.jpeg", "cap": "Testimoni" },
-  ]
+ "testimonialsImages": [
+  { "src": "assets/testimonials/img-01.jpg.jpeg", "cap": "Testimoni" },
+  { "src": "assets/testimonials/img-02.jpg.jpeg", "cap": "Testimoni" },
+  { "src": "assets/testimonials/img-03.jpg.jpeg", "cap": "Testimoni" },
+  { "src": "assets/testimonials/img-04.jpg.jpeg", "cap": "Testimoni" },
+  { "src": "assets/testimonials/img-05.jpg.jpeg", "cap": "Testimoni" },
+  { "src": "assets/testimonials/img-06.jpg.jpeg", "cap": "Testimoni" },
+  { "src": "assets/testimonials/img-07.jpg.jpeg", "cap": "Testimoni" },
+  { "src": "assets/testimonials/img-08.jpg.jpeg", "cap": "Testimoni" },
+  { "src": "assets/testimonials/img-09.jpg.jpeg", "cap": "Testimoni" },
+  { "src": "assets/testimonials/img-10.jpg.jpeg", "cap": "Testimoni" },
+  { "src": "assets/testimonials/img-11.jpg.jpeg", "cap": "Testimoni" },
+  { "src": "assets/testimonials/img-12.jpg.jpeg", "cap": "Testimoni" },
+  { "src": "assets/testimonials/img-13.jpg.jpeg", "cap": "Testimoni" },
+  { "src": "assets/testimonials/img-14.jpg.jpeg", "cap": "Testimoni" },
+  { "src": "assets/testimonials/img-15.jpg.jpeg", "cap": "Testimoni" },
+  { "src": "assets/testimonials/img-16.jpg.jpeg", "cap": "Testimoni" }
+]
+
 }
