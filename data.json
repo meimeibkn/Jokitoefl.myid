@@ -42,7 +42,7 @@
     "text": "Jokitoefl.myid membantu kebutuhan belajar dan dokumen pendukung akademik dengan alur yang simpel dan terpercaya sejak 2023: sampaikan kebutuhan, deal harga, kami bantu eksekusi."
   },
 
-  "services": [
+"services": [
   {
     "id": "toefl",
     "title": "Sertifikat TOEFL",
@@ -103,36 +103,6 @@
     ]
   }
 ]
-
-    },
-
-    {
-      "id": "ut",
-      "title": "Bantuan Akademik UT",
-      "desc": "Pendampingan TUTON, TUWEB, rangkuman, dan latihan soal berbasis BMP & TUTON.",
-      "details": [
-        "Pendampingan TUTON & TUWEB",
-        "Prompt AI untuk Diskusi & Makalah",
-        "PDF BMP untuk digunakan di AI",
-        "Rangkuman BMP",
-        "Latihan soal UAS dari BMP & TUTON",
-        "Admin bantuan UT 24/7",
-        "Harga: 350k / semester",
-        "Durasi: 1 semester"
-      ]
-    },
-
-    {
-      "id": "lainnya",
-      "title": "Layanan Lainnya",
-      "desc": "Translate, Joki Tugas, Joki TUTON, dll",
-      "details": [
-        "Harga mulai 5k",
-        "Gratis revisi 3x",
-        "Garansi 100% uang kembali jika lewat deadline"
-      ]
-    }
-  ],
 
   "advantages": [
     {
