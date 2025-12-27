@@ -105,6 +105,39 @@
     p{margin:0}
     .small{font-size:12px;color:var(--muted);line-height:1.6}
     .muted{color:var(--muted)}
+    
+/* Keunggulan: grid cards (mirip englishvit) */
+.advGrid{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+@media (max-width: 820px){
+  .advGrid{ grid-template-columns: 1fr; }
+}
+
+.advCard{
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(161,192,248,0.14);
+  border-radius: 16px;
+  padding: 16px 16px 14px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+}
+
+.advTitle{
+  margin: 0 0 8px;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: .2px;
+}
+
+.advText{
+  margin: 0;
+  color: rgba(255,255,255,0.84);
+  line-height: 1.6;
+  font-size: 14px;
+}
 
     /* HERO */
     .hero{padding:18px 0 8px;display:flex}
@@ -435,7 +468,7 @@
   <section id="testimoni" class="panel" style="margin-top:14px">
     <h2>Testimoni</h2>
 
-    <h3 style="margin-top:10px">Teks</h3>
+    <h3 style="margin-top:10px">Dari Customer</h3>
     <div class="tWrap">
       <div class="tViewport" id="tViewport">
         <div class="tTrack" id="tTrack"></div>
@@ -443,12 +476,12 @@
       <div class="tControls">
         <button class="iconBtn" id="tPrev" type="button" aria-label="prev">‹</button>
         <button class="iconBtn" id="tNext" type="button" aria-label="next">›</button>
-        <span class="small">Geser atau klik tombol. Manual, tanpa blur.</span>
+        <span class="small">Geser atau klik tombol.</span>
       </div>
     </div>
 
     <h3 style="margin-top:16px">Gambar</h3>
-    <p class="small">Klik gambar besar untuk lihat detail di popup (caption hanya di popup).</p>
+    <p class="small">Klik gambar untuk lihat detail.</p>
 
     <div class="gLayout" id="galleryWrap">
       <div class="bigBox" id="bigBox" role="button" aria-label="open image popup">
@@ -953,33 +986,20 @@ function applyLogo(d){
       sel.appendChild(opt);
     });
   }
-
 function renderAdvantages(d){
-  // ambil data dari format BARU atau LAMA
-  const list =
-    Array.isArray(d.advantages) ? d.advantages :
-    Array.isArray(d.highlights) ? d.highlights :
-    [];
-
-  const wrap = document.getElementById("advantagesGrid");
+  const wrap = document.getElementById("advWrap");
   if(!wrap) return;
 
+  const list = Array.isArray(d.advantages) ? d.advantages : [];
   wrap.innerHTML = "";
-
-  if(list.length === 0){
-    wrap.innerHTML = `<div class="small">Belum ada data keunggulan.</div>`;
-    return;
-  }
 
   list.forEach(item=>{
     const card = document.createElement("div");
-    card.className = "card advantage";
-
+    card.className = "advCard"; // class khusus keunggulan
     card.innerHTML = `
-      <div class="cardTitle">${safeText(item.title || "")}</div>
-      <div class="cardText">${safeText(item.text || item.desc || "")}</div>
+      <h3 class="advTitle">${safeText(item.title || "")}</h3>
+      <p class="advText">${safeText(item.text || "")}</p>
     `;
-
     wrap.appendChild(card);
   });
 }
@@ -1904,6 +1924,9 @@ function openGalleryPopup(d){
 </script>
 </body>
 </html>
+
+
+
 
 
 
