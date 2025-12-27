@@ -716,149 +716,112 @@
   $("imgOverlay").addEventListener("click", (e)=>{
     if(e.target.id === "imgOverlay") closeGallery();
   });
+function openServiceModal(s){
+  currentServiceTitle = s.title || "";
 
-  function openServiceModal(s){
-    currentServiceTitle = s.title || "";
+  $("svcTitle").textContent = safeText(s.title || "Detail Layanan");
+  $("svcMeta").textContent = safeText(s.meta || s.price || "");
+  const body = $("svcBody");
+  body.innerHTML = "";
 
-    $("svcTitle").textContent = safeText(s.title || "Detail Layanan");
-    $("svcMeta").textContent = safeText(s.meta || s.price || "");
-    const body = $("svcBody");
-    body.innerHTML = "";
+  const details = s.details;
+  const lines = Array.isArray(details) ? details : [];
 
-    const details = s.details;
-    const lines = Array.isArray(details) ? details : [];
-
+  // CASE B / A: ada isi detail
+  if (lines.length) {
     // CASE B: array of objects (sections)
-    if(lines.length){
-      if(typeof lines[0] === "object" && lines[0] !== null){
-        // treat as array of sections like: {title, items}
-        const sections = lines.map(it => ({
-          title: safeText(it.title || "Detail"),
-          items: Array.isArray(it.items) ? it.items.map(x => safeText(x)) : []
-        }));
+    if (typeof lines[0] === "object" && lines[0] !== null) {
+      const sections = lines.map(it => ({
+        title: safeText(it.title || "Detail"),
+        items: Array.isArray(it.items) ? it.items.map(x => safeText(x)) : []
+      }));
 
-        sections.forEach(sec => {
-          const div = document.createElement("div");
-          div.className = "modalSection";
-          div.innerHTML = `<h4>${safeText(sec.title)}</h4>`;
-          const ul = document.createElement("ul");
-          ul.className = "list";
-          sec.items.forEach(item => {
-            const li = document.createElement("li");
-            li.textContent = safeText(item);
-            ul.appendChild(li);
-          });
-          div.appendChild(ul);
-          body.appendChild(div);
+      sections.forEach(sec => {
+        const div = document.createElement("div");
+        div.className = "modalSection";
+        div.innerHTML = `<h4>${safeText(sec.title)}</h4>`;
+
+        const ul = document.createElement("ul");
+        ul.className = "list";
+
+        sec.items.forEach(item => {
+          const li = document.createElement("li");
+          li.textContent = safeText(item);
+          ul.appendChild(li);
         });
 
-      } else {
-        // CASE A: array of strings, detect section markers
-        const sections = [];
-        let currentTitle = "";
-        let currentItems = [];
+        div.appendChild(ul);
+        body.appendChild(div);
+      });
 
-        function pushCurrent(){
-          if(currentTitle || currentItems.length){
-            sections.push({ title: currentTitle || "Detail", items: currentItems.slice() });
-          }
-        }
+    } else {
+      // CASE A: array of strings, detect section markers [Title]
+      const sections = [];
+      let currentTitle = "";
+      let currentItems = [];
 
-        lines.forEach(line => {
-          const s = safeText(line).trim();
-          const m = s.match(/^\[(.+?)\]\s*$/);
-          if(m){
-            pushCurrent();
-            currentTitle = (m[1] || "").trim();
-            currentItems = [];
-          } else {
-            currentItems.push(line);
-          }
-        });
-        pushCurrent();
-
-        if(sections.length === 0) {
-          // fallback: render as single list
-          renderSection("Detail", lines);
-        } else {
-          sections.forEach(s => renderSection(s.title, s.items));
+      function pushCurrent(){
+        if(currentTitle || currentItems.length){
+          sections.push({ title: currentTitle || "Detail", items: currentItems.slice() });
         }
       }
-    } else {
-      // plain list, no section markers
-      renderSection("Detail", lines);
+
+      lines.forEach(line => {
+        const t = safeText(line).trim();
+        const m = t.match(/^\[(.+?)\]\s*$/);
+        if(m){
+          pushCurrent();
+          currentTitle = (m[1] || "").trim();
+          currentItems = [];
+        } else {
+          currentItems.push(line);
+        }
+      });
+      pushCurrent();
+
+      if(sections.length === 0){
+        renderSection("Detail", lines);
+      } else {
+        sections.forEach(sec => renderSection(sec.title, sec.items));
+      }
     }
-  }
-  // CASE: no valid details
-  else {
+
+  } else {
+    // CASE C: detail kosong
     renderSection("Detail", []);
   }
 
   $("svcOverlay").style.display = "flex";
 }
 
-  function renderSection(title, items){
-    const body = $("svcBody");
-    const div = document.createElement("div");
-    div.className = "modalSection";
-    div.innerHTML = `<h4>${safeText(title)}</h4>`;
+function renderSection(title, items){
+  const body = $("svcBody");
+  const div = document.createElement("div");
+  div.className = "modalSection";
+  div.innerHTML = `<h4>${safeText(title)}</h4>`;
 
-    const ul = document.createElement("ul");
-    ul.className = "list";
+  const ul = document.createElement("ul");
+  ul.className = "list";
 
-    (Array.isArray(items) ? items : []).forEach(item => {
+  const arr = Array.isArray(items) ? items : [];
+  if (arr.length === 0) {
+    const p = document.createElement("div");
+    p.className = "small";
+    p.textContent = "Detail layanan belum tersedia.";
+    div.appendChild(p);
+  } else {
+    arr.forEach(item => {
       const li = document.createElement("li");
       li.textContent = safeText(item);
       ul.appendChild(li);
     });
-
     div.appendChild(ul);
-    body.appendChild(div);
   }
 
-  function closeServiceModal(){
-    $("svcOverlay").style.display = "none";
-    $("svcBody").innerHTML = "";
-    currentServiceTitle = "";
-  }
-  $("svcClose").onclick = closeServiceModal;
-  $("svcOverlay").addEventListener("click", (e)=>{
-    if(e.target.id === "svcOverlay") closeServiceModal();
-  });
+  body.appendChild(div);
+}
 
-  function openWA(serviceTitle){
-    const wa = safeText(DATA?.settings?.whatsapp || "");
-    const msgTmpl = safeText(DATA?.settings?.waTemplate || "Halo, saya ingin konsultasi {service}. Nama: {name}. Target: {notes}");
-    const name = safeText($("name")?.value || "");
-    const notes = safeText($("notes")?.value || "");
-    const selected = safeText(serviceTitle || $("serviceSelect")?.value || "");
-    const msg = msgTmpl
-      .replaceAll("{service}", selected || "-")
-      .replaceAll("{name}", name || "-")
-      .replaceAll("{notes}", notes || "-");
 
-    const phone = wa.replace(/[^\d]/g,"");
-    const url = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
-    window.open(url, "_blank");
-  }
-
-  function renderServiceSelect(d){
-    const sel = $("serviceSelect");
-    sel.innerHTML = "";
-    const list = Array.isArray(d.services) ? d.services : [];
-
-    const opt0 = document.createElement("option");
-    opt0.value = "";
-    opt0.textContent = "Pilih layanan";
-    sel.appendChild(opt0);
-
-    list.forEach(s => {
-      const opt = document.createElement("option");
-      opt.value = safeText(s.title || "");
-      opt.textContent = safeText(s.title || "");
-      sel.appendChild(opt);
-    });
-  }
 
   $("leadForm").addEventListener("submit", (e)=>{
     e.preventDefault();
@@ -888,3 +851,4 @@
 </script>
 </body>
 </html>
+
