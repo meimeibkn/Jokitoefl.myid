@@ -842,57 +842,32 @@ function renderSection(title, items){
     openWA(null);
   });
 
- async function init(){
+async function init(){
   try{
     const res = await fetch("./data.json");
     const d = await res.json();
-
-    // ===== NORMALISASI (WAJIB) =====
-    // settings yang dipakai renderer lama
-    d.settings = d.settings || {};
-    d.settings.brand = d.settings.siteName || d.settings.brand || "Jokitoefl.myid";
-    d.settings.badge = d.settings.heroBadge || d.settings.badge || "";
-    d.settings.ctaTop = d.settings.ctaText || d.settings.ctaTop || "Konsultasi Gratis";
-    d.settings.ctaHero = d.settings.ctaText || d.settings.ctaHero || "Konsultasi Gratis";
-    d.settings.about = (d.about && d.about.text) ? d.about.text : (d.settings.about || "");
-
-    // logo: renderer lama expect STRING URL
-    if (d.settings.logo && typeof d.settings.logo === "object" && d.settings.logo.src) {
-      d.settings.logo = d.settings.logo.src;
-    }
-
-    // testimoni: renderer lama pakai quotes + gallery
-    d.quotes = Array.isArray(d.testimonialsText) ? d.testimonialsText : (d.quotes || []);
-    d.gallery = Array.isArray(d.testimonialsImages) ? d.testimonialsImages : (d.gallery || []);
-
-    // faq mungkin tidak ada di json kamu → amanin jadi array kosong
-    d.faq = Array.isArray(d.faq) ? d.faq : [];
-
     DATA = d;
 
-    // ===== RENDER =====
-    renderTop(d);
-    renderServices(d);
-    renderQuotes(d);
-    renderFAQ(d);
-    renderGallery(d);
-
-    // OPTIONAL: hanya panggil kalau fungsinya ada
-    if (typeof renderServiceSelect === "function") {
-      renderServiceSelect(d);
-    }
+    if (typeof renderTop === "function") renderTop(d);
+    if (typeof renderServices === "function") renderServices(d);
+    if (typeof renderQuotes === "function") renderQuotes(d);
+    if (typeof renderFAQ === "function") renderFAQ(d);
+    if (typeof renderGallery === "function") renderGallery(d);
+    if (typeof renderServiceSelect === "function") renderServiceSelect(d);
 
   }catch(err){
-    console.error(err);
-    alert("Gagal memuat data.json. Periksa file/struktur JSON dan lokasi path.");
+    console.error("INIT ERROR:", err);
+    alert("Init gagal. Lihat Console (F12) untuk error yang muncul.");
   }
 }
+
 
 
   init();
 </script>
 </body>
 </html>
+
 
 
 
