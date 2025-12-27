@@ -24,7 +24,7 @@
 
     "form": {
       "provider": "formspree",
-      "formspreeEndpoint": "",
+      "formspreeEndpoint": "https://formspree.io/f/xbdjorre",
       "notePlaceholder": "Catatan (opsional): Harga, durasi kelas, deadline, dll"
     }
   },
