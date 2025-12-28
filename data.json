@@ -562,6 +562,110 @@
     { "type": "ul", "items": ["Tetap tenang di audio panjang", "Tidak panik saat kehilangan detail", "Menjawab dengan logika, bukan tebakan"] },
     { "type": "p", "text": "Dan kalau kamu berada di kondisi: waktu mepet, skor harus aman, tidak bisa ambil risiko gagal, mimin juga menyediakan jasa joki TOEFL yang profesional, rapi, dan berpengalaman. Banyak yang sudah terbantu, dan hasilnya konsisten." }
   ]
+},
+  {
+  "id": "structure-grammar-dari-nol",
+  "title": "Belajar Structure dan Grammar TOEFL dari Nol, Pelan tapi Pasti",
+  "preview": "Banyak orang stres dengar “Structure and Grammar TOEFL”. Padahal masalahnya sering bukan karena susah, tapi karena dasarnya belum kebentuk. Yuk mulai pelan-pelan dari subjek, verb, sampai pola kalimat...",
+  "cover": "assets/tips/artikel-04.jpg",
+  "blocks": [
+    { "type": "p", "text": "Banyak orang langsung stres ketika dengar kata “Structure and Grammar TOEFL”. Yang terbayang adalah rumus, istilah aneh, dan aturan yang bikin pusing. Padahal masalah utamanya sering bukan karena susah, tapi karena dari awal tidak benar-benar paham dasarnya." },
+    { "type": "p", "text": "Mimin sering ketemu orang yang jujur bilang, “Aku bahkan nggak tahu mana subjek, mana verb.”" },
+    { "type": "p", "text": "Dan itu tidak apa-apa. Justru bagus kalau kamu sadar dari awal." },
+    { "type": "p", "text": "Artikel ini mimin buat seolah-olah kamu mulai dari titik nol, tanpa asumsi apa pun. Kita bangun pelan-pelan, seperti orang belajar naik sepeda. Tidak langsung ngebut, tapi stabil." },
+    { "type": "p", "text": "Seperti biasa, mimin selipkan halus saja. Kalau suatu hari kamu butuh skor TOEFL cepat karena kejar deadline atau syarat tertentu, mimin juga buka jasa joki TOEFL yang aman dan profesional. Tapi sekarang, fokus belajar dulu sampai benar-benar paham." },
+
+    { "type": "hr" },
+
+    { "type": "h2", "text": "Apa Itu Structure and Grammar di TOEFL" },
+    { "type": "p", "text": "Di TOEFL, bagian Structure and Grammar menguji satu hal utama: apakah kamu bisa menyusun dan mengenali kalimat bahasa Inggris yang benar secara bentuk." },
+    { "type": "p", "text": "Bukan soal pintar berbicara, bukan soal kosakata susah. Tapi soal susunan kalimat." },
+    { "type": "p", "text": "Untuk bisa sampai ke sana, kamu harus kenal dulu tiga komponen paling dasar:" },
+    { "type": "ul", "items": ["Subjek", "Verb", "Objek atau pelengkap"] },
+    { "type": "p", "text": "Tanpa ini, semua aturan grammar akan terasa seperti hafalan kosong." },
+
+    { "type": "hr" },
+
+    { "type": "h2", "text": "Langkah 1: Apa Itu Subjek" },
+    { "type": "p", "text": "Subjek adalah pelaku atau topik utama dalam sebuah kalimat." },
+    { "type": "p", "text": "Cara paling gampang mengenal subjek: tanyakan “siapa” atau “apa” yang sedang dibicarakan." },
+    { "type": "p", "text": "Contoh sederhana:" },
+    { "type": "ul", "items": ["I eat rice. (Subjeknya: I)", "The student studies English. (Subjeknya: the student)"] },
+    { "type": "p", "text": "Subjek bisa:" },
+    { "type": "ul", "items": ["Satu kata", "Dua kata", "Atau panjang"] },
+    { "type": "p", "text": "Contoh subjek panjang:" },
+    { "type": "ul", "items": ["The student in the blue shirt (Subjeknya tetap satu, walaupun kelihatannya panjang)"] },
+    { "type": "p", "text": "Kesalahan pemula paling sering: mengira kata terakhir sebagai subjek, padahal subjeknya ada di depan." },
+
+    { "type": "hr" },
+
+    { "type": "h2", "text": "Langkah 2: Apa Itu Verb" },
+    { "type": "p", "text": "Verb adalah kata kerja, yaitu apa yang dilakukan subjek." },
+    { "type": "p", "text": "Tanpa verb, kalimat itu tidak hidup." },
+    { "type": "p", "text": "Contoh:" },
+    { "type": "ul", "items": ["I eat rice. (Verbnya: eat)", "She is tired. (Verbnya: is)"] },
+    { "type": "p", "text": "Verb tidak selalu berarti “aksi” seperti eat, run, write. Kata seperti is, are, was, were juga termasuk verb." },
+    { "type": "p", "text": "Tips penting dari mimin: Dalam satu kalimat sederhana, harus ada minimal satu subjek dan satu verb. Kalau salah satu tidak ada, pasti salah." },
+
+    { "type": "hr" },
+
+    { "type": "h2", "text": "Langkah 3: Apa Itu Objek atau Pelengkap" },
+    { "type": "p", "text": "Objek atau pelengkap adalah yang terkena aksi atau informasi tambahan setelah verb." },
+    { "type": "p", "text": "Contoh:" },
+    { "type": "ul", "items": ["I eat rice. (Rice adalah objek)", "She is tired. (Tired adalah pelengkap)"] },
+    { "type": "p", "text": "Tidak semua kalimat punya objek, tapi semua kalimat wajib punya subjek dan verb. Ini aturan emas yang harus kamu ingat." },
+
+    { "type": "hr" },
+
+    { "type": "h2", "text": "Pola Kalimat Dasar Bahasa Inggris" },
+    { "type": "p", "text": "Kalau diringkas, kalimat dasar bahasa Inggris punya pola: Subjek + Verb + Objek/Pelengkap." },
+    { "type": "p", "text": "Contoh:" },
+    { "type": "ul", "items": ["I study English.", "They are happy.", "The teacher explains the lesson."] },
+    { "type": "p", "text": "Kalau kamu bisa menemukan tiga bagian ini, kamu sudah menang setengah Structure TOEFL." },
+
+    { "type": "hr" },
+
+    { "type": "h2", "text": "Kenapa Ini Penting di TOEFL" },
+    { "type": "p", "text": "Di soal Structure TOEFL, kamu sering menemukan kalimat panjang yang bikin bingung." },
+    { "type": "p", "text": "Contoh: The book on the table in the classroom ___ very interesting." },
+    { "type": "p", "text": "Kalimat ini terlihat rumit, tapi mimin akan ajari cara sederhananya." },
+    { "type": "p", "text": "Langkah berpikir:" },
+    { "type": "ul", "items": ["Cari subjek utama. Subjeknya adalah the book.", "Cari verb. Setelah subjek, kamu butuh verb.", "Frasa seperti “on the table” dan “in the classroom” bisa diabaikan dulu."] },
+    { "type": "p", "text": "Jadi yang dicari TOEFL di sini adalah verb yang cocok dengan the book." },
+    { "type": "p", "text": "Kalau kamu tidak paham konsep subjek dan verb, soal seperti ini akan terasa mustahil." },
+
+    { "type": "hr" },
+
+    { "type": "h2", "text": "Kesalahan Pemula yang Wajar Tapi Harus Dihentikan" },
+    { "type": "p", "text": "Beberapa kesalahan yang sering terjadi:" },
+    { "type": "ul", "items": ["Mengira semua kata kerja itu verb utama", "Tidak sadar kalau subjeknya panjang", "Terjebak membaca arti, bukan struktur", "Panik karena kalimat terlihat akademik"] },
+    { "type": "p", "text": "Mimin tekankan: TOEFL sengaja bikin kalimat panjang supaya kamu lupa mana inti kalimatnya." },
+
+    { "type": "hr" },
+
+    { "type": "h2", "text": "Cara Latihan untuk Pemula Total" },
+    { "type": "p", "text": "Latihan terbaik bukan langsung ngerjain soal TOEFL. Mulailah dari:" },
+    { "type": "ul", "items": ["Kalimat pendek", "Tandai subjek", "Tandai verb", "Tandai objek atau pelengkap"] },
+    { "type": "p", "text": "Contoh latihan: The cat sleeps on the sofa." },
+    { "type": "ul", "items": ["Subjek: the cat", "Verb: sleeps", "Pelengkap: on the sofa"] },
+    { "type": "p", "text": "Kalau ini sudah refleks, baru naik level ke kalimat TOEFL." },
+
+    { "type": "hr" },
+
+    { "type": "h2", "text": "Jangan Takut Grammar, Takut Tidak Punya Dasar" },
+    { "type": "p", "text": "Grammar itu bukan monster. Yang bikin menakutkan adalah belajar lompat-lompat tanpa pondasi." },
+    { "type": "p", "text": "Kalau kamu paham:" },
+    { "type": "ul", "items": ["Apa itu subjek", "Apa itu verb", "Apa itu objek atau pelengkap"] },
+    { "type": "p", "text": "Maka:" },
+    { "type": "ul", "items": ["Noun clause", "Adjective clause", "Parallel structure"] },
+    { "type": "p", "text": "Akan jauh lebih mudah dipahami nanti." },
+
+    { "type": "hr" },
+
+    { "type": "h2", "text": "Penutup: Dari Nol Itu Tidak Memalukan" },
+    { "type": "p", "text": "Semua yang jago TOEFL hari ini juga pernah bingung membedakan subjek dan verb." },
+    { "type": "p", "text": "Yang membedakan adalah: ada yang mau berhenti dan ada yang mau membangun pelan-pelan." }
+  ]
 }
 ], 
 
