@@ -34,6 +34,7 @@
     { "id": "about", "label": "About Us" },
     { "id": "layanan", "label": "Layanan" },
     { "id": "testimoni", "label": "Testimoni" },
+    { "id": "tips", "label": "Tips" },
     { "id": "kontak", "label": "Kontak" }
   ],
 
@@ -103,6 +104,28 @@
     ]
   }
 ],
+"tips": [
+  {
+    "id": "listening-part-b",
+    "title": "Strategi Cerdas Menghadapi Listening Part B TOEFL Biar Tidak Kehilangan Arah",
+    "preview": "Kalau Listening Part A itu soal kejelian menangkap dialog singkat, maka Listening Part B adalah ujian daya tahan fokus...",
+    "cover": "assets/tips/artikel-01.jpg",
+    "content": [
+      "Kalau Listening Part A itu soal kejelian menangkap dialog singkat, maka Listening Part B adalah ujian daya tahan fokus.",
+      "Banyak peserta TOEFL bilang, “Aku paham di awal, tapi kok makin ke belakang makin kabur?” Itu wajar.",
+      "_____",
+      "## Pahami Dulu Karakter Listening Part B",
+      "Listening Part B biasanya berupa:",
+      "- Percakapan lebih panjang",
+      "- Bisa melibatkan 2 sampai 3 orang",
+      "- Topiknya seputar kampus/administrasi ringan",
+      "_____",
+      "## Trik 1: Tangkap Topik Sejak 10 Detik Pertama",
+      "Di awal audio biasanya langsung disebutkan konteks. Targetkan 10–15 detik pertama kamu sudah tahu topiknya."
+    ],
+    "related": []
+  }
+], 
 
   "advantages": [
     {
