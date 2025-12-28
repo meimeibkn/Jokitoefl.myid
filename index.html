@@ -486,6 +486,7 @@
   <div class="container">
     <div class="tipsTop">
       <button class="btn" id="tipsBackBtn">← Kembali</button>
+      <button class="btn primary" id="tipsCtaBtn">Konsultasi Gratis</button>
       <h2 class="h2">Tips Gratis</h2>
     </div>
 
@@ -500,7 +501,7 @@
 <!-- STICKY FORM (TIPS MODE ONLY) -->
 <div id="tipsSticky" class="tipsSticky" hidden>
   <div class="container">
-    <div class="tipsStickyCard">
+    <div class="tipsSticky">
       <div class="tipsStickyTitle">
         <div class="h3">Kontak</div>
         <div class="small">Isi form, nanti kami hubungi via WhatsApp.</div>
@@ -1064,6 +1065,9 @@ function renderTipContentLines(lines){
 function showTipsMode(on){
   const tipsView = $("tipsView");
   const tipsSticky = $("tipsSticky");
+   // HARD OFF: overlay/sticky form tidak dipakai di tips
+  const sticky = $("tipsSticky");
+  if(sticky) sticky.style.display = "none";
   // sections utama kamu (pastikan id-nya sesuai punyamu)
   const mainSections = ["home","about","layanan","testimoni","kontak"].map(id=>$(id)).filter(Boolean);
 
@@ -1638,6 +1642,10 @@ function setupTipsForm(d){
       renderGallery(d);
       applyForm(d);
     }
+// CTA tips: arahkan ke form bawah (#kontak)
+$("tipsCtaBtn")?.addEventListener("click", ()=>{
+  location.hash = "#kontak";
+});
 
     // ===== Boot
     (async function(){
@@ -1722,6 +1730,7 @@ window.addEventListener("resize", ()=> setTimeout(updateTipsBottomPadding, 50));
   </script>
 </body>
 </html>
+
 
 
 
