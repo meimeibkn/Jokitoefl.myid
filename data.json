@@ -423,6 +423,145 @@
     }
   ],
   "related": ["listening-part-b"]
+},
+  {
+  "id": "listening-part-c",
+  "title": "Listening Part C TOEFL: Panduan Bertahan di Bagian Paling Menentukan Skor",
+  "preview": "Kalau kamu sudah sampai di Listening Part C, artinya ujian sebenarnya baru dimulai. Banyak peserta TOEFL merasa cukup percaya diri setelah Part A dan Part B, lalu tiba-tiba kehilangan arah di Part C. Audio panjang, topik akademik, dan pertanyaan yang datang bertubi-tubi membuat konsentrasi cepat terkuras.", 
+  "cover": "assets/tips/artikel-03.jpg",
+  "blocks": [
+    {
+      "type": "p",
+      "text": "Kalau kamu sudah sampai di Listening Part C, artinya ujian sebenarnya baru dimulai. Banyak peserta TOEFL merasa cukup percaya diri setelah Part A dan Part B, lalu tiba-tiba kehilangan arah di Part C. Audio panjang, topik akademik, dan pertanyaan yang datang bertubi-tubi membuat konsentrasi cepat terkuras."
+    },
+    {
+      "type": "p",
+      "text": "Mimin sering bilang ke banyak orang, Part C bukan sekadar tes kemampuan listening, tapi tes strategi, fokus jangka panjang, dan ketahanan mental. Bahkan peserta dengan kemampuan bahasa Inggris bagus pun bisa terpeleset di sini kalau tidak tahu cara menyikapinya."
+    },
+    {
+      "type": "p",
+      "text": "Di artikel ini, mimin akan membedah Listening Part C secara menyeluruh. Bukan hanya tips permukaan, tapi cara berpikir yang benar saat menghadapi bagian paling sulit di TOEFL Listening."
+    },
+    {
+      "type": "p",
+      "text": "Dan seperti biasa, mimin selipkan di awal secara halus saja. Kalau suatu hari kamu butuh skor cepat, aman, dan tidak mau berjudi dengan hasil, mimin juga menyediakan jasa joki TOEFL profesional. Tapi sebelum ke sana, pastikan kamu paham medan tempurnya dulu."
+    },
+
+    { "type": "hr" },
+
+    { "type": "h2", "text": "Apa yang Membuat Listening Part C Sangat Sulit" },
+    { "type": "p",  "text": "Listening Part C biasanya berupa:" },
+    {
+      "type": "ul",
+      "items": [
+        "Monolog atau lecture panjang",
+        "Topik akademik seperti biologi, sejarah, psikologi, atau seni",
+        "Satu audio bisa diikuti oleh beberapa pertanyaan sekaligus"
+      ]
+    },
+    { "type": "p", "text": "Yang membuatnya berat bukan hanya bahasanya, tapi kombinasi dari:" },
+    {
+      "type": "ul",
+      "items": [
+        "Durasi panjang",
+        "Informasi padat",
+        "Tidak ada jeda untuk berpikir ulang"
+      ]
+    },
+    { "type": "p", "text": "Sekali kamu kehilangan fokus di tengah audio, biasanya akan sulit mengejar lagi." },
+
+    { "type": "hr" },
+
+    { "type": "h2", "text": "Trik 1: Jangan Dengarkan sebagai Ujian, Dengarkan sebagai Kuliah" },
+    { "type": "p", "text": "Kesalahan paling fatal di Part C adalah mendengarkan dengan mindset “aku harus menjawab soal”." },
+    { "type": "p", "text": "Padahal pendekatan yang lebih efektif adalah mendengarkan seperti sedang mengikuti kuliah." },
+    { "type": "p", "text": "Bayangkan dosen sedang menjelaskan:" },
+    {
+      "type": "ul",
+      "items": ["Konsep utama", "Contoh pendukung", "Penekanan di bagian tertentu"]
+    },
+    { "type": "p", "text": "Kalau kamu mendengarkan seperti ini, otakmu lebih natural menyimpan informasi penting tanpa panik." },
+
+    { "type": "hr" },
+
+    { "type": "h2", "text": "Trik 2: Tangkap Struktur Lecture Sejak Awal" },
+    { "type": "p", "text": "Lecture Part C hampir selalu punya struktur." },
+    { "type": "p", "text": "Biasanya dimulai dengan:" },
+    { "type": "ul", "items": ["Pengenalan topik", "Tujuan pembahasan"] },
+    { "type": "p", "text": "Lalu masuk ke:" },
+    { "type": "ul", "items": ["Penjelasan utama", "Contoh atau ilustrasi", "Perbandingan atau dampak"] },
+    { "type": "p", "text": "Dan sering ditutup dengan:" },
+    { "type": "ul", "items": ["Kesimpulan", "Implikasi", "Atau lanjutan topik"] },
+    { "type": "p", "text": "Kalau kamu bisa mengenali struktur ini, kamu tidak perlu mengingat semuanya. Kamu cukup tahu posisi informasi berada di bagian mana." },
+
+    { "type": "hr" },
+
+    { "type": "h2", "text": "Trik 3: Fokus pada Ide Utama, Bukan Semua Detail" },
+    { "type": "p", "text": "Banyak peserta gagal karena mencoba mengingat semua informasi." },
+    { "type": "p", "text": "Padahal TOEFL jarang menanyakan detail kecil yang berdiri sendiri. Yang lebih sering ditanya adalah:" },
+    { "type": "ul", "items": ["Main idea", "Purpose", "Relationship antar konsep", "Kesimpulan logis"] },
+    { "type": "p", "text": "Detail seperti tahun, istilah ilmiah rumit, atau nama tokoh sering hanya berfungsi sebagai pendukung ide utama." },
+    { "type": "p", "text": "Tips dari mimin: Kalau ada bagian yang terasa sangat teknis, jangan panik. Dengarkan alurnya, bukan isi teknisnya." },
+
+    { "type": "hr" },
+
+    { "type": "h2", "text": "Trik 4: Dengarkan Penekanan dari Intonasi Pembicara" },
+    { "type": "p", "text": "Dalam lecture, pembicara sering memberi sinyal lewat intonasi." },
+    { "type": "p", "text": "Perhatikan kata atau frasa seperti:" },
+    { "type": "ul", "items": ["the most important point is", "what you should remember is", "this is crucial", "for example"] },
+    { "type": "p", "text": "Bagian setelah frasa seperti ini hampir pasti penting dan sering menjadi dasar pertanyaan." },
+    { "type": "p", "text": "Belajar mendengar intonasi jauh lebih berguna daripada sekadar mengenali kata." },
+
+    { "type": "hr" },
+
+    { "type": "h2", "text": "Trik 5: Jangan Terintimidasi Vocabulary Akademik" },
+    { "type": "p", "text": "Listening Part C memang penuh istilah akademik. Tapi kabar baiknya, kamu tidak harus paham semua istilah itu secara detail." },
+    { "type": "p", "text": "Biasanya TOEFL:" },
+    { "type": "ul", "items": ["Tidak menguji definisi teknis", "Tidak meminta terjemahan istilah sulit"] },
+    { "type": "p", "text": "Yang diuji adalah:" },
+    { "type": "ul", "items": ["Hubungan antar konsep", "Fungsi suatu contoh", "Alasan suatu fenomena terjadi"] },
+    { "type": "p", "text": "Kalau ada satu istilah yang tidak kamu kenal, jangan berhenti. Lanjutkan mendengar konteksnya." },
+
+    { "type": "hr" },
+
+    { "type": "h2", "text": "Trik 6: Prediksi Pertanyaan Saat Audio Masih Berjalan" },
+    { "type": "p", "text": "Latihan tingkat lanjut yang sangat membantu adalah memprediksi." },
+    { "type": "p", "text": "Saat mendengar lecture, biasakan bertanya dalam hati:" },
+    { "type": "ul", "items": ["Ini topik utamanya apa", "Kenapa contoh ini diberikan", "Bagian ini mau menjelaskan apa"] },
+    { "type": "p", "text": "Dengan begitu, saat pertanyaan muncul, otakmu tidak mulai dari nol." },
+
+    { "type": "hr" },
+
+    { "type": "h2", "text": "Trik 7: Kelola Energi Mental, Bukan Hanya Konsentrasi" },
+    { "type": "p", "text": "Part C biasanya muncul di bagian akhir Listening. Di titik ini, otak sudah lelah." },
+    { "type": "p", "text": "Kesalahan umum:" },
+    { "type": "ul", "items": ["Memaksakan fokus 100 persen sepanjang waktu", "Panik ketika kehilangan satu bagian kecil"] },
+    { "type": "p", "text": "Yang lebih penting adalah stabilitas." },
+    { "type": "p", "text": "Kalau kamu kehilangan satu kalimat, lepaskan. Jangan kejar. Fokus ke bagian berikutnya. Satu kesalahan kecil tidak sebanding dengan kehilangan seluruh pemahaman." },
+
+    { "type": "hr" },
+
+    { "type": "h2", "text": "Trik 8: Latihan Mendengar Panjang Tanpa Interupsi" },
+    { "type": "p", "text": "Latihan terbaik untuk Part C bukan soal seberapa banyak soal yang kamu kerjakan, tapi seberapa lama kamu bisa fokus mendengarkan." },
+    { "type": "p", "text": "Mimin sarankan:" },
+    { "type": "ul", "items": ["Dengarkan lecture 5 sampai 10 menit", "Jangan pause", "Jangan langsung jawab soal", "Coba rangkum isi lecture di kepala"] },
+    { "type": "p", "text": "Ini melatih otak untuk bertahan, bukan sekadar menjawab." },
+
+    { "type": "hr" },
+
+    { "type": "h2", "text": "Trik 9: Pahami Tipe Pertanyaan Favorit Part C" },
+    { "type": "p", "text": "Beberapa tipe pertanyaan yang hampir selalu muncul:" },
+    { "type": "ul", "items": ["Main idea", "Purpose of the lecture", "Why the professor mentions something", "What can be inferred", "What will probably be discussed next"] },
+    { "type": "p", "text": "Kalau kamu paham tipe ini, kamu akan mendengar dengan tujuan yang lebih jelas." },
+
+    { "type": "hr" },
+
+    { "type": "h2", "text": "Penutup: Listening Part C Bukan Soal Pintar, Tapi Tahan dan Taktis" },
+    { "type": "p", "text": "Listening Part C adalah bagian paling jujur dalam TOEFL. Ia tidak menguji hafalan, tapi ketahanan fokus dan kecerdasan strategi." },
+    { "type": "p", "text": "Dengan pendekatan yang tepat, kamu bisa:" },
+    { "type": "ul", "items": ["Tetap tenang di audio panjang", "Tidak panik saat kehilangan detail", "Menjawab dengan logika, bukan tebakan"] },
+    { "type": "p", "text": "Dan kalau kamu berada di kondisi: waktu mepet, skor harus aman, tidak bisa ambil risiko gagal, mimin juga menyediakan jasa joki TOEFL yang profesional, rapi, dan berpengalaman. Banyak yang sudah terbantu, dan hasilnya konsisten." }
+  ]
 }
 ], 
 
