@@ -1689,18 +1689,40 @@ window.addEventListener("hashchange", ()=> {
 window.addEventListener("resize", ()=> setTimeout(updateTipsBottomPadding, 50));
 
     $("tipsBackBtn")?.addEventListener("click", ()=>{ location.hash = "#home"; });
-// ===== BOOT / INIT (HARUS DI PALING BAWAH)
-window.__DATA__ = DATA;
 
-// setup form tips (WAJIB)
-setupTipsForm(DATA);
+    // ===== BOOT / INIT (PASTIIN INI PALING BAWAH)
+(async () => {
+  const DATA = await fetchRemote();
 
-// jalankan router pertama kali
-handleHash(DATA);
+  if (!DATA) {
+    console.warn("Gagal load data.json");
+    return;
+  }
+
+  // simpan data global
+  window.__DATA__ = DATA;
+
+  // panggil render utama kamu (kalau ada)
+  // contoh:
+  // applyTheme(DATA);
+  // applyLogo(DATA);
+  // renderServices(DATA);
+  // renderAdvantages(DATA);
+  // renderTestimonialsText(DATA);
+  // renderTestimonialsImages(DATA);
+
+  // setup tips form (WAJIB)
+  setupTipsForm(DATA);
+
+  // jalankan router pertama kali (WAJIB)
+  handleHash(DATA);
+})();
+
 
   </script>
 </body>
 </html>
+
 
 
 
