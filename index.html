@@ -1067,6 +1067,24 @@
           }
           return `<p>${safeText(p).replace(/\n/g,"<br/>")}</p>`;
         }).join("");
+// === NEW: render from blocks (rapi, tanpa markdown mentah)
+if(Array.isArray(article.blocks) && article.blocks.length){
+  const parts = article.blocks.map(b=>{
+    if(!b || !b.type) return "";
+    if(b.type === "h2") return `<h2>${safeText(b.text||"")}</h2>`;
+    if(b.type === "p")  return `<p>${safeText(b.text||"")}</p>`;
+    if(b.type === "hr") return `<hr style="border:none;border-top:1px solid rgba(0,0,0,.12);margin:16px 0">`;
+    if(b.type === "ul"){
+      const items = (b.items||[]).map(x=>`<li>${safeText(x||"")}</li>`).join("");
+      return `<ul>${items}</ul>`;
+    }
+    return "";
+  }).join("");
+
+  // ini yang kamu masukkan ke container artikel (misal tipsArticleBody)
+  body.innerHTML = parts;
+  return;
+}
 
       // related box (cek juga tips ini) with 5 links
       const others = arr.filter(x => (x.id || x.title) !== (item.id || item.title)).slice(0, 8);
@@ -1168,4 +1186,5 @@
   </script>
 </body>
 </html>
+
 
