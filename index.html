@@ -283,6 +283,95 @@
     .muted{color: rgba(255,255,255,.62)}
     .modalP{margin:10px 0 0; color: rgba(255,255,255,.75); line-height:1.65}
 
+   /* =========================
+   TIPS MODE
+========================= */
+.tipsView{padding:18px 0 18px;}
+.tipsTop{display:flex;align-items:center;gap:12px;margin:6px 0 14px;}
+.tipsTop .h2{margin:0;}
+
+.tipsList{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+@media (max-width:860px){.tipsList{grid-template-columns:1fr}}
+
+.tipsCard{
+  cursor:pointer;
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:18px;
+  background:rgba(255,255,255,.06);
+  padding:14px 14px;
+  box-shadow:0 10px 28px rgba(0,0,0,.18);
+}
+.tipsCard:hover{border-color:rgba(161,192,248,.35)}
+.tipsCardTitle{font-weight:800;font-size:16px;margin:0 0 8px}
+.tipsCardPrev{color:rgba(255,255,255,.78);line-height:1.6;margin:0}
+
+/* Reader card putih */
+.tipsArticle{
+  background:#fff;
+  color:#0b1220;
+  border-radius:18px;
+  padding:18px 18px;
+  box-shadow:0 18px 60px rgba(0,0,0,.25);
+}
+.tipsArticle h1{font-size:26px;margin:0 0 10px}
+.tipsArticle .meta{color:#334155;font-size:12px;margin-bottom:12px}
+.tipsArticle p{line-height:1.8;margin:10px 0}
+.tipsArticle h2{font-size:18px;margin:18px 0 8px}
+.tipsArticle ul{margin:8px 0 10px 18px}
+.tipsArticle li{margin:6px 0;line-height:1.7}
+
+.tipsCover{
+  width:100%;
+  border-radius:14px;
+  margin:10px 0 14px;
+  display:block;
+  max-height:360px;
+  object-fit:cover;
+}
+
+/* Box "Cek juga tips ini" */
+.relatedBox{
+  margin-top:18px;
+  border:1px solid rgba(0,0,0,.10);
+  border-radius:12px;
+  padding:12px 14px;
+  background:#f6fbff;
+}
+.relatedBoxTitle{font-weight:800;margin:0 0 10px;font-size:14px;color:#0b1220}
+.relatedBox ul{margin:0 0 0 18px}
+.relatedBox a{
+  color: var(--sky);
+  text-decoration:none;
+}
+.relatedBox a:hover{text-decoration:underline}
+
+/* Sticky form */
+.tipsSticky{
+  position:fixed;
+  left:0; right:0; bottom:0;
+  padding:12px 0;
+  background:linear-gradient(to top, rgba(0,0,0,.65), rgba(0,0,0,0));
+  z-index:60;
+}
+.tipsStickyCard{
+  border:1px solid rgba(255,255,255,.10);
+  background:rgba(255,255,255,.06);
+  border-radius:18px;
+  padding:14px;
+  box-shadow:0 18px 60px rgba(0,0,0,.35);
+}
+.tipsStickyTitle{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:10px}
+.tipsStickyTitle .h3{font-size:18px;font-weight:800;margin:0}
+
+.tipsGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.tipsGrid .full{grid-column:1 / -1}
+@media (max-width:860px){.tipsGrid{grid-template-columns:1fr}}
+
+.tipsFormActions{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:10px;flex-wrap:wrap}
+
+/* Biar artikel tidak ketutup sticky (padding bawah dinamis via JS) */
+.tipsPadBottom{padding-bottom: var(--tipsBottom, 260px);}
+
     /* GALLERY POPUP */
     .gImg{width:100%; height:60vh; object-fit:contain; background: rgba(0,0,0,.35); border-radius: 14px; border:1px solid rgba(161,192,248,.14)}
     .gActions{display:flex; gap:10px; margin-top:12px; justify-content:flex-end}
@@ -368,6 +457,7 @@
           <a class="btn primary" href="#daftar" id="ctaHero">Konsultasi Gratis</a>
           <a class="btn" href="#layanan">Lihat Layanan</a>
           <a class="btn" id="igBtn" target="_blank" rel="noreferrer">Instagram</a>
+          <a class="btn primary" href="#tips" id="tipsBtn">Tips Gratis</a>
         </div>
       </div>
     </section>
@@ -391,6 +481,65 @@
       <div class="svcGrid" id="svcGrid"></div>
     </section>
 
+    <!-- TIPS VIEW (hidden by default) -->
+<section id="tipsView" class="tipsView" hidden>
+  <div class="container">
+    <div class="tipsTop">
+      <button class="btn" id="tipsBackBtn">← Kembali</button>
+      <h2 class="h2">Tips Gratis</h2>
+    </div>
+
+    <!-- LIST 20 CARDS -->
+    <div id="tipsList" class="tipsList"></div>
+
+    <!-- ARTICLE READER -->
+    <article id="tipsArticle" class="tipsArticle" hidden></article>
+  </div>
+</section>
+
+<!-- STICKY FORM (TIPS MODE ONLY) -->
+<div id="tipsSticky" class="tipsSticky" hidden>
+  <div class="container">
+    <div class="tipsStickyCard">
+      <div class="tipsStickyTitle">
+        <div class="h3">Kontak</div>
+        <div class="small">Isi form, nanti kami hubungi via WhatsApp.</div>
+      </div>
+
+      <form id="tipsForm" class="tipsForm">
+        <div class="tipsGrid">
+          <div>
+            <label class="label">Nama</label>
+            <input class="input" name="name" placeholder="Nama kamu" required />
+          </div>
+
+          <div>
+            <label class="label">No WhatsApp</label>
+            <input class="input" name="whatsapp" placeholder="08xxxxxxxxxx" required />
+          </div>
+
+          <div class="full">
+            <label class="label">Layanan</label>
+            <select class="input" name="service" id="tipsServiceSelect" required></select>
+          </div>
+
+          <div class="full">
+            <label class="label">Catatan (opsional)</label>
+            <textarea class="input" name="note" rows="3" id="tipsNote" placeholder=""></textarea>
+          </div>
+        </div>
+
+        <div class="tipsFormActions">
+          <button class="btn primary" type="submit">Kirim</button>
+          <div class="small">Setelah kamu kirim, kami akan hubungi lewat WhatsApp.</div>
+        </div>
+
+        <div id="tipsFormMsg" class="small"></div>
+      </form>
+    </div>
+  </div>
+</div>
+    
     <!-- ADVANTAGES -->
     <section id="keunggulan">
       <div class="secHead">
@@ -848,6 +997,199 @@
     $("svcClose").onclick = ()=> $("svcOverlay").style.display = "none";
     $("svcOverlay").addEventListener("click", (e)=>{ if(e.target.id==="svcOverlay") $("svcOverlay").style.display="none"; });
 
+    function normalizeWords(s){
+  return (s||"").toString().replace(/\s+/g," ").trim();
+}
+function firstWordsFromContent(arr, n=26){
+  if(!Array.isArray(arr)) return "";
+  const text = arr
+    .filter(x=>typeof x==="string")
+    .map(x=>x.replace(/^#+\s*/,"").replace(/^[-•]\s*/,""))
+    .join(" ");
+  const words = normalizeWords(text).split(" ").filter(Boolean);
+  return words.slice(0,n).join(" ") + (words.length>n ? "..." : "");
+}
+
+/* Render array content (paragraf/headings/bullets/separator) */
+function renderTipContentLines(lines){
+  const out = document.createElement("div");
+  let ul = null;
+
+  const flushUL = ()=>{
+    if(ul){ out.appendChild(ul); ul=null; }
+  };
+
+  (lines||[]).forEach(raw=>{
+    const line = (raw??"").toString();
+
+    // separator
+    if(line.trim()==="_____" || line.trim()==="---"){
+      flushUL();
+      const hr = document.createElement("hr");
+      hr.style.border="none";
+      hr.style.borderTop="1px solid rgba(0,0,0,.12)";
+      hr.style.margin="14px 0";
+      out.appendChild(hr);
+      return;
+    }
+
+    // H2 markdown "## "
+    if(line.trim().startsWith("## ")){
+      flushUL();
+      const h2 = document.createElement("h2");
+      h2.textContent = line.trim().replace(/^##\s*/,"");
+      out.appendChild(h2);
+      return;
+    }
+
+    // bullet "- " or "• "
+    const isBullet = line.trim().startsWith("- ") || line.trim().startsWith("• ");
+    if(isBullet){
+      if(!ul){ ul = document.createElement("ul"); }
+      const li = document.createElement("li");
+      li.textContent = line.trim().replace(/^(-|•)\s*/,"");
+      ul.appendChild(li);
+      return;
+    }
+
+    flushUL();
+    const p = document.createElement("p");
+    p.textContent = line;
+    out.appendChild(p);
+  });
+
+  flushUL();
+  return out;
+}
+function showTipsMode(on){
+  const tipsView = $("tipsView");
+  const tipsSticky = $("tipsSticky");
+  // sections utama kamu (pastikan id-nya sesuai punyamu)
+  const mainSections = ["home","about","layanan","testimoni","kontak"].map(id=>$(id)).filter(Boolean);
+
+  if(on){
+    mainSections.forEach(s=>s.setAttribute("hidden",""));
+    tipsView.removeAttribute("hidden");
+    tipsSticky.removeAttribute("hidden");
+  }else{
+    tipsView.setAttribute("hidden","");
+    tipsSticky.setAttribute("hidden","");
+    mainSections.forEach(s=>s.removeAttribute("hidden"));
+  }
+
+  updateTipsBottomPadding();
+}
+
+function updateTipsBottomPadding(){
+  const sticky = $("tipsSticky");
+  const tipsView = $("tipsView");
+  if(!sticky || !tipsView) return;
+
+  const padTargets = tipsView.querySelectorAll(".container");
+  const h = sticky.hasAttribute("hidden") ? 0 : sticky.getBoundingClientRect().height;
+  document.documentElement.style.setProperty("--tipsBottom", (h+18)+"px");
+
+  // kasih class padding bawah ke container tips supaya konten tidak ketutup
+  padTargets.forEach(el=>{
+    el.classList.toggle("tipsPadBottom", !sticky.hasAttribute("hidden"));
+  });
+}
+
+function renderTipsList(d){
+  const wrap = $("tipsList");
+  const article = $("tipsArticle");
+  if(!wrap || !article) return;
+
+  article.setAttribute("hidden","");
+  wrap.innerHTML = "";
+
+  const tips = Array.isArray(d.tips) ? d.tips : [];
+  if(!tips.length){
+    wrap.innerHTML = `<div class="small">Belum ada tips. Tambahkan di admin lalu export JSON.</div>`;
+    return;
+  }
+
+  tips.forEach(t=>{
+    const div = document.createElement("div");
+    div.className = "tipsCard";
+    const prev = t.preview || firstWordsFromContent(t.content, 26);
+    div.innerHTML = `
+      <div class="tipsCardTitle">${safeText(t.title||"")}</div>
+      <p class="tipsCardPrev">${safeText(prev||"")}</p>
+    `;
+    div.addEventListener("click", ()=>{ location.hash = `#tips/${encodeURIComponent(t.id)}`; });
+    wrap.appendChild(div);
+  });
+}
+
+function renderRelatedBox(d, tip){
+  const box = document.createElement("div");
+  box.className = "relatedBox";
+  box.innerHTML = `<div class="relatedBoxTitle">Cek juga tips ini</div>`;
+
+  const ul = document.createElement("ul");
+  const rel = Array.isArray(tip.related) ? tip.related.slice(0,5) : [];
+  rel.forEach(id=>{
+    const t = (d.tips||[]).find(x=>x.id===id);
+    if(!t) return;
+    const li = document.createElement("li");
+    const a = document.createElement("a");
+    a.href = `#tips/${encodeURIComponent(t.id)}`;
+    a.textContent = t.title || "";
+    li.appendChild(a);
+    ul.appendChild(li);
+  });
+
+  // fallback kalau related belum diisi
+  if(!ul.children.length){
+    const li = document.createElement("li");
+    li.textContent = "Tips lainnya segera menyusul.";
+    ul.appendChild(li);
+  }
+
+  box.appendChild(ul);
+  return box;
+}
+
+function renderTipsArticle(d, tipId){
+  const wrap = $("tipsList");
+  const article = $("tipsArticle");
+  if(!wrap || !article) return;
+
+  const tips = Array.isArray(d.tips) ? d.tips : [];
+  const tip = tips.find(x=>x.id===tipId);
+
+  wrap.innerHTML = "";
+  article.removeAttribute("hidden");
+  article.innerHTML = "";
+
+  if(!tip){
+    article.innerHTML = `<div class="small">Artikel tidak ditemukan.</div>`;
+    return;
+  }
+
+  const h1 = document.createElement("h1");
+  h1.textContent = tip.title || "";
+  article.appendChild(h1);
+
+  // cover optional
+  if(tip.cover){
+    const img = document.createElement("img");
+    img.className = "tipsCover";
+    img.src = tip.cover;
+    img.alt = "cover";
+    article.appendChild(img);
+  }
+
+  const contentNode = renderTipContentLines(tip.content || []);
+  article.appendChild(contentNode);
+
+  // related box (5 manual)
+  article.appendChild(renderRelatedBox(d, tip));
+
+  updateTipsBottomPadding();
+}
+
     // ===== Advantages
     function renderAdvantages(d){
       const wrap = $("advWrap");
@@ -893,6 +1235,60 @@
       tIndex = 0;
       updateT();
     }
+function setupTipsForm(d){
+  const form = $("tipsForm");
+  const msg  = $("tipsFormMsg");
+  const sel  = $("tipsServiceSelect");
+  const note = $("tipsNote");
+  if(!form || !sel) return;
+
+  // isi placeholder note dari settings
+  if(note) note.placeholder = d?.settings?.form?.notePlaceholder || "Catatan (opsional)";
+
+  // isi dropdown layanan dari services
+  sel.innerHTML = "";
+  const opt0 = document.createElement("option");
+  opt0.value = "";
+  opt0.textContent = "Pilih layanan";
+  sel.appendChild(opt0);
+
+  (d.services||[]).forEach(s=>{
+    const opt = document.createElement("option");
+    opt.value = s.title || s.id || "";
+    opt.textContent = s.title || s.id || "";
+    sel.appendChild(opt);
+  });
+
+  form.addEventListener("submit", async (e)=>{
+    e.preventDefault();
+    if(msg) msg.textContent = "";
+
+    const endpoint = d?.settings?.form?.formspreeEndpoint || "";
+    if(!endpoint){
+      if(msg) msg.textContent = "Form belum aktif.";
+      return;
+    }
+
+    const fd = new FormData(form);
+
+    try{
+      const res = await fetch(endpoint, {
+        method: "POST",
+        headers: { "Accept":"application/json" },
+        body: fd
+      });
+
+      if(res.ok){
+        toast("Terkirim. Kami hubungi via WhatsApp.", "ok"); // E3=A
+        form.reset();
+      }else{
+        toast("Gagal mengirim. Coba lagi.", "bad");
+      }
+    }catch(err){
+      toast("Gagal mengirim. Cek koneksi.", "bad");
+    }
+  });
+}
 
     function updateT(){
       const track = $("tTrack");
@@ -1264,9 +1660,39 @@
       STATE = draft || REMOTE;
       applyAll(STATE);
     })();
+
+    function handleHash(d){
+  const h = (location.hash || "#home").replace("#","").trim();
+
+  // mode tips
+  if(h === "tips"){
+    showTipsMode(true);
+    renderTipsList(d);
+    return;
+  }
+  if(h.startsWith("tips/")){
+    const id = decodeURIComponent(h.slice(5));
+    showTipsMode(true);
+    renderTipsArticle(d, id);
+    return;
+  }
+
+  // default main site
+  showTipsMode(false);
+}
+
+window.addEventListener("hashchange", ()=> {
+  if(window.__DATA__) handleHash(window.__DATA__);
+  setTimeout(updateTipsBottomPadding, 50);
+});
+window.addEventListener("resize", ()=> setTimeout(updateTipsBottomPadding, 50));
+
+    $("tipsBackBtn")?.addEventListener("click", ()=>{ location.hash = "#home"; });
+
   </script>
 </body>
 </html>
+
 
 
 
