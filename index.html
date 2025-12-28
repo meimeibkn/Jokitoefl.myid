@@ -1031,25 +1031,7 @@
         list.appendChild(el);
       });
     }
-
     function renderTipsArticle(d, id){
-      const list = $("tipsList");
-      const art  = $("tipsArticle");
-      list.hidden = true;
-      art.hidden = false;
-
-      const arr = Array.isArray(d?.tips) ? d.tips : [];
-      const item = arr.find(x => (x.id || x.title) === id) || arr.find(x => (x.id || x.title) == id);
-
-      if(!item){
-        art.innerHTML = `<h1>Tips tidak ditemukan</h1><p>Silakan kembali ke daftar tips.</p>`;
-        return;
-      }
-
-      // cover optional: item.cover
-      const cover = item.cover ? `<img class="tipsCover" src="${safeText(item.cover)}" alt="" />` : "";
-
-     function renderTipsArticle(d, id){
   const list = $("tipsList");
   const art  = $("tipsArticle");
   list.hidden = true;
@@ -1136,27 +1118,6 @@
   `;
 }
 
-
-      // related box (cek juga tips ini) with 5 links
-      const others = arr.filter(x => (x.id || x.title) !== (item.id || item.title)).slice(0, 8);
-      const rel = `
-        <div class="relatedBox">
-          <div class="relatedBoxTitle">Cek juga tips ini</div>
-          <ul>
-            ${others.slice(0,5).map(x=>`<li><a href="#tips/${encodeURIComponent(x.id || x.title)}">${safeText(x.title || "")}</a></li>`).join("")}
-          </ul>
-        </div>
-      `;
-
-      art.innerHTML = `
-        <h1>${safeText(item.title || "")}</h1>
-        <div class="meta">${safeText(item.meta || "")}</div>
-        ${cover}
-        ${blocks}
-        ${rel}
-      `;
-    }
-
     function handleHash(d){
       const h = (location.hash || "#home").replace("#","").trim();
 
@@ -1237,6 +1198,7 @@
   </script>
 </body>
 </html>
+
 
 
 
