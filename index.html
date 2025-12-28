@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="color-scheme" content="dark" />
   <title>Jokitoefl.myid</title>
 
   <style>
@@ -11,61 +12,88 @@
       --sky:#A1C0F8;
       --black:#000;
       --white:#fff;
-
-      --bg: radial-gradient(1200px 600px at 20% -10%, rgba(161,192,248,.18), transparent 60%),
-            radial-gradient(900px 500px at 90% 10%, rgba(161,192,248,.10), transparent 55%),
-            linear-gradient(180deg, #061a33, #020a14 75%);
-      --card: rgba(255,255,255,.04);
-      --stroke: rgba(161,192,248,.16);
       --muted: rgba(255,255,255,.75);
-      --muted2: rgba(255,255,255,.62);
-      --shadow: 0 16px 40px rgba(0,0,0,.30);
-      --radius: 18px;
-      --maxw: 1100px;
+      --card: rgba(255,255,255,.06);
+      --card2: rgba(255,255,255,.04);
+      --line: rgba(161,192,248,.18);
+      --shadow: rgba(0,0,0,.35);
+      --maxw:1100px;
     }
 
     *{box-sizing:border-box}
-    html,body{margin:0;padding:0}
+    html,body{height:100%}
     body{
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
-      background: var(--bg);
-      color: var(--white);
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      text-rendering: optimizeLegibility;
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;
+      background:
+        radial-gradient(1000px 520px at 18% 6%, rgba(161,192,248,.18), transparent 55%),
+        radial-gradient(1000px 620px at 88% 10%, rgba(161,192,248,.10), transparent 55%),
+        linear-gradient(180deg, rgba(0,0,0,.65), rgba(0,0,0,.45)),
+        var(--navy);
+      color:var(--white);
     }
-    a{color:inherit;text-decoration:none}
-    .wrap{max-width:var(--maxw); margin:0 auto; padding:0 18px}
-    @media (max-width:520px){ .wrap{padding:0 16px} }
+
+    a{color:inherit}
+    .wrap{max-width:var(--maxw); margin:0 auto; padding:0 18px;}
+    @media (max-width:720px){ .wrap{padding:0 16px;} }
 
     /* NAV */
     .nav{
-      position:sticky; top:0; z-index:20;
+      position:sticky; top:0; z-index:40;
+      background: rgba(0,0,0,.18);
       backdrop-filter: blur(10px);
-      background: rgba(2,10,20,.55);
-      border-bottom: 1px solid rgba(161,192,248,.10);
+      border-bottom:1px solid rgba(161,192,248,.10);
     }
-    .navRow{display:flex; align-items:center; justify-content:space-between; padding:12px 0}
-    .brand{display:flex; align-items:center; gap:10px}
+    .navRow{display:flex; align-items:center; justify-content:space-between; gap:14px; padding:12px 0;}
+    .brand{display:flex; align-items:center; gap:10px; text-decoration:none;}
     .logoBox{
-      width:36px; height:36px; border-radius:12px;
-      background: linear-gradient(135deg, rgba(161,192,248,.90), rgba(161,192,248,.25));
-      border:1px solid rgba(161,192,248,.20);
+      width:34px; height:34px; border-radius:10px;
+      background: rgba(255,255,255,.08);
+      border:1px solid rgba(161,192,248,.18);
       display:grid; place-items:center;
       overflow:hidden;
     }
-    #logoImg{width:100%; height:100%; object-fit:cover; display:none}
-    .brandTxt{display:flex; flex-direction:column; line-height:1.1}
-    .brandTxt strong{font-size:14px; letter-spacing:.2px}
-    .brandTxt span{font-size:12px; color: rgba(255,255,255,.68)}
-    .navLinks{display:flex; gap:14px; flex-wrap:wrap; justify-content:flex-end}
+    .logoBox img{width:100%; height:100%; object-fit:cover; display:block}
+    .brandText{display:flex; flex-direction:column; line-height:1.1}
+    .brandName{font-weight:900; font-size:14px}
+    .brandTag{font-size:12px; color:rgba(255,255,255,.70)}
+    .navLinks{display:flex; gap:14px; flex-wrap:wrap; align-items:center; justify-content:flex-end}
     .navLinks a{
-      font-size:13px; color: rgba(255,255,255,.78);
-      padding:8px 10px; border-radius:999px;
-      border: 1px solid transparent;
+      text-decoration:none;
+      font-size:13px;
+      color:rgba(255,255,255,.82);
+      padding:8px 10px;
+      border-radius:12px;
     }
-    .navLinks a:hover{border-color: rgba(161,192,248,.22); background: rgba(161,192,248,.06)}
-    @media (max-width:760px){ .brandTxt span{display:none} }
+    .navLinks a:hover{background: rgba(255,255,255,.06)}
+    @media (max-width:860px){
+      .brandTag{display:none}
+      .navLinks{gap:8px}
+      .navLinks a{padding:8px 8px}
+    }
+
+    /* BUTTONS */
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:8px;
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid rgba(161,192,248,.25);
+      background: rgba(255,255,255,.06);
+      color:rgba(255,255,255,.90);
+      text-decoration:none;
+      font-weight:800;
+      font-size:13px;
+      cursor:pointer;
+      user-select:none;
+    }
+    .btn:hover{border-color:rgba(161,192,248,.38); background: rgba(161,192,248,.08)}
+    .btn.primary{
+      background: rgba(161,192,248,.18);
+      border-color: rgba(161,192,248,.42);
+      color:#fff;
+    }
+    .btn.primary:hover{background: rgba(161,192,248,.22)}
+    .btn.sm{padding:8px 12px; font-size:12px}
 
     /* HERO */
     .hero{padding:18px 0 8px; display:flex}
@@ -75,155 +103,113 @@
     .badge{
       display:inline-flex; align-items:center; gap:8px;
       padding:7px 12px; border-radius:999px;
-      border:1px solid rgba(161,192,248,.22);
-      background: rgba(161,192,248,.07);
-      color: rgba(255,255,255,.78);
-      font-size:11px;
-      margin:18px 0 0;
+      border:1px solid rgba(161,192,248,.28);
+      background: rgba(161,192,248,.10);
+      color: rgba(255,255,255,.85);
+      font-size:12px; margin:10px 0 0;
     }
-    .subhead{margin-top:12px; color: var(--muted); line-height:1.7}
+    .subhead{margin-top:12px; color:var(--muted); line-height:1.7}
     .heroActions{display:flex; gap:10px; flex-wrap:wrap; margin-top:16px}
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center;
-      padding:11px 14px; border-radius:999px;
-      background: rgba(255,255,255,.05);
-      border:1px solid rgba(161,192,248,.16);
-      color: rgba(255,255,255,.88);
-      font-weight:700; font-size:13px;
-      box-shadow: 0 10px 26px rgba(0,0,0,.18);
-    }
-    .btn:hover{border-color: rgba(161,192,248,.28); background: rgba(161,192,248,.06)}
-    .btn.primary{
-      background: rgba(161,192,248,.18);
-      border-color: rgba(161,192,248,.34);
-      color:#fff;
-    }
     @media (max-width:720px){ .title{font-size:36px} .heroInner{max-width:100%} }
 
     /* SECTION */
-    section{padding:28px 0}
-    .secHead{display:flex; align-items:flex-end; justify-content:space-between; gap:16px; margin-bottom:14px}
-    h2{margin:0; font-size:22px; letter-spacing:-.2px}
-    .small{font-size:13px; color: rgba(255,255,255,.70); line-height:1.6}
+    section{padding:18px 0}
+    .secHead{display:flex; justify-content:space-between; align-items:baseline; gap:10px; margin-bottom:12px}
+    h2{margin:0; font-size:20px; letter-spacing:-.2px}
+    .small{font-size:12px; color:rgba(255,255,255,.68)}
+
+    .card{
+      border:1px solid rgba(161,192,248,.16);
+      background: rgba(255,255,255,.05);
+      border-radius:18px;
+      padding:16px;
+      box-shadow: 0 18px 44px rgba(0,0,0,.22);
+    }
 
     /* ABOUT */
-    .aboutCard{
-      background: var(--card);
-      border:1px solid var(--stroke);
-      border-radius: var(--radius);
-      padding:16px;
-      box-shadow: var(--shadow);
-    }
+    .aboutCard .cardText{margin:0; color:rgba(255,255,255,.82); line-height:1.8}
 
     /* SERVICES */
-    .svcGrid{
-      display:grid;
-      grid-template-columns: repeat(2, minmax(0,1fr));
-      gap:16px;
-    }
+    .svcGrid{display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:14px}
     @media (max-width:860px){ .svcGrid{grid-template-columns:1fr} }
-    .card{
-      background: var(--card);
-      border:1px solid var(--stroke);
-      border-radius: var(--radius);
-      padding:16px;
-      box-shadow: var(--shadow);
-    }
-    .svcCard{cursor:pointer; transition: transform .08s ease}
-    .svcCard:hover{transform: translateY(-1px)}
-    .cardTitle{font-weight:900; letter-spacing:.2px; margin:0 0 8px}
-    .cardText{color: rgba(255,255,255,.78); line-height:1.65; margin:0}
+    .svcCard{cursor:pointer; transition:transform .12s ease}
+    .svcCard:hover{transform: translateY(-1px); border-color: rgba(161,192,248,.28)}
+    .svcTitle{margin:0 0 8px; font-size:16px; font-weight:900}
+    .svcDesc{margin:0; color:rgba(255,255,255,.78); line-height:1.7}
 
-    /* ADVANTAGES */
-    .advGrid{
-      display:grid;
-      grid-template-columns: repeat(2, minmax(0,1fr));
-      gap:18px;
-    }
-    @media (max-width:820px){ .advGrid{grid-template-columns:1fr} }
-    .advCard{
-      background: rgba(255,255,255,.04);
-      border: 1px solid rgba(161,192,248,.16);
-      border-radius: 16px;
-      padding: 16px 16px 14px;
-      box-shadow: 0 12px 30px rgba(0,0,0,.18);
-    }
-    .advTitle{margin:0 0 8px; font-size:16px; font-weight:900}
-    .advText{margin:0; color: rgba(255,255,255,.82); line-height:1.65; font-size:14px}
+    /* ADVANTAGES (grid cards seperti yang kamu mau) */
+    .advGrid{display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:14px}
+    @media (max-width:860px){ .advGrid{grid-template-columns:1fr} }
+    .advTitle{margin:0 0 8px; font-weight:900}
+    .advText{margin:0; color:rgba(255,255,255,.78); line-height:1.7}
 
-    /* TESTIMONIALS TEXT slider */
-    .tWrap{position:relative; overflow:hidden}
-    .tTrack{display:flex; gap:14px; transition: transform .25s ease; will-change: transform}
+    /* TESTIMONIAL TEXT slider */
+    .tWrap{overflow:hidden}
+    .tTrack{display:flex; gap:14px; will-change:transform; transition:transform .18s ease}
     .tCard{
-      min-width: 420px;
-      max-width: 420px;
-      background: rgba(255,255,255,.04);
+      flex:0 0 calc((100% - 28px)/3); /* 3 cards wide, terlihat 2.5-ish tergantung viewport */
       border:1px solid rgba(161,192,248,.14);
-      border-radius: 16px;
-      padding:14px;
-      box-shadow: 0 10px 26px rgba(0,0,0,.16);
-    }
-    .tName{font-weight:900; margin:0 0 6px}
-    .tText{margin:0; color: rgba(255,255,255,.82); line-height:1.6}
-    @media (max-width:920px){
-      .tCard{min-width: 78vw; max-width: 78vw}
-    }
-    .tCtrls{display:flex; gap:10px; margin-top:12px}
-    .iconBtn{
-      width:40px; height:40px; border-radius:999px;
-      display:grid; place-items:center;
+      border-radius:18px;
       background: rgba(255,255,255,.05);
-      border:1px solid rgba(161,192,248,.16);
-      cursor:pointer;
+      padding:14px;
+      min-height:120px;
     }
-    .iconBtn:hover{background: rgba(161,192,248,.06); border-color: rgba(161,192,248,.26)}
+    @media (max-width:980px){ .tCard{flex-basis: calc((100% - 14px)/2)} }
+    @media (max-width:640px){ .tCard{flex-basis: 100%} }
+    .tName{font-weight:900; font-size:13px; margin-bottom:8px}
+    .tText{margin:0; color:rgba(255,255,255,.78); line-height:1.7}
+    .tControls{display:flex; gap:10px; align-items:center; margin-top:12px}
+    .tHint{font-size:12px; color:rgba(255,255,255,.68)}
 
-    /* TESTIMONIALS IMAGES gallery */
-    .gallery{
-      display:grid;
-      grid-template-columns: 1.55fr .45fr;
-      gap:14px;
-      align-items:start;
-    }
-    @media (max-width:900px){ .gallery{grid-template-columns:1fr} }
-    .bigFrame{
-      border-radius: 18px;
+    /* TESTIMONIAL IMAGES (besar kiri, thumbnails kanan) */
+    .gGrid{display:grid; grid-template-columns: 1.4fr .9fr; gap:14px}
+    @media (max-width:980px){ .gGrid{grid-template-columns:1fr} }
+    .gMain{
+      border:1px solid rgba(161,192,248,.14);
+      background: rgba(255,255,255,.04);
+      border-radius:18px;
+      padding:10px;
       overflow:hidden;
-      border:1px solid rgba(161,192,248,.16);
-      background: rgba(255,255,255,.03);
-      box-shadow: var(--shadow);
       cursor:pointer;
+      min-height:320px;
+      display:flex; align-items:center; justify-content:center;
     }
-    .bigFrame img{width:100%; height:440px; object-fit:contain; background: rgba(0,0,0,.25)}
-    @media (max-width:900px){ .bigFrame img{height:360px} }
- .thumbs{
-  display:grid;
-  grid-template-columns: repeat(2, minmax(0,1fr));
-  gap:10px;
-
-  align-content:start;
-  max-height:440px;   /* tinggi gambar besar */
-  overflow:auto;
-  padding-right:6px;
-}
-
-@media (max-width:900px){
-  .thumbs{max-height:none; overflow:visible; padding-right:0;}
-}
-
+    .gMain img{
+      width:100%;
+      max-height:420px;
+      object-fit:contain;
+      display:block;
+      border-radius:14px;
+    }
+    .gSide{
+      border:1px solid rgba(161,192,248,.14);
+      background: rgba(255,255,255,.04);
+      border-radius:18px;
+      padding:10px;
+    }
+    .thumbRow{
+      display:flex; gap:10px;
+      overflow:auto;
+      padding-bottom:8px;
+      scroll-snap-type:x mandatory;
+    }
+    .thumbRow::-webkit-scrollbar{height:10px}
+    .thumbRow::-webkit-scrollbar-thumb{background: rgba(255,255,255,.18); border-radius:999px}
     .thumb{
-      border-radius: 14px;
-      overflow:hidden;
+      flex:0 0 110px;
+      height:84px;
+      border-radius:14px;
       border:1px solid rgba(161,192,248,.12);
-      background: rgba(255,255,255,.03);
+      background: rgba(0,0,0,.18);
+      overflow:hidden;
       cursor:pointer;
-      box-shadow: 0 10px 24px rgba(0,0,0,.14);
+      scroll-snap-align:start;
+      display:flex; align-items:center; justify-content:center;
     }
-    .thumb.active{border-color: rgba(161,192,248,.36)}
-    .thumb img{width:100%; height:120px; object-fit:cover; display:block}
-    .cap{margin-top:10px; color: rgba(255,255,255,.70); font-size:13px}
+    .thumb img{width:100%; height:100%; object-fit:cover; display:block}
+    .gCap{margin-top:10px; font-size:12px; color:rgba(255,255,255,.75)}
 
-    /* CONTACT FORM */
+    /* CONTACT FORM (main) */
     .formCard{display:grid; grid-template-columns:1fr 1fr; gap:12px}
     .formCard .full{grid-column:1/-1}
     @media (max-width:820px){ .formCard{grid-template-columns:1fr} }
@@ -241,139 +227,68 @@
     textarea{min-height:110px; resize:vertical}
     input:focus, select:focus, textarea:focus{border-color: rgba(161,192,248,.36); background: rgba(161,192,248,.06)}
     .hint{margin-top:10px; font-size:13px; color: rgba(255,255,255,.70); line-height:1.6}
+    .formActions{display:flex; gap:12px; align-items:center; justify-content:space-between; flex-wrap:wrap; margin-top:10px}
 
     /* MODAL */
     .overlay{
-      position:fixed; inset:0; display:none; z-index:50;
-      background: rgba(0,0,0,.55);
+      position:fixed; inset:0; z-index:70;
+      background: rgba(0,0,0,.45);
+      display:none;
+      align-items:center;
+      justify-content:center;
       padding:18px;
-      align-items:center; justify-content:center;
     }
     .modal{
       width:min(900px, 96vw);
-      max-height: 86vh;
-      overflow:auto;
       background: rgba(7,20,38,.96);
       border:1px solid rgba(161,192,248,.20);
       border-radius: 18px;
       box-shadow: 0 30px 80px rgba(0,0,0,.55);
       padding:16px;
     }
-    .modalTop{display:flex; align-items:flex-start; justify-content:space-between; gap:10px}
-    .modalTop h3{margin:0; font-size:18px}
-    .closeX{cursor:pointer; padding:8px 10px; border-radius:999px; border:1px solid rgba(161,192,248,.16); background: rgba(255,255,255,.05)}
-    .closeX:hover{border-color: rgba(161,192,248,.28); background: rgba(161,192,248,.06)}
-    .modalSection{margin-top:14px}
-    .modalSection ul{margin:10px 0 0; padding-left:18px}
-    .modalSection li{margin:8px 0; color: rgba(255,255,255,.82); line-height:1.6}
+    .modalTop{display:flex; align-items:flex-start; justify-content:space-between; gap:12px}
+    .modalTitle{margin:0; font-size:18px; font-weight:900}
+    .modalDesc{margin:6px 0 0; color:rgba(255,255,255,.78); line-height:1.7}
+    .modalBody{margin-top:12px; border-top:1px solid rgba(255,255,255,.08); padding-top:12px}
+    .modalSection{margin:12px 0}
     .modalBadge{
       display:inline-flex;
-      align-items:center;
       padding:6px 10px;
       border-radius:999px;
-      margin:6px 0 10px;
+      border:1px solid rgba(161,192,248,.28);
+      background: rgba(161,192,248,.10);
       font-size:12px;
       font-weight:900;
-      letter-spacing:.3px;
-      text-transform:uppercase;
-      border:1px solid rgba(161,192,248,.26);
-      background: rgba(161,192,248,.10);
-      color: rgba(255,255,255,.92);
+      margin-bottom:8px;
     }
-    .muted{color: rgba(255,255,255,.62)}
-    .modalP{margin:10px 0 0; color: rgba(255,255,255,.75); line-height:1.65}
+    .modalBody ul{margin:6px 0 0 18px}
+    .modalBody li{margin:6px 0; color:rgba(255,255,255,.82); line-height:1.7}
+    .modalActions{display:flex; gap:10px; margin-top:14px; flex-wrap:wrap}
 
-   /* =========================
-   TIPS MODE
-========================= */
-.tipsView{padding:18px 0 18px;}
-.tipsTop{display:flex;align-items:center;gap:12px;margin:6px 0 14px;}
-.tipsTop .h2{margin:0;}
+    /* IMAGE POPUP */
+    .imgModal{
+      width:min(900px, 96vw);
+      background: rgba(7,20,38,.96);
+      border:1px solid rgba(161,192,248,.20);
+      border-radius: 18px;
+      box-shadow: 0 30px 80px rgba(0,0,0,.55);
+      padding:12px;
+    }
+    .imgTop{display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:10px}
+    .imgViewer{
+      width:100%;
+      height:min(70vh, 560px);
+      border-radius:14px;
+      background: rgba(0,0,0,.30);
+      border:1px solid rgba(161,192,248,.14);
+      display:flex; align-items:center; justify-content:center;
+      overflow:hidden;
+    }
+    .imgViewer img{max-width:100%; max-height:100%; object-fit:contain; display:block}
+    .imgCap{margin-top:10px; font-size:12px; color:rgba(255,255,255,.78)}
+    .imgActions{display:flex; gap:10px; margin-top:10px; justify-content:flex-end; flex-wrap:wrap}
 
-.tipsList{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-@media (max-width:860px){.tipsList{grid-template-columns:1fr}}
-
-.tipsCard{
-  cursor:pointer;
-  border:1px solid rgba(255,255,255,.10);
-  border-radius:18px;
-  background:rgba(255,255,255,.06);
-  padding:14px 14px;
-  box-shadow:0 10px 28px rgba(0,0,0,.18);
-}
-.tipsCard:hover{border-color:rgba(161,192,248,.35)}
-.tipsCardTitle{font-weight:800;font-size:16px;margin:0 0 8px}
-.tipsCardPrev{color:rgba(255,255,255,.78);line-height:1.6;margin:0}
-
-/* Reader card putih */
-.tipsArticle{
-  background:#fff;
-  color:#0b1220;
-  border-radius:18px;
-  padding:18px 18px;
-  box-shadow:0 18px 60px rgba(0,0,0,.25);
-}
-.tipsArticle h1{font-size:26px;margin:0 0 10px}
-.tipsArticle .meta{color:#334155;font-size:12px;margin-bottom:12px}
-.tipsArticle p{line-height:1.8;margin:10px 0}
-.tipsArticle h2{font-size:18px;margin:18px 0 8px}
-.tipsArticle ul{margin:8px 0 10px 18px}
-.tipsArticle li{margin:6px 0;line-height:1.7}
-
-.tipsCover{
-  width:100%;
-  border-radius:14px;
-  margin:10px 0 14px;
-  display:block;
-  max-height:360px;
-  object-fit:cover;
-}
-
-/* Box "Cek juga tips ini" */
-.relatedBox{
-  margin-top:18px;
-  border:1px solid rgba(0,0,0,.10);
-  border-radius:12px;
-  padding:12px 14px;
-  background:#f6fbff;
-}
-.relatedBoxTitle{font-weight:800;margin:0 0 10px;font-size:14px;color:#0b1220}
-.relatedBox ul{margin:0 0 0 18px}
-.relatedBox a{
-  color: var(--sky);
-  text-decoration:none;
-}
-.relatedBox a:hover{text-decoration:underline}
-
-/* Sticky form */
-/* Sticky form (DISABLED: kita pakai form #kontak yang sama di bawah halaman) */
-.tipsSticky{ display:none !important; }
-
-.tipsStickyCard{
-  border:1px solid rgba(255,255,255,.10);
-  background:rgba(255,255,255,.06);
-  border-radius:18px;
-  padding:14px;
-  box-shadow:0 18px 60px rgba(0,0,0,.35);
-}
-.tipsStickyTitle{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:10px}
-.tipsStickyTitle .h3{font-size:18px;font-weight:800;margin:0}
-
-.tipsGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.tipsGrid .full{grid-column:1 / -1}
-@media (max-width:860px){.tipsGrid{grid-template-columns:1fr}}
-
-.tipsFormActions{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:10px;flex-wrap:wrap}
-
-/* Sticky sudah dimatikan, jadi jangan tambah padding bawah */
-.tipsPadBottom{ padding-bottom: 0 !important; }
-
-    /* GALLERY POPUP */
-    .gImg{width:100%; height:60vh; object-fit:contain; background: rgba(0,0,0,.35); border-radius: 14px; border:1px solid rgba(161,192,248,.14)}
-    .gActions{display:flex; gap:10px; margin-top:12px; justify-content:flex-end}
-    .gActions .btn{padding:10px 12px}
-
-    /* ADMIN floating button */
+    /* ADMIN FAB (owner) */
     .adminFab{
       position:fixed; right:14px; bottom:14px; z-index:60;
       width:44px; height:44px; border-radius:999px;
@@ -386,31 +301,72 @@
     .adminFab:hover{background: rgba(161,192,248,.22)}
     .adminFab span{font-weight:900}
 
-    /* ADMIN PANEL */
-    .adminPanel{
-      width:min(980px, 96vw);
-      background: rgba(7,20,38,.96);
-      border:1px solid rgba(161,192,248,.20);
-      border-radius: 18px;
-      box-shadow: 0 30px 80px rgba(0,0,0,.55);
-      padding:16px;
+    /* TIPS VIEW */
+    .tipsView{padding:18px 0 18px;}
+    .tipsTop{display:flex; align-items:center; gap:12px; margin:6px 0 14px; flex-wrap:wrap}
+    .tipsTop .h2{margin:0; font-size:20px}
+    .tipsList{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px}
+    @media (max-width:860px){.tipsList{grid-template-columns:1fr}}
+    .tipsCard{
+      cursor:pointer;
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:18px;
+      background:rgba(255,255,255,.06);
+      padding:14px;
+      box-shadow:0 10px 28px rgba(0,0,0,.18);
     }
-    .adminGrid{display:grid; grid-template-columns: 1fr 1fr; gap:12px}
-    .adminGrid .full{grid-column:1/-1}
-    @media (max-width:860px){ .adminGrid{grid-template-columns:1fr} }
+    .tipsCard:hover{border-color:rgba(161,192,248,.35)}
+    .tipsCardTitle{font-weight:900; font-size:16px; margin:0 0 8px}
+    .tipsCardPrev{color:rgba(255,255,255,.78); line-height:1.6; margin:0}
+    .tipsArticle{
+      background:#fff;
+      color:#0b1220;
+      border-radius:18px;
+      padding:18px;
+      box-shadow:0 18px 60px rgba(0,0,0,.25);
+    }
+    .tipsArticle h1{font-size:26px; margin:0 0 10px}
+    .tipsArticle .meta{color:#334155; font-size:12px; margin-bottom:12px}
+    .tipsArticle p{line-height:1.8; margin:10px 0}
+    .tipsArticle h2{font-size:18px; margin:18px 0 8px}
+    .tipsArticle ul{margin:8px 0 10px 18px}
+    .tipsArticle li{margin:6px 0; line-height:1.7}
+    .tipsCover{
+      width:100%;
+      border-radius:14px;
+      margin:10px 0 14px;
+      display:block;
+      max-height:360px;
+      object-fit:cover;
+    }
+    .relatedBox{
+      margin-top:18px;
+      border:1px solid rgba(0,0,0,.10);
+      border-radius:12px;
+      padding:12px 14px;
+      background:#f6fbff;
+    }
+    .relatedBoxTitle{font-weight:900; margin:0 0 10px; font-size:14px; color:#0b1220}
+    .relatedBox ul{margin:0 0 0 18px}
+    .relatedBox a{color:#0b4aa0; text-decoration:none}
+    .relatedBox a:hover{text-decoration:underline}
 
-    .kRow{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
-    .chip{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:8px 10px; border-radius:999px;
+    /* Tips footer form (tidak overlay, muncul di bawah konten) */
+    .tipsFooter{
+      margin-top:16px;
+      border:1px solid rgba(161,192,248,.16);
       background: rgba(255,255,255,.05);
-      border:1px solid rgba(161,192,248,.14);
-      font-size:12px; color: rgba(255,255,255,.78);
+      border-radius:18px;
+      padding:16px;
+      box-shadow: 0 18px 44px rgba(0,0,0,.22);
     }
-    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace}
+    .tipsFooterTop{display:flex; align-items:baseline; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-bottom:10px}
+    .tipsFooterTop .h3{margin:0; font-size:18px; font-weight:900}
+
+    /* TOAST */
     .toast{
       position:fixed; left:50%; transform:translateX(-50%);
-      bottom:70px; z-index:80;
+      bottom:22px; z-index:90;
       background: rgba(7,20,38,.96);
       border:1px solid rgba(161,192,248,.22);
       padding:10px 12px;
@@ -421,357 +377,247 @@
       max-width:min(760px, 92vw);
       font-size:13px;
     }
+
+    footer{padding:22px 0 40px; color:rgba(255,255,255,.60); font-size:12px}
   </style>
 </head>
 
 <body>
   <!-- NAV -->
-  <div class="nav">
+  <div class="nav" id="top">
     <div class="wrap">
       <div class="navRow">
-        <div class="brand">
-          <div class="logoBox" id="logoBox"><img id="logoImg" alt="" /></div>
-          <div class="brandTxt">
-            <strong id="siteName">Jokitoefl.myid</strong>
-            <span id="tagline">One stop for your future</span>
+        <a class="brand" href="#home">
+          <div class="logoBox" id="logoBox">
+            <img id="logoImg" alt="" hidden />
           </div>
+          <div class="brandText">
+            <div class="brandName" id="siteName">Jokitoefl.myid</div>
+            <div class="brandTag" id="tagline">One stop for your future</div>
+          </div>
+        </a>
+
+        <div class="navLinks" id="navLinks">
+          <a href="#home">Home</a>
+          <a href="#about">About Us</a>
+          <a href="#layanan">Layanan</a>
+          <a href="#testimoni">Testimoni</a>
+          <a href="#tips">Tips</a>
+          <a href="#kontak">Kontak</a>
         </div>
-        <div class="navLinks" id="navLinks"></div>
       </div>
     </div>
   </div>
 
-  <main class="wrap">
-    <!-- HERO -->
-    <section id="home" class="hero">
-      <div class="heroInner">
-        <h1 class="title" id="headline">One stop for your <span class="accent">future</span></h1>
-        <div class="badge" id="heroBadge">Sertifikat TOEFL & Komputer • Bantuan Mahasiswa • Lainnya</div>
-        <p class="subhead" id="subhead"></p>
+  <!-- MAIN SITE -->
+  <main id="mainSite">
+    <div class="wrap">
+      <!-- HERO -->
+      <section id="home" class="hero">
+        <div class="heroInner">
+          <h1 class="title" id="headline">One stop for your <span class="accent">future</span></h1>
+          <div class="badge" id="heroBadge">Sertifikat TOEFL & Komputer • Bantuan Mahasiswa • Lainnya</div>
+          <p class="subhead" id="subhead"></p>
 
-        <div class="heroActions">
-          <a class="btn primary" href="#daftar" id="ctaHero">Konsultasi Gratis</a>
-          <a class="btn" href="#layanan">Lihat Layanan</a>
-          <a class="btn" id="igBtn" target="_blank" rel="noreferrer">Instagram</a>
-          <a class="btn primary" href="#tips" id="tipsBtn">Tips Gratis</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section id="about">
-      <div class="secHead">
-        <h2 id="aboutTitle">Tentang Kami</h2>
-      </div>
-      <div class="aboutCard">
-        <p class="cardText" id="aboutText"></p>
-      </div>
-    </section>
-
-    <!-- SERVICES -->
-    <section id="layanan">
-      <div class="secHead">
-        <h2>Layanan</h2>
-        <div class="small">Klik card untuk lihat detail.</div>
-      </div>
-      <div class="svcGrid" id="svcGrid"></div>
-    </section>
-
-    <!-- TIPS VIEW (hidden by default) -->
-<section id="tipsView" class="tipsView" hidden>
-  <div class="container">
-    <div class="tipsTop">
-      <button class="btn" id="tipsBackBtn">← Kembali</button>
-      <button class="btn primary" id="tipsCtaBtn">Konsultasi Gratis</button>
-      <h2 class="h2">Tips Gratis</h2>
-    </div>
-
-    <!-- LIST 20 CARDS -->
-    <div id="tipsList" class="tipsList"></div>
-
-    <!-- ARTICLE READER -->
-    <article id="tipsArticle" class="tipsArticle" hidden></article>
-  </div>
-</section>
-
-<!-- STICKY FORM (TIPS MODE ONLY) -->
-<div id="tipsSticky" class="tipsSticky" hidden>
-  <div class="container">
-    <div class="tipsSticky">
-      <div class="tipsStickyTitle">
-        <div class="h3">Kontak</div>
-        <div class="small">Isi form, nanti kami hubungi via WhatsApp.</div>
-      </div>
-
-      <form id="tipsForm" class="tipsForm">
-        <div class="tipsGrid">
-          <div>
-            <label class="label">Nama</label>
-            <input class="input" name="name" placeholder="Nama kamu" required />
-          </div>
-
-          <div>
-            <label class="label">No WhatsApp</label>
-            <input class="input" name="whatsapp" placeholder="08xxxxxxxxxx" required />
-          </div>
-
-          <div class="full">
-            <label class="label">Layanan</label>
-            <select class="input" name="service" id="tipsServiceSelect" required></select>
-          </div>
-
-          <div class="full">
-            <label class="label">Catatan (opsional)</label>
-            <textarea class="input" name="note" rows="3" id="tipsNote" placeholder=""></textarea>
+          <div class="heroActions">
+            <a class="btn primary" href="#kontak" id="ctaHero">Konsultasi Gratis</a>
+            <a class="btn" href="#layanan">Lihat Layanan</a>
+            <a class="btn" id="igBtn" target="_blank" rel="noreferrer">Instagram</a>
+            <a class="btn" href="#tips" id="tipsBtn">Tips Gratis</a>
           </div>
         </div>
+      </section>
 
-        <div class="tipsFormActions">
-          <button class="btn primary" type="submit">Kirim</button>
-          <div class="small">Setelah kamu kirim, kami akan hubungi lewat WhatsApp.</div>
+      <!-- ABOUT -->
+      <section id="about">
+        <div class="secHead">
+          <h2 id="aboutTitle">Tentang Kami</h2>
+        </div>
+        <div class="card aboutCard">
+          <p class="cardText" id="aboutText"></p>
+        </div>
+      </section>
+
+      <!-- SERVICES -->
+      <section id="layanan">
+        <div class="secHead">
+          <h2>Layanan</h2>
+          <div class="small">Klik card untuk lihat detail.</div>
+        </div>
+        <div class="svcGrid" id="svcGrid"></div>
+      </section>
+
+      <!-- ADVANTAGES -->
+      <section id="keunggulan">
+        <div class="secHead">
+          <h2>Keunggulan</h2>
+          <div class="small" id="advantagesHint">Kenapa banyak yang cocok di sini.</div>
+        </div>
+        <div class="advGrid" id="advantagesGrid"></div>
+      </section>
+
+      <!-- TESTIMONI -->
+      <section id="testimoni">
+        <div class="secHead">
+          <h2>Testimoni</h2>
+          <div class="small">Testimoni Customer Kami.</div>
         </div>
 
-        <div id="tipsFormMsg" class="small"></div>
-      </form>
-    </div>
-  </div>
-</div>
-    
-    <!-- ADVANTAGES -->
-    <section id="keunggulan">
-      <div class="secHead">
-        <h2>Keunggulan</h2>
-        <div class="small">Kenapa banyak yang cocok di sini.</div>
-      </div>
-      <div class="advGrid" id="advWrap"></div>
-    </section>
+        <div class="card">
+          <div class="small" style="margin-bottom:10px;font-weight:900;color:rgba(255,255,255,.84)">Teks</div>
+          <div class="tWrap">
+            <div class="tTrack" id="tTrack"></div>
+          </div>
+          <div class="tControls">
+            <button class="btn sm" id="tPrev">‹</button>
+            <button class="btn sm" id="tNext">›</button>
+            <div class="tHint">Geser atau klik tombol. Manual, tanpa blur.</div>
+          </div>
 
-    <!-- TESTIMONIALS -->
-    <section id="testimoni">
-      <div class="secHead">
-        <h2>Testimoni</h2>
-        <div class="small">Testimoni Customer Kami.</div>
-      </div>
+          <div style="height:14px"></div>
 
-      <div class="tWrap">
-        <div class="tTrack" id="tTrack"></div>
-      </div>
-      <div class="tCtrls">
-        <div class="iconBtn" id="tPrev" title="Prev">‹</div>
-        <div class="iconBtn" id="tNext" title="Next">›</div>
-      </div>
-
-      <div style="height:18px"></div>
-
-      <div id="galleryEmpty" class="small" style="display:none">Belum ada testimoni gambar.</div>
-      <div id="galleryWrap">
-        <div class="gallery">
-          <div>
-            <div class="bigFrame" id="bigFrame" title="Klik untuk popup">
-              <img id="bigImg" alt="testimoni" />
+          <div class="small" style="margin-bottom:10px;font-weight:900;color:rgba(255,255,255,.84)">Gambar</div>
+          <div class="gGrid">
+            <div class="gMain" id="gMain">
+              <img id="gMainImg" alt="" />
             </div>
-            <div class="cap" id="bigCap"></div>
+            <div class="gSide">
+              <div class="small" style="margin-bottom:8px">Thumbnails (4–6 terlihat, geser untuk sisanya)</div>
+              <div class="thumbRow" id="thumbRow"></div>
+              <div class="gCap" id="gCap"></div>
+            </div>
           </div>
-          <div class="thumbs" id="thumbRow"></div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- CONTACT -->
-    <section id="kontak">
-      <div class="secHead">
-        <h2>Kontak</h2>
-        <div class="small">Isi form, nanti kami hubungi via WhatsApp.</div>
-      </div>
-      <div class="card">
-        <form id="leadForm" class="formCard">
-          <div>
-            <label>Nama</label>
-            <input id="fName" name="name" placeholder="Nama kamu" required />
-          </div>
-          <div>
-            <label>No WhatsApp</label>
-            <input id="fWA" name="whatsapp" placeholder="08xxxxxxxxxx" required />
-          </div>
-          <div class="full">
-            <label>Layanan</label>
-            <select id="fService" name="service" required></select>
-          </div>
-          <div class="full">
-            <label>Catatan (opsional)</label>
-            <textarea id="fNote" name="note" placeholder=""></textarea>
-          </div>
-          <div class="full">
-            <button class="btn primary" type="submit" id="btnSubmit">Kirim</button>
-          </div>
-        </form>
-        <div class="hint" id="formHint"></div>
-      </div>
-    </section>
+      <!-- CONTACT -->
+      <section id="kontak">
+        <div class="secHead">
+          <h2>Kontak</h2>
+          <div class="small">Isi form, nanti kami hubungi via WhatsApp.</div>
+        </div>
 
-    <!-- DAFTAR anchor -->
-    <section id="daftar" style="padding-top:0"></section>
+        <div class="card">
+          <form id="contactForm">
+            <div class="formCard">
+              <div>
+                <label>Nama</label>
+                <input name="name" placeholder="Nama kamu" required />
+              </div>
+              <div>
+                <label>No WhatsApp</label>
+                <input name="whatsapp" placeholder="08xxxxxxxxxx" required />
+              </div>
+              <div class="full">
+                <label>Layanan</label>
+                <select name="service" id="serviceSelect" required></select>
+              </div>
+              <div class="full">
+                <label>Catatan (opsional)</label>
+                <textarea name="note" id="noteField" placeholder="Catatan (opsional): Harga, durasi kelas, deadline, dll"></textarea>
+              </div>
+            </div>
+
+            <div class="formActions">
+              <button class="btn primary" type="submit">Kirim</button>
+              <div class="small" id="formMsg">Setelah kamu kirim, kami akan hubungi lewat WhatsApp.</div>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <footer>
+        © <span id="year"></span> Jokitoefl.myid. All rights reserved.
+      </footer>
+    </div>
   </main>
 
-  <!-- Service Modal -->
-  <div class="overlay" id="svcOverlay">
-    <div class="modal">
-      <div class="modalTop">
-        <div>
-          <h3 id="svcModalTitle"></h3>
-          <p class="modalP" id="svcModalDesc"></p>
+  <!-- TIPS VIEW -->
+  <section id="tipsView" class="tipsView" hidden>
+    <div class="wrap">
+      <div class="tipsTop">
+        <button class="btn" id="tipsBackBtn">← Kembali</button>
+        <button class="btn primary" id="tipsCtaBtn">Konsultasi Gratis</button>
+        <h2 class="h2">Tips Gratis</h2>
+      </div>
+
+      <div id="tipsList" class="tipsList"></div>
+      <article id="tipsArticle" class="tipsArticle" hidden></article>
+
+      <!-- Form versi “tidak ganggu”: tampil di bawah konten tips -->
+      <div class="tipsFooter" id="tipsFooter">
+        <div class="tipsFooterTop">
+          <h3 class="h3">Kontak</h3>
+          <div class="small">Isi form, nanti kami hubungi via WhatsApp.</div>
         </div>
-        <div class="closeX" id="svcClose">Tutup</div>
-      </div>
-      <div id="svcModalBody"></div>
-    </div>
-  </div>
 
-  <!-- Gallery Popup -->
-  <div class="overlay" id="gOverlay">
-    <div class="modal">
-      <div class="modalTop">
-        <div>
-          <h3>Testimoni</h3>
-          <p class="modalP" id="gCaption"></p>
-        </div>
-        <div class="closeX" id="gClose">Tutup</div>
-      </div>
-      <img class="gImg" id="gPopupImg" alt="popup" />
-      <div class="gActions">
-        <button class="btn" id="gPrev">Prev</button>
-        <button class="btn" id="gNext">Next</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Admin FAB -->
-  <div class="adminFab" id="adminFab" title="Admin"><span>A</span></div>
-
-  <!-- Admin Overlay -->
-  <div class="overlay" id="adminOverlay">
-    <div class="adminPanel">
-      <div class="modalTop">
-        <div>
-          <h3>Admin Panel (Local Draft)</h3>
-          <p class="modalP">Edit di sini → <b>Copy JSON</b> → paste ke <span class="mono">data.json</span> di GitHub → commit.</p>
-        </div>
-        <div class="closeX" id="adminClose">Tutup</div>
-      </div>
-
-      <!-- Login -->
-      <div id="adminLogin">
-        <div class="adminGrid">
-          <div class="full">
-            <div class="chip">Keamanan: password admin tersimpan di perangkat kamu (LocalStorage). Tidak ikut ke repo.</div>
-          </div>
-          <div class="full">
-            <label>Password Admin</label>
-            <input id="adminPass" type="password" placeholder="Masukkan password" />
-          </div>
-          <div class="full kRow">
-            <button class="btn primary" id="adminLoginBtn" type="button">Masuk</button>
-            <span class="small" id="adminLoginMsg"></span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Editor -->
-      <div id="adminEditor" style="display:none">
-        <div class="adminGrid">
-          <div class="full kRow">
-            <span class="chip">Draft tersimpan otomatis di browser kamu</span>
-            <button class="btn" id="adminResetDraft" type="button">Reset Draft</button>
-            <button class="btn primary" id="adminCopyJson" type="button">Copy JSON</button>
-          </div>
-
-          <div class="full">
-            <label>Logo Path (contoh: assets/logo.png)</label>
-            <input id="eLogoSrc" placeholder="assets/logo.png" />
-          </div>
-
-          <div>
-            <label>Site Name</label>
-            <input id="eSiteName" />
-          </div>
-          <div>
-            <label>CTA Text</label>
-            <input id="eCtaText" />
-          </div>
-
-          <div class="full">
-            <label>Headline</label>
-            <input id="eHeadline" />
-          </div>
-          <div class="full">
-            <label>Subhead</label>
-            <textarea id="eSubhead"></textarea>
-          </div>
-
-          <div class="full">
-            <label>Hero Badge (boleh kosong kalau mau clean)</label>
-            <input id="eHeroBadge" />
-          </div>
-
-          <div class="full">
-            <label>Instagram URL</label>
-            <input id="eInstagram" />
-          </div>
-
-          <div class="full">
-            <label>About Title</label>
-            <input id="eAboutTitle" />
-          </div>
-          <div class="full">
-            <label>About Text</label>
-            <textarea id="eAboutText"></textarea>
-          </div>
-
-          <div class="full">
-            <label>Services (JSON)</label>
-            <textarea id="eServices" class="mono" placeholder='[{"id":"toefl","title":"...","desc":"...","details":["SECTION: ...","..."]}]'></textarea>
-            <div class="small">Tip: Untuk badge nasional/internasional, pakai item: <span class="mono">SECTION: SERTIFIKAT NASIONAL</span></div>
-          </div>
-
-          <div class="full">
-            <label>Advantages (JSON)</label>
-            <textarea id="eAdvantages" class="mono" placeholder='[{"title":"...","text":"..."}]'></textarea>
-          </div>
-
-          <div class="full">
-            <label>Testimonials Text (JSON)</label>
-            <textarea id="eTText" class="mono" placeholder='[{"name":"Anon","text":"..."}]'></textarea>
-          </div>
-
-          <div class="full">
-            <label>Testimonials Images (JSON)</label>
-            <textarea id="eTImg" class="mono" placeholder='[{"src":"assets/testimonials/img-01.jpg.jpeg","cap":"..."}]'></textarea>
-          </div>
-
-          <div class="full">
-            <label>Ganti Password Admin</label>
-            <div class="adminGrid">
-              <div>
-                <label>Password lama</label>
-                <input id="oldPass" type="password" />
-              </div>
-              <div>
-                <label>Password baru</label>
-                <input id="newPass" type="password" />
-              </div>
-              <div class="full kRow">
-                <button class="btn" id="btnChangePass" type="button">Ubah Password</button>
-                <span class="small" id="passMsg"></span>
-              </div>
+        <form id="tipsForm">
+          <div class="formCard">
+            <div>
+              <label>Nama</label>
+              <input name="name" placeholder="Nama kamu" required />
+            </div>
+            <div>
+              <label>No WhatsApp</label>
+              <input name="whatsapp" placeholder="08xxxxxxxxxx" required />
+            </div>
+            <div class="full">
+              <label>Layanan</label>
+              <select name="service" id="tipsServiceSelect" required></select>
+            </div>
+            <div class="full">
+              <label>Catatan (opsional)</label>
+              <textarea name="note" id="tipsNote" placeholder="Catatan (opsional): Harga, durasi kelas, deadline, dll"></textarea>
             </div>
           </div>
 
-          <div class="full">
-            <div class="chip">Email tujuan tidak ditampilkan di website. Form pakai Formspree endpoint di data.json.</div>
+          <div class="formActions">
+            <button class="btn primary" type="submit">Kirim</button>
+            <div class="small" id="tipsFormMsg">Setelah kamu kirim, kami akan hubungi lewat WhatsApp.</div>
           </div>
-        </div>
+        </form>
       </div>
     </div>
+  </section>
+
+  <!-- MODALS -->
+  <div class="overlay" id="overlay">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+      <div class="modalTop">
+        <div>
+          <h3 class="modalTitle" id="mTitle"></h3>
+          <div class="modalDesc" id="mDesc"></div>
+        </div>
+        <button class="btn sm" id="mClose">Tutup</button>
+      </div>
+      <div class="modalBody" id="mBody"></div>
+      <div class="modalActions">
+        <a class="btn primary" href="#kontak">Konsultasi Gratis</a>
+        <a class="btn" href="#kontak">Isi Form Sekarang</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="overlay" id="imgOverlay">
+    <div class="imgModal" role="dialog" aria-modal="true">
+      <div class="imgTop">
+        <div class="small" id="imgTopTitle">Testimoni</div>
+        <button class="btn sm" id="imgClose">Tutup</button>
+      </div>
+      <div class="imgViewer">
+        <img id="imgBig" alt="" />
+      </div>
+      <div class="imgCap" id="imgCaption"></div>
+      <div class="imgActions">
+        <button class="btn sm" id="imgPrev">Prev</button>
+        <button class="btn sm" id="imgNext">Next</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- OWNER-ONLY ADMIN FAB (local only, no password in repo) -->
+  <div class="adminFab" id="adminFab" title="Admin">
+    <span>⚙</span>
   </div>
 
   <div class="toast" id="toast"></div>
@@ -782,30 +628,23 @@
 
     function safeText(s){
       return (s ?? "").toString()
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#039;");
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
     }
 
-    function toast(msg){
-      const t = $("toast");
-      t.textContent = msg;
-      t.style.display = "block";
-      clearTimeout(toast._t);
-      toast._t = setTimeout(()=>t.style.display="none", 2200);
+    function toast(msg, type){
+      const el = $("toast");
+      if(!el) return;
+      el.textContent = msg;
+      el.style.display = "block";
+      el.style.borderColor = type === "bad" ? "rgba(255,120,120,.35)" : "rgba(161,192,248,.22)";
+      setTimeout(()=>{ el.style.display="none"; }, 2400);
     }
 
-    function getImgSrc(it){ return it?.src || it?.data || ""; }
-
-    // ===== Data State
-    const LS_DRAFT = "jokitoefl_draft_v1";
-    const LS_ADMIN_PASS = "jokitoefl_admin_pass_v1";
-    let REMOTE = null;
-    let STATE = null;
-
-    // ===== Load data.json
+    // ===== Load data.json (no cache)
     async function fetchRemote(){
       try{
         const res = await fetch("data.json?ts=" + Date.now(), { cache:"no-store" });
@@ -817,404 +656,160 @@
       }
     }
 
-    function loadDraft(){
-      try{
-        const raw = localStorage.getItem(LS_DRAFT);
-        if(!raw) return null;
-        return JSON.parse(raw);
-      }catch(e){ return null; }
+    // ===== Apply theme/settings
+    function applySettings(d){
+      const s = d?.settings || {};
+      document.documentElement.style.setProperty("--maxw", (s.maxWidth || 1100) + "px");
+
+      const theme = s.theme || {};
+      if(theme.navy) document.documentElement.style.setProperty("--navy", theme.navy);
+      if(theme.accent) document.documentElement.style.setProperty("--sky", theme.accent);
+      if(theme.black) document.documentElement.style.setProperty("--black", theme.black);
+      if(theme.white) document.documentElement.style.setProperty("--white", theme.white);
+
+      $("siteName").textContent = s.siteName || "Jokitoefl.myid";
+      $("tagline").textContent = s.headline || "One stop for your future";
+
+      // Headline highlight (only word)
+      const hl = s.headline || "One stop for your future";
+      const word = s.highlightWord || "future";
+      const re = new RegExp("\\b" + word.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "\\b", "i");
+      const out = hl.replace(re, (m)=>`<span class="accent">${safeText(m)}</span>`);
+      $("headline").innerHTML = safeText(hl) === hl ? out : hl; // fallback
+
+      $("heroBadge").textContent = s.heroBadge || "";
+      $("subhead").textContent = s.subhead || "";
+      $("ctaHero").textContent = s.ctaText || "Konsultasi Gratis";
+
+      const ig = s.instagram || "#";
+      const igBtn = $("igBtn");
+      igBtn.href = ig;
     }
 
-    function saveDraft(d){
-      localStorage.setItem(LS_DRAFT, JSON.stringify(d));
-    }
-
-    // ===== Apply Theme
-    function applyTheme(d){
-      const th = d?.settings?.theme || {};
-      if(th.navy) document.documentElement.style.setProperty("--navy", th.navy);
-      if(th.accent) document.documentElement.style.setProperty("--sky", th.accent);
-      if(th.black) document.documentElement.style.setProperty("--black", th.black);
-      if(th.white) document.documentElement.style.setProperty("--white", th.white);
-      if(d?.settings?.maxWidth) document.documentElement.style.setProperty("--maxw", String(d.settings.maxWidth) + "px");
-    }
-
-    // ===== Logo
     function applyLogo(d){
       const img = $("logoImg");
       const box = $("logoBox");
-      const logoData = d?.settings?.logoData || "";
-      const logoSrc  = d?.settings?.logo?.src || d?.settings?.logoSrc || "";
-      const finalSrc = (logoData && String(logoData).startsWith("data:image")) ? logoData : logoSrc;
-
-      if(finalSrc){
-        img.src = finalSrc;
-        img.style.display = "block";
+      const s = d?.settings || {};
+      const logoSrc = s?.logo?.src || "";
+      const alt = s?.logo?.alt || ""; // kalau kamu kosongkan di json, dia kosong
+      if(logoSrc){
+        img.src = logoSrc;
+        img.alt = alt;
+        img.hidden = false;
         box.style.background = "transparent";
       }else{
-        img.removeAttribute("src");
-        img.style.display = "none";
-        box.style.background = "linear-gradient(135deg, rgba(161,192,248,.90), rgba(161,192,248,.25))";
+        img.hidden = true;
       }
     }
 
-    // ===== Nav
-    function renderNav(d){
-      const nav = Array.isArray(d.nav) ? d.nav : [];
-      const links = $("navLinks");
-      links.innerHTML = nav.map(n=>`<a href="#${safeText(n.id)}">${safeText(n.label)}</a>`).join("");
-    }
-
-    // ===== Hero/About
-    function renderHero(d){
-      $("siteName").textContent = d?.settings?.siteName || "Jokitoefl.myid";
-      $("tagline").textContent = d?.settings?.headline || "";
-      // headline with highlightWord
-      const headline = d?.settings?.headline || "";
-      const hw = (d?.settings?.highlightWord || "").trim();
-      if(hw && headline.toLowerCase().includes(hw.toLowerCase())){
-        const idx = headline.toLowerCase().indexOf(hw.toLowerCase());
-        const a = headline.slice(0, idx);
-        const b = headline.slice(idx, idx+hw.length);
-        const c = headline.slice(idx+hw.length);
-        $("headline").innerHTML = `${safeText(a)}<span class="accent">${safeText(b)}</span>${safeText(c)}`;
-      }else{
-        $("headline").textContent = headline || "One stop for your future";
-      }
-
-      const hb = (d?.settings?.heroBadge ?? "").toString().trim();
-      if(hb){
-        $("heroBadge").style.display = "inline-flex";
-        $("heroBadge").textContent = hb;
-      }else{
-        $("heroBadge").style.display = "none";
-      }
-
-      $("subhead").textContent = d?.settings?.subhead || "";
-      $("ctaHero").textContent = d?.settings?.ctaText || "Konsultasi Gratis";
-      $("igBtn").href = d?.settings?.instagram || "#";
-    }
-
+    // ===== Render About
     function renderAbout(d){
-      $("aboutTitle").textContent = d?.about?.title || "Tentang Kami";
-      $("aboutText").textContent = d?.about?.text || "";
+      const a = d?.about || {};
+      $("aboutTitle").textContent = a.title || "Tentang Kami";
+      $("aboutText").textContent = a.text || "";
     }
 
-    // ===== Services + Modal
-    let currentServices = [];
-    let currentServiceTitle = "";
-
+    // ===== Render Services + Modal Details (SECTION badges)
     function renderServices(d){
-      const services = Array.isArray(d.services) ? d.services : [];
-      currentServices = services;
-
       const grid = $("svcGrid");
+      const arr = Array.isArray(d.services) ? d.services : [];
       grid.innerHTML = "";
 
-      if(!services.length){
-        grid.innerHTML = `<div class="small">Belum ada layanan.</div>`;
+      if(!arr.length){
+        grid.innerHTML = `<div class="small">Belum ada data layanan.</div>`;
         return;
       }
 
-      services.forEach(s=>{
+      arr.forEach(svc=>{
         const card = document.createElement("div");
         card.className = "card svcCard";
         card.innerHTML = `
-          <div class="cardTitle">${safeText(s.title || "")}</div>
-          <p class="cardText">${safeText(s.desc || "")}</p>
+          <h3 class="svcTitle">${safeText(svc.title || "")}</h3>
+          <p class="svcDesc">${safeText(svc.desc || "")}</p>
         `;
-        card.onclick = ()=>openServiceModal(s);
+        card.addEventListener("click", ()=> openServiceModal(svc));
         grid.appendChild(card);
       });
-
-      // form service options
-      const sel = $("fService");
-      sel.innerHTML = services.map(s=>`<option value="${safeText(s.title||"")}">${safeText(s.title||"")}</option>`).join("");
     }
 
-    function openServiceModal(s){
-      $("svcModalTitle").textContent = s?.title || "";
-      $("svcModalDesc").textContent  = s?.desc || "";
-      const body = $("svcModalBody");
+    function openServiceModal(svc){
+      $("mTitle").textContent = svc?.title || "";
+      $("mDesc").textContent = svc?.desc || "";
+      const body = $("mBody");
       body.innerHTML = "";
 
-      const details = s?.details;
-      const det = Array.isArray(details) ? details : [];
+      const details = Array.isArray(svc?.details) ? svc.details : [];
 
-      const isObjSection = (v) =>
-        v && typeof v === "object" && !Array.isArray(v) && ("title" in v || "items" in v);
+      // CASE A: details = array of strings, parse "SECTION:"
+      if(details.length && typeof details[0] === "string"){
+        const lines = details.map(x => (x ?? "").toString().trim()).filter(Boolean);
 
-      const renderSection = (title, items) => {
-        const div = document.createElement("div");
-        div.className = "modalSection";
+        const sections = [];
+        let current = { title:"", items:[] };
 
-        const safeTitle = (title ?? "").toString().trim();
-        const li = (items || [])
-          .map(x => (x ?? "").toString().trim())
-          .filter(Boolean)
-          .map(x => `<li>${safeText(x)}</li>`)
-          .join("");
+        lines.forEach(line=>{
+          if(line.toUpperCase().startsWith("SECTION:")){
+            if(current.title || current.items.length) sections.push(current);
+            current = { title: line.replace(/^SECTION:\s*/i,"").trim(), items:[] };
+          }else{
+            current.items.push(line);
+          }
+        });
+        if(current.title || current.items.length) sections.push(current);
 
-        const badge = safeTitle ? `<div class="modalBadge">${safeText(safeTitle)}</div>` : "";
-        div.innerHTML = `${badge}<ul>${li || `<li class="muted">Detail belum ditambahkan.</li>`}</ul>`;
-        body.appendChild(div);
-      };
-
-      if(det.length && isObjSection(det[0])){
-        det.forEach(sec => renderSection(sec.title || "", Array.isArray(sec.items) ? sec.items : []));
-      }else if(det.length && typeof det[0] === "string"){
-        const lines = det.map(x => (x ?? "").toString().trim()).filter(Boolean);
-        const hasSection = lines.some(l => /^SECTION:\s*/i.test(l));
-        if(hasSection){
-          const sections = [];
-          let currentTitle = "";
-          let currentItems = [];
-          const push = ()=>{
-            if(currentTitle || currentItems.length) sections.push({title:currentTitle, items:currentItems});
-            currentTitle = ""; currentItems = [];
-          };
-          lines.forEach(line=>{
-            const m = line.match(/^SECTION:\s*(.+)$/i);
-            if(m){ push(); currentTitle = (m[1]||"").trim(); }
-            else{ currentItems.push(line); }
-          });
-          push();
-          if(sections.length) sections.forEach(sec=>renderSection(sec.title, sec.items));
-          else renderSection("Detail", lines);
-        }else{
-          renderSection("Detail", lines);
-        }
+        sections.forEach(sec=>{
+          const div = document.createElement("div");
+          div.className = "modalSection";
+          const badge = sec.title ? `<div class="modalBadge">${safeText(sec.title)}</div>` : "";
+          div.innerHTML = `${badge}<ul>${sec.items.map(x=>`<li>${safeText(x)}</li>`).join("")}</ul>`;
+          body.appendChild(div);
+        });
+      }
+      // CASE B: details = array of section objects
+      else if(details.length && typeof details[0] === "object"){
+        details.forEach(section=>{
+          const div = document.createElement("div");
+          div.className = "modalSection";
+          const items = (section.items || []).map(x=>`<li>${safeText(x)}</li>`).join("");
+          const badge = section.title ? `<div class="modalBadge">${safeText(section.title)}</div>` : "";
+          div.innerHTML = `${badge}<ul>${items}</ul>`;
+          body.appendChild(div);
+        });
       }else{
-        renderSection("Detail", []);
+        body.innerHTML = `<div class="small">Belum ada detail.</div>`;
       }
 
-      $("svcOverlay").style.display = "flex";
+      $("overlay").style.display = "flex";
     }
 
-    $("svcClose").onclick = ()=> $("svcOverlay").style.display = "none";
-    $("svcOverlay").addEventListener("click", (e)=>{ if(e.target.id==="svcOverlay") $("svcOverlay").style.display="none"; });
+    $("mClose").addEventListener("click", ()=> $("overlay").style.display="none");
+    $("overlay").addEventListener("click", (e)=>{ if(e.target.id==="overlay") $("overlay").style.display="none"; });
 
-    function normalizeWords(s){
-  return (s||"").toString().replace(/\s+/g," ").trim();
-}
-function firstWordsFromContent(arr, n=26){
-  if(!Array.isArray(arr)) return "";
-  const text = arr
-    .filter(x=>typeof x==="string")
-    .map(x=>x.replace(/^#+\s*/,"").replace(/^[-•]\s*/,""))
-    .join(" ");
-  const words = normalizeWords(text).split(" ").filter(Boolean);
-  return words.slice(0,n).join(" ") + (words.length>n ? "..." : "");
-}
-
-/* Render array content (paragraf/headings/bullets/separator) */
-function renderTipContentLines(lines){
-  const out = document.createElement("div");
-  let ul = null;
-
-  const flushUL = ()=>{
-    if(ul){ out.appendChild(ul); ul=null; }
-  };
-
-  (lines||[]).forEach(raw=>{
-    const line = (raw??"").toString();
-
-    // separator
-    if(line.trim()==="_____" || line.trim()==="---"){
-      flushUL();
-      const hr = document.createElement("hr");
-      hr.style.border="none";
-      hr.style.borderTop="1px solid rgba(0,0,0,.12)";
-      hr.style.margin="14px 0";
-      out.appendChild(hr);
-      return;
-    }
-
-    // H2 markdown "## "
-    if(line.trim().startsWith("## ")){
-      flushUL();
-      const h2 = document.createElement("h2");
-      h2.textContent = line.trim().replace(/^##\s*/,"");
-      out.appendChild(h2);
-      return;
-    }
-
-    // bullet "- " or "• "
-    const isBullet = line.trim().startsWith("- ") || line.trim().startsWith("• ");
-    if(isBullet){
-      if(!ul){ ul = document.createElement("ul"); }
-      const li = document.createElement("li");
-      li.textContent = line.trim().replace(/^(-|•)\s*/,"");
-      ul.appendChild(li);
-      return;
-    }
-
-    flushUL();
-    const p = document.createElement("p");
-    p.textContent = line;
-    out.appendChild(p);
-  });
-
-  flushUL();
-  return out;
-}
-function showTipsMode(on){
-  const tipsView = $("tipsView");
-  const tipsSticky = $("tipsSticky");
-   // HARD OFF: overlay/sticky form tidak dipakai di tips
-  const sticky = $("tipsSticky");
-  if(sticky) sticky.style.display = "none";
-  // sections utama kamu (pastikan id-nya sesuai punyamu)
-  const mainSections = ["home","about","layanan","testimoni","kontak"].map(id=>$(id)).filter(Boolean);
-
-  if(on){
-    mainSections.forEach(s=>s.setAttribute("hidden",""));
-    tipsView.removeAttribute("hidden");
-    tipsSticky.removeAttribute("hidden");
-  }else{
-    tipsView.setAttribute("hidden","");
-    tipsSticky.setAttribute("hidden","");
-    mainSections.forEach(s=>s.removeAttribute("hidden"));
-  }
-
-  updateTipsBottomPadding();
-}
-
-function updateTipsBottomPadding(){
-  const sticky = $("tipsSticky");
-  const tipsView = $("tipsView");
-  if(!sticky || !tipsView) return;
-
-  const padTargets = tipsView.querySelectorAll(".container");
-  const h = sticky.hasAttribute("hidden") ? 0 : sticky.getBoundingClientRect().height;
-  document.documentElement.style.setProperty("--tipsBottom", (h+18)+"px");
-
-  // kasih class padding bawah ke container tips supaya konten tidak ketutup
-  padTargets.forEach(el=>{
-    el.classList.toggle("tipsPadBottom", !sticky.hasAttribute("hidden"));
-  });
-}
-
-function renderTipsList(d){
-  const wrap = $("tipsList");
-  const article = $("tipsArticle");
-  if(!wrap || !article) return;
-
-  article.setAttribute("hidden","");
-  wrap.innerHTML = "";
-
-  const tips = Array.isArray(d.tips) ? d.tips : [];
-  if(!tips.length){
-    wrap.innerHTML = `<div class="small">Belum ada tips. Tambahkan di admin lalu export JSON.</div>`;
-    return;
-  }
-
-  tips.forEach(t=>{
-    const div = document.createElement("div");
-    div.className = "tipsCard";
-    const prev = t.preview || firstWordsFromContent(t.content, 26);
-    div.innerHTML = `
-      <div class="tipsCardTitle">${safeText(t.title||"")}</div>
-      <p class="tipsCardPrev">${safeText(prev||"")}</p>
-    `;
-    div.addEventListener("click", ()=>{ location.hash = `#tips/${encodeURIComponent(t.id)}`; });
-    wrap.appendChild(div);
-  });
-}
-
-function renderRelatedBox(d, tip){
-  const box = document.createElement("div");
-  box.className = "relatedBox";
-  box.innerHTML = `<div class="relatedBoxTitle">Cek juga tips ini</div>`;
-
-  const ul = document.createElement("ul");
-  const rel = Array.isArray(tip.related) ? tip.related.slice(0,5) : [];
-  rel.forEach(id=>{
-    const t = (d.tips||[]).find(x=>x.id===id);
-    if(!t) return;
-    const li = document.createElement("li");
-    const a = document.createElement("a");
-    a.href = `#tips/${encodeURIComponent(t.id)}`;
-    a.textContent = t.title || "";
-    li.appendChild(a);
-    ul.appendChild(li);
-  });
-
-  // fallback kalau related belum diisi
-  if(!ul.children.length){
-    const li = document.createElement("li");
-    li.textContent = "Tips lainnya segera menyusul.";
-    ul.appendChild(li);
-  }
-
-  box.appendChild(ul);
-  return box;
-}
-
-function renderTipsArticle(d, tipId){
-  const wrap = $("tipsList");
-  const article = $("tipsArticle");
-  if(!wrap || !article) return;
-
-  const tips = Array.isArray(d.tips) ? d.tips : [];
-  const tip = tips.find(x=>x.id===tipId);
-
-  wrap.innerHTML = "";
-  article.removeAttribute("hidden");
-  article.innerHTML = "";
-
-  if(!tip){
-    article.innerHTML = `<div class="small">Artikel tidak ditemukan.</div>`;
-    return;
-  }
-
-  const h1 = document.createElement("h1");
-  h1.textContent = tip.title || "";
-  article.appendChild(h1);
-
-  // cover optional
-  if(tip.cover){
-    const img = document.createElement("img");
-    img.className = "tipsCover";
-    img.src = tip.cover;
-    img.alt = "cover";
-    article.appendChild(img);
-  }
-
-  const contentNode = renderTipContentLines(tip.content || []);
-  article.appendChild(contentNode);
-
-  // related box (5 manual)
-  article.appendChild(renderRelatedBox(d, tip));
-
-  updateTipsBottomPadding();
-}
-
-    // ===== Advantages
+    // ===== Render Advantages
     function renderAdvantages(d){
-      const wrap = $("advWrap");
-      if(!wrap) return;
-      const list = Array.isArray(d.advantages) ? d.advantages : [];
+      const wrap = $("advantagesGrid");
+      const arr = Array.isArray(d.advantages) ? d.advantages : [];
       wrap.innerHTML = "";
 
-      if(!list.length){
+      if(!arr.length){
         wrap.innerHTML = `<div class="small">Belum ada data keunggulan.</div>`;
         return;
       }
 
-      list.forEach(item=>{
-        const card = document.createElement("div");
-        card.className = "advCard";
-        card.innerHTML = `
-          <h3 class="advTitle">${safeText(item.title || "")}</h3>
-          <p class="advText">${safeText(item.text || "")}</p>
+      arr.forEach(x=>{
+        const el = document.createElement("div");
+        el.className = "card";
+        el.innerHTML = `
+          <h3 class="advTitle">${safeText(x.title || "")}</h3>
+          <p class="advText">${safeText(x.text || "")}</p>
         `;
-        wrap.appendChild(card);
+        wrap.appendChild(el);
       });
     }
 
-    // ===== Testimonials Text Slider (manual + swipe)
+    // ===== Testimonials Text slider (manual)
     let tIndex = 0;
+
     function renderTestimonialsText(d){
       const arr = Array.isArray(d.testimonialsText) ? d.testimonialsText : [];
       const track = $("tTrack");
@@ -1228,514 +823,333 @@ function renderTipsArticle(d, tipId){
       arr.forEach(x=>{
         const el = document.createElement("div");
         el.className = "tCard";
-        el.innerHTML = `<div class="tName">${safeText(x.name || "Anon")}</div><p class="tText">${safeText(x.text || "")}</p>`;
+        el.innerHTML = `
+          <div class="tName">${safeText(x.name || "Anon")}</div>
+          <p class="tText">${safeText(x.text || "")}</p>
+        `;
         track.appendChild(el);
       });
 
       tIndex = 0;
       updateT();
     }
-    
-function setupTipsForm(d){
-  const form = $("tipsForm");
-  const msg  = $("tipsFormMsg");
-  const sel  = $("tipsServiceSelect");
-  const note = $("tipsNote");
-  if(!form || !sel) return;
-
-  // isi placeholder note dari settings
-  if(note) note.placeholder = d?.settings?.form?.notePlaceholder || "Catatan (opsional)";
-
-  // isi dropdown layanan dari services
-  sel.innerHTML = "";
-  const opt0 = document.createElement("option");
-  opt0.value = "";
-  opt0.textContent = "Pilih layanan";
-  sel.appendChild(opt0);
-
-  (d.services||[]).forEach(s=>{
-    const opt = document.createElement("option");
-    opt.value = s.title || s.id || "";
-    opt.textContent = s.title || s.id || "";
-    sel.appendChild(opt);
-  });
-
-  form.addEventListener("submit", async (e)=>{
-    e.preventDefault();
-    if(msg) msg.textContent = "";
-
-    const endpoint = d?.settings?.form?.formspreeEndpoint || "";
-    if(!endpoint){
-      if(msg) msg.textContent = "Form belum aktif.";
-      return;
-    }
-
-    const fd = new FormData(form);
-
-    try{
-      const res = await fetch(endpoint, {
-        method: "POST",
-        headers: { "Accept":"application/json" },
-        body: fd
-      });
-
-      if(res.ok){
-        toast("Terkirim. Kami hubungi via WhatsApp.", "ok"); // E3=A
-        form.reset();
-      }else{
-        toast("Gagal mengirim. Coba lagi.", "bad");
-      }
-    }catch(err){
-      toast("Gagal mengirim. Cek koneksi.", "bad");
-    }
-  });
-}
 
     function updateT(){
       const track = $("tTrack");
       const cards = track.children;
       if(!cards.length) return;
 
-      const card = cards[0];
-      const w = card.getBoundingClientRect().width + 14; // gap
-      // show 2.5 on desktop: we just shift by 1 card each click
+      const first = cards[0];
+      const w = first.getBoundingClientRect().width + 14; // gap
       const x = Math.max(0, tIndex) * w;
       track.style.transform = `translateX(${-x}px)`;
     }
 
-    $("tPrev").onclick = ()=>{
+    $("tPrev").addEventListener("click", ()=>{
       tIndex = Math.max(0, tIndex - 1);
       updateT();
-    };
-    $("tNext").onclick = ()=>{
+    });
+    $("tNext").addEventListener("click", ()=>{
       const track = $("tTrack");
       const count = track.children.length || 0;
       tIndex = Math.min(Math.max(0, count - 1), tIndex + 1);
       updateT();
-    };
+    });
+    window.addEventListener("resize", ()=> setTimeout(updateT, 60));
 
-    // swipe
-    (function bindSwipe(){
-      const area = $("tTrack");
-      let startX = 0, dx = 0, down = false;
-
-      area.addEventListener("touchstart", (e)=>{
-        down = true;
-        startX = e.touches[0].clientX;
-      }, {passive:true});
-
-      area.addEventListener("touchmove", (e)=>{
-        if(!down) return;
-        dx = e.touches[0].clientX - startX;
-      }, {passive:true});
-
-      area.addEventListener("touchend", ()=>{
-        if(!down) return;
-        down = false;
-        if(dx < -35) $("tNext").click();
-        if(dx > 35) $("tPrev").click();
-        dx = 0;
-      });
-    })();
-
-    // ===== Testimonials Images Gallery (big + thumbs + popup)
+    // ===== Testimonials Images (gallery)
     let gIndex = 0;
-    function renderGallery(d){
-      const imgs = (Array.isArray(d.testimonialsImages) ? d.testimonialsImages : []).slice(0, 20);
-      const bigImg = $("bigImg");
-      const thumbRow = $("thumbRow");
-      const empty = $("galleryEmpty");
-      const wrap = $("galleryWrap");
+    let gArr = [];
 
-      thumbRow.innerHTML = "";
+    function renderTestimonialsImages(d){
+      gArr = Array.isArray(d.testimonialsImages) ? d.testimonialsImages : [];
+      gIndex = 0;
 
-      if(imgs.length === 0){
-        wrap.style.display = "none";
-        empty.style.display = "block";
+      const row = $("thumbRow");
+      row.innerHTML = "";
+
+      if(!gArr.length){
+        $("gMainImg").src = "";
+        $("gCap").textContent = "Belum ada testimoni gambar.";
         return;
       }
-      wrap.style.display = "";
-      empty.style.display = "none";
 
-      gIndex = Math.max(0, Math.min(gIndex, imgs.length - 1));
-
-      const bigSrc = getImgSrc(imgs[gIndex]);
-      bigImg.src = bigSrc || "";
-      $("bigCap").textContent = (imgs[gIndex].cap || "").toString();
-
-      imgs.forEach((it, i)=>{
+      gArr.forEach((x, i)=>{
         const t = document.createElement("div");
-        t.className = "thumb" + (i===gIndex ? " active" : "");
-        const src = getImgSrc(it);
-        t.innerHTML = `<img alt="thumb" src="${safeText(src)}">`;
-        t.onclick = ()=>{ gIndex = i; updateGallery(d); };
-        thumbRow.appendChild(t);
+        t.className = "thumb";
+        t.innerHTML = `<img src="${safeText(x.src || "")}" alt="" loading="lazy" />`;
+        t.addEventListener("click", ()=>{ setGallery(i); });
+        row.appendChild(t);
       });
+
+      setGallery(0);
     }
 
-    function updateGallery(d){
-      const imgs = (Array.isArray(d.testimonialsImages) ? d.testimonialsImages : []).slice(0, 20);
-      if(imgs.length === 0) return;
-
-      $("bigImg").src = getImgSrc(imgs[gIndex]) || "";
-      $("bigCap").textContent = (imgs[gIndex].cap || "").toString();
-
-      Array.from(document.querySelectorAll(".thumb"))
-        .forEach((t,i)=>t.classList.toggle("active", i===gIndex));
+    function setGallery(i){
+      if(!gArr.length) return;
+      gIndex = Math.max(0, Math.min(gArr.length-1, i));
+      const cur = gArr[gIndex];
+      $("gMainImg").src = cur.src || "";
+      $("gCap").textContent = cur.cap ? cur.cap : "";
     }
 
-    function openGalleryPopup(d){
-      const imgs = (Array.isArray(d.testimonialsImages) ? d.testimonialsImages : []).slice(0, 20);
-      if(imgs.length === 0) return;
+    $("gMain").addEventListener("click", ()=>{
+      if(!gArr.length) return;
+      openImgPopup(gIndex);
+    });
 
-      $("gPopupImg").src = getImgSrc(imgs[gIndex]) || "";
-      $("gCaption").textContent = (imgs[gIndex].cap || "").toString();
-      $("gOverlay").style.display = "flex";
+    function openImgPopup(i){
+      if(!gArr.length) return;
+      gIndex = i;
+      const cur = gArr[gIndex];
+      $("imgBig").src = cur.src || "";
+      $("imgCaption").textContent = cur.cap ? cur.cap : "";
+      $("imgOverlay").style.display = "flex";
     }
 
-    $("bigFrame").onclick = ()=> openGalleryPopup(STATE);
-    $("gClose").onclick = ()=> $("gOverlay").style.display = "none";
-    $("gOverlay").addEventListener("click", (e)=>{ if(e.target.id==="gOverlay") $("gOverlay").style.display="none"; });
+    function stepImg(dir){
+      if(!gArr.length) return;
+      gIndex = (gIndex + dir + gArr.length) % gArr.length;
+      const cur = gArr[gIndex];
+      $("imgBig").src = cur.src || "";
+      $("imgCaption").textContent = cur.cap ? cur.cap : "";
+      setGallery(gIndex);
+    }
 
-    $("gPrev").onclick = ()=>{
-      const imgs = (Array.isArray(STATE?.testimonialsImages) ? STATE.testimonialsImages : []).slice(0,20);
-      if(!imgs.length) return;
-      gIndex = (gIndex - 1 + imgs.length) % imgs.length;
-      updateGallery(STATE);
-      $("gPopupImg").src = getImgSrc(imgs[gIndex]) || "";
-      $("gCaption").textContent = (imgs[gIndex].cap || "").toString();
-    };
-    $("gNext").onclick = ()=>{
-      const imgs = (Array.isArray(STATE?.testimonialsImages) ? STATE.testimonialsImages : []).slice(0,20);
-      if(!imgs.length) return;
-      gIndex = (gIndex + 1) % imgs.length;
-      updateGallery(STATE);
-      $("gPopupImg").src = getImgSrc(imgs[gIndex]) || "";
-      $("gCaption").textContent = (imgs[gIndex].cap || "").toString();
-    };
+    $("imgPrev").addEventListener("click", ()=> stepImg(-1));
+    $("imgNext").addEventListener("click", ()=> stepImg(1));
+    $("imgClose").addEventListener("click", ()=> $("imgOverlay").style.display="none");
+    $("imgOverlay").addEventListener("click", (e)=>{ if(e.target.id==="imgOverlay") $("imgOverlay").style.display="none"; });
 
-    // ===== Form submit (Formspree)
-    function applyForm(d){
-      const hint = $("formHint");
-      const ep = (d?.settings?.form?.formspreeEndpoint || "").toString().trim();
-      const notePH = (d?.settings?.form?.notePlaceholder || "").toString();
-      $("fNote").placeholder = notePH;
+    // ===== Forms (main + tips) using Formspree endpoint from data.json
+    function setupForm(d, formId, msgId, selectId, noteId){
+      const form = $(formId);
+      const msg  = $(msgId);
+      const sel  = $(selectId);
+      const note = $(noteId);
+      if(!form || !sel) return;
 
-      if(!ep){
-        hint.innerHTML = `Form belum aktif (endpoint kosong). Isi <span class="mono">settings.form.formspreeEndpoint</span> di data.json.`;
-      }else{
-        hint.textContent = "Setelah kamu kirim, kami akan hubungi lewat WhatsApp.";
-      }
+      // placeholder note dari settings
+      if(note) note.placeholder = d?.settings?.form?.notePlaceholder || note.placeholder || "Catatan (opsional)";
 
-      $("leadForm").onsubmit = async (e)=>{
+      // isi dropdown layanan dari services
+      sel.innerHTML = "";
+      const opt0 = document.createElement("option");
+      opt0.value = "";
+      opt0.textContent = "Pilih layanan";
+      sel.appendChild(opt0);
+
+      (d.services||[]).forEach(s=>{
+        const opt = document.createElement("option");
+        opt.value = s.title || s.id || "";
+        opt.textContent = s.title || s.id || "";
+        sel.appendChild(opt);
+      });
+
+      form.addEventListener("submit", async (e)=>{
         e.preventDefault();
-        const name = $("fName").value.trim();
-        const whatsapp = $("fWA").value.trim();
-        const service = $("fService").value.trim();
-        const note = $("fNote").value.trim();
+        if(msg) msg.textContent = "";
 
-        if(!name || !whatsapp || !service){
-          toast("Lengkapi form dulu ya.");
+        const endpoint = d?.settings?.form?.formspreeEndpoint || "";
+        if(!endpoint){
+          if(msg) msg.textContent = "Form belum aktif (endpoint kosong).";
+          toast("Form belum aktif. Endpoint Formspree masih kosong.", "bad");
           return;
         }
 
-        if(!ep){
-          toast("Form belum aktif. Endpoint Formspree masih kosong.");
-          return;
-        }
+        const fd = new FormData(form);
 
         try{
-          const res = await fetch(ep, {
+          const res = await fetch(endpoint, {
             method:"POST",
-            headers:{ "Content-Type":"application/json", "Accept":"application/json" },
-            body: JSON.stringify({ name, whatsapp, service, note })
+            headers:{ "Accept":"application/json" },
+            body: fd
           });
+
           if(res.ok){
-            toast("Terkirim. Kami akan hubungi via WhatsApp.");
-            $("leadForm").reset();
+            toast("Terkirim. Kami hubungi via WhatsApp.", "ok");
+            form.reset();
+            if(msg) msg.textContent = "Terkirim. Kami hubungi via WhatsApp.";
           }else{
-            toast("Gagal kirim. Coba lagi ya.");
+            toast("Gagal mengirim. Coba lagi.", "bad");
+            if(msg) msg.textContent = "Gagal mengirim. Coba lagi.";
           }
         }catch(err){
-          console.error(err);
-          toast("Gagal kirim. Cek koneksi.");
+          toast("Gagal mengirim. Cek koneksi.", "bad");
+          if(msg) msg.textContent = "Gagal mengirim. Cek koneksi.";
         }
-      };
-    }
-
-    // ===== Admin (local only)
-    function getAdminPass(){
-      let p = localStorage.getItem(LS_ADMIN_PASS);
-      // If never set, force user to create on first login attempt:
-      return p || "";
-    }
-    function setAdminPass(p){
-      localStorage.setItem(LS_ADMIN_PASS, p);
-    }
-
-    function openAdmin(){
-      $("adminOverlay").style.display = "flex";
-      $("adminLoginMsg").textContent = "";
-      $("adminPass").value = "";
-      $("passMsg").textContent = "";
-      // show login by default
-      $("adminLogin").style.display = "";
-      $("adminEditor").style.display = "none";
-    }
-    function closeAdmin(){ $("adminOverlay").style.display = "none"; }
-
-    $("adminFab").onclick = openAdmin;
-    $("adminClose").onclick = closeAdmin;
-    $("adminOverlay").addEventListener("click", (e)=>{ if(e.target.id==="adminOverlay") closeAdmin(); });
-
-    function fillAdminEditor(d){
-      $("eLogoSrc").value = d?.settings?.logo?.src || "";
-      $("eSiteName").value = d?.settings?.siteName || "";
-      $("eCtaText").value = d?.settings?.ctaText || "";
-      $("eHeadline").value = d?.settings?.headline || "";
-      $("eSubhead").value = d?.settings?.subhead || "";
-      $("eHeroBadge").value = d?.settings?.heroBadge || "";
-      $("eInstagram").value = d?.settings?.instagram || "";
-
-      $("eAboutTitle").value = d?.about?.title || "";
-      $("eAboutText").value  = d?.about?.text || "";
-
-      $("eServices").value = JSON.stringify(Array.isArray(d.services)?d.services:[], null, 2);
-      $("eAdvantages").value = JSON.stringify(Array.isArray(d.advantages)?d.advantages:[], null, 2);
-      $("eTText").value = JSON.stringify(Array.isArray(d.testimonialsText)?d.testimonialsText:[], null, 2);
-      $("eTImg").value  = JSON.stringify(Array.isArray(d.testimonialsImages)?d.testimonialsImages:[], null, 2);
-    }
-
-    function readAdminEditor(){
-      const out = structuredClone(STATE || {});
-      out.settings = out.settings || {};
-      out.settings.logo = out.settings.logo || {};
-
-      out.settings.logo.src = $("eLogoSrc").value.trim();
-      out.settings.siteName = $("eSiteName").value.trim();
-      out.settings.ctaText  = $("eCtaText").value.trim();
-      out.settings.headline = $("eHeadline").value.trim();
-      out.settings.subhead  = $("eSubhead").value.trim();
-      out.settings.heroBadge = $("eHeroBadge").value.trim();
-      out.settings.instagram = $("eInstagram").value.trim();
-
-      out.about = out.about || {};
-      out.about.title = $("eAboutTitle").value.trim();
-      out.about.text  = $("eAboutText").value.trim();
-
-      // JSON fields
-      const parseJson = (elId, fallback)=>{
-        try{
-          const v = $(elId).value.trim();
-          if(!v) return fallback;
-          return JSON.parse(v);
-        }catch(e){
-          toast("JSON error di " + elId);
-          throw e;
-        }
-      };
-
-      out.services = parseJson("eServices", []);
-      out.advantages = parseJson("eAdvantages", []);
-      out.testimonialsText = parseJson("eTText", []);
-      out.testimonialsImages = parseJson("eTImg", []);
-
-      return out;
-    }
-
-    function bindAdminAutosave(){
-      const ids = ["eLogoSrc","eSiteName","eCtaText","eHeadline","eSubhead","eHeroBadge","eInstagram","eAboutTitle","eAboutText","eServices","eAdvantages","eTText","eTImg"];
-      ids.forEach(id=>{
-        $(id).addEventListener("input", ()=>{
-          try{
-            const d = readAdminEditor();
-            saveDraft(d);
-            toast("Draft tersimpan (local).");
-          }catch(e){
-            // keep editor as-is
-          }
-        });
       });
     }
 
-    $("adminLoginBtn").onclick = ()=>{
-      const input = $("adminPass").value;
-      const saved = getAdminPass();
-
-      // If never set, first login sets the password
-      if(!saved){
-        if(!input || input.length < 6){
-          $("adminLoginMsg").textContent = "Buat password minimal 6 karakter.";
-          return;
-        }
-        setAdminPass(input);
-        $("adminLoginMsg").textContent = "Password dibuat. Masuk...";
-      }else{
-        if(input !== saved){
-          $("adminLoginMsg").textContent = "Password salah.";
-          return;
-        }
-      }
-
-      $("adminLogin").style.display = "none";
-      $("adminEditor").style.display = "";
-      fillAdminEditor(STATE);
-      bindAdminAutosave();
-      toast("Admin aktif (draft lokal).");
-    };
-
-    $("btnChangePass").onclick = ()=>{
-      const oldP = $("oldPass").value;
-      const newP = $("newPass").value;
-      const saved = getAdminPass();
-
-      if(!saved){
-        $("passMsg").textContent = "Belum ada password. Login dulu untuk membuat.";
-        return;
-      }
-      if(oldP !== saved){
-        $("passMsg").textContent = "Password lama salah.";
-        return;
-      }
-      if(!newP || newP.length < 6){
-        $("passMsg").textContent = "Password baru minimal 6 karakter.";
-        return;
-      }
-      setAdminPass(newP);
-      $("oldPass").value = "";
-      $("newPass").value = "";
-      $("passMsg").textContent = "Password berhasil diubah.";
-      toast("Password admin diubah.");
-    };
-
-    $("adminCopyJson").onclick = async ()=>{
-      try{
-        const d = readAdminEditor();
-        const text = JSON.stringify(d, null, 2);
-        await navigator.clipboard.writeText(text);
-        toast("JSON tersalin. Paste ke data.json di GitHub lalu commit.");
-      }catch(e){
-        console.error(e);
-        toast("Gagal copy. Cek JSON editor.");
-      }
-    };
-
-    $("adminResetDraft").onclick = ()=>{
-      localStorage.removeItem(LS_DRAFT);
-      toast("Draft dihapus. Reload untuk kembali ke data.json publik.");
-    };
-
-    // ===== Render all
-    function applyAll(d){
-      applyTheme(d);
-      applyLogo(d);
-      renderNav(d);
-      renderHero(d);
-      renderAbout(d);
-      renderServices(d);
-      renderAdvantages(d);
-      renderTestimonialsText(d);
-      renderGallery(d);
-      applyForm(d);
+    // ===== Tips mode router
+    function showTipsMode(on){
+      $("mainSite").hidden = on;
+      $("tipsView").hidden = !on;
+      window.scrollTo({top:0, behavior:"instant"});
     }
-// CTA tips: arahkan ke form bawah (#kontak)
-$("tipsCtaBtn")?.addEventListener("click", ()=>{
-  location.hash = "#kontak";
-});
 
-    // ===== Boot
-    (async function(){
-      REMOTE = await fetchRemote();
-      if(!REMOTE){
-        // minimal fallback: still shows page structure
-        REMOTE = {
-          version: 1,
-          settings: { siteName:"Jokitoefl.myid", headline:"One stop for your future", highlightWord:"future", subhead:"", heroBadge:"", ctaText:"Konsultasi Gratis", instagram:"#", maxWidth:1100, theme:{} , logo:{src:""} , form:{provider:"formspree", formspreeEndpoint:"", notePlaceholder:""} },
-          nav: [{id:"home",label:"Home"},{id:"about",label:"About"},{id:"layanan",label:"Layanan"},{id:"testimoni",label:"Testimoni"},{id:"kontak",label:"Kontak"}],
-          about: {title:"Tentang Kami", text:""},
-          services: [],
-          advantages: [],
-          testimonialsText: [],
-          testimonialsImages: []
-        };
-        toast("Gagal load data.json. Cek file di repo.");
+    function renderTipsList(d){
+      const list = $("tipsList");
+      const art  = $("tipsArticle");
+      list.hidden = false;
+      art.hidden = true;
+
+      const arr = Array.isArray(d?.tips) ? d.tips : [];
+      list.innerHTML = "";
+
+      if(!arr.length){
+        list.innerHTML = `<div class="small">Belum ada tips.</div>`;
+        return;
       }
 
-      const draft = loadDraft();
-      STATE = draft || REMOTE;
-      applyAll(STATE);
-    })();
+      arr.forEach(t=>{
+        const el = document.createElement("div");
+        el.className = "tipsCard";
+        const preview = (t.preview || t.content || "").toString().trim().split(/\s+/).slice(0, 28).join(" ");
+        el.innerHTML = `
+          <div class="tipsCardTitle">${safeText(t.title || "")}</div>
+          <p class="tipsCardPrev">${safeText(preview)}${preview ? "..." : ""}</p>
+        `;
+        el.addEventListener("click", ()=>{
+          location.hash = "#tips/" + encodeURIComponent(t.id || t.title || "");
+        });
+        list.appendChild(el);
+      });
+    }
+
+    function renderTipsArticle(d, id){
+      const list = $("tipsList");
+      const art  = $("tipsArticle");
+      list.hidden = true;
+      art.hidden = false;
+
+      const arr = Array.isArray(d?.tips) ? d.tips : [];
+      const item = arr.find(x => (x.id || x.title) === id) || arr.find(x => (x.id || x.title) == id);
+
+      if(!item){
+        art.innerHTML = `<h1>Tips tidak ditemukan</h1><p>Silakan kembali ke daftar tips.</p>`;
+        return;
+      }
+
+      // cover optional: item.cover
+      const cover = item.cover ? `<img class="tipsCover" src="${safeText(item.cover)}" alt="" />` : "";
+
+      // content can be simple text. We render paragraphs by split blank lines.
+      const raw = (item.content || "").toString().trim();
+      const blocks = raw
+        .split(/\n\s*\n/g)
+        .map(p=>p.trim())
+        .filter(Boolean)
+        .map(p=>{
+          // bullet lines start with • or -
+          if(p.split("\n").some(l=>/^\s*[•\-]\s+/.test(l))){
+            const lis = p.split("\n")
+              .map(l=>l.trim())
+              .filter(l=>/^\s*[•\-]\s+/.test(l))
+              .map(l=>`<li>${safeText(l.replace(/^\s*[•\-]\s+/,""))}</li>`)
+              .join("");
+            return `<ul>${lis}</ul>`;
+          }
+          return `<p>${safeText(p).replace(/\n/g,"<br/>")}</p>`;
+        }).join("");
+
+      // related box (cek juga tips ini) with 5 links
+      const others = arr.filter(x => (x.id || x.title) !== (item.id || item.title)).slice(0, 8);
+      const rel = `
+        <div class="relatedBox">
+          <div class="relatedBoxTitle">Cek juga tips ini</div>
+          <ul>
+            ${others.slice(0,5).map(x=>`<li><a href="#tips/${encodeURIComponent(x.id || x.title)}">${safeText(x.title || "")}</a></li>`).join("")}
+          </ul>
+        </div>
+      `;
+
+      art.innerHTML = `
+        <h1>${safeText(item.title || "")}</h1>
+        <div class="meta">${safeText(item.meta || "")}</div>
+        ${cover}
+        ${blocks}
+        ${rel}
+      `;
+    }
 
     function handleHash(d){
-  const h = (location.hash || "#home").replace("#","").trim();
+      const h = (location.hash || "#home").replace("#","").trim();
 
-  // mode tips
-  if(h === "tips"){
-    showTipsMode(true);
-    renderTipsList(d);
-    return;
-  }
-  if(h.startsWith("tips/")){
-    const id = decodeURIComponent(h.slice(5));
-    showTipsMode(true);
-    renderTipsArticle(d, id);
-    return;
-  }
+      if(h === "tips"){
+        showTipsMode(true);
+        renderTipsList(d);
+        return;
+      }
+      if(h.startsWith("tips/")){
+        showTipsMode(true);
+        const id = decodeURIComponent(h.slice(5));
+        renderTipsArticle(d, id);
+        return;
+      }
 
-  // default main site
-  showTipsMode(false);
-}
+      showTipsMode(false);
+    }
 
-window.addEventListener("hashchange", ()=> {
-  if(window.__DATA__) handleHash(window.__DATA__);
+    // Tips buttons
+    $("tipsBackBtn").addEventListener("click", ()=>{ location.hash = "#home"; });
+    $("tipsCtaBtn").addEventListener("click", ()=>{
+      // ke form di bawah tips
+      const el = $("tipsFooter");
+      if(el) el.scrollIntoView({behavior:"smooth", block:"start"});
+    });
 
-  function updateTipsBottomPadding(){
-  // Sticky tips sudah dimatikan, tidak perlu padding tambahan
-  document.documentElement.style.setProperty("--tipsBottom","0px");
-}
-$("tipsCtaBtn")?.addEventListener("click", ()=>{
-  location.hash = "#kontak";
-});
+    // ===== Admin (owner-only, localStorage)
+    const LS_ADMIN_PASS = "jokitoefl_admin_pass_v1";
+    $("adminFab").addEventListener("click", ()=>{
+      const saved = localStorage.getItem(LS_ADMIN_PASS) || "";
+      const pwd = prompt(saved ? "Masukkan password admin:" : "Buat password admin (sekali saja, tersimpan di browser kamu):");
+      if(!pwd) return;
+      if(saved && pwd !== saved){
+        toast("Password salah.", "bad");
+        return;
+      }
+      if(!saved){
+        localStorage.setItem(LS_ADMIN_PASS, pwd);
+        toast("Password admin tersimpan di browser kamu.", "ok");
+      }else{
+        toast("Admin aktif (mode owner).", "ok");
+      }
+      alert("Admin panel belum kamu minta di versi ini (biar aman). Kalau kamu mau editor lengkap: settings/layanan/keunggulan/tips/testimoni → aku tambah setelah ini.");
+    });
 
-    $("tipsBackBtn")?.addEventListener("click", ()=>{ location.hash = "#home"; });
+    // ===== BOOT
+    (async ()=>{
+      const DATA = await fetchRemote();
+      if(!DATA){
+        console.warn("Gagal load data.json");
+        toast("Gagal load data.json. Cek file repo.", "bad");
+        return;
+      }
 
-    // ===== BOOT / INIT (PASTIIN INI PALING BAWAH)
-(async () => {
-  const DATA = await fetchRemote();
+      // global
+      window.__DATA__ = DATA;
 
-  if (!DATA) {
-    console.warn("Gagal load data.json");
-    return;
-  }
+      applySettings(DATA);
+      applyLogo(DATA);
+      renderAbout(DATA);
+      renderServices(DATA);
+      renderAdvantages(DATA);
+      renderTestimonialsText(DATA);
+      renderTestimonialsImages(DATA);
 
-  // simpan data global
-  window.__DATA__ = DATA;
+      setupForm(DATA, "contactForm", "formMsg", "serviceSelect", "noteField");
+      setupForm(DATA, "tipsForm", "tipsFormMsg", "tipsServiceSelect", "tipsNote");
 
-  // panggil render utama kamu (kalau ada)
-  // contoh:
-  // applyTheme(DATA);
-  // applyLogo(DATA);
-  // renderServices(DATA);
-  // renderAdvantages(DATA);
-  // renderTestimonialsText(DATA);
-  // renderTestimonialsImages(DATA);
+      // footer year
+      $("year").textContent = new Date().getFullYear();
 
-  // setup tips form (WAJIB)
-  setupTipsForm(DATA);
+      // run router
+      handleHash(DATA);
 
-  // jalankan router pertama kali (WAJIB)
-  handleHash(DATA);
-})();
-
-
+      // hash change
+      window.addEventListener("hashchange", ()=> handleHash(window.__DATA__));
+    })();
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
