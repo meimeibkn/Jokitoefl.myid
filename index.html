@@ -1049,42 +1049,93 @@
       // cover optional: item.cover
       const cover = item.cover ? `<img class="tipsCover" src="${safeText(item.cover)}" alt="" />` : "";
 
-      // content can be simple text. We render paragraphs by split blank lines.
-      const raw = (item.content || "").toString().trim();
-      const blocks = raw
-        .split(/\n\s*\n/g)
-        .map(p=>p.trim())
-        .filter(Boolean)
-        .map(p=>{
-          // bullet lines start with • or -
-          if(p.split("\n").some(l=>/^\s*[•\-]\s+/.test(l))){
-            const lis = p.split("\n")
-              .map(l=>l.trim())
-              .filter(l=>/^\s*[•\-]\s+/.test(l))
-              .map(l=>`<li>${safeText(l.replace(/^\s*[•\-]\s+/,""))}</li>`)
-              .join("");
-            return `<ul>${lis}</ul>`;
-          }
-          return `<p>${safeText(p).replace(/\n/g,"<br/>")}</p>`;
-        }).join("");
-// === NEW: render from blocks (rapi, tanpa markdown mentah)
-if(Array.isArray(article.blocks) && article.blocks.length){
-  const parts = article.blocks.map(b=>{
-    if(!b || !b.type) return "";
-    if(b.type === "h2") return `<h2>${safeText(b.text||"")}</h2>`;
-    if(b.type === "p")  return `<p>${safeText(b.text||"")}</p>`;
-    if(b.type === "hr") return `<hr style="border:none;border-top:1px solid rgba(0,0,0,.12);margin:16px 0">`;
-    if(b.type === "ul"){
-      const items = (b.items||[]).map(x=>`<li>${safeText(x||"")}</li>`).join("");
-      return `<ul>${items}</ul>`;
-    }
-    return "";
-  }).join("");
+     function renderTipsArticle(d, id){
+  const list = $("tipsList");
+  const art  = $("tipsArticle");
+  list.hidden = true;
+  art.hidden = false;
 
-  // ini yang kamu masukkan ke container artikel (misal tipsArticleBody)
-  body.innerHTML = parts;
-  return;
+  const arr = Array.isArray(d?.tips) ? d.tips : [];
+  const item =
+    arr.find(x => (x.id || x.title) === id) ||
+    arr.find(x => (x.id || x.title) == id);
+
+  if(!item){
+    art.innerHTML = `<div class="tipsArticle"><h1>Tips tidak ditemukan</h1><p>Silakan kembali ke daftar tips.</p></div>`;
+    return;
+  }
+
+  // cover optional
+  const cover = item.cover
+    ? `<img class="tipsCover" src="${safeText(item.cover)}" alt="" />`
+    : "";
+
+  // ===== CASE 1: blocks (format rapi)
+  if(Array.isArray(item.blocks) && item.blocks.length){
+    const parts = item.blocks.map(b=>{
+      if(!b || !b.type) return "";
+
+      if(b.type === "h2") return `<h2>${safeText(b.text||"")}</h2>`;
+      if(b.type === "p")  return `<p>${safeText(b.text||"")}</p>`;
+      if(b.type === "hr") return `<hr style="border:none;border-top:1px solid rgba(0,0,0,.12);margin:16px 0">`;
+
+      if(b.type === "ul"){
+        const items = (b.items||[])
+          .map(x=>`<li>${safeText(x||"")}</li>`)
+          .join("");
+        return `<ul>${items}</ul>`;
+      }
+      return "";
+    }).join("");
+
+    art.innerHTML = `
+      <div class="tipsArticle tipsPadBottom">
+        <h1>${safeText(item.title || "Tips")}</h1>
+        ${item.updated ? `<div class="meta">Last updated: ${safeText(item.updated)}</div>` : `<div class="meta"></div>`}
+        ${cover}
+        ${parts}
+        <div class="relatedBox">
+          <div class="relatedBoxTitle">Cek juga tips ini</div>
+          <ul id="relatedTipsList"><li>Tips lainnya segera menyusul.</li></ul>
+        </div>
+      </div>
+    `;
+    return;
+  }
+
+  // ===== CASE 2: fallback content string (format lama)
+  const raw = (item.content || "").toString().trim();
+  const blocks = raw
+    .split(/\n\s*\n/g)
+    .map(p=>p.trim())
+    .filter(Boolean)
+    .map(p=>{
+      // bullet lines start with • or -
+      if(p.split("\n").some(l=>/^\s*[•\-]\s+/.test(l))){
+        const lis = p.split("\n")
+          .map(l=>l.trim())
+          .filter(l=>/^\s*[•\-]\s+/.test(l))
+          .map(l=>`<li>${safeText(l.replace(/^\s*[•\-]\s+/,""))}</li>`)
+          .join("");
+        return `<ul>${lis}</ul>`;
+      }
+      return `<p>${safeText(p).replace(/\n/g,"<br/>")}</p>`;
+    }).join("");
+
+  art.innerHTML = `
+    <div class="tipsArticle tipsPadBottom">
+      <h1>${safeText(item.title || "Tips")}</h1>
+      ${item.updated ? `<div class="meta">Last updated: ${safeText(item.updated)}</div>` : `<div class="meta"></div>`}
+      ${cover}
+      ${blocks || "<p>(Konten kosong)</p>"}
+      <div class="relatedBox">
+        <div class="relatedBoxTitle">Cek juga tips ini</div>
+        <ul id="relatedTipsList"><li>Tips lainnya segera menyusul.</li></ul>
+      </div>
+    </div>
+  `;
 }
+
 
       // related box (cek juga tips ini) with 5 links
       const others = arr.filter(x => (x.id || x.title) !== (item.id || item.title)).slice(0, 8);
@@ -1186,5 +1237,6 @@ if(Array.isArray(article.blocks) && article.blocks.length){
   </script>
 </body>
 </html>
+
 
 
