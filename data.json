@@ -106,25 +106,110 @@
 ],
 "tips": [
   {
-    "id": "listening-part-b",
-    "title": "Strategi Cerdas Menghadapi Listening Part B TOEFL Biar Tidak Kehilangan Arah",
-    "preview": "Kalau Listening Part A itu soal kejelian menangkap dialog singkat, maka Listening Part B adalah ujian daya tahan fokus...",
-    "cover": "assets/tips/artikel-01.jpg",
-    "content": [
-      "Kalau Listening Part A itu soal kejelian menangkap dialog singkat, maka Listening Part B adalah ujian daya tahan fokus.",
-      "Banyak peserta TOEFL bilang, “Aku paham di awal, tapi kok makin ke belakang makin kabur?” Itu wajar.",
-      "_____",
-      "## Pahami Dulu Karakter Listening Part B",
-      "Listening Part B biasanya berupa:",
-      "- Percakapan lebih panjang",
-      "- Bisa melibatkan 2 sampai 3 orang",
-      "- Topiknya seputar kampus/administrasi ringan",
-      "_____",
-      "## Trik 1: Tangkap Topik Sejak 10 Detik Pertama",
-      "Di awal audio biasanya langsung disebutkan konteks. Targetkan 10–15 detik pertama kamu sudah tahu topiknya."
-    ],
-    "related": []
-  }
+  "id": "listening-part-b",
+  "title": "Strategi Cerdas Menghadapi Listening Part B TOEFL Biar Tidak Kehilangan Arah",
+  "cover": "assets/tips/artikel-01.jpg",
+  "updated": "2025-12-28",
+  "blocks": [
+    {
+      "type": "p",
+      "text": "Kalau Listening Part A itu soal kejelian menangkap dialog singkat, maka Listening Part B adalah ujian daya tahan fokus. Banyak peserta TOEFL bilang, “Aku paham di awal, tapi kok makin ke belakang makin kabur?”"
+    },
+    { "type": "p", "text": "Itu wajar. Part B memang dirancang untuk menguji konsistensi, bukan sekadar pemahaman sesaat." },
+    { "type": "p", "text": "Mimin sering ketemu kasus seperti ini: nilai Part A lumayan, tapi Part B turun drastis. Bukan karena bahasa Inggrisnya jelek, tapi karena tidak tahu cara menyimak yang benar." },
+    { "type": "p", "text": "Di artikel ini, mimin akan membahas tips dan trik Listening Part B TOEFL secara santai, runtut, dan aplikatif. Tetap ringan, tapi isinya daging semua." },
+    { "type": "p", "text": "Dan seperti biasa, mimin ingatkan secara halus di awal: kalau kamu butuh hasil cepat atau skor aman karena kebutuhan tertentu, mimin juga buka jasa joki TOEFL yang sudah berpengalaman. Tapi sekarang, kita belajar dulu dengan tenang." },
+
+    { "type": "hr" },
+
+    { "type": "h2", "text": "Pahami Dulu Karakter Listening Part B" },
+    { "type": "p", "text": "Listening Part B biasanya berupa:" },
+    {
+      "type": "ul",
+      "items": [
+        "Percakapan lebih panjang",
+        "Bisa melibatkan 2 sampai 3 orang",
+        "Topiknya sering seputar kampus, administrasi, atau aktivitas akademik ringan"
+      ]
+    },
+    { "type": "p", "text": "Setelah satu audio, biasanya muncul beberapa pertanyaan. Artinya, kamu harus ingat alur, bukan cuma satu kalimat." },
+    { "type": "p", "text": "Kesalahan terbesar di Part B adalah mengira ini cuma versi panjang dari Part A. Padahal pendekatannya berbeda." },
+
+    { "type": "hr" },
+
+    { "type": "h2", "text": "Trik 1: Tangkap Topik Sejak 10 Detik Pertama" },
+    { "type": "p", "text": "Di awal audio, biasanya langsung disebutkan konteks. Contoh:" },
+    { "type": "ul", "items": ["di kantor administrasi", "membahas jadwal kelas", "soal tugas atau pendaftaran"] },
+    { "type": "p", "text": "Kalau kamu sudah tahu topiknya sejak awal, otakmu otomatis “siap” menerima informasi berikutnya." },
+    { "type": "p", "text": "Tips dari mimin: jangan tunggu sampai audio selesai untuk paham topik. Targetkan 10 sampai 15 detik pertama sudah tahu mereka sedang membicarakan apa." },
+
+    { "type": "hr" },
+
+    { "type": "h2", "text": "Trik 2: Jangan Hafalkan Kata, Ikuti Alurnya" },
+    { "type": "p", "text": "Listening Part B bukan tentang mengingat kalimat, tapi memahami cerita." },
+    { "type": "p", "text": "Bayangkan kamu sedang mendengar teman bercerita. Kamu tidak menghafal kata per kata, tapi kamu paham:" },
+    { "type": "ul", "items": ["siapa melakukan apa", "masalahnya apa", "solusinya bagaimana"] },
+    { "type": "p", "text": "Kalau kamu mencoba menghafal, biasanya kamu justru kehilangan bagian berikutnya." },
+    { "type": "p", "text": "Fokuslah pada alur: awal → masalah → respon → kesimpulan." },
+
+    { "type": "hr" },
+
+    { "type": "h2", "text": "Trik 3: Kenali Siapa yang Punya Informasi Penting" },
+    { "type": "p", "text": "Dalam dialog Part B, tidak semua pembicara sama pentingnya. Biasanya:" },
+    { "type": "ul", "items": ["satu orang bertanya", "satu orang menjelaskan", "satu orang menambahkan atau mengklarifikasi"] },
+    { "type": "p", "text": "Informasi utama sering datang dari orang yang menjelaskan, bukan yang bertanya." },
+    { "type": "p", "text": "Latih diri kamu untuk mengenali peran tiap pembicara dan fokus pada yang memberi penjelasan panjang." },
+
+    { "type": "hr" },
+
+    { "type": "h2", "text": "Trik 4: Catat Mental, Bukan Menulis Panjang" },
+    { "type": "p", "text": "Banyak yang panik karena ingin mencatat semuanya. Padahal menulis terlalu banyak justru membuat kamu kehilangan fokus mendengar." },
+    { "type": "p", "text": "Cukup simpan poin penting di kepala:" },
+    { "type": "ul", "items": ["tujuan percakapan", "keputusan akhir", "perubahan rencana", "alasan utama"] },
+    { "type": "p", "text": "Kalau kamu mencatat, cukup kata kunci, bukan kalimat lengkap." },
+
+    { "type": "hr" },
+
+    { "type": "h2", "text": "Trik 5: Waspadai Pertanyaan Tentang Tujuan dan Kesimpulan" },
+    { "type": "p", "text": "Pertanyaan Listening Part B sering berbunyi seperti:" },
+    { "type": "ul", "items": ["What is the main purpose of the conversation?", "Why does the student visit the office?", "What will the man probably do next?"] },
+    { "type": "p", "text": "Artinya, kamu harus paham niat dan hasil akhir, bukan detail kecil." },
+    { "type": "p", "text": "Tips penting: kalau di akhir audio ada keputusan atau rencana, hampir pasti itu akan ditanya." },
+
+    { "type": "hr" },
+
+    { "type": "h2", "text": "Trik 6: Jangan Terjebak Detail yang Terlalu Spesifik" },
+    { "type": "p", "text": "Tanggal, jam, nomor ruangan, nama gedung sering disebut, tapi tidak selalu ditanya." },
+    { "type": "p", "text": "TOEFL lebih suka menguji:" },
+    { "type": "ul", "items": ["pemahaman makna", "hubungan sebab akibat", "sikap pembicara"] },
+    { "type": "p", "text": "Kalau kamu terlalu fokus ke angka dan detail kecil, kamu bisa kehilangan gambaran besar." },
+
+    { "type": "hr" },
+
+    { "type": "h2", "text": "Trik 7: Perluas Vocabulary Konteks Kampus" },
+    { "type": "p", "text": "Listening Part B sering pakai kosa kata khas lingkungan akademik. Beberapa contoh yang sering muncul:" },
+    { "type": "ul", "items": ["registrar", "advisor", "enrollment", "prerequisite", "extension", "office hours", "syllabus"] },
+    { "type": "p", "text": "Mimin sarankan: dengarkan podcast atau video bertema kampus, tonton film/serial berlatar universitas, dan biasakan telinga dengan istilah administrasi." },
+    { "type": "p", "text": "Vocabulary kontekstual jauh lebih berguna daripada menghafal daftar kata acak." },
+
+    { "type": "hr" },
+
+    { "type": "h2", "text": "Trik 8: Latihan Fokus Panjang, Bukan Sekadar Benar" },
+    { "type": "p", "text": "Banyak latihan TOEFL fokus ke jawaban benar-salah, tapi lupa melatih fokus mendengar lama." },
+    { "type": "p", "text": "Sesekali, latih diri kamu:" },
+    { "type": "ul", "items": ["mendengar satu audio panjang tanpa berhenti", "tidak langsung menjawab", "coba ceritakan ulang isinya di kepala"] },
+    { "type": "p", "text": "Ini melatih daya tahan mental yang sangat dibutuhkan di Part B." },
+
+    { "type": "hr" },
+
+    { "type": "h2", "text": "Penutup: Listening Part B Bisa Jadi Kunci Skor Stabil" },
+    { "type": "p", "text": "Listening Part B bukan bagian paling sulit, tapi sering jadi penyebab skor turun diam-diam." },
+    { "type": "p", "text": "Dengan strategi yang tepat, kamu bisa lebih tenang saat mendengar, tidak mudah kehilangan arah, dan menjawab dengan percaya diri." },
+    {
+      "type": "p",
+      "text": "Dan kalau suatu saat kamu berada di kondisi: butuh skor cepat, waktu persiapan terbatas, atau tidak ingin ambil risiko gagal, mimin juga menyediakan jasa joki TOEFL yang aman, rapi, dan sudah terbukti membantu banyak kebutuhan klien. Kamu fokus ke tujuanmu, urusan teknis biar mimin yang tangani."
+    }
+}
 ], 
 
   "advantages": [
