@@ -5,7 +5,7 @@
     "siteName": "Jokitoefl.myid",
     "headline": "One stop for your future",
     "highlightWord": "future",
-    "subhead": "Konsultasi cepat untuk kebutuhan TOEFL, sertifikat komputer, bantuan mahasiswa, dan rangkuman UAS. Tinggal isi form, kami hubungi via WhatsApp.",
+    "subhead": "Ingin mengonsultasikan kebutuhanmu? Isi formulir, kami akan menghubungi melalui WhatsApp. Proses dilakukan bertahap demi menjaga keamanan dan privasi data",
     "heroBadge": "Sertifikat TOEFL & Komputer • Bantuan Mahasiswa • Lainnya",
     "ctaText": "Konsultasi Gratis",
     "instagram": "https://www.instagram.com/jokitoefl.myid",
@@ -40,37 +40,37 @@
 
   "about": {
     "title": "Tentang Kami",
-    "text": "Jokitoefl.myid membantu kebutuhan belajar dan dokumen pendukung akademik dengan alur yang simpel dan terpercaya sejak 2023: sampaikan kebutuhan, deal harga, kami bantu eksekusi."
+    "text": "Jokitoefl.myid adalah jasa bantuan akademik yang dikelola secara personal. Sejak 2023, kami membantu mahasiswa dalam kebutuhan belajar dan dokumen pendukung akademik dengan proses yang dibuat jelas dan bertahap. Sebelum pengerjaan dimulai, kami melakukan pengecekan terlebih dahulu untuk memastikan kebutuhan bisa dibantu. Pembayaran tidak dilakukan penuh di awal. Pengguna hanya membayar biaya sertifikat terlebih dahulu, kemudian kami melanjutkan proses sampai sertifikat selesai dan valid. Setelah bukti sertifikat dikirimkan, pelunasan jasa dilakukan, dan sertifikat dikirimkan kepada pengguna."
   },
 
 "services": [
   {
     "id": "toefl",
     "title": "Sertifikat TOEFL",
-    "desc": "Bantu Joki sertifikat TOEFL kamu, Garansi 100%. Solusi paling murah, resmi, dan transparan.",
+    "desc": "Butuh sertifikat TOEFL tanpa proses yang ribet, tapi tetap aman? Kami membantu dengan sistem pembayaran bertahap. Bukti sertifikat yang sudah selesai dan valid akan dikirimkan sebelum pelunasan, sehingga proses tetap aman dan jelas.",
     "details": [
       "SECTION: SERTIFIKAT NASIONAL",
       "Keperluan: BUMN, CPNS, KAI, OJK, dan instansi nasional lainnya",
       "Solusi: Sertifikat non-ETS Resmi (Soft File)",
-      "Harga: 150k (Test) + 180k (Joki) = 330k",
-      "Durasi: 1–2 jam (maks 1x24 jam)",
+      "Harga: 150k (DP Biaya Test) + 180k (Pelunasan Joki Diakhir) = 330k",
+      "Durasi Pengerjaan: 1–2 jam (maks 1x24 jam)",
 
       "SECTION: SERTIFIKAT INTERNASIONAL",
       "Keperluan: Beasiswa LPDP, TBI, S2, dan keperluan Internasional lainnya",
       "Solusi: Sertifikat ETS Resmi",
       "Harga: Joki 500k",
-      "Durasi: Tergantung jadwal dan ketersediaan"
+      "Durasi Pengerjaan: Tergantung jadwal dan ketersediaan"
     ]
   },
   {
     "id": "komputer",
     "title": "Sertifikat Komputer",
-    "desc": "Bantu buat Sertifikat Microsoft kamu sesuai untuk daftar kerja. Solusi paling murah, resmi, dan transparan.",
+    "desc": "Butuh sertifikat komputer seperti Microsoft untuk keperluan kerja? Kami bantu dengan pembayaran bertahap. Bukti sertifikat dikirim terlebih dahulu sebelum pelunasan, sehingga proses tetap aman dan jelas.",
     "details": [
       "Keperluan: BUMN, CPNS, KAI, OJK, dan instansi nasional lainnya",
       "Solusi: Sertifikat Resmi (Soft File)",
-      "Harga: 150k (Test) + 180k (Joki) = 330k",
-      "Durasi: 2–4 jam (maks 1x24 jam)"
+      "Harga: 150k (DP Biaya Test) + 180k (Pelunasan Joki Diakhir) = 330k",
+      "Durasi Pengerjaan: 2–4 jam (maks 1x24 jam)"
     ]
   },
   {
@@ -703,6 +703,15 @@
     { "name": "hamba tuhan", "text": "terimakasih, skor sesuai." },
     { "name": "sISTer", "text": "maacii sengg, TOEFLnya cepet banget cuma sejam jadi skwkwkww" },
     { "name": "anonim", "text": "kknya ramah bgt, bintang 5 dehhhhh" },
+    { "name": "anonimus", "text": "SERTIFIKAT TOEFLNYA BISA DIPAKE BERKALI KALI" },
+    { "name": "VIAN", "text": "lolos BUMN ka, makaish yak. aku ambil sertif toefl+sertif komputer" },
+    { "name": "cya", "text": "ambil harga pas diskon, cuma 500 rebu udh dapet 2 sertidikat" },
+    { "name": "Paldu", "text": "Terimakasih min. bintang 5." },
+    { "name": "rahmi", "text": "TOEFL-nya LOLOS BERKAS BUMN, sayangnya 2025 CPNS ga buka.." },
+    { "name": "tasya", "text": "buat pas 2023, 2025 masih bisa dipake sertifnya" },
+    { "name": "habib", "text": "skornya sesuai." },
+    { "name": "Lissaaa", "text": "saranghaeeee kaaa, huhu tadinya hopeless gabisa dafar CPNS karena ga sempet belajar buat TOEFL. penyelamat dehhh pokoknyaaa" },
+    { "name": "Mutiara", "text": "tadinya aku skeptis, tapi kakaknya baik banget disini bisa DP dulu dan dikasih update setiap aku nanyain hahahahah" },
     { "name": "Aditya", "text": "kakanya baik, dikasih bonus banyak tips dan trik" }
   ],
 
@@ -722,7 +731,11 @@
   { "src": "assets/testimonials/img-13.jpg.jpeg", "cap": "Testimoni" },
   { "src": "assets/testimonials/img-14.jpg.jpeg", "cap": "Testimoni" },
   { "src": "assets/testimonials/img-15.jpg.jpeg", "cap": "Testimoni" },
-  { "src": "assets/testimonials/img-16.jpg.jpeg", "cap": "Testimoni" }
+  { "src": "assets/testimonials/img-16.jpg.jpeg", "cap": "Testimoni" },
+  { "src": "assets/testimonials/img-17.jpg.jpeg", "cap": "Testimoni" },
+  { "src": "assets/testimonials/img-18.jpg.jpeg", "cap": "Testimoni" },
+  { "src": "assets/testimonials/img-19.jpg.jpeg", "cap": "Testimoni" },
+  { "src": "assets/testimonials/img-20.jpg.jpeg", "cap": "Testimoni" }
 ]
 
 }
